@@ -8,7 +8,7 @@ The goal of this repository is to have information and documentation about the e
 Here, you can find more information about:
 - [Pricing](/Documentation/pricing.md)
 - [Installation In DevOps](/Documentation/installation.md)
-- [Setting up your first Build Pipeling](/Documentation/SettingUpYourFirstBuild.md)
+- [Setting up your first Build Pipeline](/Documentation/SettingUpYourFirstBuild.md)
 
 
 
