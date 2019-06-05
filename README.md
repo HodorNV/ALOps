@@ -1,2 +1,4 @@
 # ALOps
 ALOps
+
+[Pricing](/Pricing)
