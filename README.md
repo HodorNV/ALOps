@@ -1,4 +1,4 @@
 # ALOps
 ALOps
 
-[Pricing](pricing.md)
+[Pricing](/Documentation/pricing.md)
