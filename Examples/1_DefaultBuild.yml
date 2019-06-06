@@ -50,10 +50,3 @@ steps:
   condition: always()
   inputs:
     docker_login: 'Insider Docker Registry'
-
-- task: PublishBuildArtifacts@1
-  enabled: false
-  inputs:
-    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
-    ArtifactName: 'Base'
-    publishLocation: 'Container'
