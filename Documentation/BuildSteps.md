@@ -102,6 +102,18 @@ Here is a list of all build steps you have at your disposal when you use ALOps
 - Object Import
   * Import .fob files
   * Import .txt files
+  * Example in yaml: 
+    ```yaml
+    - task: ALOpsFobImport@1
+      displayName: 'ALOPS Import FOB'
+      inputs:
+        usedocker: true
+        fixed_tag: $(dockerContainerTag)
+        filePath: '.fob/NoTable.fob'
+        import_action: 'Overwrite'
+        synchronize_schema_changes: 'Yes'
+        generate_symbol_reference: true
+    ```
 
 - Object Export
   * Export .fob files
