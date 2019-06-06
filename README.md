@@ -6,12 +6,10 @@ The goal of this repository is to have information and documentation about the e
 
 ## Menu
 Here, you can find more information about:
-- [Pricing](/Documentation/pricing.md)
+- [Pricing](https://marketplace.visualstudio.com/items?itemName=Hodor.hodor-alops&ssr=false#pricing)
 - [Installation In DevOps](/Documentation/installation.md)
 - [List of all the buildsteps](/Documentation/BuildSteps.md)
 - [Setting up your first Build Pipeline](/Documentation/SettingUpYourFirstBuild.md)
-
-
 
 
 <img align="right" width="100" height="100" src="Documentation/Images/icon.png">
