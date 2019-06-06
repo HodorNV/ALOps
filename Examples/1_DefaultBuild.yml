@@ -5,30 +5,30 @@ variables:
   TestFilter: '82100..82150'
 
 steps:
-- task: NAVMgtDockerStart@1
+- task: ALOpsDockerStart@1
   inputs:
     docker_image: mcr.microsoft.com/businesscentral/sandbox
     docker_pull: true
 
-- task: NAVMgtDockerWait@1
+- task: ALOpsDockerWait@1
   inputs:
     search_string: 'Ready for connections!'
     
-- task: NAVMgtAppCompiler@2
+- task: ALOpsAppCompiler@1
   displayName: 'Compile Extension'
   inputs:
     usedocker: true
     nav_app_version: $(AppVersion)
     failed_on_warnings: true    
 
-- task: NAVMgtAppPublish@2
+- task: ALOpsAppPublish@1
   displayName: 'Publish AL-App'
   inputs:
     usedocker: true
     nav_artifact_app_filter: '*.app'   
     skip_verification: true 
 
-- task: NAVMgtAppTest@1
+- task: ALOpsAppTest@1
   displayName: 'Run TestSuite'
   inputs:
     usedocker: true
@@ -37,14 +37,14 @@ steps:
     show_available_tests: true
   continueOnError: true    
 
-- task: PublishTestResults@2
+- task: PublishTestResults@1
   displayName: 'Publish Test Results **/TestResults.xml'
   inputs:
     testResultsFormat: XUnit
     testResultsFiles: '**/TestResults.xml'
     testRunTitle: 'BC Test Results: $(Build.BuildId)'
 
-- task: NAVMgtDockerRemove@1
+- task: ALOpsDockerRemove@1
   displayName: 'Remove Docker Container'
   enabled: true
   condition: always()

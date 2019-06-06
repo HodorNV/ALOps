@@ -16,6 +16,6 @@ The prices can vary in any direction at any time.  Please provide us with feedba
 There is no trial period.  To test, you can set up public builds as much as you want, and when happy, apply them on private repositories.  
 
 ## Questions or feedback?
-For any questions of feedback, please contact us by email [here](mailto:admin@hodor.be)
+For any questions or feedback, please contact us by email [here](mailto:pricing@hodor.be)
 
 [Back To Main Page](../README.md)
