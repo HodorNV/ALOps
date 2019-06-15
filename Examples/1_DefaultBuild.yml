@@ -48,5 +48,3 @@ steps:
   displayName: 'Remove Docker Container'
   enabled: true
   condition: always()
-  inputs:
-    docker_login: 'Insider Docker Registry'
