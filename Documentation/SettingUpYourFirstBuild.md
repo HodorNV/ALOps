@@ -46,6 +46,15 @@ ALOps provides templates for AL Apps in [this public project](https://dev.azure.
 You have now a new repo, with the code imported from the template project from ALOps.
 
 ## And now?
-Now you're actually all done.  You project already has a build pipeline
+There is a big chance you're all done now.  Because of the "azure-pipelines.yml", it should have created a build pipeline automatically.
+
+If not, you can easily create it yourself:
+- Go to Pipelines / Builds
+- Click New / New Build Pipeline
+- CLick "Azure Repos Git"
+- select your new repo
+- Change the "Pool / name" to your own agent pool 
+- Now it will detect your yml file.  Click "Run" to save and run the build pipelin
+
 
 [Back To Main Page](../README.md)
