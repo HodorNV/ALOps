@@ -6,10 +6,17 @@ You can simply download ALOps to your DevOps environment by:
 - Open [DevOps](https://devops.azure.com) and log in with your account
 - Open the organization you want to work in
 - On the right top corner, click the right basket to browse the marketplace. 
-![](Images\FirstBuildPipeline1.png)
+
+<img src="Images\FirstBuildPipeline1.png">
+
 - Search for "ALOps" and open that page
 - Click "Get"
+
 <img src="Images\FirstBuildPipeline2.png">
+
+- select your collection/organization and click "Install"
+
+<img src="Images\FirstBuildPipeline8.png">
 
 The tool is being downloaded to your marketplace.  If you go to "Manage Extensions", you'll find it in your "Installed" Extensions.
 <img src="Images\FirstBuildPipeline3.png">
