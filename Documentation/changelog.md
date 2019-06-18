@@ -1,6 +1,7 @@
 # Change Log
 All notable changes to the "ALOps" extension.
 
+## [v1.0] - 2019-01-01
 ## [v1.420] - 2019-06-17
 - Added YAML templates for AL Projects: https://dev.azure.com/HodorNV/ALOps%20Templates
 - ALOpsAppCompiler: Added boolean parameter 'download_test_symbols' for enabling explicit Test-Package download
@@ -12,3 +13,5 @@ All notable changes to the "ALOps" extension.
 - ALOpsDockerStart: Add -ltsc2019 or -ltsc2016 to Docker Image depending on OS
 - ALOpsDockerStart: Added multi-line parameter 'docker_parameters', these will be added to the [docker run] command
 - ALOpsDockerStart: Removed 'No container found' message when not working with Fixed-Docker-Tags
+## [v1.421] - 2019-06-24
+## [FUTURE] - 2019-12-31
