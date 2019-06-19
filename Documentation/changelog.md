@@ -2,11 +2,16 @@
 All notable changes to the "ALOps" extension.
 
 ## [v1.421] - 2019-06-23
+- ALOpsAppClean: Add 'sync_mode' picklist parameter (Add/Clean/Development/ForceSync)
+- ALOpsAppClean: enable for use in docker containers, use_docker parameter
+- ALOpsAppTest: DisableNameChecking when importing Microsoft.Dynamics.Nav.Ide to avoid false warnings in pipeline
+
 - ALOpsDockerStart: Print all docker parameters used for RUN command
 - ALOpsFobImport: Added parameter for NAV Server Instance name
 - ALOpsFobImport: allow for multiple FOB files to be imported in a single step, parameter 'filePath' can contain a filter like '.fob/*.fob'
 - ALOpsFobImport: DisableNameChecking when importing Microsoft.Dynamics.Nav.Ide to avoid false warnings in pipeline
 - ALOpsFobImport: integrate SQL-Database authentication for SQL mixed mode or Azure SQL
+- ALOpsLicenseImport: Print flf license information before import
 
 ## [v1.420] - 2019-06-16
 - Added YAML templates for AL Projects: https://dev.azure.com/HodorNV/ALOps%20Templates
