@@ -100,6 +100,7 @@ Here is a list of all build steps you have at your disposal when you use ALOps
           inputs:
             usedocker: True                       # Run task in Docker container.
             fixed_tag:                            # Allows recycling of docker containers.
+            print_logs: True                      # Print all container logs before remove.
     ```
 - ALOps Docker Start
   * Start Business Central docker container.
