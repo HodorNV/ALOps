@@ -125,6 +125,7 @@ Here is a list of all build steps you have at your disposal when you use ALOps
             sql_database:                         # External SQL Database.
             sql_database_user:                    # External SQL Database User.
             sql_database_user_password:           # External SQL Database Password.
+            sql_backup_file:                      # Restore BAK file on startup.
             encryption_key:                       # Encryption key for Service Tier.
     ```
 - ALOps Docker Wait
