@@ -5,7 +5,6 @@ All notable changes to the "ALOps" extension.
 - ALOpsAppClean: Add 'sync_mode' picklist parameter (Add/Clean/Development/ForceSync)
 - ALOpsAppClean: enable for use in docker containers, use_docker parameter
 - ALOpsAppTest: DisableNameChecking when importing Microsoft.Dynamics.Nav.Ide to avoid false warnings in pipeline
-
 - ALOpsDockerRemove: added boolean parameter 'print_logs', default enabled. Prints logs on container remove.
 - ALOpsDockerStart: added parameter 'encryption_key', link a secret downloadable Url of the Encryption Key.
 - ALOpsDockerStart: Print all docker parameters used for RUN command
