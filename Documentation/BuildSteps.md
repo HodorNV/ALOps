@@ -195,4 +195,17 @@ Here is a list of all build steps you have at your disposal when you use ALOps
             nav_artifact_app_filter: *.app        # Path of the App to publish. Must be a fully qualified path or relative to $(System.DefaultWorkingDirectory). (Required)
             skip_verification: True               # Skip CodeSign Verification of Business Central App.
     ```
+- ALOps SaaS Get Extensions
+  * Get extensions from Business Central Saas.
+  * YAML Template: 
+    ```yaml
+        - task: ALOpsSaaSGetExtensions@1
+          displayName: 'ALOps SaaS Get Extensions'
+          inputs:
+            azure_tenant_id:                      # Azure Tenant Id. (Required)
+            azure_app_client_id:                  # Azure AD Application Client Id. (Required)
+            azure_app_client_secret:              # Azure AD Application Client Secret. (Required)
+            bc_impersonate_user:                  # Business Central User to impersonate. (Required)
+            bc_impersonate_password:              # Business Central User Password to impersonate. (Required)
+    ```
 
