@@ -7,7 +7,7 @@ Here is a list of all build steps you have at your disposal when you use ALOps
 ### ALOps Tasks
 - ALOps App Sign
   * Codesign Business Central extension with .pfx.
-  * YAML Template: 
+  * Example in yaml: 
     ```yaml
         - task: ALOpsAppSign@1
           displayName: 'ALOps App Sign'
@@ -19,7 +19,7 @@ Here is a list of all build steps you have at your disposal when you use ALOps
     ```
 - ALOps App Sign Verify
   * Verify CodeSign of Business Central extension.
-  * YAML Template: 
+  * Example in yaml: 
     ```yaml
         - task: ALOpsAppSignVerify@1
           displayName: 'ALOps App Sign Verify'
@@ -30,7 +30,7 @@ Here is a list of all build steps you have at your disposal when you use ALOps
     ```
 - ALOps App Test
   * Run Business Central Test-Suite and collect results.
-  * YAML Template: 
+  * Example in yaml: 
     ```yaml
         - task: ALOpsAppTest@1
           displayName: 'ALOps App Test'
@@ -45,7 +45,7 @@ Here is a list of all build steps you have at your disposal when you use ALOps
     ```
 - ALOps App Cleaner
   * Remove all extensions from Business Central service tier.
-  * YAML Template: 
+  * Example in yaml: 
     ```yaml
         - task: ALOpsAppClean@1
           displayName: 'ALOps App Cleaner'
@@ -58,7 +58,7 @@ Here is a list of all build steps you have at your disposal when you use ALOps
     ```
 - ALOps App Copy
   * Copy Business Central extensions from one service tier to another.
-  * YAML Template: 
+  * Example in yaml: 
     ```yaml
         - task: ALOpsAppCopy@1
           displayName: 'ALOps App Copy'
@@ -70,7 +70,7 @@ Here is a list of all build steps you have at your disposal when you use ALOps
     ```
 - ALOps App Compiler
   * Compile a Business Central extension from AL code.
-  * YAML Template: 
+  * Example in yaml: 
     ```yaml
         - task: ALOpsAppCompiler@1
           displayName: 'ALOps App Compiler'
@@ -93,18 +93,17 @@ Here is a list of all build steps you have at your disposal when you use ALOps
     ```
 - ALOps Docker Remove
   * Remove Business Central docker container.
-  * YAML Template: 
+  * Example in yaml: 
     ```yaml
         - task: ALOpsDockerRemove@1
           displayName: 'ALOps Docker Remove'
           inputs:
             usedocker: True                       # Run task in Docker container.
             fixed_tag:                            # Allows recycling of docker containers.
-            print_logs: True                      # Print all container logs before remove.
     ```
 - ALOps Docker Start
   * Start Business Central docker container.
-  * YAML Template: 
+  * Example in yaml: 
     ```yaml
         - task: ALOpsDockerStart@1
           displayName: 'ALOps Docker Start'
@@ -127,7 +126,7 @@ Here is a list of all build steps you have at your disposal when you use ALOps
     ```
 - ALOps Docker Wait
   * Wait until the Business Central container is started.
-  * YAML Template: 
+  * Example in yaml: 
     ```yaml
         - task: ALOpsDockerWait@1
           displayName: 'ALOps Docker Wait'
@@ -137,7 +136,7 @@ Here is a list of all build steps you have at your disposal when you use ALOps
     ```
 - ALOps Import FOB
   * Import objects from .FOB file.
-  * YAML Template: 
+  * Example in yaml: 
     ```yaml
         - task: ALOpsFobImport@1
           displayName: 'ALOps Import FOB'
@@ -152,14 +151,14 @@ Here is a list of all build steps you have at your disposal when you use ALOps
     ```
 - ALOps Info
   * Print information about ALOps and executing host.
-  * YAML Template: 
+  * Example in yaml: 
     ```yaml
         - task: ALOpsInfo@1
           displayName: 'ALOps Info'
     ```
 - ALOps License Import
   * Import Business Central license (.flf).
-  * YAML Template: 
+  * Example in yaml: 
     ```yaml
         - task: ALOpsLicenseImport@1
           displayName: 'ALOps License Import'
@@ -172,7 +171,7 @@ Here is a list of all build steps you have at your disposal when you use ALOps
     ```
 - ALOps Package Import
   * Import and Process RapidStart/Configuration Package
-  * YAML Template: 
+  * Example in yaml: 
     ```yaml
         - task: ALOpsPackageImport@1
           displayName: 'ALOps Package Import'
@@ -181,7 +180,7 @@ Here is a list of all build steps you have at your disposal when you use ALOps
     ```
 - ALOps App Publish
   * Publish Business Central extension to service tier.
-  * YAML Template: 
+  * Example in yaml: 
     ```yaml
         - task: ALOpsAppPublish@1
           displayName: 'ALOps App Publish'
