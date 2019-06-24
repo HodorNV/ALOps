@@ -37,7 +37,7 @@ steps:
     show_available_tests: true
   continueOnError: true    
 
-- task: PublishTestResults@1
+- task: PublishTestResults@2
   displayName: 'Publish Test Results **/TestResults.xml'
   inputs:
     testResultsFormat: XUnit
