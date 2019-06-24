@@ -13,6 +13,7 @@ All notable changes to the "ALOps" extension.
 - ALOpsFobImport: DisableNameChecking when importing Microsoft.Dynamics.Nav.Ide to avoid false warnings in pipeline
 - ALOpsFobImport: integrate SQL-Database authentication for SQL mixed mode or Azure SQL
 - ALOpsLicenseImport: Print flf license information before import
+- Templates: Corrected the version on the PublishTestResults step to Version 2, PublishTestResults@2
 
 ## [v1.420] - 2019-06-16
 - Added YAML templates for AL Projects: https://dev.azure.com/HodorNV/ALOps%20Templates
