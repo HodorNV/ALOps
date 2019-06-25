@@ -1,0 +1,50 @@
+name: $(Build.BuildId)
+
+variables:
+  AppVersion: '1.0.[yyyyWW].*'
+  TestFilter: '82100..82150'
+
+steps:
+- task: ALOpsDockerStart@1
+  inputs:
+    docker_image: mcr.microsoft.com/businesscentral/sandbox
+    docker_pull: true
+
+- task: ALOpsDockerWait@1
+  inputs:
+    search_string: 'Ready for connections!'
+    
+- task: ALOpsAppCompiler@1
+  displayName: 'Compile Extension'
+  inputs:
+    usedocker: true
+    nav_app_version: $(AppVersion)
+    failed_on_warnings: true    
+
+- task: ALOpsAppPublish@1
+  displayName: 'Publish AL-App'
+  inputs:
+    usedocker: true
+    nav_artifact_app_filter: '*.app'   
+    skip_verification: true 
+
+- task: ALOpsAppTest@1
+  displayName: 'Run TestSuite'
+  inputs:
+    usedocker: true
+    import_action: "Skip"
+    testfilter: $(TestFilter)
+    show_available_tests: true
+  continueOnError: true    
+
+- task: PublishTestResults@2
+  displayName: 'Publish Test Results **/TestResults.xml'
+  inputs:
+    testResultsFormat: XUnit
+    testResultsFiles: '**/TestResults.xml'
+    testRunTitle: 'BC Test Results: $(Build.BuildId)'
+
+- task: ALOpsDockerRemove@1
+  displayName: 'Remove Docker Container'
+  enabled: true
+  condition: always()
