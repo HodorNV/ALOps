@@ -117,7 +117,7 @@ Here is a list of all build steps you have at your disposal when you use ALOps
             enable_api_services: 0                # Enable API Services.
             docker_pull: 1                        # Force Pull docker image.
             docker_login:                         # Select the generic login to use for docker. If needed, click on 'manage', and add a new Service Endpoint of type 'Generic'
-            memory_gb: 4                          # Set maximum memory for container in GB.
+            memory_gb: -1                         # Set maximum memory for container in GB.
             container_restart: no                 # Set docker container restart preference.
             docker_parameters:                    # Specify additional docker parameters.
             sql_server:                           # External SQL Server.
