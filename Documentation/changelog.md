@@ -1,7 +1,7 @@
 # Change Log
 All notable changes to the "ALOps" extension.
 
-## [v1.421] - 2019-06-24
+## [v1.421] - 2019-06-25
 - All PS1 files are CodeSigned for beter compatibility with standard powershell restrictions
 - ALOpsAppClean: Add 'sync_mode' picklist parameter (Add/Clean/Development/ForceSync)
 - ALOpsAppClean: enable for use in docker containers, use_docker parameter
@@ -21,7 +21,7 @@ All notable changes to the "ALOps" extension.
 - ALOpsSaaSGetExtensions: new Task in preview mode, first of the SaaS enabled tasks. Displays the extensions installed in Business Central SaaS
 - Templates: Corrected the version on the PublishTestResults step to Version 2, PublishTestResults@2
 
-## [v1.420] - 2019-06-16
+## [v1.420] - 2019-06-17
 - Added YAML templates for AL Projects: https://dev.azure.com/HodorNV/ALOps%20Templates
 - ALOpsAppCompiler: Added boolean parameter 'download_test_symbols' for enabling explicit Test-Package download
 - ALOpsAppCompiler: Added parameter 'al_analyzer', a comma separated list of Analyzers. Example: PerTenantExtensionCop,UICop,CodeCop
