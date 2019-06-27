@@ -207,21 +207,5 @@ Here is a list of all build steps you have at your disposal when you use ALOps
             azure_app_client_secret:              # Azure AD Application Client Secret. (Required)
             bc_impersonate_user:                  # Business Central User to impersonate. (Required)
             bc_impersonate_password:              # Business Central User Password to impersonate. (Required)
-            bc_environment: sandbox               # Business Central environment to publish extension on.
-    ```
-- ALOps SaaS Publish Extension
-  * Publish extension to Business Central Saas.
-  * YAML Template: 
-    ```yaml
-        - task: ALOpsSaaSPublishExtension@1
-          displayName: 'ALOps SaaS Publish Extension'
-          inputs:
-            azure_tenant_id:                      # Azure Tenant Id. (Required)
-            azure_app_client_id:                  # Azure AD Application Client Id. (Required)
-            azure_app_client_secret:              # Azure AD Application Client Secret. (Required)
-            bc_impersonate_user:                  # Business Central User to impersonate. (Required)
-            bc_impersonate_password:              # Business Central User Password to impersonate. (Required)
-            bc_environment: sandbox               # Business Central environment to publish extension on.
-            app_artifact_filter: *.app            # Path of the App to publish. Must be a fully qualified path or relative to $(System.DefaultWorkingDirectory). (Required)
     ```
 
