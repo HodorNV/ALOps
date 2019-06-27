@@ -42,7 +42,7 @@ Here is a list of all build steps you have at your disposal when you use ALOps
             show_available_tests: True            # Show all available tests.
             import_testtoolkit: True              # Import TestToolKit FOB.
             import_action: Overwrite              # Import Action for importing Test-Suite FOB files.
-            failed_on_warnings: True              # Fail task when any warning occurs.
+            failed_on_warnings: False             # Fail task when any warning occurs.
     ```
 - ALOps App Cleaner
   * Remove all extensions from Business Central service tier.
