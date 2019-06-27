@@ -42,6 +42,7 @@ Here is a list of all build steps you have at your disposal when you use ALOps
             show_available_tests: True            # Show all available tests.
             import_testtoolkit: True              # Import TestToolKit FOB.
             import_action: Overwrite              # Import Action for importing Test-Suite FOB files.
+            failed_on_warnings: True              # Fail task when any warning occurs.
     ```
 - ALOps App Cleaner
   * Remove all extensions from Business Central service tier.
@@ -86,10 +87,10 @@ Here is a list of all build steps you have at your disposal when you use ALOps
             al_analyzer:                          # AL Analyzer(s) used for compiling. (Example: CodeCop,UICop)
             nav_app_version: 1.0.*.0              # Template for versioning NAV-Apps. '*' is replaced by the current Build Number. (Required)
             vsix_download_path:                   # Alternative VSIX download url.
-            use_ssl: 0                            # Use SSL for Business Central connections.
-            download_test_symbols: 0              # Download Test Symbols explicitly (without Test-Version reference in App.json).
+            use_ssl: False                        # Use SSL for Business Central connections.
+            download_test_symbols: False          # Download Test Symbols explicitly (without Test-Version reference in App.json).
             usecompression: True                  # Compress Source-Folder for transfer to docker container.
-            failed_on_warnings: 0                 # Fail task when any warning occurs.
+            failed_on_warnings: False             # Fail task when any warning occurs.
     ```
 - ALOps Docker Remove
   * Remove Business Central docker container.
@@ -111,11 +112,11 @@ Here is a list of all build steps you have at your disposal when you use ALOps
           inputs:
             fixed_tag:                            # Allows recycling of docker containers.
             docker_image: microsoft/bcsandbox     # Business Central docker Image to Start. (Required)
-            accept_image_eula: 1                  # Accept Eula of docker image.
-            accept_image_outdated: 0              # Accept Outdated image.
-            enable_symbol_loading: 0              # Enable Symbol Loading.
-            enable_api_services: 0                # Enable API Services.
-            docker_pull: 1                        # Force Pull docker image.
+            accept_image_eula: True               # Accept Eula of docker image.
+            accept_image_outdated: False          # Accept Outdated image.
+            enable_symbol_loading: False          # Enable Symbol Loading.
+            enable_api_services: False            # Enable API Services.
+            docker_pull: True                     # Force Pull docker image.
             docker_login:                         # Select the generic login to use for docker. If needed, click on 'manage', and add a new Service Endpoint of type 'Generic'
             memory_gb: -1                         # Set maximum memory for container in GB.
             container_restart: no                 # Set docker container restart preference.
