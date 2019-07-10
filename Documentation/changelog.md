@@ -1,7 +1,19 @@
 # Change Log
 All notable changes to the "ALOps" extension.
 
-## [v1.421] - 2019-06-24
+## [v1.422] - 2019-07-10
+- ALOpsAppClean: added missing dependency to 'Get-NAVAppDependencies'
+- ALOpsAppCompiler: Extended AssemblyProbingPaths with "c:\windows\assembly"
+- ALOpsAppTest: Add 'failed_test_action' picklist parameter. define action (Ignore / Warning / Error) to take when a Test(s) fails
+- ALOpsDockerRemove: containers exited with errors are also removed instead of skipped
+- ALOpsDockerWait: detect when container exited on error and fail build
+- ALOpsSaaSPublishExtension: new Task in preview mode. Publish an AL extension to Business Central SaaS
+- Framework: Update VstsTaskSDK from v0.10 to v0.11
+- New environment boolean variable 'Alops_PrintMemoryStats', when enabled print the current memory status at the beginning of every task
+- Print execution of external executables/commands to the devops build log
+- Random Vsts Task Freezes: deadlocks in the StandardOutput and StandardError stream processing of the DevOps Agent / Mitigated by force closing the environment
+
+## [v1.421] - 2019-06-25
 - All PS1 files are CodeSigned for beter compatibility with standard powershell restrictions
 - ALOpsAppClean: Add 'sync_mode' picklist parameter (Add/Clean/Development/ForceSync)
 - ALOpsAppClean: enable for use in docker containers, use_docker parameter
@@ -21,7 +33,7 @@ All notable changes to the "ALOps" extension.
 - ALOpsSaaSGetExtensions: new Task in preview mode, first of the SaaS enabled tasks. Displays the extensions installed in Business Central SaaS
 - Templates: Corrected the version on the PublishTestResults step to Version 2, PublishTestResults@2
 
-## [v1.420] - 2019-06-16
+## [v1.420] - 2019-06-17
 - Added YAML templates for AL Projects: https://dev.azure.com/HodorNV/ALOps%20Templates
 - ALOpsAppCompiler: Added boolean parameter 'download_test_symbols' for enabling explicit Test-Package download
 - ALOpsAppCompiler: Added parameter 'al_analyzer', a comma separated list of Analyzers. Example: PerTenantExtensionCop,UICop,CodeCop
