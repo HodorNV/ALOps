@@ -2,6 +2,7 @@
 All notable changes to the "ALOps" extension.
 
 ## [v1.422] - 2019-07-11
+- ALOpsAppClean: added missing dependency to 'Get-NAVAppDependencies'
 - ALOpsAppCompiler: Extended AssemblyProbingPaths with "c:\windows\assembly"
 - ALOpsAppTest: Add 'failed_test_action' picklist parameter. define action (Ignore / Warning / Error) to take when a Test(s) fails
 - ALOpsDockerRemove: containers exited with errors are also removed instead of skipped
