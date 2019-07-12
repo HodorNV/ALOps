@@ -16,7 +16,6 @@ Here is a list of all build steps you have at your disposal when you use ALOps
             fixed_tag:                            # Allows recycling of docker containers.
             nav_artifact_app_filter: *.app        # Path of the App to Codesign. Must be a fully qualified path or relative to $(System.DefaultWorkingDirectory).
             pfx_path:                             # Path or Url of the PFX file. (Required)
-            timestamp_uri:                        # Uri of the timestamp service used during signing.
     ```
 - ALOps App Sign Verify
   * Verify CodeSign of Business Central extension.
@@ -210,7 +209,6 @@ Here is a list of all build steps you have at your disposal when you use ALOps
             bc_impersonate_user:                  # Business Central User to impersonate. (Required)
             bc_impersonate_password:              # Business Central User Password to impersonate. (Required)
             bc_environment: sandbox               # Business Central environment to publish extension on.
-            bc_companyname:                       # Business Central Company.
     ```
 - ALOps SaaS Publish Extension
   * Publish extension to Business Central Saas.
@@ -225,7 +223,6 @@ Here is a list of all build steps you have at your disposal when you use ALOps
             bc_impersonate_user:                  # Business Central User to impersonate. (Required)
             bc_impersonate_password:              # Business Central User Password to impersonate. (Required)
             bc_environment: sandbox               # Business Central environment to publish extension on.
-            bc_companyname:                       # Business Central Company.
             app_artifact_filter: *.app            # Path of the App to publish. Must be a fully qualified path or relative to $(System.DefaultWorkingDirectory). (Required)
     ```
 
