@@ -1,6 +1,9 @@
 # Change Log
 All notable changes to the "ALOps" extension.
 
+## [v1.423] - 2019-07-14
+- ALOpsLicenseImport: enabled FLF import from DockerHost and Repository location
+
 ## [v1.422] - 2019-07-10
 - ALOpsAppClean: added missing dependency to 'Get-NAVAppDependencies'
 - ALOpsAppCompiler: Extended AssemblyProbingPaths with "c:\windows\assembly"
