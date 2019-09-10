@@ -15,7 +15,7 @@ Here is a list of all build steps you have at your disposal when you use ALOps
             usedocker: False                      # Run task in Docker container. $(usedocker)
             fixed_tag:                            # Allows recycling of docker containers. $(fixed_tag)
             nav_artifact_app_filter: *.app        # Path of the App to Codesign. Must be a fully qualified path or relative to $(System.DefaultWorkingDirectory). $(nav_artifact_app_filter)
-            pfx_path:                             # Path or Url of the PFX file. $(pfx_path) (Required)
+            pfx_path:                             # Path or Url of the PFX file. $(pfx_path)
             timestamp_uri:                        # Uri of the timestamp service used during signing. $(timestamp_uri)
     ```
 - ALOps App Sign Verify
@@ -38,7 +38,7 @@ Here is a list of all build steps you have at your disposal when you use ALOps
           inputs:
             usedocker: False                      # Run task in Docker container. $(usedocker)
             fixed_tag:                            # Allows recycling of docker containers. $(fixed_tag)
-            nav_serverinstance: BC140             # Business Central Server Instance Name. $(nav_serverinstance) (Required)
+            nav_serverinstance: BC140             # Business Central Server Instance Name. $(nav_serverinstance)
             testfilter: <=130000|>160000          # Filter codeunits to include in Test-Suite. $(testfilter)
             show_available_tests: True            # Show all available tests. $(show_available_tests)
             import_testtoolkit: True              # Import TestToolKit FOB. $(import_testtoolkit)
@@ -54,8 +54,8 @@ Here is a list of all build steps you have at your disposal when you use ALOps
           inputs:
             usedocker: False                      # Run task in Docker container. $(usedocker)
             fixed_tag:                            # Allows recycling of docker containers. $(fixed_tag)
-            nav_computername: localhost           # Target Business Central Server running service tier. $(nav_computername) (Required)
-            nav_serverinstance: BC140             # Business Central Server Instance Name. $(nav_serverinstance) (Required)
+            nav_computername: localhost           # Target Business Central Server running service tier. $(nav_computername)
+            nav_serverinstance: BC140             # Business Central Server Instance Name. $(nav_serverinstance)
             sync_mode: Add                        # Mode for synchronizing Business Central extensions. $(sync_mode)
     ```
 - ALOps App Copy
@@ -65,9 +65,9 @@ Here is a list of all build steps you have at your disposal when you use ALOps
         - task: ALOpsAppCopy@1
           displayName: 'ALOps App Copy'
           inputs:
-            nav_computername: localhost           # Target Business Central Server running service tier. $(nav_computername) (Required)
-            nav_serverinstance_source: BC140      # Source Business Central service tier to copy from. $(nav_serverinstance_source) (Required)
-            nav_serverinstance_target: BC140      # Target Business Central service tier to copy to. $(nav_serverinstance_target) (Required)
+            nav_computername: localhost           # Target Business Central Server running service tier. $(nav_computername)
+            nav_serverinstance_source: BC140      # Source Business Central service tier to copy from. $(nav_serverinstance_source)
+            nav_serverinstance_target: BC140      # Target Business Central service tier to copy to. $(nav_serverinstance_target)
             nav_app_storage:                      # Path used for temporary extension storage. $(nav_app_storage)
     ```
 - ALOps App Compiler
@@ -80,13 +80,13 @@ Here is a list of all build steps you have at your disposal when you use ALOps
             usedocker: False                      # Run task in Docker container. $(usedocker)
             fixed_tag:                            # Allows recycling of docker containers. $(fixed_tag)
             targetproject: ./app.json             # Path of the project to compile. Must be a fully qualified path or relative to $(System.DefaultWorkingDirectory). $(targetproject)
-            nav_computername: localhost           # Target Business Central Server running service tier. $(nav_computername) (Required)
-            nav_serverinstance: BC140             # Business Central Server Instance Name. $(nav_serverinstance) (Required)
-            nav_tenant: default                   # NAV Tenant used for symbols and compiling the app. $(nav_tenant) (Required)
-            nav_ports_dev: 7049                   # NAV Port used for DEV-Service. $(nav_ports_dev) (Required)
-            al_compiler_version: 0.12.15355       # AL Compiler version used for compiling. $(al_compiler_version) (Required)
+            nav_computername: localhost           # Target Business Central Server running service tier. $(nav_computername)
+            nav_serverinstance: BC140             # Business Central Server Instance Name. $(nav_serverinstance)
+            nav_tenant: default                   # NAV Tenant used for symbols and compiling the app. $(nav_tenant)
+            nav_ports_dev: 7049                   # NAV Port used for DEV-Service. $(nav_ports_dev)
+            al_compiler_version: 0.12.15355       # AL Compiler version used for compiling. $(al_compiler_version)
             al_analyzer:                          # AL Analyzer(s) used for compiling. (Example: CodeCop,UICop) $(al_analyzer)
-            nav_app_version: 1.0.*.0              # Template for versioning NAV-Apps. '*' is replaced by the current Build Number. $(nav_app_version) (Required)
+            nav_app_version: 1.0.*.0              # Template for versioning NAV-Apps. '*' is replaced by the current Build Number. $(nav_app_version)
             vsix_download_path:                   # Alternative VSIX download url. $(vsix_download_path)
             use_ssl: False                        # Use SSL for Business Central connections. $(use_ssl)
             download_test_symbols: False          # Download Test Symbols explicitly (without Test-Version reference in App.json). $(download_test_symbols)
@@ -112,7 +112,7 @@ Here is a list of all build steps you have at your disposal when you use ALOps
           displayName: 'ALOps Docker Start'
           inputs:
             fixed_tag:                            # Allows recycling of docker containers. $(fixed_tag)
-            docker_image: microsoft/bcsandbox     # Business Central docker Image to Start. $(docker_image) (Required)
+            docker_image: microsoft/bcsandbox     # Business Central docker Image to Start. $(docker_image)
             accept_image_eula: True               # Accept Eula of docker image. $(accept_image_eula)
             accept_image_outdated: False          # Accept Outdated image. $(accept_image_outdated)
             enable_symbol_loading: False          # Enable Symbol Loading. $(enable_symbol_loading)
@@ -138,7 +138,7 @@ Here is a list of all build steps you have at your disposal when you use ALOps
           displayName: 'ALOps Docker Wait'
           inputs:
             fixed_tag:                            # Allows recycling of docker containers. $(fixed_tag)
-            search_string: Ready for connections! # String to match in Docker Logs and return. $(search_string) (Required)
+            search_string: Ready for connections! # String to match in Docker Logs and return. $(search_string)
     ```
 - ALOps Import FOB
   * Import objects from .FOB file.
@@ -150,7 +150,7 @@ Here is a list of all build steps you have at your disposal when you use ALOps
             usedocker: False                      # Run task in Docker container. $(usedocker)
             fixed_tag:                            # Allows recycling of docker containers. $(fixed_tag)
             nav_serverinstance: BC140             # Business Central Server Instance Name. $(nav_serverinstance)
-            filePath:                             # Path of the FOB to import. Must be a fully qualified path or relative to $(System.DefaultWorkingDirectory). $(filePath) (Required)
+            filePath:                             # Path of the FOB to import. Must be a fully qualified path or relative to $(System.DefaultWorkingDirectory). $(filePath)
             import_action: Default                # Import action for importing FOB files. $(import_action)
             synchronize_schema_changes: Yes       # Synchronize Schema Changes setting for importing FOB files. $(synchronize_schema_changes)
             generate_symbol_reference: False      # Enable Generate Symbol References. $(generate_symbol_reference)
@@ -193,8 +193,8 @@ Here is a list of all build steps you have at your disposal when you use ALOps
           inputs:
             usedocker: False                      # Run task in Docker container. $(usedocker)
             fixed_tag:                            # Allows recycling of docker containers. $(fixed_tag)
-            nav_serverinstance: BC140             # Business Central Server Instance Name. $(nav_serverinstance) (Required)
-            nav_artifact_app_filter: *.app        # Path of the App to publish. Must be a fully qualified path or relative to $(System.DefaultWorkingDirectory). $(nav_artifact_app_filter) (Required)
+            nav_serverinstance: BC140             # Business Central Server Instance Name. $(nav_serverinstance)
+            nav_artifact_app_filter: *.app        # Path of the App to publish. Must be a fully qualified path or relative to $(System.DefaultWorkingDirectory). $(nav_artifact_app_filter)
             skip_verification: True               # Skip CodeSign Verification of Business Central App. $(skip_verification)
     ```
 - ALOps SaaS Get Extensions
@@ -204,13 +204,13 @@ Here is a list of all build steps you have at your disposal when you use ALOps
         - task: ALOpsSaaSGetExtensions@1
           displayName: 'ALOps SaaS Get Extensions'
           inputs:
-            azure_api_endpoint: api.businesscentral.dynamics.com# Azure API Endpoint. $(azure_api_endpoint) (Required)
+            azure_api_endpoint: api.businesscentral.dynamics.com# Azure API Endpoint. $(azure_api_endpoint)
             azure_api_version: v2.0               # Azure API Endpoint version. $(azure_api_version)
-            azure_tenant_id:                      # Azure Tenant Id. $(azure_tenant_id) (Required)
-            azure_app_client_id:                  # Azure AD Application Client Id. $(azure_app_client_id) (Required)
-            azure_app_client_secret:              # Azure AD Application Client Secret. $(azure_app_client_secret) (Required)
-            bc_impersonate_user:                  # Business Central User to impersonate. $(bc_impersonate_user) (Required)
-            bc_impersonate_password:              # Business Central User Password to impersonate. $(bc_impersonate_password) (Required)
+            azure_tenant_id:                      # Azure Tenant Id. $(azure_tenant_id)
+            azure_app_client_id:                  # Azure AD Application Client Id. $(azure_app_client_id)
+            azure_app_client_secret:              # Azure AD Application Client Secret. $(azure_app_client_secret)
+            bc_impersonate_user:                  # Business Central User to impersonate. $(bc_impersonate_user)
+            bc_impersonate_password:              # Business Central User Password to impersonate. $(bc_impersonate_password)
             bc_environment: sandbox               # Business Central environment to publish extension on. $(bc_environment)
             bc_companyname:                       # Business Central Company. $(bc_companyname)
     ```
@@ -221,15 +221,15 @@ Here is a list of all build steps you have at your disposal when you use ALOps
         - task: ALOpsSaaSPublishExtension@1
           displayName: 'ALOps SaaS Publish Extension'
           inputs:
-            azure_api_endpoint: api.businesscentral.dynamics.com# Azure API Endpoint. $(azure_api_endpoint) (Required)
+            azure_api_endpoint: api.businesscentral.dynamics.com# Azure API Endpoint. $(azure_api_endpoint)
             azure_api_version: v2.0               # Azure API Endpoint version. $(azure_api_version)
-            azure_tenant_id:                      # Azure Tenant Id. $(azure_tenant_id) (Required)
-            azure_app_client_id:                  # Azure AD Application Client Id. $(azure_app_client_id) (Required)
-            azure_app_client_secret:              # Azure AD Application Client Secret. $(azure_app_client_secret) (Required)
-            bc_impersonate_user:                  # Business Central User to impersonate. $(bc_impersonate_user) (Required)
-            bc_impersonate_password:              # Business Central User Password to impersonate. $(bc_impersonate_password) (Required)
+            azure_tenant_id:                      # Azure Tenant Id. $(azure_tenant_id)
+            azure_app_client_id:                  # Azure AD Application Client Id. $(azure_app_client_id)
+            azure_app_client_secret:              # Azure AD Application Client Secret. $(azure_app_client_secret)
+            bc_impersonate_user:                  # Business Central User to impersonate. $(bc_impersonate_user)
+            bc_impersonate_password:              # Business Central User Password to impersonate. $(bc_impersonate_password)
             bc_environment: sandbox               # Business Central environment to publish extension on. $(bc_environment)
             bc_companyname:                       # Business Central Company. $(bc_companyname)
-            app_artifact_filter: *.app            # Path of the App to publish. Must be a fully qualified path or relative to $(System.DefaultWorkingDirectory). $(app_artifact_filter) (Required)
+            app_artifact_filter: *.app            # Path of the App to publish. Must be a fully qualified path or relative to $(System.DefaultWorkingDirectory). $(app_artifact_filter)
     ```
 
