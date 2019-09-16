@@ -2,8 +2,10 @@
 All notable changes to the "ALOps" extension.
 
 ## [v1.423] - 2019-08-30
+- ALOpsAppCompiler: Add 'bc_username' and 'bc_password' parameters  to  allow  basic authentication
 - ALOpsAppSign: Add 'timestamp_uri' string parameter  to specify which timestamp server to use.
 - ALOpsAppSign: Check Timestamp  server if specified, trigger warning when offline.
+- ALOpsAppTest: Add 'bc_username' and 'bc_password' parameters  to  allow  basic authentication
 - ALOpsLicenseImport: enabled FLF import from DockerHost and Repository location.
 - ALOpsSaaSGetExtensions: Add 'azure_api_endpoint' string parameter to overrule API Endpoint.
 - ALOpsSaaSGetExtensions: Add 'azure_api_version' picklist parameter to specify Azure API Version to use.
@@ -11,6 +13,7 @@ All notable changes to the "ALOps" extension.
 - ALOpsSaaSPublishExtension: Add  'azure_api_endpoint' string parameter to overrule API Endpoint.
 - ALOpsSaaSPublishExtension: Add 'azure_api_version' picklist parameter to specify Azure API Version to use.
 - ALOpsSaaSPublishExtension: Add 'bc_companyname'  string parameter to  specify target company.
+- ALOpsSaaSPublishExtension: Added retry loop on status check
 - Docker: Retrieve ServerInstanceName from configuration for Wave2 compatibility.
 - Improved Docker-Session management with Auto-Retry and Broken Connection detection.
 - Improved the HelpMarkDown of all ALOps task inputs, variable names cleary visible in help.
