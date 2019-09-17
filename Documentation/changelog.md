@@ -3,9 +3,13 @@ All notable changes to the "ALOps" extension.
 
 ## [v1.424] - 2019-09-17
 - ALOpsAppCompiler: Now allows for dynamic resolving of "vsix_download_path", wildcards can be used.
+- ALOpsAppPublish: dynamic resolving of "nav_artifact_app_filter", wildcards can be used.
+- ALOpsAppSign: dynamic resolving of "nav_artifact_app_filter", wildcards can be used.
+- ALOpsAppSignVerify: dynamic resolving of "nav_artifact_app_filter", wildcards can be used.
 - ALOpsAppTest: extend authentication to cover all scenarios
 - ALOpsAppTest: update routines from NavContainerHelper
 - ALOpsDockerStart: improvements made for compatibility for in use in Release Flows
+- ALOpsSaaSPublishExtension: dynamic resolving of "nav_artifact_app_filter", wildcards can be used.
 
 ## [v1.423] - 2019-08-30
 - ALOpsAppCompiler: Add 'bc_username' and 'bc_password' parameters  to  allow  basic authentication
