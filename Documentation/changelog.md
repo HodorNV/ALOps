@@ -1,6 +1,11 @@
 # Change Log
 All notable changes to the "ALOps" extension.
 
+## [v1.424] - 2019-09-17
+- ALOpsAppCompiler: Now allows for dynamic resolving of "vsix_download_path", wildcards can be used.
+- ALOpsAppTest: update routines from NavContainerHelper
+- ALOpsDockerStart: improvements made for compatibility for in use in Release Flows
+
 ## [v1.423] - 2019-08-30
 - ALOpsAppCompiler: Add 'bc_username' and 'bc_password' parameters  to  allow  basic authentication
 - ALOpsAppSign: Add 'timestamp_uri' string parameter  to specify which timestamp server to use.
