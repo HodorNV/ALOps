@@ -41,6 +41,7 @@ Here is a list of all build steps you have at your disposal when you use ALOps
             nav_serverinstance: BC140             # Business Central Server Instance Name. $(nav_serverinstance)
             bc_username:                          # BC Username for ServiceTier connection. $(bc_username)
             bc_password:                          # BC User Password for ServiceTier connection. $(bc_password)
+            bc_authentication: NavUserPassword    # BC Authentication type of the ServiceTier. $(bc_authentication)
             testfilter: <=130000|>160000          # Filter codeunits to include in Test-Suite. $(testfilter)
             show_available_tests: True            # Show all available tests. $(show_available_tests)
             import_testtoolkit: True              # Import TestToolKit FOB. $(import_testtoolkit)
