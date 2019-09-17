@@ -18,6 +18,10 @@ All notable changes to the "ALOps" extension.
 - Improved Docker-Session management with Auto-Retry and Broken Connection detection.
 - Improved the HelpMarkDown of all ALOps task inputs, variable names cleary visible in help.
 
+## [v1.424] - 2019-07-21
+- ALOpsAppCompiler: Now allows for dynamic resolving of "vsix_download_path", wildcards can be used.
+- ALOpsDockerStart: improvements made for compatibility for in use in Release Flows
+
 ## [v1.422] - 2019-07-10
 - ALOpsAppClean: added missing dependency to 'Get-NAVAppDependencies'
 - ALOpsAppCompiler: Extended AssemblyProbingPaths with "c:\windows\assembly"
