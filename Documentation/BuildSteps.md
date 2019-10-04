@@ -203,6 +203,20 @@ Here is a list of all build steps you have at your disposal when you use ALOps
             nav_artifact_app_filter: *.app        # Path of the App to publish. Must be a fully qualified path or relative to $(System.DefaultWorkingDirectory). $(nav_artifact_app_filter)
             skip_verification: True               # Skip CodeSign Verification of Business Central App. $(skip_verification)
     ```
+- ALOps Repository Publish Extension
+  * Publish extension to ALOps Repository.
+  * YAML Template: 
+    ```yaml
+        - task: ALOpsRepositoryPublish@1
+          displayName: 'ALOps Repository Publish Extension'
+          inputs:
+            usedocker: False                      # Run task in Docker container. $(usedocker)
+            fixed_tag:                            # Allows recycling of docker containers. $(fixed_tag)
+            alops_repository_endpoint: api.businesscentral.dynamics.com# Azure API Endpoint. $(alops_repository_endpoint)
+            alops_repository_username:            # Username for ALOps API Endpoint. $(alops_repository_username)
+            alops_repository_password:            # Password for ALOps API Endpoint. $(alops_repository_password)
+            app_artifact_filter: *.app            # Path of the App to publish. Must be a fully qualified path or relative to $(System.DefaultWorkingDirectory). $(app_artifact_filter)
+    ```
 - ALOps SaaS Get Extensions
   * Get extensions from Business Central Saas.
   * YAML Template: 
