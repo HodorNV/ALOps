@@ -97,6 +97,7 @@ Here is a list of all build steps you have at your disposal when you use ALOps
             use_ssl: False                        # Use SSL for Business Central connections. $(use_ssl)
             download_test_symbols: False          # Download Test Symbols explicitly (without Test-Version reference in App.json). $(download_test_symbols)
             usecompression: True                  # Compress Source-Folder for transfer to docker container. $(usecompression)
+            publish_artifact: True                # Publish generated App Artifact to DevOps. $(publish_artifact)
             failed_on_warnings: False             # Fail task when any warning occurs. $(failed_on_warnings)
     ```
 - ALOps Docker Remove
