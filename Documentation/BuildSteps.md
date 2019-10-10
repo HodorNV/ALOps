@@ -14,6 +14,7 @@ Here is a list of all build steps you have at your disposal when you use ALOps
           inputs:
             usedocker: False                      # Run task in Docker container. $(usedocker)
             fixed_tag:                            # Allows recycling of docker containers. $(fixed_tag)
+            artifact_path:                        # Path for storing App Artifact. $(artifact_path)
             nav_artifact_app_filter: *.app        # Path of the App to Codesign. Must be a fully qualified path or relative to $(System.DefaultWorkingDirectory). $(nav_artifact_app_filter)
             pfx_path:                             # Path or Url of the PFX file. $(pfx_path)
             timestamp_uri:                        # Uri of the timestamp service used during signing. $(timestamp_uri)
@@ -27,6 +28,7 @@ Here is a list of all build steps you have at your disposal when you use ALOps
           inputs:
             usedocker: False                      # Run task in Docker container. $(usedocker)
             fixed_tag:                            # Allows recycling of docker containers. $(fixed_tag)
+            artifact_path:                        # Path for App Artifact. $(artifact_path)
             nav_artifact_app_filter: *.app        # Path of the App to verify. Must be a fully qualified path or relative to $(System.DefaultWorkingDirectory). $(nav_artifact_app_filter)
     ```
 - ALOps App Test
@@ -201,7 +203,8 @@ Here is a list of all build steps you have at your disposal when you use ALOps
             usedocker: False                      # Run task in Docker container. $(usedocker)
             fixed_tag:                            # Allows recycling of docker containers. $(fixed_tag)
             nav_serverinstance: BC140             # Business Central Server Instance Name. $(nav_serverinstance)
-            nav_artifact_app_filter: *.app        # Path of the App to publish. Must be a fully qualified path or relative to $(System.DefaultWorkingDirectory). $(nav_artifact_app_filter)
+            artifact_path:                        # Path for storing App Artifact. $(artifact_path)
+            nav_artifact_app_filter: *.app        # Filter used for locating App file relative to $(path_to_publish). $(nav_artifact_app_filter)
             skip_verification: True               # Skip CodeSign Verification of Business Central App. $(skip_verification)
     ```
 - ALOps Repository Publish Extension
@@ -216,6 +219,7 @@ Here is a list of all build steps you have at your disposal when you use ALOps
             alops_repository_endpoint: api.businesscentral.dynamics.com# Azure API Endpoint. $(alops_repository_endpoint)
             alops_repository_username:            # Username for ALOps API Endpoint. $(alops_repository_username)
             alops_repository_password:            # Password for ALOps API Endpoint. $(alops_repository_password)
+            artifact_path:                        # Path for App Artifact. $(artifact_path)
             app_artifact_filter: *.app            # Path of the App to publish. Must be a fully qualified path or relative to $(System.DefaultWorkingDirectory). $(app_artifact_filter)
     ```
 - ALOps SaaS Get Extensions
@@ -251,6 +255,7 @@ Here is a list of all build steps you have at your disposal when you use ALOps
             bc_impersonate_password:              # Business Central User Password to impersonate. $(bc_impersonate_password)
             bc_environment: sandbox               # Business Central environment to publish extension on. $(bc_environment)
             bc_companyname:                       # Business Central Company. $(bc_companyname)
-            app_artifact_filter: *.app            # Path of the App to publish. Must be a fully qualified path or relative to $(System.DefaultWorkingDirectory). $(app_artifact_filter)
+            artifact_path:                        # Path for App Artifact. $(artifact_path)
+            app_artifact_filter: *.app            # Filter used for locating App file relative to $(path_to_publish). $(app_artifact_filter)
     ```
 
