@@ -18,6 +18,7 @@ Here is a list of all build steps you have at your disposal when you use ALOps
             nav_artifact_app_filter: *.app        # Path of the App to Codesign. Must be a fully qualified path or relative to $(System.DefaultWorkingDirectory). $(nav_artifact_app_filter)
             pfx_path:                             # Path or Url of the PFX file. $(pfx_path)
             timestamp_uri:                        # Uri of the timestamp service used during signing. $(timestamp_uri)
+            publish_artifact: True                # Publish generated App Artifact to DevOps. $(publish_artifact)
     ```
 - ALOps App Sign Verify
   * Verify CodeSign of Business Central extension.
