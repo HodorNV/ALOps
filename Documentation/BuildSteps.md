@@ -50,6 +50,8 @@ Here is a list of all build steps you have at your disposal when you use ALOps
             show_available_tests: True            # Show all available tests. $(show_available_tests)
             import_testtoolkit: True              # Import TestToolKit FOB. $(import_testtoolkit)
             import_action: Overwrite              # Import Action for importing Test-Suite FOB files. $(import_action)
+            testpage: 130409                      # Set the PageId used for testing. $(testpage)
+            install_al_testtool: False            # Install the AL TestTool for v15. $(install_al_testtool)
             failed_test_action: Warning           # Action to take when a Test failed. $(failed_test_action)
     ```
 - ALOps App Cleaner
@@ -149,6 +151,7 @@ Here is a list of all build steps you have at your disposal when you use ALOps
           inputs:
             fixed_tag:                            # Allows recycling of docker containers. $(fixed_tag)
             search_string: Ready for connections! # String to match in Docker Logs and return. $(search_string)
+            install_al_testtool: False            # Install the AL TestTool for v15. $(install_al_testtool)
     ```
 - ALOps Import FOB
   * Import objects from .FOB file.
