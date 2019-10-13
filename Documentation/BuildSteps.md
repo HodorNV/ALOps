@@ -51,7 +51,7 @@ Here is a list of all build steps you have at your disposal when you use ALOps
             import_testtoolkit: True              # Import TestToolKit FOB. $(import_testtoolkit)
             import_action: Overwrite              # Import Action for importing Test-Suite FOB files. $(import_action)
             testpage: 130409                      # Set the PageId used for testing. $(testpage)
-            install_al_testtool: False            # Install the AL TestTool for v15. $(install_al_testtool)
+            installaltesttool: False              # Install the AL TestTool for v15. $(installaltesttool)
             failed_test_action: Warning           # Action to take when a Test failed. $(failed_test_action)
     ```
 - ALOps App Cleaner
@@ -124,6 +124,7 @@ Here is a list of all build steps you have at your disposal when you use ALOps
           displayName: 'ALOps Docker Start'
           inputs:
             fixed_tag:                            # Allows recycling of docker containers. $(fixed_tag)
+            ignore_no_container_warning: False    # Do not trigger warning when container with [fixed_tag] is not found. $(ignore_no_container_warning)
             docker_image: microsoft/bcsandbox     # Business Central docker Image to Start. $(docker_image)
             accept_image_eula: True               # Accept Eula of docker image. $(accept_image_eula)
             accept_image_outdated: False          # Accept Outdated image. $(accept_image_outdated)
@@ -151,7 +152,6 @@ Here is a list of all build steps you have at your disposal when you use ALOps
           inputs:
             fixed_tag:                            # Allows recycling of docker containers. $(fixed_tag)
             search_string: Ready for connections! # String to match in Docker Logs and return. $(search_string)
-            install_al_testtool: False            # Install the AL TestTool for v15. $(install_al_testtool)
     ```
 - ALOps Import FOB
   * Import objects from .FOB file.
@@ -206,6 +206,14 @@ Here is a list of all build steps you have at your disposal when you use ALOps
           inputs:
             usedocker: False                      # Run task in Docker container. $(usedocker)
             fixed_tag:                            # Allows recycling of docker containers. $(fixed_tag)
+            installaltesttool: False              # Install the AL TestTool for v15. $(installaltesttool)
+            install_al_app_names: Tests-TestLibraries
+    System Application Test
+    System Application Test Library
+    Any
+    Library Assert
+    Test Runner
+    # Specify additional docker parameters. $(install_al_app_names)
             nav_serverinstance: BC140             # Business Central Server Instance Name. $(nav_serverinstance)
             artifact_path:                        # Path for storing App Artifact. $(artifact_path)
             nav_artifact_app_filter: *.app        # Filter used for locating App file relative to $(path_to_publish). $(nav_artifact_app_filter)
