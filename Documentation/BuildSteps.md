@@ -105,6 +105,20 @@ Here is a list of all build steps you have at your disposal when you use ALOps
             publish_artifact: True                # Publish generated App Artifact to DevOps. $(publish_artifact)
             failed_on_warnings: False             # Fail task when any warning occurs. $(failed_on_warnings)
     ```
+- ALOps Docker Execute
+  * Execute powershell script in container.
+  * YAML Template: 
+    ```yaml
+        - task: ALOpsDockerExec@1
+          displayName: 'ALOps Docker Execute'
+          inputs:
+            fixed_tag:                            # Allows recycling of docker containers. $(fixed_tag)
+            scriptsource: InLine                  # Set type for requiring the script. $(scriptsource)
+            script_location:                      # Location of the script to fetch. $(script_location)
+            inline_script: # Write your powershell commands here.
+    Write-Host "Hello World"
+    # Inline Powershell Script. $(inline_script)
+    ```
 - ALOps Docker Remove
   * Remove Business Central docker container.
   * YAML Template: 
