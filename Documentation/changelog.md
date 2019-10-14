@@ -1,6 +1,9 @@
 # Change Log
 All notable changes to the "ALOps" extension.
 
+## [v1.425] - 2019-10-15
+- ALOpsImportFob: Dynamicly resolve .psm1 file, bypass via finsql for non standard installations
+
 ## [v1.424] - 2019-09-17
 - ALOpsAppCompiler: Now allows for dynamic resolving of "vsix_download_path", wildcards can be used.
 - ALOpsAppPublish: dynamic resolving of "nav_artifact_app_filter", wildcards can be used.
