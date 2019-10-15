@@ -104,6 +104,7 @@ Here is a list of all build steps you have at your disposal when you use ALOps
             usecompression: True                  # Compress Source-Folder for transfer to docker container. $(usecompression)
             publish_artifact: True                # Publish generated App Artifact to DevOps. $(publish_artifact)
             failed_on_warnings: False             # Fail task when any warning occurs. $(failed_on_warnings)
+            app_file_suffix:                      # Set a suffix tag on the compiled App filename. $(app_file_suffix)
     ```
 - ALOps Docker Execute
   * Execute powershell script in container.
