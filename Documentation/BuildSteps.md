@@ -248,6 +248,8 @@ Here is a list of all build steps you have at your disposal when you use ALOps
             alops_repository_password:            # Password for ALOps API Endpoint. $(alops_repository_password)
             artifact_path:                        # Path for App Artifact. $(artifact_path)
             app_artifact_filter: *.app            # Path of the App to publish. Must be a fully qualified path or relative to $(System.DefaultWorkingDirectory). $(app_artifact_filter)
+            upload_c_applications: False          # Upload Applications from Applications folder. $(upload_c_applications)
+            upload_package_cache: False           # Upload the apps from the Package Cache. $(upload_package_cache)
     ```
 - ALOps SaaS Get Extensions
   * Get extensions from Business Central Saas.
