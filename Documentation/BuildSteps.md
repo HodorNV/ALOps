@@ -14,9 +14,11 @@ Here is a list of all build steps you have at your disposal when you use ALOps
           inputs:
             usedocker: False                      # Run task in Docker container. $(usedocker)
             fixed_tag:                            # Allows recycling of docker containers. $(fixed_tag)
+            artifact_path:                        # Path for storing App Artifact. $(artifact_path)
             nav_artifact_app_filter: *.app        # Path of the App to Codesign. Must be a fully qualified path or relative to $(System.DefaultWorkingDirectory). $(nav_artifact_app_filter)
             pfx_path:                             # Path or Url of the PFX file. $(pfx_path)
             timestamp_uri:                        # Uri of the timestamp service used during signing. $(timestamp_uri)
+            publish_artifact: True                # Publish generated App Artifact to DevOps. $(publish_artifact)
     ```
 - ALOps App Sign Verify
   * Verify CodeSign of Business Central extension.
@@ -27,6 +29,7 @@ Here is a list of all build steps you have at your disposal when you use ALOps
           inputs:
             usedocker: False                      # Run task in Docker container. $(usedocker)
             fixed_tag:                            # Allows recycling of docker containers. $(fixed_tag)
+            artifact_path:                        # Path for App Artifact. $(artifact_path)
             nav_artifact_app_filter: *.app        # Path of the App to verify. Must be a fully qualified path or relative to $(System.DefaultWorkingDirectory). $(nav_artifact_app_filter)
     ```
 - ALOps App Test
@@ -42,10 +45,13 @@ Here is a list of all build steps you have at your disposal when you use ALOps
             bc_username:                          # BC Username for ServiceTier connection. $(bc_username)
             bc_password:                          # BC User Password for ServiceTier connection. $(bc_password)
             bc_authentication: NavUserPassword    # BC Authentication type of the ServiceTier. $(bc_authentication)
-            testfilter: <=130000|>160000          # Filter codeunits to include in Test-Suite. $(testfilter)
+            bc_webclient_url:                     # BC WebClient Endpoint. $(bc_webclient_url)
+            testfilter:                           # Filter codeunits to include in Test-Suite. $(testfilter)
             show_available_tests: True            # Show all available tests. $(show_available_tests)
             import_testtoolkit: True              # Import TestToolKit FOB. $(import_testtoolkit)
             import_action: Overwrite              # Import Action for importing Test-Suite FOB files. $(import_action)
+            testpage: 130409                      # Set the PageId used for testing. $(testpage)
+            installaltesttool: False              # Install the AL TestTool for v15. $(installaltesttool)
             failed_test_action: Warning           # Action to take when a Test failed. $(failed_test_action)
     ```
 - ALOps App Cleaner
@@ -96,7 +102,23 @@ Here is a list of all build steps you have at your disposal when you use ALOps
             use_ssl: False                        # Use SSL for Business Central connections. $(use_ssl)
             download_test_symbols: False          # Download Test Symbols explicitly (without Test-Version reference in App.json). $(download_test_symbols)
             usecompression: True                  # Compress Source-Folder for transfer to docker container. $(usecompression)
+            publish_artifact: True                # Publish generated App Artifact to DevOps. $(publish_artifact)
             failed_on_warnings: False             # Fail task when any warning occurs. $(failed_on_warnings)
+            app_file_suffix:                      # Set a suffix tag on the compiled App filename. $(app_file_suffix)
+    ```
+- ALOps Docker Execute
+  * Execute powershell script in container.
+  * YAML Template: 
+    ```yaml
+        - task: ALOpsDockerExec@1
+          displayName: 'ALOps Docker Execute'
+          inputs:
+            fixed_tag:                            # Allows recycling of docker containers. $(fixed_tag)
+            scriptsource: InLine                  # Set type for requiring the script. $(scriptsource)
+            script_location:                      # Location of the script to fetch. $(script_location)
+            inline_script: # Write your powershell commands here.
+    Write-Host "Hello World"
+    # Inline Powershell Script. $(inline_script)
     ```
 - ALOps Docker Remove
   * Remove Business Central docker container.
@@ -117,6 +139,7 @@ Here is a list of all build steps you have at your disposal when you use ALOps
           displayName: 'ALOps Docker Start'
           inputs:
             fixed_tag:                            # Allows recycling of docker containers. $(fixed_tag)
+            ignore_no_container_warning: False    # Do not trigger warning when container with [fixed_tag] is not found. $(ignore_no_container_warning)
             docker_image: microsoft/bcsandbox     # Business Central docker Image to Start. $(docker_image)
             accept_image_eula: True               # Accept Eula of docker image. $(accept_image_eula)
             accept_image_outdated: False          # Accept Outdated image. $(accept_image_outdated)
@@ -198,9 +221,35 @@ Here is a list of all build steps you have at your disposal when you use ALOps
           inputs:
             usedocker: False                      # Run task in Docker container. $(usedocker)
             fixed_tag:                            # Allows recycling of docker containers. $(fixed_tag)
+            installaltesttool: False              # Install the AL TestTool for v15. $(installaltesttool)
+            install_al_app_names: Tests-TestLibraries
+    System Application Test
+    System Application Test Library
+    Any
+    Library Assert
+    Test Runner
+    # Specify additional docker parameters. $(install_al_app_names)
             nav_serverinstance: BC140             # Business Central Server Instance Name. $(nav_serverinstance)
-            nav_artifact_app_filter: *.app        # Path of the App to publish. Must be a fully qualified path or relative to $(System.DefaultWorkingDirectory). $(nav_artifact_app_filter)
+            artifact_path:                        # Path for storing App Artifact. $(artifact_path)
+            nav_artifact_app_filter: *.app        # Filter used for locating App file relative to $(path_to_publish). $(nav_artifact_app_filter)
             skip_verification: True               # Skip CodeSign Verification of Business Central App. $(skip_verification)
+    ```
+- ALOps Repository Publish Extension
+  * Publish extension to ALOps Repository.
+  * YAML Template: 
+    ```yaml
+        - task: ALOpsRepositoryPublish@1
+          displayName: 'ALOps Repository Publish Extension'
+          inputs:
+            usedocker: False                      # Run task in Docker container. $(usedocker)
+            fixed_tag:                            # Allows recycling of docker containers. $(fixed_tag)
+            alops_repository_endpoint: api.businesscentral.dynamics.com# Azure API Endpoint. $(alops_repository_endpoint)
+            alops_repository_username:            # Username for ALOps API Endpoint. $(alops_repository_username)
+            alops_repository_password:            # Password for ALOps API Endpoint. $(alops_repository_password)
+            artifact_path:                        # Path for App Artifact. $(artifact_path)
+            app_artifact_filter: *.app            # Path of the App to publish. Must be a fully qualified path or relative to $(System.DefaultWorkingDirectory). $(app_artifact_filter)
+            upload_c_applications: False          # Upload Applications from Applications folder. $(upload_c_applications)
+            upload_package_cache: False           # Upload the apps from the Package Cache. $(upload_package_cache)
     ```
 - ALOps SaaS Get Extensions
   * Get extensions from Business Central Saas.
@@ -235,6 +284,7 @@ Here is a list of all build steps you have at your disposal when you use ALOps
             bc_impersonate_password:              # Business Central User Password to impersonate. $(bc_impersonate_password)
             bc_environment: sandbox               # Business Central environment to publish extension on. $(bc_environment)
             bc_companyname:                       # Business Central Company. $(bc_companyname)
-            app_artifact_filter: *.app            # Path of the App to publish. Must be a fully qualified path or relative to $(System.DefaultWorkingDirectory). $(app_artifact_filter)
+            artifact_path:                        # Path for App Artifact. $(artifact_path)
+            app_artifact_filter: *.app            # Filter used for locating App file relative to $(path_to_publish). $(app_artifact_filter)
     ```
 
