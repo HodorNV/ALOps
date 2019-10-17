@@ -2,7 +2,27 @@
 All notable changes to the "ALOps" extension.
 
 ## [v1.425] - 2019-10-15
+- ALOpsAppCompile/ALOpsAppSign: new parameter [publish_artifact] to disable artifact publishing from step
+- ALOpsAppCompile: Allow to set filename suffix
+- ALOpsAppCompile: clean empty entries from Compile log artifact
+- ALOpsAppPublish: Dynamic Resolving of App Artifacts / new parameter [artifact_path]
+- ALOpsAppPublish: Install-AL-Apps for docker /  extra parameter [installaltesttool] en [install_al_app_names]
+- ALOpsAppSign: Docker: Replace local artifact from container
+- ALOpsAppSign: Dynamic Resolving of App Artifacts / new parameter [artifact_path]
+- ALOpsAppSign: set Error instead of warning on DNSResolve
+- ALOpsAppSignVerify: Dynamic Resolving of App Artifacts / new parameter [artifact_path]
+- ALOpsAppTest: Wave2 compatibel, new parameters [testpage] en [installaltesttool]
+- ALOpsDockerExec: new tasks that allows for running powershell scripts on the container
+- ALOpsDockerStart: Catch error on Docker login
+
+- ALOpsDockerStart: parameter to ignore warning with fixed_tag
 - ALOpsImportFob: Dynamicly resolve .psm1 file, bypass via finsql for non standard installations
+- ALOpsRepositoryPublish: Dynamic Resolving of App Artifacts / new parameter [artifact_path]
+- ALOpsRepositoryPublish: New task in beta, allows publishing of the Extension to a repository in Business Central
+- ALOpsSaaSPublishExtension: Allow folder upload of docker Applications for and PackageCache, new parameters [upload_package_cache] and [upload_c_applications]
+- ALOpsSaaSPublishExtension: Dynamic Resolving of App Artifacts / new parameter [artifact_path]
+- ALOpsSaaSPublishExtension: monitor/report deployment status
+- Multi stage pipeline support
 
 ## [v1.424] - 2019-09-17
 - ALOpsAppCompiler: Now allows for dynamic resolving of "vsix_download_path", wildcards can be used.
