@@ -106,6 +106,7 @@ Here is a list of all build steps you have at your disposal when you use ALOps
             publish_artifact: True                # Publish generated App Artifact to DevOps. $(publish_artifact)
             failed_on_warnings: False             # Fail task when any warning occurs. $(failed_on_warnings)
             app_file_suffix:                      # Set a suffix tag on the compiled App filename. $(app_file_suffix)
+            updatebuildnumber: True               # Update the Build number with the current version. $(updatebuildnumber)
     ```
 - ALOps Docker Execute
   * Execute powershell script in container.
