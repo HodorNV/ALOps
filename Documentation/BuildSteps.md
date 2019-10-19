@@ -234,6 +234,7 @@ Here is a list of all build steps you have at your disposal when you use ALOps
             nav_artifact_app_filter: *.app        # Filter used for locating App file relative to $(path_to_publish). $(nav_artifact_app_filter)
             skip_verification: True               # Skip CodeSign Verification of Business Central App. $(skip_verification)
             publish_scope: Global                 # Set the scope for publishing extensions. $(publish_scope)
+            tenant: default                       # Tenant to publish to when Scope is set to Tenant. $(tenant)
     ```
 - ALOps Repository Publish Extension
   * Publish extension to ALOps Repository.
