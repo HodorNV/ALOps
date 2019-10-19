@@ -51,6 +51,7 @@ Here is a list of all build steps you have at your disposal when you use ALOps
             import_testtoolkit: True              # Import TestToolKit FOB. $(import_testtoolkit)
             import_action: Overwrite              # Import Action for importing Test-Suite FOB files. $(import_action)
             testpage: 130409                      # Set the PageId used for testing. $(testpage)
+            testsuite: DEFAULT                    # Set target Test Suite to activate. $(testsuite)
             installaltesttool: False              # Install the AL TestTool for v15. $(installaltesttool)
             failed_test_action: Warning           # Action to take when a Test failed. $(failed_test_action)
     ```
