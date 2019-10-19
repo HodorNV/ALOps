@@ -233,6 +233,7 @@ Here is a list of all build steps you have at your disposal when you use ALOps
             artifact_path:                        # Path for storing App Artifact. $(artifact_path)
             nav_artifact_app_filter: *.app        # Filter used for locating App file relative to $(path_to_publish). $(nav_artifact_app_filter)
             skip_verification: True               # Skip CodeSign Verification of Business Central App. $(skip_verification)
+            publish_scope: Global                 # Set the scope for publishing extensions. $(publish_scope)
     ```
 - ALOps Repository Publish Extension
   * Publish extension to ALOps Repository.
@@ -249,7 +250,6 @@ Here is a list of all build steps you have at your disposal when you use ALOps
             artifact_path:                        # Path for App Artifact. $(artifact_path)
             app_artifact_filter: *.app            # Path of the App to publish. Must be a fully qualified path or relative to $(System.DefaultWorkingDirectory). $(app_artifact_filter)
             upload_c_applications: False          # Upload Applications from Applications folder. $(upload_c_applications)
-            upload_package_cache: False           # Upload the apps from the Package Cache. $(upload_package_cache)
     ```
 - ALOps SaaS Get Extensions
   * Get extensions from Business Central Saas.
