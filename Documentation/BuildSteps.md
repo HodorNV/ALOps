@@ -204,6 +204,7 @@ Here is a list of all build steps you have at your disposal when you use ALOps
             nav_serverinstance: BC140             # Business Central Server Instance Name. $(nav_serverinstance)
             license_path:                         # Path of the FLF license to import. Must be a fully qualified path or relative to $(System.DefaultWorkingDirectory) or a downloadable Url. $(license_path)
             remove_license_file: True             # Remove license file after import. $(remove_license_file)
+            print_license_info: True              # Set if License is printed into the pipeline. $(print_license_info)
     ```
 - ALOps Package Import
   * Import and Process RapidStart/Configuration Package
