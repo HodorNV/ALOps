@@ -5,6 +5,21 @@ Let's describe all the Build Steps that we have at our disposal
 Here is a list of all build steps you have at your disposal when you use ALOps
 
 ### ALOps Tasks
+- ALOps App Runtime Package
+  * Get a NAV App runtime package for onprem deployment.
+  * YAML Template: 
+    ```yaml
+        - task: ALOpsAppRuntimePackage@1
+          displayName: 'ALOps App Runtime Package'
+          inputs:
+            usedocker: False                      # Run task in Docker container. $(usedocker)
+            fixed_tag:                            # Allows recycling of docker containers. $(fixed_tag)
+            nav_serverinstance: BC140             # Specifies the name of a Business Central Server instance. $(nav_serverinstance)
+            nav_tenant: default                   # Specifies the ID of a specific tenant that you want to act on, such as Tenant1. $(nav_tenant)
+            targetproject: ./app.json             # Path of the project to export as RuntimePackage. Must be a fully qualified path or relative to $(System.DefaultWorkingDirectory). $(targetproject)
+            showmycode: False                     # Overwrites the ShowMyCode value in the manifest. $(showmycode)
+            publish_artifact: True                # Publish generated Runtime-App Artifact to DevOps. $(publish_artifact)
+    ```
 - ALOps App Sign
   * Codesign Business Central extension with .pfx.
   * YAML Template: 
@@ -204,7 +219,7 @@ Here is a list of all build steps you have at your disposal when you use ALOps
             nav_serverinstance: BC140             # Business Central Server Instance Name. $(nav_serverinstance)
             license_path:                         # Path of the FLF license to import. Must be a fully qualified path or relative to $(System.DefaultWorkingDirectory) or a downloadable Url. $(license_path)
             remove_license_file: True             # Remove license file after import. $(remove_license_file)
-            print_license_info: True              # Set if License is printed into the pipeline. $(print_license_info)
+            print_license_info: False             # Set if License is printed into the pipeline. $(print_license_info)
     ```
 - ALOps Package Import
   * Import and Process RapidStart/Configuration Package
