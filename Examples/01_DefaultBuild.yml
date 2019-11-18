@@ -1,13 +1,12 @@
 name: $(Build.BuildId)
 
-variables:
-  AppVersion: '1.0.[yyyyWW].*'
-  TestFilter: '82100..82150'
-
 steps:
+- checkout: self
+  clean: true 
+
 - task: ALOpsDockerStart@1
   inputs:
-    docker_image: mcr.microsoft.com/businesscentral/sandbox
+    docker_image: 'mcr.microsoft.com/businesscentral/sandbox'
     docker_pull: true
 
 - task: ALOpsDockerWait@1
@@ -18,7 +17,7 @@ steps:
   displayName: 'Compile Extension'
   inputs:
     usedocker: true
-    nav_app_version: $(AppVersion)
+    nav_app_version: '1.0.[yyyyWW].*'
     failed_on_warnings: true    
 
 - task: ALOpsAppPublish@1
@@ -33,9 +32,9 @@ steps:
   inputs:
     usedocker: true
     import_action: "Skip"
-    testfilter: $(TestFilter)
+    testfilter: '82100..82150'
     show_available_tests: true
-  continueOnError: true    
+  continueOnError: true
 
 - task: PublishTestResults@2
   displayName: 'Publish Test Results **/TestResults.xml'
