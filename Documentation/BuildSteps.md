@@ -5,21 +5,6 @@ Let's describe all the Build Steps that we have at our disposal
 Here is a list of all build steps you have at your disposal when you use ALOps
 
 ### ALOps Tasks
-- ALOps App Runtime Package
-  * Get a NAV App runtime package for onprem deployment.
-  * YAML Template: 
-    ```yaml
-        - task: ALOpsAppRuntimePackage@1
-          displayName: 'ALOps App Runtime Package'
-          inputs:
-            usedocker: False                      # Run task in Docker container. $(usedocker)
-            fixed_tag:                            # Allows recycling of docker containers. $(fixed_tag)
-            nav_serverinstance: BC140             # Specifies the name of a Business Central Server instance. $(nav_serverinstance)
-            nav_tenant: default                   # Specifies the ID of a specific tenant that you want to act on, such as Tenant1. $(nav_tenant)
-            targetproject: ./app.json             # Path of the project to export as RuntimePackage. Must be a fully qualified path or relative to $(System.DefaultWorkingDirectory). $(targetproject)
-            showmycode: False                     # Overwrites the ShowMyCode value in the manifest. $(showmycode)
-            publish_artifact: True                # Publish generated Runtime-App Artifact to DevOps. $(publish_artifact)
-    ```
 - ALOps App Sign
   * Codesign Business Central extension with .pfx.
   * YAML Template: 
@@ -34,7 +19,6 @@ Here is a list of all build steps you have at your disposal when you use ALOps
             pfx_path:                             # Path or Url of the PFX file. $(pfx_path)
             timestamp_uri:                        # Uri of the timestamp service used during signing. $(timestamp_uri)
             publish_artifact: True                # Publish generated App Artifact to DevOps. $(publish_artifact)
-            pfx_password:                         # Password for the PFX File. Recommended to use Azure-KeyVault secrets. $(pfx_password)
     ```
 - ALOps App Sign Verify
   * Verify CodeSign of Business Central extension.
@@ -164,7 +148,6 @@ Here is a list of all build steps you have at your disposal when you use ALOps
             enable_symbol_loading: False          # Enable Symbol Loading. $(enable_symbol_loading)
             enable_api_services: False            # Enable API Services. $(enable_api_services)
             docker_pull: True                     # Force Pull docker image. $(docker_pull)
-            dockerauthentication: None            # Set authentication Method to use. $(dockerauthentication)
             docker_login:                         # Select the generic login to use for docker. If needed, click on 'manage', and add a new Service Endpoint of type 'Generic' $(docker_login)
             memory_gb: -1                         # Set maximum memory for container in GB. $(memory_gb)
             container_restart: no                 # Set docker container restart preference. $(container_restart)
@@ -176,9 +159,6 @@ Here is a list of all build steps you have at your disposal when you use ALOps
             sql_database_user_password:           # External SQL Database Password. $(sql_database_user_password)
             sql_backup_file:                      # Restore BAK file on startup. $(sql_backup_file)
             encryption_key:                       # Encryption key for Service Tier. $(encryption_key)
-            docker_registry:                      # Docker registry for login. $(docker_registry)
-            docker_username:                      # Docker login username. $(docker_username)
-            docker_password:                      # Docker login password. $(docker_password)
     ```
 - ALOps Docker Wait
   * Wait until the Business Central container is started.
@@ -189,7 +169,6 @@ Here is a list of all build steps you have at your disposal when you use ALOps
           inputs:
             fixed_tag:                            # Allows recycling of docker containers. $(fixed_tag)
             search_string: Ready for connections! # String to match in Docker Logs and return. $(search_string)
-            error_string:                         # Throw error when the container logs contain the error string. $(error_string)
     ```
 - ALOps Import FOB
   * Import objects from .FOB file.
@@ -225,7 +204,7 @@ Here is a list of all build steps you have at your disposal when you use ALOps
             nav_serverinstance: BC140             # Business Central Server Instance Name. $(nav_serverinstance)
             license_path:                         # Path of the FLF license to import. Must be a fully qualified path or relative to $(System.DefaultWorkingDirectory) or a downloadable Url. $(license_path)
             remove_license_file: True             # Remove license file after import. $(remove_license_file)
-            print_license_info: False             # Set if License is printed into the pipeline. $(print_license_info)
+            print_license_info: True              # Set if License is printed into the pipeline. $(print_license_info)
     ```
 - ALOps Package Import
   * Import and Process RapidStart/Configuration Package
