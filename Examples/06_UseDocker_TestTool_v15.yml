@@ -6,7 +6,7 @@ steps:
 
 - task: ALOpsDockerStart@1
   inputs:
-    docker_image: 'mcr.microsoft.com/businesscentral/onprem:14.5.35970.0-w1'
+    docker_image: 'mcr.microsoft.com/businesscentral/onprem'
     docker_pull: true
 
 - task: ALOpsDockerWait@1
@@ -17,7 +17,7 @@ steps:
   displayName: 'ALOps License Import'
   inputs:
     usedocker: true
-    license_path: 'https://license.example.com/SomePath/thelicense.flf'
+    license_path: '$(bclicensev15)'
 
 #>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
