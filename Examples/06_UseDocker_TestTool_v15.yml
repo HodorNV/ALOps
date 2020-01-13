@@ -1,5 +1,7 @@
 name: $(Build.BuildId)
 
+#pool: default
+
 steps:
 - checkout: self
   clean: true 
