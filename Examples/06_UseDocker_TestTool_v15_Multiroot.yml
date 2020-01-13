@@ -19,7 +19,7 @@ steps:
   displayName: 'ALOps License Import'
   inputs:
     usedocker: true
-    license_path: '$(bclicensev15)'
+    license_path: '$(bclicensev15)' #eg: https://license.example.com/SomePath/thelicense.flf
 
 #>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
