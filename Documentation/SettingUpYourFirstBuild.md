@@ -51,8 +51,8 @@ There is a big chance you're all done now.  Because of the "azure-pipelines.yml"
 If not, you can easily create it yourself:
 - Go to Pipelines / Builds
 - Click New / New Build Pipeline
-- CLick "Azure Repos Git"
-- select your new repo
+- Click "Azure Repos Git"
+- Select your new repo
 - Change the "Pool / name" to your own agent pool 
 - Now it will detect your yml file.  Click "Run" to save and run the build pipelin
 

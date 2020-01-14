@@ -1,0 +1,41 @@
+name: $(Build.BuildId)
+
+steps:
+- checkout: self
+  clean: true 
+
+#>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+#>>> With Variables Groups / Azure Key Vault Secrets (Recommended)
+#>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+- task: ALOpsDockerStart@1
+  inputs:
+    docker_image: 'bcinsider.azurecr.io/bcsandbox-master:be'
+    docker_pull: true
+    dockerauthentication: 'UsernamePassword'
+    docker_username: $(docker_username)
+    docker_password: $(docker_password)
+#<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+#>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+#>>> Via DevOps Service Endpoint
+#>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+- task: ALOpsDockerStart@1
+  inputs:
+    docker_image: 'bcinsider.azurecr.io/bcsandbox-master:be'
+    docker_pull: true
+    dockerauthentication: 'Endpoint'
+    docker_login: 'MSInsider'                          #Endpoint Name
+#<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+- task: ALOpsDockerWait@1
+  inputs:
+    search_string: 'Ready for connections!'
+
+#########################################################################
+### Your tasks go here, between [ALOpsDockerWait] and [ALOpsDockerRemove]
+#########################################################################
+
+- task: ALOpsDockerRemove@1
+  displayName: 'Remove Docker Container'
+  enabled: true
+  condition: always()
