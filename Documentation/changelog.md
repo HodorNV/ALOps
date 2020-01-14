@@ -1,7 +1,7 @@
 # Change Log
 All notable changes to the "ALOps" extension.
 
-## [v1.427] - 2019-11-30
+## [v1.427] - 2020-01-14
 - ALOpsAppClean: detect ServerInstance on custom Docker images
 - ALOpsAppCompile: Allow to retain version parts from app.json. '*' is replaced by the build-id, '?' specifies to retain the version part of the orriginal app.json
 - ALOpsAppCompile: Allow to update build number in DevOps
@@ -20,7 +20,7 @@ All notable changes to the "ALOps" extension.
 - General: Improved Json Importing, printout json on parse failure
 - General: task output of all task cleaned up / bulk logging transferred to verbose
 
-## [v1.426] - 2019-10-31
+## [v1.426] - 2019-11-30
 - ALOpsAppCompile: Additional AssemblyProbingPaths via discovery
 - ALOpsAppPublish: Allow for default AL Application installed in docker containers
 - ALOpsAppTest: Allow selecting TestSuite via parameter [testsuite]
