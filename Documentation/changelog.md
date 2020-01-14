@@ -1,6 +1,31 @@
 # Change Log
 All notable changes to the "ALOps" extension.
 
+## [v1.427] - 2019-11-30
+- ALOpsAppClean: detect ServerInstance on custom Docker images
+- ALOpsAppCompile: Allow to retain version parts from app.json. '*' is replaced by the build-id, '?' specifies to retain the version part of the orriginal app.json
+- ALOpsAppCompile: Allow to update build number in DevOps
+- ALOpsAppCompile: check docker info credentials
+- ALOpsAppCompile: Multiroot workspace support
+- ALOpsAppCompiler: Remove params [AssemblyProbingPaths] and [Ruleset] for NAV2018
+- ALOpsAppPublish: Set Path Variable
+- ALOpsAppRuntimePackage: New task for creating runtime packages from existing Apps
+- ALOpsAppSign: added instant validation of app after signing / Improved validation of timestamp
+- ALOpsAppSign: Added parameter [pfx_password] for setting password additional to the environment variable 
+- ALOpsDockerStart: allow login with Keyvault instead of ServiceConnection
+- ALOpsDockerWait: Added parameter [error_string] which allow to set an extra exit condition
+- ALOpsLicenseImport: Disable print License by default, license can be printed in the pipeline by setting parameter [print_license_info]
+- Documentation: added pipeline examples in documentation section
+- General: Allow for Host/Container memory monitoring
+- General: Improved Json Importing, printout json on parse failure
+- General: task output of all task cleaned up / bulk logging transferred to verbose
+
+## [v1.426] - 2019-10-31
+- ALOpsAppCompile: Additional AssemblyProbingPaths via discovery
+- ALOpsAppPublish: Allow for default AL Application installed in docker containers
+- ALOpsAppTest: Allow selecting TestSuite via parameter [testsuite]
+- ALOpsRepositoryPublish: added default icon for Apps without icon
+
 ## [v1.425] - 2019-10-15
 - ALOpsAppCompile/ALOpsAppSign: new parameter [publish_artifact] to disable artifact publishing from step
 - ALOpsAppCompile: Allow to set filename suffix
