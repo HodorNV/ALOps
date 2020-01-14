@@ -29,6 +29,18 @@ steps:
     scriptsource: 'Download'
     script_location: 'https://raw.githubusercontent.com/HodorNV/ALOps/AdminHodor-patch-3/Examples/test.ps1'
 
+- task: ALOpsDockerExec@1
+  displayName: 'ALOPS Docker Exec: Workfolder'
+  inputs:
+    scriptsource: 'Workfolder'
+    script_location: '*/test_script.ps1'  # PS1 file is located in the root of the repository
+
+- task: ALOpsDockerExec@1
+  displayName: 'ALOPS Docker Exec: Path'
+  inputs:
+    scriptsource: 'Path'
+    script_location: 'c:\scripts\test_script.ps1'  # PS1 file is located on the docker host
+
 #########################################################################
 
 - task: ALOpsDockerRemove@1
