@@ -259,6 +259,7 @@ Here is a list of all build steps you have at your disposal when you use ALOps
             skip_verification: True               # Skip CodeSign Verification of Business Central App. $(skip_verification)
             publish_scope: Global                 # Set the scope for publishing extensions. $(publish_scope)
             tenant: default                       # Tenant to publish to when Scope is set to Tenant. $(tenant)
+            batch_publish_folder:                 # Path containing Apps to publish. $(batch_publish_folder)
     ```
 - ALOps Repository Publish Extension
   * Publish extension to ALOps Repository.
