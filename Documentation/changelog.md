@@ -8,6 +8,7 @@ All notable changes to the "ALOps" extension.
 - ALOpsAppCompile: check docker info credentials
 - ALOpsAppCompile: Multiroot workspace support
 - ALOpsAppCompiler: Remove params [AssemblyProbingPaths] and [Ruleset] for NAV2018
+- ALOpsAppPublish: new parameter [batch_publish_folder] which allows for batch publishing of Apps, install order is automatically detected
 - ALOpsAppPublish: Set Path Variable
 - ALOpsAppRuntimePackage: New task for creating runtime packages from existing Apps
 - ALOpsAppSign: added instant validation of app after signing / Improved validation of timestamp
