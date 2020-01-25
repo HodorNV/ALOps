@@ -5,6 +5,21 @@ Let's describe all the Build Steps that we have at our disposal
 Here is a list of all build steps you have at your disposal when you use ALOps
 
 ### ALOps Tasks
+- ALOps App Runtime Package
+  * Get a NAV App runtime package for onprem deployment.
+  * YAML Template: 
+    ```yaml
+        - task: ALOpsAppRuntimePackage@1
+          displayName: 'ALOps App Runtime Package'
+          inputs:
+            usedocker: False                      # Run task in Docker container. $(usedocker)
+            fixed_tag:                            # Allows recycling of docker containers. $(fixed_tag)
+            nav_serverinstance: BC140             # Specifies the name of a Business Central Server instance. $(nav_serverinstance)
+            nav_tenant: default                   # Specifies the ID of a specific tenant that you want to act on, such as Tenant1. $(nav_tenant)
+            targetproject: ./app.json             # Path of the project to export as RuntimePackage. Must be a fully qualified path or relative to $(System.DefaultWorkingDirectory). $(targetproject)
+            showmycode: False                     # Overwrites the ShowMyCode value in the manifest. $(showmycode)
+            publish_artifact: True                # Publish generated Runtime-App Artifact to DevOps. $(publish_artifact)
+    ```
 - ALOps App Sign
   * Codesign Business Central extension with .pfx.
   * YAML Template: 
@@ -19,6 +34,7 @@ Here is a list of all build steps you have at your disposal when you use ALOps
             pfx_path:                             # Path or Url of the PFX file. $(pfx_path)
             timestamp_uri:                        # Uri of the timestamp service used during signing. $(timestamp_uri)
             publish_artifact: True                # Publish generated App Artifact to DevOps. $(publish_artifact)
+            pfx_password:                         # Password for the PFX File. Recommended to use Azure-KeyVault secrets. $(pfx_password)
     ```
 - ALOps App Sign Verify
   * Verify CodeSign of Business Central extension.
@@ -51,6 +67,7 @@ Here is a list of all build steps you have at your disposal when you use ALOps
             import_testtoolkit: True              # Import TestToolKit FOB. $(import_testtoolkit)
             import_action: Overwrite              # Import Action for importing Test-Suite FOB files. $(import_action)
             testpage: 130409                      # Set the PageId used for testing. $(testpage)
+            testsuite: DEFAULT                    # Set target Test Suite to activate. $(testsuite)
             installaltesttool: False              # Install the AL TestTool for v15. $(installaltesttool)
             failed_test_action: Warning           # Action to take when a Test failed. $(failed_test_action)
     ```
@@ -105,6 +122,7 @@ Here is a list of all build steps you have at your disposal when you use ALOps
             publish_artifact: True                # Publish generated App Artifact to DevOps. $(publish_artifact)
             failed_on_warnings: False             # Fail task when any warning occurs. $(failed_on_warnings)
             app_file_suffix:                      # Set a suffix tag on the compiled App filename. $(app_file_suffix)
+            updatebuildnumber: True               # Update the Build number with the current version. $(updatebuildnumber)
     ```
 - ALOps Docker Execute
   * Execute powershell script in container.
@@ -116,9 +134,9 @@ Here is a list of all build steps you have at your disposal when you use ALOps
             fixed_tag:                            # Allows recycling of docker containers. $(fixed_tag)
             scriptsource: InLine                  # Set type for requiring the script. $(scriptsource)
             script_location:                      # Location of the script to fetch. $(script_location)
-            inline_script: # Write your powershell commands here.
-    Write-Host "Hello World"
-    # Inline Powershell Script. $(inline_script)
+            inline_script: |                      # Inline Powershell Script. $(inline_script)
+              # Write your powershell commands here.
+              Write-Host "Hello World"    
     ```
 - ALOps Docker Remove
   * Remove Business Central docker container.
@@ -146,7 +164,11 @@ Here is a list of all build steps you have at your disposal when you use ALOps
             enable_symbol_loading: False          # Enable Symbol Loading. $(enable_symbol_loading)
             enable_api_services: False            # Enable API Services. $(enable_api_services)
             docker_pull: True                     # Force Pull docker image. $(docker_pull)
+            dockerauthentication: None            # Set authentication Method to use. $(dockerauthentication)
             docker_login:                         # Select the generic login to use for docker. If needed, click on 'manage', and add a new Service Endpoint of type 'Generic' $(docker_login)
+            docker_username:                      # Docker login username. $(docker_username)
+            docker_password:                      # Docker login password. $(docker_password)
+            docker_registry:                      # Docker registry for login, example: 'bcinsider.azurecr.io' $(docker_registry)
             memory_gb: -1                         # Set maximum memory for container in GB. $(memory_gb)
             container_restart: no                 # Set docker container restart preference. $(container_restart)
             docker_parameters:                    # Specify additional docker parameters. $(docker_parameters)
@@ -167,6 +189,7 @@ Here is a list of all build steps you have at your disposal when you use ALOps
           inputs:
             fixed_tag:                            # Allows recycling of docker containers. $(fixed_tag)
             search_string: Ready for connections! # String to match in Docker Logs and return. $(search_string)
+            error_string:                         # Throw error when the container logs contain the error string. $(error_string)
     ```
 - ALOps Import FOB
   * Import objects from .FOB file.
@@ -202,6 +225,7 @@ Here is a list of all build steps you have at your disposal when you use ALOps
             nav_serverinstance: BC140             # Business Central Server Instance Name. $(nav_serverinstance)
             license_path:                         # Path of the FLF license to import. Must be a fully qualified path or relative to $(System.DefaultWorkingDirectory) or a downloadable Url. $(license_path)
             remove_license_file: True             # Remove license file after import. $(remove_license_file)
+            print_license_info: False             # Set if License is printed into the pipeline. $(print_license_info)
     ```
 - ALOps Package Import
   * Import and Process RapidStart/Configuration Package
@@ -222,17 +246,20 @@ Here is a list of all build steps you have at your disposal when you use ALOps
             usedocker: False                      # Run task in Docker container. $(usedocker)
             fixed_tag:                            # Allows recycling of docker containers. $(fixed_tag)
             installaltesttool: False              # Install the AL TestTool for v15. $(installaltesttool)
-            install_al_app_names: Tests-TestLibraries
-    System Application Test
-    System Application Test Library
-    Any
-    Library Assert
-    Test Runner
-    # Specify additional docker parameters. $(install_al_app_names)
+            install_al_app_names: |               # Specify additional docker parameters. $(install_al_app_names)
+              Tests-TestLibraries
+              System Application Test
+              System Application Test Library
+              Any
+              Library Assert
+              Test Runner    
             nav_serverinstance: BC140             # Business Central Server Instance Name. $(nav_serverinstance)
             artifact_path:                        # Path for storing App Artifact. $(artifact_path)
             nav_artifact_app_filter: *.app        # Filter used for locating App file relative to $(path_to_publish). $(nav_artifact_app_filter)
             skip_verification: True               # Skip CodeSign Verification of Business Central App. $(skip_verification)
+            publish_scope: Global                 # Set the scope for publishing extensions. $(publish_scope)
+            tenant: default                       # Tenant to publish to when Scope is set to Tenant. $(tenant)
+            batch_publish_folder:                 # Path containing Apps to publish. $(batch_publish_folder)
     ```
 - ALOps Repository Publish Extension
   * Publish extension to ALOps Repository.
@@ -249,7 +276,6 @@ Here is a list of all build steps you have at your disposal when you use ALOps
             artifact_path:                        # Path for App Artifact. $(artifact_path)
             app_artifact_filter: *.app            # Path of the App to publish. Must be a fully qualified path or relative to $(System.DefaultWorkingDirectory). $(app_artifact_filter)
             upload_c_applications: False          # Upload Applications from Applications folder. $(upload_c_applications)
-            upload_package_cache: False           # Upload the apps from the Package Cache. $(upload_package_cache)
     ```
 - ALOps SaaS Get Extensions
   * Get extensions from Business Central Saas.
