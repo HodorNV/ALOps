@@ -116,9 +116,10 @@ Here is a list of all build steps you have at your disposal when you use ALOps
             fixed_tag:                            # Allows recycling of docker containers. $(fixed_tag)
             scriptsource: InLine                  # Set type for requiring the script. $(scriptsource)
             script_location:                      # Location of the script to fetch. $(script_location)
-            inline_script: # Write your powershell commands here.
-    Write-Host "Hello World"
-    # Inline Powershell Script. $(inline_script)
+            inline_script: |                      # Inline Powershell Script. $(inline_script)
+              # Write your powershell commands here.
+              Write-Host "Hello World"
+              
     ```
 - ALOps Docker Remove
   * Remove Business Central docker container.
