@@ -1,7 +1,7 @@
 # Change Log
 All notable changes to the "ALOps" extension.
 
-## [v1.427] - 2020-01-14
+## [v1.427] - 2020-01-25
 - ALOpsAppClean: detect ServerInstance on custom Docker images
 - ALOpsAppCompile: Allow to retain version parts from app.json. '*' is replaced by the build-id, '?' specifies to retain the version part of the orriginal app.json
 - ALOpsAppCompile: Allow to update build number in DevOps
