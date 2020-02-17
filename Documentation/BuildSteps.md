@@ -123,6 +123,7 @@ Here is a list of all build steps you have at your disposal when you use ALOps
             failed_on_warnings: False             # Fail task when any warning occurs. $(failed_on_warnings)
             app_file_suffix:                      # Set a suffix tag on the compiled App filename. $(app_file_suffix)
             updatebuildnumber: True               # Update the Build number with the current version. $(updatebuildnumber)
+            setup_working_folder: False           # Copy working folder to Docker container. $(setup_working_folder)
     ```
 - ALOps Docker Execute
   * Execute powershell script in container.
@@ -190,6 +191,7 @@ Here is a list of all build steps you have at your disposal when you use ALOps
             fixed_tag:                            # Allows recycling of docker containers. $(fixed_tag)
             search_string: Ready for connections! # String to match in Docker Logs and return. $(search_string)
             error_string:                         # Throw error when the container logs contain the error string. $(error_string)
+            setup_working_folder: True            # Copy working folder to Docker container. $(setup_working_folder)
     ```
 - ALOps Import FOB
   * Import objects from .FOB file.
