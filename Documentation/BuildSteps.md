@@ -192,6 +192,7 @@ Here is a list of all build steps you have at your disposal when you use ALOps
             search_string: Ready for connections! # String to match in Docker Logs and return. $(search_string)
             error_string:                         # Throw error when the container logs contain the error string. $(error_string)
             setup_working_folder: True            # Copy working folder to Docker container. $(setup_working_folder)
+            usecompression: True                  # Compress Source-Folder for transfer to docker container. $(usecompression)
     ```
 - ALOps Import FOB
   * Import objects from .FOB file.
@@ -228,6 +229,7 @@ Here is a list of all build steps you have at your disposal when you use ALOps
             license_path:                         # Path of the FLF license to import. Must be a fully qualified path or relative to $(System.DefaultWorkingDirectory) or a downloadable Url. $(license_path)
             remove_license_file: True             # Remove license file after import. $(remove_license_file)
             print_license_info: False             # Set if License is printed into the pipeline. $(print_license_info)
+            license_scope: Default                # Set the scope for license upload. $(license_scope)
     ```
 - ALOps Package Import
   * Import and Process RapidStart/Configuration Package
