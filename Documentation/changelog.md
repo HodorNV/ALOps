@@ -1,7 +1,7 @@
 # Change Log
 All notable changes to the "ALOps" extension.
 
-## [v1.428] - 2020-03-24
+## [v1.428] - 2020-03-29
 - ALOpsAppCompiler: compatibility with propagated dependencies
 - ALOpsAppCompiler: improved direction of ALC.EXE output
 - ALOpsAppCompiler: replace invalid path characters with underscore in App-Filename
