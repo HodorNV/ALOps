@@ -1,6 +1,21 @@
 # Change Log
 All notable changes to the "ALOps" extension.
 
+## [v1.428] - 2020-03-24
+- ALOpsAppCompiler: compatibility with propagated dependencies
+- ALOpsAppCompiler: improved direction of ALC.EXE output
+- ALOpsAppCompiler: replace invalid path characters with underscore in App-Filename
+- ALOpsAppTest: improved stability for BC15 / upgraded to work with BC16
+- ALOpsDockerStart: auto split parameter [docker_parameters] so it can be set via Variables
+- ALOpsDockerStart: parameter [vsix_download_path] enabled for use in docker containers
+- ALOpsDockerWait: default behaviour changed, workfolder is now copied to the container on the WAIT step
+- ALOpsFobImport: fixed empty "servername" parameter, improved GenerateSymbolReferences
+- ALOpsFobImport: Generating symbol references can be enabled/disable with parameter [generate_symbol_reference]
+- ALOpsFobImport: improved FinSql execution and error catching
+- ALopsImportPackage: added parameter 'fixed_tag' for use with Docker
+- ALOpsInfo: print extra information for debugging: diskspace, windows version, updates, memory stats...
+- ALOpsLicenseImport: the scope of the license import can be set with parameter [license_scope]
+
 ## [v1.427] - 2020-01-25
 - ALOpsAppClean: detect ServerInstance on custom Docker images
 - ALOpsAppCompile: Allow to retain version parts from app.json. '*' is replaced by the build-id, '?' specifies to retain the version part of the orriginal app.json

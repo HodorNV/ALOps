@@ -123,6 +123,7 @@ Here is a list of all build steps you have at your disposal when you use ALOps
             failed_on_warnings: False             # Fail task when any warning occurs. $(failed_on_warnings)
             app_file_suffix:                      # Set a suffix tag on the compiled App filename. $(app_file_suffix)
             updatebuildnumber: True               # Update the Build number with the current version. $(updatebuildnumber)
+            setup_working_folder: False           # Copy working folder to Docker container. $(setup_working_folder)
     ```
 - ALOps Docker Execute
   * Execute powershell script in container.
@@ -136,7 +137,7 @@ Here is a list of all build steps you have at your disposal when you use ALOps
             script_location:                      # Location of the script to fetch. $(script_location)
             inline_script: |                      # Inline Powershell Script. $(inline_script)
               # Write your powershell commands here.
-              Write-Host "Hello World"    
+              Write-Host "Hello World"  
     ```
 - ALOps Docker Remove
   * Remove Business Central docker container.
@@ -171,7 +172,9 @@ Here is a list of all build steps you have at your disposal when you use ALOps
             docker_registry:                      # Docker registry for login, example: 'bcinsider.azurecr.io' $(docker_registry)
             memory_gb: -1                         # Set maximum memory for container in GB. $(memory_gb)
             container_restart: no                 # Set docker container restart preference. $(container_restart)
-            docker_parameters:                    # Specify additional docker parameters. $(docker_parameters)
+            docker_parameters: |                  # Specify additional docker parameters. $(docker_parameters)
+              --isolation=hyperv
+              --env ExitOnError=N
             sql_server:                           # External SQL Server. $(sql_server)
             sql_server_instance:                  # External SQL Server Instance. $(sql_server_instance)
             sql_database:                         # External SQL Database. $(sql_database)
@@ -190,6 +193,8 @@ Here is a list of all build steps you have at your disposal when you use ALOps
             fixed_tag:                            # Allows recycling of docker containers. $(fixed_tag)
             search_string: Ready for connections! # String to match in Docker Logs and return. $(search_string)
             error_string:                         # Throw error when the container logs contain the error string. $(error_string)
+            setup_working_folder: True            # Copy working folder to Docker container. $(setup_working_folder)
+            usecompression: True                  # Compress Source-Folder for transfer to docker container. $(usecompression)
     ```
 - ALOps Import FOB
   * Import objects from .FOB file.
@@ -226,6 +231,7 @@ Here is a list of all build steps you have at your disposal when you use ALOps
             license_path:                         # Path of the FLF license to import. Must be a fully qualified path or relative to $(System.DefaultWorkingDirectory) or a downloadable Url. $(license_path)
             remove_license_file: True             # Remove license file after import. $(remove_license_file)
             print_license_info: False             # Set if License is printed into the pipeline. $(print_license_info)
+            license_scope: Default                # Set the scope for license upload. $(license_scope)
     ```
 - ALOps Package Import
   * Import and Process RapidStart/Configuration Package
@@ -235,6 +241,8 @@ Here is a list of all build steps you have at your disposal when you use ALOps
           displayName: 'ALOps Package Import'
           inputs:
             usedocker: True                       # Run task in Docker container. $(usedocker)
+            fixed_tag:                            # Allows recycling of docker containers. $(fixed_tag)
+            company_name:                         # Company name for Package import. $(company_name)
     ```
 - ALOps App Publish
   * Publish Business Central extension to service tier.
@@ -252,7 +260,7 @@ Here is a list of all build steps you have at your disposal when you use ALOps
               System Application Test Library
               Any
               Library Assert
-              Test Runner    
+              Test Runner 
             nav_serverinstance: BC140             # Business Central Server Instance Name. $(nav_serverinstance)
             artifact_path:                        # Path for storing App Artifact. $(artifact_path)
             nav_artifact_app_filter: *.app        # Filter used for locating App file relative to $(path_to_publish). $(nav_artifact_app_filter)
