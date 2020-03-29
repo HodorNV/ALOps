@@ -239,6 +239,8 @@ Here is a list of all build steps you have at your disposal when you use ALOps
           displayName: 'ALOps Package Import'
           inputs:
             usedocker: True                       # Run task in Docker container. $(usedocker)
+            fixed_tag:                            # Allows recycling of docker containers. $(fixed_tag)
+            company_name:                         # Company name for Package import. $(company_name)
     ```
 - ALOps App Publish
   * Publish Business Central extension to service tier.
