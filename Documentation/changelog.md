@@ -6,6 +6,7 @@ All notable changes to the "ALOps" extension.
 - ALOpsAppCompiler: improved direction of ALC.EXE output
 - ALOpsAppCompiler: replace invalid path characters with underscore in App-Filename
 - ALOpsAppPublish: removed 'Scope' parameter for NAV2018 compatibility
+- ALOpsAppRuntimePackage: remove ShowMyCode for NAV20
 - ALOpsAppTest: improved stability for BC15 / upgraded to work with BC16
 - ALOpsDockerStart: auto split parameter [docker_parameters] so it can be set via Variables
 - ALOpsDockerStart: parameter [vsix_download_path] enabled for use in docker containers
