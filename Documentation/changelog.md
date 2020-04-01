@@ -9,6 +9,7 @@ All notable changes to the "ALOps" extension.
 - ALOpsAppRuntimePackage: remove ShowMyCode for NAV20
 - ALOpsAppTest: improved stability for BC15 / upgraded to work with BC16
 - ALOpsDockerStart: auto split parameter [docker_parameters] so it can be set via Variables
+- ALOpsDockerStart: only convert microsoft images to lowercase
 - ALOpsDockerStart: parameter [vsix_download_path] enabled for use in docker containers
 - ALOpsDockerWait: default behaviour changed, workfolder is now copied to the container on the WAIT step
 - ALOpsFobImport: fixed empty "servername" parameter, improved GenerateSymbolReferences
