@@ -2,11 +2,13 @@
 All notable changes to the "ALOps" extension.
 
 ## [v1.428] - 2020-03-29
+- All Tasks: Dynamic resolve of Management DLL's for Multiversion NAV/BC installations
 - ALOpsAppCompiler: compatibility with propagated dependencies
 - ALOpsAppCompiler: improved direction of ALC.EXE output
 - ALOpsAppCompiler: replace invalid path characters with underscore in App-Filename
 - ALOpsAppPublish: removed 'Scope' parameter for NAV2018 compatibility
 - ALOpsAppRuntimePackage: remove ShowMyCode for NAV20
+- ALOpsAppTest: BC16 overwrite faulty standard Test-Libraries
 - ALOpsAppTest: improved stability for BC15 / upgraded to work with BC16
 - ALOpsDockerStart: auto split parameter [docker_parameters] so it can be set via Variables
 - ALOpsDockerStart: only convert microsoft images to lowercase
