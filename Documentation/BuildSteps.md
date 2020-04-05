@@ -135,8 +135,8 @@ Here is a list of all build steps you have at your disposal when you use ALOps
             fixed_tag:                            # Allows recycling of docker containers. $(fixed_tag)
             scriptsource: InLine                  # Set type for requiring the script. $(scriptsource)
             script_location:                      # Location of the script to fetch. $(script_location)
-            inline_script: |                      # Inline Powershell Script. $(inline_script)	            inline_script: # Write your powershell commands here.
-              # Write your powershell commands here.	    Write-Host "Hello World"
+            inline_script: |                      # Inline Powershell Script. $(inline_script)
+              # Write your powershell commands here.
               Write-Host "Hello World"
     ```
 - ALOps Docker Remove
@@ -172,7 +172,7 @@ Here is a list of all build steps you have at your disposal when you use ALOps
             docker_registry:                      # Docker registry for login, example: 'bcinsider.azurecr.io' $(docker_registry)
             memory_gb: -1                         # Set maximum memory for container in GB. $(memory_gb)
             container_restart: no                 # Set docker container restart preference. $(container_restart)
-            docker_parameters: |                  # Specify additional docker parameters. $(docker_parameters)	            docker_parameters:                    # Specify additional docker parameters. $(docker_parameters)
+            docker_parameters: |                  # Specify additional docker parameters. $(docker_parameters)
               --isolation=hyperv	
               --env ExitOnError=N
             sql_server:                           # External SQL Server. $(sql_server)
@@ -254,14 +254,13 @@ Here is a list of all build steps you have at your disposal when you use ALOps
             usedocker: False                      # Run task in Docker container. $(usedocker)
             fixed_tag:                            # Allows recycling of docker containers. $(fixed_tag)
             installaltesttool: False              # Install the AL TestTool for v15. $(installaltesttool)
-            install_al_app_names: |               # Specify additional docker parameters. $(install_al_app_names)	            install_al_app_names: Tests-TestLibraries
+            install_al_app_names: |               # Specify additional docker parameters. $(install_al_app_names)
               Tests-TestLibraries	    System Application Test
               System Application Test	    System Application Test Library
               System Application Test Library	    Any
               Any	    Library Assert
               Library Assert	    Test Runner
               Test Runner 
-    # Specify additional docker parameters. $(install_al_app_names)
             nav_serverinstance: BC140             # Business Central Server Instance Name. $(nav_serverinstance)
             artifact_path:                        # Path for storing App Artifact. $(artifact_path)
             nav_artifact_app_filter: *.app        # Filter used for locating App file relative to $(path_to_publish). $(nav_artifact_app_filter)
