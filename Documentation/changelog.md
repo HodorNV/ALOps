@@ -17,7 +17,7 @@ All notable changes to the "ALOps" extension.
 - ALOpsFobImport: fixed empty "servername" parameter, improved GenerateSymbolReferences
 - ALOpsFobImport: Generating symbol references can be enabled/disable with parameter [generate_symbol_reference]
 - ALOpsFobImport: improved FinSql execution and error catching
-- ALopsImportPackage: added parameter 'fixed_tag' for use with Docker
+- ALOpsImportPackage: added parameter 'fixed_tag' for use with Docker
 - ALOpsInfo: print extra information for debugging: diskspace, windows version, updates, memory stats...
 - ALOpsLicenseImport: the scope of the license import can be set with parameter [license_scope]
 
