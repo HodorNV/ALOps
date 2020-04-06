@@ -1,6 +1,52 @@
 # Change Log
 All notable changes to the "ALOps" extension.
 
+## [v1.428] - 2020-03-29
+- All Tasks: Dynamic resolve of Management DLL's for Multiversion NAV/BC installations
+- ALOpsAppCompiler: compatibility with propagated dependencies
+- ALOpsAppCompiler: improved direction of ALC.EXE output
+- ALOpsAppCompiler: replace invalid path characters with underscore in App-Filename
+- ALOpsAppPublish: removed 'Scope' parameter for NAV2018 compatibility
+- ALOpsAppRuntimePackage: remove ShowMyCode for NAV20
+- ALOpsAppTest: BC16 overwrite faulty standard Test-Libraries
+- ALOpsAppTest: improved stability for BC15 / upgraded to work with BC16
+- ALOpsDockerStart: auto split parameter [docker_parameters] so it can be set via Variables
+- ALOpsDockerStart: only convert microsoft images to lowercase
+- ALOpsDockerStart: parameter [vsix_download_path] enabled for use in docker containers
+- ALOpsDockerWait: default behaviour changed, workfolder is now copied to the container on the WAIT step
+- ALOpsFobImport: fixed empty "servername" parameter, improved GenerateSymbolReferences
+- ALOpsFobImport: Generating symbol references can be enabled/disable with parameter [generate_symbol_reference]
+- ALOpsFobImport: improved FinSql execution and error catching
+- ALopsImportPackage: added parameter 'fixed_tag' for use with Docker
+- ALOpsInfo: print extra information for debugging: diskspace, windows version, updates, memory stats...
+- ALOpsLicenseImport: the scope of the license import can be set with parameter [license_scope]
+
+## [v1.427] - 2020-01-25
+- ALOpsAppClean: detect ServerInstance on custom Docker images
+- ALOpsAppCompile: Allow to retain version parts from app.json. '*' is replaced by the build-id, '?' specifies to retain the version part of the orriginal app.json
+- ALOpsAppCompile: Allow to update build number in DevOps
+- ALOpsAppCompile: check docker info credentials
+- ALOpsAppCompile: Multiroot workspace support
+- ALOpsAppCompiler: Remove params [AssemblyProbingPaths] and [Ruleset] for NAV2018
+- ALOpsAppPublish: new parameter [batch_publish_folder] which allows for batch publishing of Apps, install order is automatically detected
+- ALOpsAppPublish: Set Path Variable
+- ALOpsAppRuntimePackage: New task for creating runtime packages from existing Apps
+- ALOpsAppSign: added instant validation of app after signing / Improved validation of timestamp
+- ALOpsAppSign: Added parameter [pfx_password] for setting password additional to the environment variable 
+- ALOpsDockerStart: allow login with Keyvault instead of ServiceConnection
+- ALOpsDockerWait: Added parameter [error_string] which allow to set an extra exit condition
+- ALOpsLicenseImport: Disable print License by default, license can be printed in the pipeline by setting parameter [print_license_info]
+- Documentation: added pipeline examples in documentation section
+- General: Allow for Host/Container memory monitoring
+- General: Improved Json Importing, printout json on parse failure
+- General: task output of all task cleaned up / bulk logging transferred to verbose
+
+## [v1.426] - 2019-11-30
+- ALOpsAppCompile: Additional AssemblyProbingPaths via discovery
+- ALOpsAppPublish: Allow for default AL Application installed in docker containers
+- ALOpsAppTest: Allow selecting TestSuite via parameter [testsuite]
+- ALOpsRepositoryPublish: added default icon for Apps without icon
+
 ## [v1.425] - 2019-10-15
 - ALOpsAppCompile/ALOpsAppSign: new parameter [publish_artifact] to disable artifact publishing from step
 - ALOpsAppCompile: Allow to set filename suffix
