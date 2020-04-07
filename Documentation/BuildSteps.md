@@ -70,6 +70,7 @@ Here is a list of all build steps you have at your disposal when you use ALOps
             testsuite: DEFAULT                    # Set target Test Suite to activate. $(testsuite)
             installaltesttool: False              # Install the AL TestTool for v15. $(installaltesttool)
             failed_test_action: Warning           # Action to take when a Test failed. $(failed_test_action)
+            override_finsql_path:                 # Overrule automatic detection of FinSql with fixed value. $(override_finsql_path)
     ```
 - ALOps App Cleaner
   * Remove all extensions from Business Central service tier.
@@ -208,6 +209,7 @@ Here is a list of all build steps you have at your disposal when you use ALOps
             import_action: Default                # Import action for importing FOB files. $(import_action)
             synchronize_schema_changes: Yes       # Synchronize Schema Changes setting for importing FOB files. $(synchronize_schema_changes)
             generate_symbol_reference: False      # Enable Generate Symbol References. $(generate_symbol_reference)
+            override_finsql_path:                 # Overrule automatic detection of FinSql with fixed value. $(override_finsql_path)
     ```
 - ALOps Info
   * Print information about ALOps and executing host.
