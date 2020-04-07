@@ -21,6 +21,9 @@ All notable changes to the "ALOps" extension.
 - ALOpsInfo: print extra information for debugging: diskspace, windows version, updates, memory stats...
 - ALOpsLicenseImport: the scope of the license import can be set with parameter [license_scope]
 
+## [v1.429] - 2020-03-27
+- ALOpsAppTest: Error and Warning close dialog enhancement
+
 ## [v1.427] - 2020-01-25
 - ALOpsAppClean: detect ServerInstance on custom Docker images
 - ALOpsAppCompile: Allow to retain version parts from app.json. '*' is replaced by the build-id, '?' specifies to retain the version part of the orriginal app.json
