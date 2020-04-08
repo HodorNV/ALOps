@@ -107,7 +107,7 @@ Here is a list of all build steps you have at your disposal when you use ALOps
             usedocker: False                      # Run task in Docker container. $(usedocker)
             fixed_tag:                            # Allows recycling of docker containers. $(fixed_tag)
             targetproject: ./app.json             # Path of the project to compile. Must be a fully qualified path or relative to $(System.DefaultWorkingDirectory). $(targetproject)
-            nav_computername: localhost           # Target Business Central Server running service tier. $(nav_computername)
+            nav_computername:                     # Target Business Central Server running service tier. $(nav_computername)
             nav_serverinstance: BC140             # Business Central Server Instance Name. $(nav_serverinstance)
             nav_tenant: default                   # NAV Tenant used for symbols and compiling the app. $(nav_tenant)
             nav_ports_dev: 7049                   # NAV Port used for DEV-Service. $(nav_ports_dev)
