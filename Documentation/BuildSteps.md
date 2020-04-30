@@ -195,6 +195,28 @@ Here is a list of all build steps you have at your disposal when you use ALOps
             setup_working_folder: True            # Copy working folder to Docker container. $(setup_working_folder)
             usecompression: True                  # Compress Source-Folder for transfer to docker container. $(usecompression)
     ```
+- ALOps Extension API
+  * Get/Publish extensions with the Business Central API.
+  * YAML Template: 
+    ```yaml
+        - task: ALOpsExtensionAPI@1
+          displayName: 'ALOps Extension API'
+          inputs:
+            usedocker: False                      # Run task in Docker container. $(usedocker)
+            fixed_tag:                            # Allows recycling of docker containers. $(fixed_tag)
+            interaction: get                      # Set Interaction Method to use. (Get/Publish/Batch Publish). $(interaction)
+            api_endpoint: https://api.businesscentral.dynamics.com/v2.0/$(azure_tenant_id)/Sandbox/api# Set API Endpoint. (protocol://host:port/serverinstance/api) $(api_endpoint)
+            authentication: oauth                 # Set authentication Method to use. Default [Windows]. $(authentication)
+            azure_tenant_id:                      # Azure Tenant Id. Only required for BC SaaS $(azure_tenant_id)
+            azure_app_client_id:                  # Azure AD Application Client Id. $(azure_app_client_id)
+            azure_app_client_secret:              # Azure AD Application Client Secret. $(azure_app_client_secret)
+            username:                             # Business Central Username. $(username)
+            password:                             # Business Central User Password. $(password)
+            bccompany:                            # Business Central Company (Id or Name). $(bccompany)
+            artifact_path:                        # Path for App Artifact. $(artifact_path)
+            artifact_filter: *.app                # Filter used for locating App file relative to $(path_to_publish). $(artifact_filter)
+            showdeploymentstatus: True            # Show Extension Deployment Status. $(showdeploymentstatus)
+    ```
 - ALOps Import FOB
   * Import objects from .FOB file.
   * YAML Template: 
@@ -286,7 +308,7 @@ Here is a list of all build steps you have at your disposal when you use ALOps
             upload_c_applications: False          # Upload Applications from Applications folder. $(upload_c_applications)
     ```
 - ALOps SaaS Get Extensions
-  * Get extensions from Business Central Saas.
+  * Replaced by Task [ALOps Extension API]
   * YAML Template: 
     ```yaml
         - task: ALOpsSaaSGetExtensions@1
@@ -303,7 +325,7 @@ Here is a list of all build steps you have at your disposal when you use ALOps
             bc_companyname:                       # Business Central Company. $(bc_companyname)
     ```
 - ALOps SaaS Publish Extension
-  * Publish extension to Business Central Saas.
+  * Replaced by Task [ALOps Extension API]
   * YAML Template: 
     ```yaml
         - task: ALOpsSaaSPublishExtension@1
