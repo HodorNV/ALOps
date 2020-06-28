@@ -1,6 +1,20 @@
 # Change Log
 All notable changes to the "ALOps" extension.
 
+## [v1.429] - 2020-04-30
+- All Tasks: Allow for Windows-Authentication in docker containers (GSMA)
+- All Tasks: Improved error-handling on all REST calls
+- ALOpsAppPublish: Allow updating Apps in Batch-Publish cfr single publish
+- ALOpsAppPublish: AppUpgrade issues are now logged to the pipeline
+- ALOpsAppPublish: Batch_Publish_Folder is now copied to the container on demand
+- ALOpsAppPublish: enable force install dependency by default
+- ALOpsAppTest: Error and Warning close dialog enhancement
+- ALOpsExtensionAPI: new tasks to handle BC-Extensions API calls
+- ALOpsFobImport: added parameter [override_finsql_path] which allows to override the default finsql.exe resolving
+- ALOpsLicenseImport: License-Path made dynamics (filtering) instead of literal
+- ALOpsSaaSGetExtension: Task is replaced by the new Task [ALOps Extension API]
+- ALOpsSaasPublishExtension: Task is replaced by the new Task [ALOps Extension API]
+
 ## [v1.428] - 2020-03-29
 - All Tasks: Dynamic resolve of Management DLL's for Multiversion NAV/BC installations
 - ALOpsAppCompiler: compatibility with propagated dependencies
