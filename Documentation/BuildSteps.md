@@ -162,7 +162,7 @@ Here is a list of all build steps you have at your disposal when you use ALOps
             ignore_no_container_warning: False    # Do not trigger warning when container with [fixed_tag] is not found. $(ignore_no_container_warning)
             docker_image: microsoft/bcsandbox     # Business Central docker Image to Start. $(docker_image)
             accept_image_eula: True               # Accept Eula of docker image. $(accept_image_eula)
-            accept_image_outdated: False          # Accept Outdated image. $(accept_image_outdated)
+            accept_image_outdated: True           # Accept Outdated image. $(accept_image_outdated)
             enable_symbol_loading: False          # Enable Symbol Loading. $(enable_symbol_loading)
             enable_api_services: False            # Enable API Services. $(enable_api_services)
             docker_pull: True                     # Force Pull docker image. $(docker_pull)
