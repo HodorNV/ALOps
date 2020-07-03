@@ -11,6 +11,7 @@ Here, you can find more information about:
 - [List of all the buildsteps](/Documentation/BuildSteps.md)
 - [Setting up your first Build Pipeline](/Documentation/SettingUpYourFirstBuild.md)
 - [Troubleshooting](/Documentation/Troubleshooting.md)
+- [Q&A](/Documentation/QnA.md)
 - [Global Variables](/Documentation/Globals.md)
 
 <img align="right" width="100" height="100" src="Documentation/Images/icon.png">
@@ -21,3 +22,6 @@ Here is some more information about **Microsoft Dynamics 365 Business Central**
 - [The official homepage](https://dynamics.microsoft.com/en-us/business-central/overview/)
 - [Microsoft Docs](https://docs.microsoft.com/en-us/dynamics365/business-central/product-get-started)
 - [Customizing Business Central Using Extensions](https://docs.microsoft.com/en-us/dynamics365/business-central/ui-extensions)
+
+
+[Back To Main Page](../README.md)

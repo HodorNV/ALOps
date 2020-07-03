@@ -12,3 +12,6 @@ There are a few global variables ALOps can read during execution of all steps, t
 * `alops_accept_image_eula`: accept eula for all necessary steps (mainly "Docker).
 * `Alops_PrintMemoryStats`: Print Memory Stats in checkEnvironment - useful for checking why certain pipelines are slow.
 * `Alops_OverrideFinSqlPath`: File path to finsql.exe for all steps that uses this.
+
+
+[Back To Main Page](../README.md)
