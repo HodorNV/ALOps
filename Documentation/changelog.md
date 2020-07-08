@@ -1,15 +1,17 @@
 # Change Log
 All notable changes to the "ALOps" extension.
 
-## [v1.430] - 2020-05-31
-- All Tasks: Improved NAV/BC Module loading for Multi-Build environments
+## [v1.431] - 2020-06-30
 - ALOpsAppCompile: Disable UrlEncode on Url-Builder (Character Convert)
 - ALOpsAppCompile: SSL Verification can now be disabled with the global boolean parameter [alops_disable_ssl]
 - ALOpsAppCompiler: only upload compile log with "PublishArtifacts" enabled
 - ALOpsAppPublish: Allow ForceSync via new boolean parameter [forcesync]
+- ALOpsAppTest: Import Test Suite v17 / Auto add required Apps for Test-Suite
+
+## [v1.430] - 2020-05-31
+- All Tasks: Improved NAV/BC Module loading for Multi-Build environments
 - ALOpsAppPublish: InstallAlTestTool - Auto add additional Apps required for the Test-Framework
 - ALOpsAppTest: BC v16/v17 compatibility/improvements
-- ALOpsAppTest: Import Test Suite v17 / Auto add required Apps for Test-Suite
 - ALOpsDockerStart: Default value for parameter 'accept_image_outdated' set to "TRUE"
 - ALOpsDockerWait: Report transfer ZIP size
 - ALopsExtensionAPI: Auto select correct version of Module in Multi-Build environments
