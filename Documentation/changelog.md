@@ -1,6 +1,21 @@
 # Change Log
 All notable changes to the "ALOps" extension.
 
+## [v1.430] - 2020-05-31
+- All Tasks: Improved NAV/BC Module loading for Multi-Build environments
+- ALOpsAppCompile: Disable UrlEncode on Url-Builder (Character Convert)
+- ALOpsAppCompile: SSL Verification can now be disabled with the global boolean parameter [alops_disable_ssl]
+- ALOpsAppCompiler: only upload compile log with "PublishArtifacts" enabled
+- ALOpsAppPublish: Allow ForceSync via new boolean parameter [forcesync]
+- ALOpsAppPublish: InstallAlTestTool - Auto add additional Apps required for the Test-Framework
+- ALOpsAppTest: BC v16/v17 compatibility/improvements
+- ALOpsAppTest: Import Test Suite v17 / Auto add required Apps for Test-Suite
+- ALOpsDockerStart: Default value for parameter 'accept_image_outdated' set to "TRUE"
+- ALOpsDockerWait: Report transfer ZIP size
+- ALopsExtensionAPI: Auto select correct version of Module in Multi-Build environments
+- Disable Cleanup old Tasks by default (Performance)
+- Docker Based Tasks: Direct PSSession support to other container. Use global parameters [alops-docker-computer] / [alops-docker-username] / [alops-docker-password]
+
 ## [v1.429] - 2020-04-30
 - All Tasks: Allow for Windows-Authentication in docker containers (GSMA)
 - All Tasks: Improved error-handling on all REST calls
