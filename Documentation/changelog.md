@@ -2,8 +2,8 @@
 All notable changes to the "ALOps" extension.
 
 ## [v1.431] - 2020-06-30
-- ALOpsAppCompile: Disable UrlEncode on Url-Builder (Character Convert)
 - ALOpsAppCompile: SSL Verification can now be disabled with the global boolean parameter [alops_disable_ssl]
+- ALOpsAppCompile: UrlEncode on Url-Builder can now be disabled with global boolean variable named "alops_disable_urlencoding" (Character Convert)
 - ALOpsAppCompiler: only upload compile log with "PublishArtifacts" enabled
 - ALOpsAppPublish: Allow ForceSync via new boolean parameter [forcesync]
 - ALOpsAppTest: Import Test Suite v17 / Auto add required Apps for Test-Suite
