@@ -142,6 +142,10 @@ Here is a list of all build steps you have at your disposal when you use ALOps
             dockerregistry:                       # Docker registry Pull/Push, example: 'bcinsider.azurecr.io', or 'repo.mydomain.com' $(dockerregistry)
             dockerusername:                       # Docker login username. $(dockerusername)
             dockerpassword:                       # Docker login password. $(dockerpassword)
+            storageaccount:                       # Non Default Storage Account, used for BSInsider. $(storageaccount)
+            sastoken:                             # SAS Token used to access Storage Account. $(sastoken)
+            forcecreateimage: False               # Forces image creation, skipping Pull image. $(forcecreateimage)
+            myscripts:                            # Specify myScripts to be added to the image. $(myscripts)
     ```
 - ALOps Docker Execute
   * Execute powershell script in container.
@@ -211,6 +215,7 @@ Here is a list of all build steps you have at your disposal when you use ALOps
             error_string:                         # Throw error when the container logs contain the error string. $(error_string)
             setup_working_folder: True            # Copy working folder to Docker container. $(setup_working_folder)
             usecompression: True                  # Compress Source-Folder for transfer to docker container. $(usecompression)
+            printlogs: True                       # Print all container logs. $(printlogs)
     ```
 - ALOps Extension API
   * Get/Publish extensions with the Business Central API.
