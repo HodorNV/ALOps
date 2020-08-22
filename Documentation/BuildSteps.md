@@ -146,6 +146,7 @@ Here is a list of all build steps you have at your disposal when you use ALOps
             sastoken:                             # SAS Token used to access Storage Account. $(sastoken)
             forcecreateimage: False               # Forces image creation, skipping Pull image. $(forcecreateimage)
             myscripts:                            # Specify myScripts to be added to the image. $(myscripts)
+            imagenametemplate: %IMAGE_PREFIX%:%ARTIFACT_TYPE%-%ARTIFACT_VERSION%-%ARTIFACT_COUNTRY%-%OS_VERSION%-%OS_LTSC%# Template for defining Image names or using a fixed name $(imagenametemplate)
     ```
 - ALOps Docker Execute
   * Execute powershell script in container.
