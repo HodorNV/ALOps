@@ -126,6 +126,28 @@ Here is a list of all build steps you have at your disposal when you use ALOps
             updatebuildnumber: True               # Update the Build number with the current version. $(updatebuildnumber)
             setup_working_folder: False           # Copy working folder to Docker container. $(setup_working_folder)
     ```
+- ALOps Docker Create
+  * Create Docker image based on NAV/BC Artifacts.
+  * YAML Template: 
+    ```yaml
+        - task: ALOpsDockerCreate@1
+          displayName: 'ALOps Docker Create'
+          inputs:
+            artifactspecification: Specific       # Set Artifact resolve method. $(artifactspecification)
+            artifactversion:                      # BC/NAV Version, eg: 9, 10.4, NAV2016, 16.4.24524. $(artifactversion)
+            artifacttype: OnPrem                  # Set Artifact Type. $(artifacttype)
+            artifactcountry:                      # The Country for the Artifact. $(artifactcountry)
+            artifacthint:                         # . $(artifacthint)
+            imageprefix: myImage                  # New image name, tag defined by $(imagenametemplate). $(imageprefix)
+            dockerregistry:                       # Docker registry Pull/Push, example: 'bcinsider.azurecr.io', or 'repo.mydomain.com' $(dockerregistry)
+            dockerusername:                       # Docker login username. $(dockerusername)
+            dockerpassword:                       # Docker login password. $(dockerpassword)
+            storageaccount:                       # Non Default Storage Account (default = BCInsider). $(storageaccount)
+            sastoken:                             # SAS Token used to access Storage Account. $(sastoken)
+            forcecreateimage: False               # Forces image creation, skipping Pull image. $(forcecreateimage)
+            myscripts:                            # Specify myScripts to be added to the image. $(myscripts)
+            imagenametemplate: %IMAGE_PREFIX%:%ARTIFACT_TYPE%-%ARTIFACT_VERSION%-%ARTIFACT_COUNTRY%-%OS_VERSION%-%OS_LTSC%# Template for defining Image names or using a fixed name $(imagenametemplate)
+    ```
 - ALOps Docker Execute
   * Execute powershell script in container.
   * YAML Template: 
@@ -160,7 +182,7 @@ Here is a list of all build steps you have at your disposal when you use ALOps
           inputs:
             fixed_tag:                            # Allows recycling of docker containers. $(fixed_tag)
             ignore_no_container_warning: False    # Do not trigger warning when container with [fixed_tag] is not found. $(ignore_no_container_warning)
-            docker_image: microsoft/bcsandbox     # Business Central docker Image to Start. $(docker_image)
+            docker_image: $(ALOPS_BC_IMAGE)       # Business Central docker Image to Start. $(docker_image)
             accept_image_eula: True               # Accept Eula of docker image. $(accept_image_eula)
             accept_image_outdated: True           # Accept Outdated image. $(accept_image_outdated)
             enable_symbol_loading: False          # Enable Symbol Loading. $(enable_symbol_loading)
@@ -194,6 +216,7 @@ Here is a list of all build steps you have at your disposal when you use ALOps
             error_string:                         # Throw error when the container logs contain the error string. $(error_string)
             setup_working_folder: True            # Copy working folder to Docker container. $(setup_working_folder)
             usecompression: True                  # Compress Source-Folder for transfer to docker container. $(usecompression)
+            printlogs: True                       # Print all container logs. $(printlogs)
     ```
 - ALOps Extension API
   * Get/Publish extensions with the Business Central API.
@@ -213,7 +236,7 @@ Here is a list of all build steps you have at your disposal when you use ALOps
             username:                             # Business Central Username. $(username)
             password:                             # Business Central User Password. $(password)
             bccompany:                            # Business Central Company (Id or Name). $(bccompany)
-            artifact_path:                        # Path for App Artifact. $(artifact_path)
+            artifact_path: $(System.ArtifactsDirectory)# Path for App Artifact. $(artifact_path)
             artifact_filter: *.app                # Filter used for locating App file relative to $(path_to_publish). $(artifact_filter)
             showdeploymentstatus: True            # Show Extension Deployment Status. $(showdeploymentstatus)
     ```

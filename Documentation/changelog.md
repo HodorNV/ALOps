@@ -1,6 +1,26 @@
 # Change Log
 All notable changes to the "ALOps" extension.
 
+## [v1.433] - 2020-08-23
+- ALOpsAppCompile: Save Extension Artifact path in global variable $(ALOPS_COMPILE_ARTIFACT)
+- ALOpsAppPublish: New parameter [publish_scope] / [tenant]
+- ALOpsAppTest: Dynamicly resolve .PSM1 file in case of Multi-Version installations
+- ALOpsDockerCreate: added boolean parameter [forcecreateimage] to force image creation
+- ALOpsDockerCreate: added parameter [imagenametemplate] to allow setting the image template name
+- ALOpsDockerCreate: Added parameters [sastoken] and [storageaccount] to allow for Insider/Custom Artifact Urls
+- ALOpsDockerCreate: New task that allows creating BC-Docker images from BC-Artifacts
+- ALOpsDockerStart: Improved security on DockerLogin for Windows Server 2016
+- ALOpsDockerStart: Never pull images on local registry
+- ALOpsDockerWait: new parameter [printlogs] which can be used to disable log printing of docker logs
+- ALOpsDockerWait: Reset Container IP in global variables [ALOPS_DOCKER_IPADDRESS]
+- ALOpsExtensionAPI: Set parameters [artifact_path] default to [$(System.ArtifactsDirectory)]
+
+## [v1.432] - 2020-08-03
+- ALOpsAppCompile: UTF-8 compatibility, affects Extension names, Manifest parsing and Download Extension
+- ALOpsAppPublish: Added boolean parameter [forcesync] allowing destructive changes
+- ALOpsDockerStart: Compression performance, switched to DotNet ZIP instead of Powershell
+- ALOpsDockerStart: Disable docker pull for local repository images bugfix
+
 ## [v1.431] - 2020-06-30
 - ALOpsAppCompile: SSL Verification can now be disabled with the global boolean parameter [alops_disable_ssl]
 - ALOpsAppCompile: UrlEncode on Url-Builder can now be disabled with global boolean variable named "alops_disable_urlencoding" (Character Convert)
