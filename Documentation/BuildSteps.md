@@ -127,7 +127,7 @@ Here is a list of all build steps you have at your disposal when you use ALOps
             setup_working_folder: False           # Copy working folder to Docker container. $(setup_working_folder)
     ```
 - ALOps Docker Create
-  * Create Docker images based on NAV/BC Artifacts.
+  * Create Docker image based on NAV/BC Artifacts.
   * YAML Template: 
     ```yaml
         - task: ALOpsDockerCreate@1
