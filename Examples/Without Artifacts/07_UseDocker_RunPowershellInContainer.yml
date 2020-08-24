@@ -1,0 +1,49 @@
+name: $(Build.BuildId)
+
+steps:
+- checkout: self
+  clean: true 
+
+- task: ALOpsDockerStart@1
+  inputs:
+    docker_image: 'mcr.microsoft.com/businesscentral/sandbox'
+    docker_pull: true
+
+- task: ALOpsDockerWait@1
+  inputs:
+    search_string: 'Ready for connections!'
+
+#########################################################################
+
+- task: ALOpsDockerExec@1
+  displayName: 'ALOPS Docker Exec: Inline'
+  inputs:    
+    scriptsource: 'InLine'
+    inline_script: |
+     # Write your powershell commands here.
+     Get-NAVServerInstance
+
+- task: ALOpsDockerExec@1
+  displayName: 'ALOPS Docker Exec: Download'
+  inputs:
+    scriptsource: 'Download'
+    script_location: 'https://raw.githubusercontent.com/HodorNV/ALOps/AdminHodor-patch-3/Examples/test.ps1'
+
+- task: ALOpsDockerExec@1
+  displayName: 'ALOPS Docker Exec: Workfolder'
+  inputs:
+    scriptsource: 'Workfolder'
+    script_location: '*/test_script.ps1'  # PS1 file is located in the root of the repository
+
+- task: ALOpsDockerExec@1
+  displayName: 'ALOPS Docker Exec: Path'
+  inputs:
+    scriptsource: 'Path'
+    script_location: 'c:\scripts\test_script.ps1'  # PS1 file is located on the docker host
+
+#########################################################################
+
+- task: ALOpsDockerRemove@1
+  displayName: 'Remove Docker Container'
+  enabled: true
+  condition: always()

@@ -1,0 +1,55 @@
+name: $(Build.BuildId)
+
+#>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+#>>> Via VariableGroups / Azure KeyVault Secrets highly recommended !
+#>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+variables:
+  - group: 'BC-SQLServer'
+#<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+#>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+#>>> Via normal variables (Unsecure!)
+#>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+variables:
+  - name: 'bc_encryption_key'                ### Should be kept safe!
+    value: 'https://blob.example.com/Keys/bc_encryption_key.key'             
+#<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+steps:
+- checkout: self
+  clean: true 
+
+#>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+- task: ALOpsDockerStart@1
+  inputs:
+    docker_image: 'mcr.microsoft.com/businesscentral/onprem:14.1.32615.0-w1'
+    docker_pull: true
+    encryption_key: $(bc_encryption_key)
+    sql_backup_file: 'c:\Run\BAK\Demo Database BC (14-0).bak'
+    docker_parameters: |
+      --volume C:\SQLBackupPath:C:\Run\BAK
+
+#<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+- task: ALOpsDockerWait@1
+  inputs:
+    search_string: 'Ready for connections!'
+
+- task: ALOpsLicenseImport@1
+  displayName: 'ALOps License Import'
+  inputs:
+    usedocker: true
+    license_path: 'https://license.example.com/SomePath/thelicense.flf'
+
+- task: ALOpsAppCompiler@1
+  displayName: 'Compile Extension'
+  inputs:
+    usedocker: true
+    nav_app_version: '1.0.[yyyyWW].*'
+    failed_on_warnings: true    
+
+- task: ALOpsDockerRemove@1
+  displayName: 'Remove Docker Container'
+  enabled: true
+  condition: always()

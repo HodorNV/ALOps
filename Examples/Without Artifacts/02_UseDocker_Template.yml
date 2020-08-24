@@ -1,0 +1,23 @@
+name: $(Build.BuildId)
+
+steps:
+- checkout: self
+  clean: true 
+
+- task: ALOpsDockerStart@1
+  inputs:
+    docker_image: 'mcr.microsoft.com/businesscentral/sandbox'
+    docker_pull: true
+
+- task: ALOpsDockerWait@1
+  inputs:
+    search_string: 'Ready for connections!'
+
+#########################################################################
+### Your tasks go here, between [ALOpsDockerWait] and [ALOpsDockerRemove]
+#########################################################################
+
+- task: ALOpsDockerRemove@1
+  displayName: 'Remove Docker Container'
+  enabled: true
+  condition: always()

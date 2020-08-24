@@ -1,15 +1,5 @@
 name: $(Build.BuildId)
 
-# trigger:
-#  branches:
-#    include:
-#      - master
-
-variables:
-- group: 'Secrets'  # link to a variable group that has secret variables, like URL to license file, or sasToken for insider builds
-
-pool: HOD-DOCKER
-
 steps:
 - checkout: self
   clean: true 
@@ -17,19 +7,27 @@ steps:
 #>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 #>>> With Variables Groups / Azure Key Vault Secrets (Recommended)
 #>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-- task: ALOpsDockerCreate@1
-  displayName: 'ALOPS - Create Docker Image' # It will reuse the image if already exists, or build one if it doesn't.
-  inputs:
-    artifacttype: Sandbox
-    sastoken: $(bc.sasToken)
-
 - task: ALOpsDockerStart@1
-  displayName: 'ALOPS - Start Docker Container' # No need to provide any details - it will get the details from previous step
+  inputs:
+    docker_image: 'bcinsider.azurecr.io/bcsandbox-master:be'
+    docker_pull: true
+    dockerauthentication: 'UsernamePassword'
+    docker_username: $(docker_username)
+    docker_password: $(docker_password)
+#<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
+#>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+#>>> Via DevOps Service Endpoint
+#>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+- task: ALOpsDockerStart@1
+  inputs:
+    docker_image: 'bcinsider.azurecr.io/bcsandbox-master:be'
+    docker_pull: true
+    dockerauthentication: 'Endpoint'
+    docker_login: 'MSInsider'                          #Endpoint Name
 #<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
 - task: ALOpsDockerWait@1
-  displayName: 'ALOPS - Wait for Docker Container to start'
   inputs:
     search_string: 'Ready for connections!'
 

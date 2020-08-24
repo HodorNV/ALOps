@@ -1,0 +1,53 @@
+name: $(Build.BuildId)
+
+#pool: default
+
+steps:
+- checkout: self
+  clean: true 
+
+- task: ALOpsDockerStart@1
+  inputs:
+    docker_image: 'mcr.microsoft.com/businesscentral/onprem'
+    docker_pull: true
+
+- task: ALOpsDockerWait@1
+  inputs:
+    search_string: 'Ready for connections!'
+
+- task: ALOpsLicenseImport@1
+  displayName: 'ALOps License Import'
+  inputs:
+    usedocker: true
+    license_path: '$(bclicensev15)' #eg: https://license.example.com/SomePath/thelicense.flf
+
+#>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+- task: ALOpsAppPublish@1
+  displayName: 'ALOps Install AL TestTool'
+  inputs:
+    usedocker: true
+    skip_verification: true
+    batch_publish_folder: '.\dependencies\'
+
+#<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+- task: ALOpsAppCompiler@1
+  displayName: 'ALOps Compile Extension: App'
+  inputs:
+    usedocker: true
+    nav_app_version: '1.0.[yyyyWW].*'
+    targetproject: 'app/app.json'                          
+    failed_on_warnings: true    
+
+- task: ALOpsAppPublish@1
+  displayName: 'ALOps Publish Extension'
+  inputs:
+    usedocker: true
+    nav_artifact_app_filter: '*.app'
+    skip_verification: true   
+
+- task: ALOpsDockerRemove@1
+  displayName: 'ALOps Remove Docker Container'
+  enabled: true
+  condition: always()
