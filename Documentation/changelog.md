@@ -5,9 +5,12 @@ All notable changes to the "ALOps" extension.
 - ALOpsAppCompile: Save Extension Artifact path in global variable $(ALOPS_COMPILE_ARTIFACT)
 - ALOpsAppPublish: New parameter [publish_scope] / [tenant]
 - ALOpsAppTest: Dynamicly resolve .PSM1 file in case of Multi-Version installations
+- ALOpsDockerCreate: added boolean parameter [forcecreateimage] to force image creation
+- ALOpsDockerCreate: added parameter [imagenametemplate] to allow setting the image template name
 - ALOpsDockerCreate: Added parameters [sastoken] and [storageaccount] to allow for Insider/Custom Artifact Urls
 - ALOpsDockerCreate: New task that allows creating BC-Docker images from BC-Artifacts
 - ALOpsDockerStart: Improved security on DockerLogin for Windows Server 2016
+- ALOpsDockerStart: Never pull images on local registry
 - ALOpsDockerWait: new parameter [printlogs] which can be used to disable log printing of docker logs
 - ALOpsDockerWait: Reset Container IP in global variables [ALOPS_DOCKER_IPADDRESS]
 - ALOpsExtensionAPI: Set parameters [artifact_path] default to [$(System.ArtifactsDirectory)]
