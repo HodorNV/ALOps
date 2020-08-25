@@ -18,6 +18,7 @@ steps:
   displayName: 'ALOPS - Create Docker Image' # It will reuse the image if already exists, or build one if it doesn't.
   inputs:
     sastoken: $(bc.sasToken)
+    artifacttype: Sandbox
     
 - task: ALOpsDockerStart@1
   displayName: 'ALOPS - Start Docker Container' # No need to provide any details - it will get the details from previous step

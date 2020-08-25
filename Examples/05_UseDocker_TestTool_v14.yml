@@ -41,8 +41,8 @@ steps:
   inputs:
     usedocker: true
     nav_app_version: '1.0.[yyyyWW].*'
-    failed_on_warnings: true    
-
+    failed_on_warnings: true
+    targetproject: 'app/app.json'
 
 - task: ALOpsAppPublish@1
   displayName: 'Publish AL-App'

@@ -26,7 +26,13 @@ steps:
   displayName: 'ALOPS - Wait for Docker Container to start'
   inputs:
     search_string: 'Ready for connections!'
-    
+
+- task: ALOpsLicenseImport@1
+  displayName: 'ALOPS - License Import'
+  inputs:
+    usedocker: true
+    license_path: '$(bc.license)'  # more info: https://www.youtube.com/watch?v=iVLOerdCuwA&t=3078s
+  
 - task: ALOpsAppCompiler@1
   displayName: 'ALOPS - Compile Extension'
   inputs:
