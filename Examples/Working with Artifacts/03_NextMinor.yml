@@ -19,6 +19,7 @@ steps:
   inputs:
     sastoken: $(bc.sasToken)
     artifactversion: 16
+    artifacttype: Sandbox
     
 - task: ALOpsDockerStart@1
   displayName: 'ALOPS - Start Docker Container' # No need to provide any details - it will get the details from previous step
