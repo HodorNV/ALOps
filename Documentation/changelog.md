@@ -1,7 +1,10 @@
 # Change Log
 All notable changes to the "ALOps" extension.
 
-## [v1.433] - 2020-08-23
+## [v1.434] - 2020-08-31
+- ALOpsDockerCreate: Uninstall NavContainerHelper will not be implemented, AllowClobber and Fully Qualitified CmdLets instead
+
+## [v1.433] - 2020-08-25
 - ALOpsAppCompile: Save Extension Artifact path in global variable $(ALOPS_COMPILE_ARTIFACT)
 - ALOpsAppPublish: New parameter [publish_scope] / [tenant]
 - ALOpsAppTest: Dynamicly resolve .PSM1 file in case of Multi-Version installations
