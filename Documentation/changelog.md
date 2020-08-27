@@ -1,7 +1,7 @@
 # Change Log
 All notable changes to the "ALOps" extension.
 
-## [v1.434] - 2020-08-31
+## [v1.434] - 2020-08-27
 - ALOpsDockerCreate: Allow Clobber on BcContainerHelper
 - ALOpsDockerCreate: allow usage of 'myScript' feature with multiline parameter [myscripts]
 - ALOpsDockerCreate: Allow using BcContainerHelper pre-release
