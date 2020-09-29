@@ -137,6 +137,7 @@ Here is a list of all build steps you have at your disposal when you use ALOps
             artifactversion:                      # BC/NAV Version, eg: 9, 10.4, NAV2016, 16.4.24524. $(artifactversion)
             artifacttype: OnPrem                  # Set Artifact Type. $(artifacttype)
             artifactcountry:                      # The Country for the Artifact. $(artifactcountry)
+            versionselect: Latest                 # The version to be selected from the Artifacts. $(versionselect)
             artifacthint:                         # . $(artifacthint)
             imageprefix: myImage                  # New image name, tag defined by $(imagenametemplate). $(imageprefix)
             dockerregistry:                       # Docker registry Pull/Push, example: 'bcinsider.azurecr.io', or 'repo.mydomain.com' $(dockerregistry)
