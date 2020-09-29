@@ -143,7 +143,7 @@ Here is a list of all build steps you have at your disposal when you use ALOps
             dockerregistry:                       # Docker registry Pull/Push, example: 'bcinsider.azurecr.io', or 'repo.mydomain.com' $(dockerregistry)
             dockerusername:                       # Docker login username. $(dockerusername)
             dockerpassword:                       # Docker login password. $(dockerpassword)
-            storageaccount:                       # Non Default Storage Account (default = BCInsider). $(storageaccount)
+            storageaccount:                       # Non Default Storage Account. $(storageaccount)
             sastoken:                             # SAS Token used to access Storage Account. $(sastoken)
             forcecreateimage: False               # Forces image creation, skipping Pull image. $(forcecreateimage)
             myscripts:                            # Specify myScripts to be added to the image. $(myscripts)
