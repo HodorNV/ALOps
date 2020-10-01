@@ -13,3 +13,5 @@ steps:
   inputs:
     artifacttype: 'Sandbox'
     appversiontemplate: '1.0.*.0'
+    alcodeanalyzer: UICope, CodeCop, PerTenantExtensionCop, AppSourceCop
+    failonwarnings: true

@@ -13,6 +13,6 @@ steps:
 
 - task: ALOpsAppCompiler@2
   inputs:
-    versionselect: NextMajor
+    versionselect: NextMinor
     artifacttype: Sandbox
     sastoken: $(bc.sasToken)
