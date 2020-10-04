@@ -1,15 +1,24 @@
 # Change Log
 All notable changes to the "ALOps" extension.
 
+## [v1.435] - 2020-09-05
+- ALOpsAgentMaintenance: New task that allows for auto-cleanup of BCArtifacts, Containers and ALOps Tasks
+- ALOpsAppCompile: Added warning for square brackets in AppName/AppPublisher, Improved handling of FilePaths
+- ALOpsDockerCreate: Allow usage of "select" parameter for NextMinor/NextMajor/...
+- ALOpsDockerCreate: Silent BCContainerHelper installation, ignore install errors if BCContainerHelper is present
+- ALOpsDockerStart: Reset default inputs when blanked out
+- ALOpsExtensionAPI: Fail task on errors in App Publish
+- ALOpsExtensionAPI: OAuth authentication when running in docker
+- Global: added boolean [Alops_UpdateHostsFile] Environment Variable which will set/remove the current Container in the Hosts file on the agent
+- Global: Install-Update BcContainerHelper bugfix
+
 ## [v1.434] - 2020-08-27
 - ALOpsDockerCreate: Allow Clobber on BcContainerHelper
 - ALOpsDockerCreate: allow usage of 'myScript' feature with multiline parameter [myscripts]
 - ALOpsDockerCreate: Allow using BcContainerHelper pre-release
-- ALOpsDockerCreate: Install-Update BcContainerHelper bugfix
 - ALOpsDockerCreate: Set type default to Sandbox for BcInsider
 - ALOpsDockerCreate: Uninstall NavContainerHelper will not be implemented, AllowClobber and Fully Qualitified CmdLets instead
 - ALOpsDockerStart: fixed bug with recycling containers
-- ALOpsDockerStart: Reset default inputs when blanked out
 
 ## [v1.433] - 2020-08-25
 - ALOpsAppCompile: Save Extension Artifact path in global variable $(ALOPS_COMPILE_ARTIFACT)
