@@ -1,7 +1,7 @@
 # Change Log
 All notable changes to the "ALOps" extension.
 
-## [v1.435] - 2020-09-05
+## [v1.435] - 2020-10-04
 - ALOpsAgentMaintenance: New task that allows for auto-cleanup of BCArtifacts, Containers and ALOps Tasks
 - ALOpsAppCompile: Added warning for square brackets in AppName/AppPublisher, Improved handling of FilePaths
 - ALOpsDockerCreate: Allow usage of "select" parameter for NextMinor/NextMajor/...
@@ -12,7 +12,7 @@ All notable changes to the "ALOps" extension.
 - Global: added boolean [Alops_UpdateHostsFile] Environment Variable which will set/remove the current Container in the Hosts file on the agent
 - Global: Install-Update BcContainerHelper bugfix
 
-## [v1.434] - 2020-08-27
+## [v1.434] - 2020-09-15
 - ALOpsDockerCreate: Allow Clobber on BcContainerHelper
 - ALOpsDockerCreate: allow usage of 'myScript' feature with multiline parameter [myscripts]
 - ALOpsDockerCreate: Allow using BcContainerHelper pre-release
