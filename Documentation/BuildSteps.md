@@ -15,6 +15,7 @@ Here is a list of all build steps you have at your disposal when you use ALOps
             removeoldtasks: False                 # Remove old ALOps tasks. $(removeoldtasks)
             removeunusedcontainers: False         # Remove unused container from Agent. $(removeunusedcontainers)
             removebcartifacts: False              # Remove BC Artifacts. $(removebcartifacts)
+            bcartifactscachefolder: C:\bcartifacts.cache# Set non-default BC Artifact Cache folder. $(bcartifactscachefolder)
             daysunused: 30                        # Define date-range for cleanup. $(daysunused)
     ```
 - ALOps App Runtime Package
