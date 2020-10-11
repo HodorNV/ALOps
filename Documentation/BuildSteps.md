@@ -326,6 +326,7 @@ Here is a list of all build steps you have at your disposal when you use ALOps
     Library Assert
     Test Runner
     # Specify additional docker parameters. $(install_al_app_names)
+            strictappnames: False                 # Only install Specified Apps. $(strictappnames)
             nav_serverinstance: BC140             # Business Central Server Instance Name. $(nav_serverinstance)
             artifact_path:                        # Path for storing App Artifact. $(artifact_path)
             nav_artifact_app_filter: *.app        # Filter used for locating App file relative to $(path_to_publish). $(nav_artifact_app_filter)
