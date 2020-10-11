@@ -1,7 +1,7 @@
 # Change Log
 All notable changes to the "ALOps" extension.
 
-## [v1.435] - 2020-10-04
+## [v1.435] - 2020-10-11
 - ALOpsAgentMaintenance: New task that allows for auto-cleanup of BCArtifacts, Containers and ALOps Tasks
 - ALOpsAppCompile: Added warning for square brackets in AppName/AppPublisher, Improved handling of FilePaths
 - ALOpsAppCompile: Force copy non default [app.json]
