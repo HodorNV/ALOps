@@ -2,6 +2,8 @@ name: $(Build.BuildId)
 
 pool: HOD-DOCKER
 
+trigger: none
+
 steps:
 - checkout: self
   clean: true 
