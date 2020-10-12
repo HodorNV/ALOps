@@ -1,0 +1,18 @@
+name: $(Build.BuildId)
+
+pool: HOD-DOCKER
+
+variables:
+  - group: 'Secrets'  # link to a variable group that has secret variables, like URL to license file, or sasToken for insider builds
+    
+steps:
+- checkout: self
+  clean: true 
+
+# This compiler (v2) is not going to use a docker container, but it's going to use the artifacts that you specify in the parameters
+
+- task: ALOpsAppCompiler@2
+  inputs:
+    versionselect: NextMinor
+    artifacttype: Sandbox
+    sastoken: $(bc.sasToken)
