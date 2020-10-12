@@ -97,6 +97,7 @@ Here is a list of all build steps you have at your disposal when you use ALOps
             nav_computername: localhost           # Target Business Central Server running service tier. $(nav_computername)
             nav_serverinstance: BC140             # Business Central Server Instance Name. $(nav_serverinstance)
             sync_mode: Add                        # Mode for synchronizing Business Central extensions. $(sync_mode)
+            includemicrosoftapps: False           # Include Microsoft Apps. $(includemicrosoftapps)
     ```
 - ALOps App Copy
   * Copy Business Central extensions from one service tier to another.
