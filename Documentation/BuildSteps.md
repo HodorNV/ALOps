@@ -5,6 +5,19 @@ Let's describe all the Build Steps that we have at our disposal
 Here is a list of all build steps you have at your disposal when you use ALOps
 
 ### ALOps Tasks
+- ALOps Agent Maintenance
+  * Cleanup and maintain DevOps a Agent for Business Central.
+  * YAML Template: 
+    ```yaml
+        - task: ALOpsAgentMaintenance@1
+          displayName: 'ALOps Agent Maintenance'
+          inputs:
+            removeoldtasks: False                 # Remove old ALOps tasks. $(removeoldtasks)
+            removeunusedcontainers: False         # Remove unused container from Agent. $(removeunusedcontainers)
+            removebcartifacts: False              # Remove BC Artifacts. $(removebcartifacts)
+            bcartifactscachefolder: C:\bcartifacts.cache# Set non-default BC Artifact Cache folder. $(bcartifactscachefolder)
+            daysunused: 30                        # Define date-range for cleanup. $(daysunused)
+    ```
 - ALOps App Runtime Package
   * Get a NAV App runtime package for onprem deployment.
   * YAML Template: 
@@ -137,17 +150,23 @@ Here is a list of all build steps you have at your disposal when you use ALOps
             artifactversion:                      # BC/NAV Version, eg: 9, 10.4, NAV2016, 16.4.24524. $(artifactversion)
             artifacttype: OnPrem                  # Set Artifact Type. $(artifacttype)
             artifactcountry:                      # The Country for the Artifact. $(artifactcountry)
+            versionselect: Latest                 # The version to be selected from the Artifacts. $(versionselect)
             artifacthint:                         # . $(artifacthint)
+            multitenant: False                    # Create a Multi-Tenant image. $(multitenant)
             imageprefix: myImage                  # New image name, tag defined by $(imagenametemplate). $(imageprefix)
             dockerregistry:                       # Docker registry Pull/Push, example: 'bcinsider.azurecr.io', or 'repo.mydomain.com' $(dockerregistry)
             dockerusername:                       # Docker login username. $(dockerusername)
             dockerpassword:                       # Docker login password. $(dockerpassword)
-            storageaccount:                       # Non Default Storage Account (default = BCInsider). $(storageaccount)
+            storageaccount:                       # Non Default Storage Account. $(storageaccount)
             sastoken:                             # SAS Token used to access Storage Account. $(sastoken)
             forcecreateimage: False               # Forces image creation, skipping Pull image. $(forcecreateimage)
             myscripts:                            # Specify myScripts to be added to the image. $(myscripts)
             imagenametemplate: %IMAGE_PREFIX%:%ARTIFACT_TYPE%-%ARTIFACT_VERSION%-%ARTIFACT_COUNTRY%-%OS_VERSION%-%OS_LTSC%# Template for defining Image names or using a fixed name $(imagenametemplate)
-            containerhelperprerelease: False      # Use the BcContainerHelper pre-release. $(containerhelperprerelease)
+            licensefile:                          # BC License File to be included in the Image $(licensefile)
+            includetesttoolkit: False             # Included the TestToolkit in created image. $(includetesttoolkit)
+            includetestlibrariesonly: False       # Included only the Test-Libraries in created image. $(includetestlibrariesonly)
+            includetestframeworkonly: False       # Included only the Test-Framework in created image. $(includetestframeworkonly)
+            includeperformancetoolkit: False      # Include Performance-Toolkit in created image. $(includeperformancetoolkit)
     ```
 - ALOps Docker Execute
   * Execute powershell script in container.
@@ -307,6 +326,7 @@ Here is a list of all build steps you have at your disposal when you use ALOps
     Library Assert
     Test Runner
     # Specify additional docker parameters. $(install_al_app_names)
+            strictappnames: False                 # Only install Specified Apps. $(strictappnames)
             nav_serverinstance: BC140             # Business Central Server Instance Name. $(nav_serverinstance)
             artifact_path:                        # Path for storing App Artifact. $(artifact_path)
             nav_artifact_app_filter: *.app        # Filter used for locating App file relative to $(path_to_publish). $(nav_artifact_app_filter)

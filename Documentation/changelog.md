@@ -1,7 +1,21 @@
 # Change Log
 All notable changes to the "ALOps" extension.
 
-## [v1.434] - 2020-08-27
+## [v1.435] - 2020-10-11
+- ALOpsAgentMaintenance: New task that allows for auto-cleanup of BCArtifacts, Containers and ALOps Tasks
+- ALOpsAppCompile: Added warning for square brackets in AppName/AppPublisher, Improved handling of FilePaths
+- ALOpsAppCompile: Force copy non default [app.json]
+- ALOpsAppPublish: Strict AL Apps installation. Added bool parameter [strictappnames]
+- ALOpsDockerCreate: Allow usage of "select" parameter for NextMinor/NextMajor/...
+- ALOpsDockerCreate: Default MultiTenant to false
+- ALOpsDockerCreate: Silent BCContainerHelper installation, ignore install errors if BCContainerHelper is present
+- ALOpsDockerStart: Reset default inputs when blanked out
+- ALOpsExtensionAPI: Fail task on errors in App Publish
+- ALOpsExtensionAPI: OAuth authentication when running in docker
+- Global: added boolean [Alops_UpdateHostsFile] Environment Variable which will set/remove the current Container in the Hosts file on the agent
+- Global: Install-Update BcContainerHelper bugfix
+
+## [v1.434] - 2020-09-15
 - ALOpsDockerCreate: Allow Clobber on BcContainerHelper
 - ALOpsDockerCreate: allow usage of 'myScript' feature with multiline parameter [myscripts]
 - ALOpsDockerCreate: Allow using BcContainerHelper pre-release
