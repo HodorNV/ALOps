@@ -1,6 +1,10 @@
 # Change Log
 All notable changes to the "ALOps" extension.
 
+## [v1.436] - 2020-10-31
+- ALOpsDockerRemove: Silenent error when container does not exist
+- Global: Show Task inputs for all Tasks
+
 ## [v1.435] - 2020-10-11
 - ALOpsAgentMaintenance: New task that allows for auto-cleanup of BCArtifacts, Containers and ALOps Tasks
 - ALOpsAppClean: allow removal of Microsoft Apps with new boolean parameter [includemicrosoftapps]
