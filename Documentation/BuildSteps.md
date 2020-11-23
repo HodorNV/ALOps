@@ -154,6 +154,7 @@ Here is a list of all build steps you have at your disposal when you use ALOps
             versionselect: Latest                 # The version to be selected from the Artifacts. $(versionselect)
             artifacthint:                         # . $(artifacthint)
             multitenant: False                    # Create a Multi-Tenant image. $(multitenant)
+            memory: 8G                            # Set maximum memory for Container. $(memory)
             imageprefix: myImage                  # New image name, tag defined by $(imagenametemplate). $(imageprefix)
             dockerregistry:                       # Docker registry Pull/Push, example: 'bcinsider.azurecr.io', or 'repo.mydomain.com' $(dockerregistry)
             dockerusername:                       # Docker login username. $(dockerusername)
