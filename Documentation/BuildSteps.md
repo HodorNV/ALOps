@@ -71,6 +71,7 @@ Here is a list of all build steps you have at your disposal when you use ALOps
             usedocker: False                      # Run task in Docker container. $(usedocker)
             fixed_tag:                            # Allows recycling of docker containers. $(fixed_tag)
             nav_serverinstance: BC140             # Business Central Server Instance Name. $(nav_serverinstance)
+            tenant: default                       # Business Central Tenant. $(tenant)
             bc_username:                          # BC Username for ServiceTier connection. $(bc_username)
             bc_password:                          # BC User Password for ServiceTier connection. $(bc_password)
             bc_authentication: NavUserPassword    # BC Authentication type of the ServiceTier. $(bc_authentication)
