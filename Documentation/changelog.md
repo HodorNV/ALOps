@@ -7,6 +7,7 @@ All notable changes to the "ALOps" extension.
 - ALOPSAppCompile: Only copy Platform Apps if no Localized version exists
 - ALOpsAppCompile@2: Escape AssemblyProbingPaths in pipeline log
 - ALOPSAppPublish: Get-NAVAppInfo does not account for UTF-8, replace UTF8 characters in Build-Tag
+- ALOPSAppPublish: Use Unique Folder for each Batch Publish
 - ALOPSAppTest: New parameter [tenant] for targeting tests at a specific tenant
 - ALOPSDockerCreate: Fail pipeline on Error, Force task status
 - ALOPSDockerCreate: New string parameter [memory] with default 8G
