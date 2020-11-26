@@ -1,8 +1,22 @@
 # Change Log
 All notable changes to the "ALOps" extension.
 
+## [v1.436] - 2020-11-25
+- ALOPSAppCompile: implemented /parallel and /maxDegreeOfParallelism with VSCode defaults
+- ALOPSAppCompile: new integer Global variable [alops_webrequest_timeout_ms] to set timeout for DownloadSymbols
+- ALOPSAppCompile: Only copy Platform Apps if no Localized version exists
+- ALOpsAppCompile@2: Escape AssemblyProbingPaths in pipeline log
+- ALOPSAppPublish: Get-NAVAppInfo does not account for UTF-8, replace UTF8 characters in Build-Tag
+- ALOPSAppPublish: Use Unique Folder for each Batch Publish
+- ALOPSAppTest: New parameter [tenant] for targeting tests at a specific tenant
+- ALOPSDockerCreate: Fail pipeline on Error, Force task status
+- ALOPSDockerCreate: New string parameter [memory] with default 8G
+- ALOPSDockerRemove: Exit status error when container does not exist
+- Global: Show Task inputs for all Tasks
+
 ## [v1.435] - 2020-10-11
 - ALOpsAgentMaintenance: New task that allows for auto-cleanup of BCArtifacts, Containers and ALOps Tasks
+- ALOpsAppClean: allow removal of Microsoft Apps with new boolean parameter [includemicrosoftapps]
 - ALOpsAppCompile: Added warning for square brackets in AppName/AppPublisher, Improved handling of FilePaths
 - ALOpsAppCompile: Force copy non default [app.json]
 - ALOpsAppPublish: Strict AL Apps installation. Added bool parameter [strictappnames]

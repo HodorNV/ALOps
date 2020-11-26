@@ -71,6 +71,7 @@ Here is a list of all build steps you have at your disposal when you use ALOps
             usedocker: False                      # Run task in Docker container. $(usedocker)
             fixed_tag:                            # Allows recycling of docker containers. $(fixed_tag)
             nav_serverinstance: BC140             # Business Central Server Instance Name. $(nav_serverinstance)
+            tenant: default                       # Business Central Tenant. $(tenant)
             bc_username:                          # BC Username for ServiceTier connection. $(bc_username)
             bc_password:                          # BC User Password for ServiceTier connection. $(bc_password)
             bc_authentication: NavUserPassword    # BC Authentication type of the ServiceTier. $(bc_authentication)
@@ -97,6 +98,7 @@ Here is a list of all build steps you have at your disposal when you use ALOps
             nav_computername: localhost           # Target Business Central Server running service tier. $(nav_computername)
             nav_serverinstance: BC140             # Business Central Server Instance Name. $(nav_serverinstance)
             sync_mode: Add                        # Mode for synchronizing Business Central extensions. $(sync_mode)
+            includemicrosoftapps: False           # Include Microsoft Apps. $(includemicrosoftapps)
     ```
 - ALOps App Copy
   * Copy Business Central extensions from one service tier to another.
@@ -153,6 +155,7 @@ Here is a list of all build steps you have at your disposal when you use ALOps
             versionselect: Latest                 # The version to be selected from the Artifacts. $(versionselect)
             artifacthint:                         # . $(artifacthint)
             multitenant: False                    # Create a Multi-Tenant image. $(multitenant)
+            memory: 8G                            # Set maximum memory for Container. $(memory)
             imageprefix: myImage                  # New image name, tag defined by $(imagenametemplate). $(imageprefix)
             dockerregistry:                       # Docker registry Pull/Push, example: 'bcinsider.azurecr.io', or 'repo.mydomain.com' $(dockerregistry)
             dockerusername:                       # Docker login username. $(dockerusername)
