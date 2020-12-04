@@ -1,0 +1,89 @@
+parameters:
+  AppName: ''
+  selectVersions: ['Current']
+  countries: ['w1']
+  skipverification: false
+  alsourcepath: ''
+  appversiontemplate: ''
+  pool: ''
+  sasToken: ''
+
+stages:
+- ${{ each country in parameters.countries }}:
+  - ${{ each version in parameters.selectVersions }}:
+  # Compile your app, taking the AppSourceCop into account.  
+  # It will also take all apps in your repo into account.  So make sure you have a decent AppSourceCop.json, that indicates a previous version to check for breaking changes!
+  # more info on breaking changes: https://docs.microsoft.com/en-us/dynamics365/business-central/dev-itpro/developer/analyzers/appsourcecop-as0003-previousversionnotfound
+  # Also include affixes in the AppSourceCop.json
+    - stage: 'build${{ country }}${{ version }}'
+      displayName: '${{ country }} ${{ version }}'
+      dependsOn: [] #run indepedently
+      jobs:
+      - job: 'build${{ country }}${{ version }}'
+        displayName: 'Job - Validate  ${{ country }} ${{ version }}'
+        pool:
+          name: ${{ parameters.pool }}
+        steps:
+        - task: ALOpsAppCompiler@2
+          displayName: 'Fast compile with AppSourceCop and testing breaking changes - ${{ country }} ${{ version }}'
+          inputs:
+            artifacttype: 'Sandbox'
+            artifactcountry: '${{ country  }}'
+            versionselect: ${{ version }}
+            publishartifact: false
+            alcodeanalyzer: AppSourceCop  #AppSourceCop
+            alsourcepath: ${{ parameters.alsourcepath }}
+            appversiontemplate: ${{ parameters.appversiontemplate }}
+            sasToken: ${{ parameters.sasToken }}
+
+      # Compile is done and succeeded. Only now, we'll set up containers, because we need to be able to see if the apps work against the previous!
+
+        - task: ALOpsDockerCreate@1
+          displayName: 'Creating Docker - ${{ country }} ${{ version }}'
+          inputs:
+            artifacttype: Sandbox
+            artifactcountry: '${{ country  }}'
+            versionselect: ${{ version }}
+            sasToken: ${{ parameters.sasToken }}
+
+        - task: ALOpsDockerStart@1
+          displayName: 'Starting Docker - ${{ country }} ${{ version }}'
+
+        - task: ALOpsDockerWait@1
+          displayName: 'Waiting for Docker to be started - ${{ country }} ${{ version }}'
+          inputs:
+            search_string: 'Ready for connections!'
+
+        - task: ALOpsLicenseImport@1
+          displayName: 'Import License - ${{ country }} ${{ version }}'
+          inputs:
+            usedocker: true
+            license_path: '$(bc.license)'  #  Don't forget to create this variable.  more info: https://www.youtube.com/watch?v=iVLOerdCuwA&t=3078s
+
+        - task: ALOpsAppPublish@1
+          displayName: 'Publish dependent apps - ${{ country }} ${{ version }}'
+          inputs:
+            usedocker: true
+            batch_publish_folder: 'app/.dependentapps'
+            skip_verification: ${{ parameters.skipverification }}
+
+        - task: ALOpsAppPublish@1
+          displayName: 'Publish previous version of my app - ${{ country }} ${{ version }}'
+          inputs:
+            usedocker: true
+            batch_publish_folder: 'app/.previous'
+            skip_verification: ${{ parameters.skipverification }}
+
+        - task: ALOpsAppPublish@1
+          displayName: 'Publish new version of app - ${{ country }} ${{ version }}'
+          inputs:
+            usedocker: true
+            artifact_path: '$(ALOPS_COMPILE_ARTIFACT)'
+            skip_verification: ${{ parameters.skipverification }}
+
+        # if all this was successfull, we're good!
+    
+        - task: ALOpsDockerRemove@1
+          displayName: 'Remove Docker - ${{ country }} ${{ version }}'
+          enabled: true
+          condition: always()
