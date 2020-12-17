@@ -72,6 +72,8 @@ Here is a list of all build steps you have at your disposal when you use ALOps
             fixed_tag:                            # Allows recycling of docker containers. $(fixed_tag)
             nav_serverinstance: BC140             # Business Central Server Instance Name. $(nav_serverinstance)
             tenant: default                       # Business Central Tenant. $(tenant)
+            companyname:                          # Business Central Company. $(companyname)
+            profile:                              # Business Central Profile. $(profile)
             bc_username:                          # BC Username for ServiceTier connection. $(bc_username)
             bc_password:                          # BC User Password for ServiceTier connection. $(bc_password)
             bc_authentication: NavUserPassword    # BC Authentication type of the ServiceTier. $(bc_authentication)
@@ -195,6 +197,10 @@ Here is a list of all build steps you have at your disposal when you use ALOps
             usedocker: True                       # Run task in Docker container. $(usedocker)
             fixed_tag:                            # Allows recycling of docker containers. $(fixed_tag)
             print_logs: True                      # Print all container logs before remove. $(print_logs)
+            createsqlbackup: False                # Create SQL Backup from Container Database. $(createsqlbackup)
+            publishsqlbackup: True                # Published the SQL Backup as Build-Artifact. $(publishsqlbackup)
+            sqlcompression: False                 # Create Compressed SQL Backup (does not work on SQL-Express). $(sqlcompression)
+            zipsqlbackup: True                    # ZIP the SQL Backup. $(zipsqlbackup)
     ```
 - ALOps Docker Start
   * Start Business Central docker container.
@@ -277,6 +283,7 @@ Here is a list of all build steps you have at your disposal when you use ALOps
             import_action: Default                # Import action for importing FOB files. $(import_action)
             synchronize_schema_changes: Yes       # Synchronize Schema Changes setting for importing FOB files. $(synchronize_schema_changes)
             generate_symbol_reference: False      # Enable Generate Symbol References. $(generate_symbol_reference)
+            force_full_generate_symbol_reference: False# Generate Symbol Reference for All Objects. $(force_full_generate_symbol_reference)
             override_finsql_path:                 # Overrule automatic detection of FinSql with fixed value. $(override_finsql_path)
     ```
 - ALOps Info
@@ -321,6 +328,7 @@ Here is a list of all build steps you have at your disposal when you use ALOps
           inputs:
             usedocker: False                      # Run task in Docker container. $(usedocker)
             fixed_tag:                            # Allows recycling of docker containers. $(fixed_tag)
+            installpublishedapps: True            # Install Published Applications. $(installpublishedapps)
             installaltesttool: False              # Install the AL TestTool for v15. $(installaltesttool)
             install_al_app_names: Tests-TestLibraries
     System Application Test
