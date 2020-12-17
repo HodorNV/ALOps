@@ -1,6 +1,17 @@
 # Change Log
 All notable changes to the "ALOps" extension.
 
+## [v1.437] - 2020-12-14
+- ALOpsAppCompile: Read CodeAnalyzers from VSCode settings
+- ALOpsAppCompile@2: Define Ruleset via parameter [ruleset], overrules VSCode settings
+- ALOpsAppCompile@2: Generate hash table of generated Apps in BatchCompile Mode
+- ALOpsAppCompile@2: New string Parameter [appfilenametemplate] that allows for setting custom appnames, prefixes and suffixes
+- ALOpsAppCompile@2: XLIF can be publsihed as Artifact by setting boolean parameter [publishxlif]
+- ALOpsAppPublish: Installation of published Apps can be skipped by setting [installpublishedapps] = false
+- ALOpsAppTest: [companyname] and [profile] can now be set for executing tests
+- ALOpsDockerRemove: Export Container Database via new parameters [createsqlbackup], [sqlcompression], [zipsqlbackup], [publishsqlbackup]
+- ALOpsFobImport: New boolean parameter [force_full_generate_symbol_reference], will trigger a full generate symbols after FOB Import.
+
 ## [v1.436] - 2020-11-25
 - ALOPSAppCompile: implemented /parallel and /maxDegreeOfParallelism with VSCode defaults
 - ALOPSAppCompile: new integer Global variable [alops_webrequest_timeout_ms] to set timeout for DownloadSymbols
