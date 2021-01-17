@@ -131,6 +131,7 @@ Here is a list of all build steps you have at your disposal when you use ALOps
             bc_username:                          # BC Username for ServiceTier connection. $(bc_username)
             bc_password:                          # BC User Password for ServiceTier connection. $(bc_password)
             al_compiler_version: 0.12.15355       # AL Compiler version used for compiling. $(al_compiler_version)
+            ruleset:                              # Overrule the Ruleset from VSCode settings. Path relative to [alsourcepath] $(ruleset)
             al_analyzer:                          # AL Analyzer(s) used for compiling. (Example: CodeCop,UICop) $(al_analyzer)
             nav_app_version: 1.0.*.0              # Template for versioning NAV-Apps. '*' is replaced by the current Build Number. $(nav_app_version)
             vsix_download_path:                   # Alternative VSIX download url. $(vsix_download_path)
