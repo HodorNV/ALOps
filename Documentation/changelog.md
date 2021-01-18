@@ -1,6 +1,16 @@
 # Change Log
 All notable changes to the "ALOps" extension.
 
+## [v1.438] - 2020-12-31
+- ALOpsAppCompile: ALAnalyzer can be disabled by setting the parameter to 'NONE'
+- ALOpsAppCompile: Ruleset can be disabled by setting it to 'NONE', Url's can be specificied for downloading remote rulesets
+- ALOpsAppCompile@2: Allow custom VSIX for compilation. Filepath or Url.
+- ALOpsAppCompile@2: Register NavSip in non-docker environments
+- ALOpsAppSign: Improved AppFile resolving
+- ALOpsAppSign: Improved path resolving / Register NavSip if required
+- ALOpsDockerRemove: Action filter for SQL-Backup and EventLog extraction: Always or OnFailure
+- ALOpsDockerRemove: EventLogs can be extracted from the container. Always or OnFailure.
+
 ## [v1.437] - 2020-12-14
 - ALOpsAppCompile: Read CodeAnalyzers from VSCode settings
 - ALOpsAppCompile@2: Define Ruleset via parameter [ruleset], overrules VSCode settings
