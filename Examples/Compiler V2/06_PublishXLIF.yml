@@ -2,6 +2,8 @@ name: $(Build.BuildId)
 
 pool: HOD-DOCKER
 
+trigger: none
+
 steps:
 - checkout: self
   clean: true 
@@ -13,7 +15,4 @@ steps:
   inputs:
     artifacttype: 'Sandbox'
     appversiontemplate: '1.0.*.0'
-    alcodeanalyzer: UICop, CodeCop, PerTenantExtensionCop, AppSourceCop
-    failonwarnings: true
-
-    
+    publishxlif: true

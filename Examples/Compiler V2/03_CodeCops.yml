@@ -13,4 +13,17 @@ steps:
   inputs:
     artifacttype: 'Sandbox'
     appversiontemplate: '1.0.*.0'
-    alcodeanalyzer: UICop,CodeCop,PerTenantExtensionCop,AppSourceCop
+    alcodeanalyzer: none
+      # This will take these specific code analyzers 
+      #     example: "alcodeanalyzer: UICop,CodeCop,PerTenantExtensionCop,AppSourceCop"
+      # 'none' disables all code analysers
+      #     example: "alcodeanalyzer: none"
+      # (empty) will take vscode settings      
+    ruleset: none
+      # path - will take that specific file
+      # url - wille download the ruleset from a url, and applies that one
+      # 'none' - forces that no ruleset will be applied
+      # (empty) will take the vscode settings
+      # example: for appsource, you could point to the ruleset from Microsoft:
+      #     ruleset: 'https://navmgtstorage00000000.blob.core.windows.net/backup/app.ruleset.json?sp=r&st=2021-01-17T11:45:50Z&se=2022-02-01T19:45:50Z&spr=https&sv=2019-12-12&sr=b&sig=Y%2BibBuN2cTg3%2FIasH9rigqGBoUCCb9rsSXsrwaW8f%2Fc%3D'
+      
