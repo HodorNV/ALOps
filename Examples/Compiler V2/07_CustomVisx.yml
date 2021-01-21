@@ -2,6 +2,8 @@ name: $(Build.BuildId)
 
 pool: HOD-DOCKER
 
+trigger: none
+
 steps:
 - checkout: self
   clean: true 
@@ -13,7 +15,5 @@ steps:
   inputs:
     artifacttype: 'Sandbox'
     appversiontemplate: '1.0.*.0'
-    alcodeanalyzer: UICop, CodeCop, PerTenantExtensionCop, AppSourceCop
-    failonwarnings: true
-
-    
+    publishartifact: false
+    alternativevsixurl: '6.1.381323' # possibilities are a localpath, a url (preferred), or a version for downloading it from the marketplace

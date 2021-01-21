@@ -1,0 +1,32 @@
+name: $(Build.BuildId)
+
+pool: HOD-DOCKER
+
+trigger: none
+
+steps:
+- checkout: self
+  clean: true 
+
+# This compiler (v2) is not going to use a docker container, but it's going to use the artifacts that you specify in the parameters
+# The compiler will "Batch Compile", meaning: it will compile everything in the workingfolder
+
+- task: ALOpsAppCompiler@2
+  inputs:
+    artifacttype: 'Sandbox'
+    appversiontemplate: '1.0.*.0'
+    publishartifact: false
+
+- task: ALOpsAppSign@1
+  inputs:
+    usedocker: false
+    artifact_path: $(ALOPS_COMPILE_ARTIFACT)
+    publish_artifact: true
+    pfx_path: $(pfxurl)
+    pfx_password: $(pfxpwd)
+
+# the Verify-step is actually already executed in the sign step-above.  But it's here to be used in e.g. a release flow.
+# - task: ALOpsAppSignVerify@1
+#   inputs:
+#    usedocker: false
+#    artifact_path: $(ALOPS_COMPILE_ARTIFACT)
