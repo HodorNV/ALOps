@@ -1,14 +1,11 @@
 name: $(Build.BuildId)
 
-# trigger:
-#  branches:
-#    include:
-#      - master
+trigger: none
 
 variables:
 - group: 'Secrets'  # link to a variable group that has secret variables, like URL to license file, or sasToken for insider builds
-- name: 'Alops_UpdateHostsFile' # You could use this to be able to easily log into your container to troubleshoot.
-  value: True
+
+# the realy magic for backing up the db is in the "Docker Remove" step.
 
 pool: HOD-DOCKER
 
@@ -16,10 +13,16 @@ steps:
 - checkout: self
   clean: true 
 
+- task: ALOpsAppCompiler@2
+  inputs:
+    artifacttype: 'Sandbox'
+    appversiontemplate: '1.0.*.0'
+
 - task: ALOpsDockerCreate@1
   displayName: 'ALOPS - Create Docker Image' # It will reuse the image if already exists, or build one if it doesn't.
   inputs:
     artifacttype: Sandbox
+    artifactcountry: dk
 
 - task: ALOpsDockerStart@1
   displayName: 'ALOPS - Start Docker Container' # No need to provide any details - it will get the details from previous step
@@ -29,11 +32,19 @@ steps:
   inputs:
     search_string: 'Ready for connections!'
 
-#########################################################################
-### Your tasks go here, between [ALOpsDockerWait] and [ALOpsDockerRemove]
-#########################################################################
+- task: ALOpsLicenseImport@1
+  displayName: 'ALOPS - License Import'
+  inputs:
+    usedocker: true
+    license_path: '$(bc.license)'  # more info: https://www.youtube.com/watch?v=iVLOerdCuwA&t=3078s
+
+### Do stuff
 
 - task: ALOpsDockerRemove@1
   displayName: 'ALOPS - Remove Docker Container'
   enabled: true
   condition: always()
+  inputs:
+    createsqlbackup: always
+    zipsqlbackup: true
+    publishsqlbackup: true
