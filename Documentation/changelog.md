@@ -1,6 +1,13 @@
 # Change Log
 All notable changes to the "ALOps" extension.
 
+## [v1.439] - 2021-02-05
+- All Tasks: Use same artifact folder names when publishing pipeline artifacts
+- ALOpsAgentMaintenance: improved container/image pruning
+- ALOpsAppPublish: ignore/skip errors when installing AL-Test-Apps
+- ALOpsDockerStart: Added option for 'multitenant' environments
+- ALOpsExtensionAPI: added Service-2-Service authentication, only client_id and client_secret is required
+
 ## [v1.438] - 2020-12-31
 - ALOpsAppCompile: ALAnalyzer can be disabled by setting the parameter to 'NONE'
 - ALOpsAppCompile: Ruleset can be disabled by setting it to 'NONE', Url's can be specificied for downloading remote rulesets
