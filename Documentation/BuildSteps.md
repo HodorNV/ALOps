@@ -16,7 +16,7 @@ Here is a list of all build steps you have at your disposal when you use ALOps
             removeunusedcontainers: False         # Remove unused container from Agent. $(removeunusedcontainers)
             removebcartifacts: False              # Remove BC Artifacts. $(removebcartifacts)
             bcartifactscachefolder: C:\bcartifacts.cache# Set non-default BC Artifact Cache folder. $(bcartifactscachefolder)
-            daysunused: 30                        # Define date-range for cleanup. $(daysunused)
+            daysunused: 30                        # Define date-range for cleanup BC-Artifacts. $(daysunused)
     ```
 - ALOps App Runtime Package
   * Get a NAV App runtime package for onprem deployment.
@@ -218,6 +218,7 @@ Here is a list of all build steps you have at your disposal when you use ALOps
             accept_image_outdated: True           # Accept Outdated image. $(accept_image_outdated)
             enable_symbol_loading: False          # Enable Symbol Loading. $(enable_symbol_loading)
             enable_api_services: False            # Enable API Services. $(enable_api_services)
+            multitenant: False                    # Create a Multi-Tenant container. $(multitenant)
             docker_pull: True                     # Force Pull docker image. $(docker_pull)
             dockerauthentication: None            # Set authentication Method to use. $(dockerauthentication)
             docker_login:                         # Select the generic login to use for docker. If needed, click on 'manage', and add a new Service Endpoint of type 'Generic' $(docker_login)
