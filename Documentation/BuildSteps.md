@@ -79,6 +79,7 @@ Here is a list of all build steps you have at your disposal when you use ALOps
             bc_authentication: NavUserPassword    # BC Authentication type of the ServiceTier. $(bc_authentication)
             bc_webclient_url:                     # BC WebClient Endpoint. $(bc_webclient_url)
             testfilter:                           # Filter codeunits to include in Test-Suite. $(testfilter)
+            disabledtests:                        # Disabled Tests File. $(disabledtests)
             show_available_tests: True            # Show all available tests. $(show_available_tests)
             import_testtoolkit: True              # Import TestToolKit FOB. $(import_testtoolkit)
             import_action: Overwrite              # Import Action for importing Test-Suite FOB files. $(import_action)
