@@ -1,7 +1,7 @@
 # Change Log
 All notable changes to the "ALOps" extension.
 
-## [v1.440] - 2021-02-12
+## [v1.440] - 2021-02-17
 - ALOpsAppCompile: Parameter added to overwrite "ShowMyCode" manifest setting
 - ALOpsAppCompile@1: download previous app for Breaking Changes check
 - ALOpsAppCompile@1: Download previous version of App
