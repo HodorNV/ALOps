@@ -79,6 +79,7 @@ Here is a list of all build steps you have at your disposal when you use ALOps
             bc_authentication: NavUserPassword    # BC Authentication type of the ServiceTier. $(bc_authentication)
             bc_webclient_url:                     # BC WebClient Endpoint. $(bc_webclient_url)
             testfilter:                           # Filter codeunits to include in Test-Suite. $(testfilter)
+            disabledtests:                        # Disabled Tests File. $(disabledtests)
             show_available_tests: True            # Show all available tests. $(show_available_tests)
             import_testtoolkit: True              # Import TestToolKit FOB. $(import_testtoolkit)
             import_action: Overwrite              # Import Action for importing Test-Suite FOB files. $(import_action)
@@ -87,6 +88,31 @@ Here is a list of all build steps you have at your disposal when you use ALOps
             installaltesttool: False              # Install the AL TestTool for v15. $(installaltesttool)
             failed_test_action: Warning           # Action to take when a Test failed. $(failed_test_action)
             override_finsql_path:                 # Overrule automatic detection of FinSql with fixed value. $(override_finsql_path)
+    ```
+- ALOps Docker Create
+  * Validate App from Business Central AppSource.
+  * YAML Template: 
+    ```yaml
+        - task: ALOpsAppValidation@1
+          displayName: 'ALOps Docker Create'
+          inputs:
+            license_path:                         # Path of the FLF license to import. Must be a fully qualified path or relative to $(System.DefaultWorkingDirectory) or a downloadable Url. $(license_path)
+            countries: W1                         # Comma seperated array of countries to validate. $(countries)
+            affixes:                              # Comma seperated array of affixes. $(affixes)
+            artifact_path: $(System.ArtifactsDirectory)# Path for App Artifact. $(artifact_path)
+            artifact_filter: *.app                # Filter used for locating App file relative to $(path_to_publish). $(artifact_filter)
+            memory: 8G                            # Set maximum memory for Container. $(memory)
+            validateversion:                      # Full or partial version number. If specified, apps will also be validated against this version. $(validateversion)
+            validatecurrent: False                # Validate against current version of Business Central. $(validatecurrent)
+            validatenextminor: False              # Validate against Next Minor version of Business Central. $(validatenextminor)
+            validatenextmajor: False              # Validate against Next Major version of Business Central. $(validatenextmajor)
+            sastoken:                             # SAS Token used to access Storage Account. $(sastoken)
+            skipverification: False               #  $(skipverification)
+            skipupgrade: False                    #  $(skipupgrade)
+            skipappsourcecop: False               #  $(skipappsourcecop)
+            skipconnectiontest: False             #  $(skipconnectiontest)
+            includewarnings: False                # Include this switch if you want to include Warnings. $(includewarnings)
+            failonerror: True                     # Include this switch if you want to fail on the first error instead of returning all errors to the caller. $(failonerror)
     ```
 - ALOps App Cleaner
   * Remove all extensions from Business Central service tier.
@@ -143,6 +169,7 @@ Here is a list of all build steps you have at your disposal when you use ALOps
             app_file_suffix:                      # Set a suffix tag on the compiled App filename. $(app_file_suffix)
             updatebuildnumber: True               # Update the Build number with the current version. $(updatebuildnumber)
             setup_working_folder: False           # Copy working folder to Docker container. $(setup_working_folder)
+            showmycode: Keep                      # Overrule ShowMyCode by setting other option than 'Keep'. $(showmycode)
     ```
 - ALOps Docker Create
   * Create Docker image based on NAV/BC Artifacts.
@@ -345,10 +372,12 @@ Here is a list of all build steps you have at your disposal when you use ALOps
             artifact_path:                        # Path for storing App Artifact. $(artifact_path)
             nav_artifact_app_filter: *.app        # Filter used for locating App file relative to $(path_to_publish). $(nav_artifact_app_filter)
             skip_verification: True               # Skip CodeSign Verification of Business Central App. $(skip_verification)
+            forceinstall: False                   # Always install Apps regards of current state. $(forceinstall)
             forcesync: False                      # Sets the Sync-Mode to Force, enables pushing breaking changes. $(forcesync)
             publish_scope: Global                 # Set the scope for publishing extensions. $(publish_scope)
             tenant: default                       # Tenant to publish to when Scope is set to Tenant. $(tenant)
             batch_publish_folder:                 # Path containing Apps to publish. $(batch_publish_folder)
+            publisherazureactivedirectorytenantid: # Publisher Azure AD TenantId. $(publisherazureactivedirectorytenantid)
     ```
 - ALOps Repository Publish Extension
   * Publish extension to ALOps Repository.

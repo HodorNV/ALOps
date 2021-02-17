@@ -1,6 +1,21 @@
 # Change Log
 All notable changes to the "ALOps" extension.
 
+## [v1.440] - 2021-02-17
+- ALOpsAppCompile: Parameter added to overwrite "ShowMyCode" manifest setting
+- ALOpsAppCompile@1: download previous app for Breaking Changes check
+- ALOpsAppCompile@1: Download previous version of App
+- ALOpsAppCompile@2: improved unpacking for Artifacts
+- ALOpsAppCompiler@2: Compatibility update for pre-BC-v15 versions
+- ALOpsAppPublish: added parameter [forceinstall] which will force installation of Apps ignoring previous state
+- ALOpsAppPublish: new parameter [publisherazureactivedirectorytenantid] 
+- ALOpsAppTest: Option to create test-suites on-the-fly by specifying the [testfilter] parameter
+- ALOpsAppTest: Parameter added for loading DisabledTests via File or Url
+- ALOpsAppValidation: new Task for running BcContainerHelper's AppValidation 
+- ALOpsDockerStart: improved unpacking for Artifacts
+- ALOpsExtensionAPI: Alternate to BC-Artifacts when BC-Management DLL's are not available
+- ALOpsExtensionAPI: Improved error catching on API calls
+
 ## [v1.439] - 2021-02-05
 - All Tasks: Use same artifact folder names when publishing pipeline artifacts
 - ALOpsAgentMaintenance: improved container/image pruning
