@@ -1,0 +1,10 @@
+[
+    {
+        "CodeunitName": "WLD Test StringFunctions 2",
+        "Method": "*"
+    },
+    {
+        "CodeunitName": "WLD Test BLock Customer 2",
+        "Method": "Customer_BlockActionExecuted_CustomerIsBlocked"
+    }
+]
