@@ -113,6 +113,7 @@ Here is a list of all build steps you have at your disposal when you use ALOps
             skipconnectiontest: False             #  $(skipconnectiontest)
             includewarnings: False                # Include this switch if you want to include Warnings. $(includewarnings)
             failonerror: True                     # Include this switch if you want to fail on the first error instead of returning all errors to the caller. $(failonerror)
+            containername: bcserver               # Only required when running multiple DevOps Agents on the same server. (Not recommended) $(containername)
     ```
 - ALOps App Cleaner
   * Remove all extensions from Business Central service tier.
