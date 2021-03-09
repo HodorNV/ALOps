@@ -78,6 +78,8 @@
             - task: ALOpsDockerExec@3
             displayName: 'ALOps Docker Execute'
           inputs:
+            scriptsource: InLine                  # Set type for requiring the script. $(scriptsource) $(scriptsource) $(scriptsource)
+            scriptlocation:                       # Location of the script to fetch. (Path or Url) $(scriptlocation) $(scriptlocation) $(scriptlocation)
             inlinescript: # Write your powershell commands here.
     Write-Host "Hello World"
     # Inline Powershell Script. $(inlinescript) $(inlinescript) $(inlinescript)
