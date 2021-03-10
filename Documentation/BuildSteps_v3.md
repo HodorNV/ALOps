@@ -123,6 +123,7 @@
             - task: ALOpsExtensionAPI@3
             displayName: 'ALOps Extension API'
           inputs:
+            interaction: get                      # Set Interaction Method to use. (Get/Publish/Batch Publish). $(interaction) $(interaction) $(interaction)
             authentication: oauth                 # Set authentication Method to use. Default [Windows]. $(authentication) $(authentication) $(authentication)
             azuretenantid:                        # Azure Tenant Id. Only required for BC SaaS $(azuretenantid) $(azuretenantid) $(azuretenantid)
             azureappclientid:                     # Azure AD Application Client Id. $(azureappclientid) $(azureappclientid) $(azureappclientid)
