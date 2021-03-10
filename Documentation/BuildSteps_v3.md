@@ -116,6 +116,13 @@
             warningstrings:                       # Show as Warning when the container logs contain the warning string. $(warningstrings) $(warningstrings) $(warningstrings)
             errorstrings:                         # Throw error when the container logs contain the error string. $(errorstrings) $(errorstrings) $(errorstrings)
     ```
+- ALOps Extension API
+  * Get/Publish extensions with the Business Central API.
+  * YAML Template: 
+    ```yaml
+            - task: ALOpsExtensionAPI@3
+            displayName: 'ALOps Extension API'
+    ```
 - ALOps Info
   * Print information about ALOps and executing host.
   * YAML Template: 
