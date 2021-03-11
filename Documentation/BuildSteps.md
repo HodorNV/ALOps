@@ -290,6 +290,7 @@
             fixed_tag:                            # Allows recycling of docker containers. $(fixed_tag)
             interaction: get                      # Set Interaction Method to use. (Get/Publish/Batch Publish). $(interaction)
             api_endpoint: https://api.businesscentral.dynamics.com/v2.0/$(azure_tenant_id)/Sandbox/api# Set API Endpoint. (protocol://host:port/serverinstance/api) $(api_endpoint)
+            apiversion: v1.0                      # Version of the API to use (beta / v1.0 / v2.0) $(apiversion)
             authentication: oauth                 # Set authentication Method to use. Default [Windows]. $(authentication)
             azure_tenant_id:                      # Azure Tenant Id. Only required for BC SaaS $(azure_tenant_id)
             azure_app_client_id:                  # Azure AD Application Client Id. $(azure_app_client_id)
