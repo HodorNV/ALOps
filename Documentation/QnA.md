@@ -8,7 +8,7 @@ All troubleshooting items:
 
 ## Do I need a license to run ALOps?
 Yes and No.  It depends on the situation:
-- No - if you run anything for community, which means, if you want to run pipelines on publish repositories, the use of ALOps is completely free
+- No - if you run anything for community, which means, if you want to run pipelines on public repositories, the use of ALOps is completely free
 - Yes - For any private repository, you need to pay for ALOps.  
 
 More information on ALOps pricing, you can find [here](https://marketplace.visualstudio.com/items?itemName=Hodor.hodor-alops&ssr=false#pricing).
