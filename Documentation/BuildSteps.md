@@ -89,12 +89,12 @@
             failed_test_action: Warning           # Action to take when a Test failed. $(failed_test_action)
             override_finsql_path:                 # Overrule automatic detection of FinSql with fixed value. $(override_finsql_path)
     ```
-- ALOps Docker Create
+- ALOps App Validation
   * Validate App from Business Central AppSource.
   * YAML Template: 
     ```yaml
             - task: ALOpsAppValidation@1
-            displayName: 'ALOps Docker Create'
+            displayName: 'ALOps App Validation'
           inputs:
             license_path:                         # Path of the FLF license to import. Must be a fully qualified path or relative to $(System.DefaultWorkingDirectory) or a downloadable Url. $(license_path)
             countries: W1                         # Comma seperated array of countries to validate. $(countries)
@@ -171,6 +171,8 @@
             updatebuildnumber: True               # Update the Build number with the current version. $(updatebuildnumber)
             setup_working_folder: False           # Copy working folder to Docker container. $(setup_working_folder)
             showmycode: Keep                      # Overrule ShowMyCode by setting other option than 'Keep'. $(showmycode)
+            applicationinsightskey:               # Overwrite the ApplicationInsightsKey in app.json. Set to 'NONE' to remove InsightsKey. $(applicationinsightskey)
+            printappmanifest: True                # Print the final app.json before compile. $(printappmanifest)
     ```
 - ALOps Docker Create
   * Create Docker image based on NAV/BC Artifacts.
@@ -295,8 +297,8 @@
             azure_tenant_id:                      # Azure Tenant Id. Only required for BC SaaS $(azure_tenant_id)
             azure_app_client_id:                  # Azure AD Application Client Id. $(azure_app_client_id)
             azure_app_client_secret:              # Azure AD Application Client Secret. $(azure_app_client_secret)
-            username:                             # Business Central Username. $(username)
-            password:                             # Business Central User Password. $(password)
+            username:                             # Business Central Username. Leave empty for Service-2-Service authentication. $(username)
+            password:                             # Business Central User Password. Leave empty for Service-2-Service authentication. $(password)
             bccompany:                            # Business Central Company (Id or Name). $(bccompany)
             artifact_path: $(System.ArtifactsDirectory)# Path for App Artifact. $(artifact_path)
             artifact_filter: *.app                # Filter used for locating App file relative to $(path_to_publish). $(artifact_filter)
