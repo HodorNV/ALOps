@@ -23,12 +23,14 @@
             appfilenametemplate: %APP_PUBLISHER%_%APP_NAME%_%APP_VERSION%_%BC_TYPE%_%BC_VERSION%_%BC_COUNTRY%.app# Template for App filename. $(appfilenametemplate) $(appfilenametemplate)
             alcodeanalyzer:                       # AL Analyzer(s) used for compiling. (Example: CodeCop,UICop) $(alcodeanalyzer) $(alcodeanalyzer)
             showmycode: Keep                      # Overrule ShowMyCode by setting other option than 'Keep'. $(showmycode) $(showmycode)
+            applicationinsightskey:               # Overwrite the ApplicationInsightsKey in app.json. Set to 'NONE' to remove InsightsKey. $(applicationinsightskey) $(applicationinsightskey)
             alcachepath: $(System.DefaultWorkingDirectory)#  $(alcachepath) $(alcachepath)
             publishartifact: True                 # Publish generated App Artifact to DevOps. $(publishartifact) $(publishartifact)
             publishxlif: False                    # Publish generated XLIF to DevOps. $(publishxlif) $(publishxlif)
             failonwarnings: False                 # Fail task when any warning occurs. $(failonwarnings) $(failonwarnings)
             storageaccount:                       # Non Default Storage Account. $(storageaccount) $(storageaccount)
             sastoken:                             # SAS Token used to access Storage Account. $(sastoken) $(sastoken)
+            printappmanifest: True                # Print the final app.json before compile. $(printappmanifest) $(printappmanifest)
     ```
 - ALOps Repository Publish Extension
   * Publish extension to ALOps Repository.
