@@ -85,9 +85,11 @@
             import_action: Overwrite              # Import Action for importing Test-Suite FOB files. $(import_action)
             testpage: 130409                      # Set the PageId used for testing. $(testpage)
             testsuite: DEFAULT                    # Set target Test Suite to activate. $(testsuite)
+            extensionid:                          # Set Extension ID. $(extensionid)
             installaltesttool: False              # Install the AL TestTool for v15. $(installaltesttool)
             failed_test_action: Warning           # Action to take when a Test failed. $(failed_test_action)
             override_finsql_path:                 # Overrule automatic detection of FinSql with fixed value. $(override_finsql_path)
+            resultfilename: TestResults.xml       # Set filename for the Result XML. $(resultfilename)
     ```
 - ALOps App Validation
   * Validate App from Business Central AppSource.
