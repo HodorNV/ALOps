@@ -1,0 +1,16 @@
+parameters:
+  artifacttypes: []
+  artifactversions : []
+  artifactcountries: []
+
+steps:
+- ${{ each artifacttype in parameters.artifacttypes }}:
+  - ${{ each artifactversion in parameters.artifactversions }}:
+    - ${{ each artifactcountry in parameters.artifactcountries }}:
+      - task: ALOpsAppCompiler@2
+        displayName: 'ALOps Compile v2 - ${{ artifacttype  }}-${{ artifactversion  }}-${{ artifactcountry  }}'
+        inputs:
+          artifacttype: '${{ artifacttype  }}'
+          artifactversion: '${{ artifactversion  }}'
+          artifactcountry: '${{ artifactcountry  }}'
+          appversiontemplate: '1.0.*.0'

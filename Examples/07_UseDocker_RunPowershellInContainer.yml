@@ -1,22 +1,37 @@
 name: $(Build.BuildId)
 
+# trigger:
+#  branches:
+#    include:
+#      - master
+
+variables:
+- group: 'Secrets'  # link to a variable group that has secret variables, like URL to license file, or sasToken for insider builds
+
+pool: HOD-DOCKER
+
 steps:
 - checkout: self
   clean: true 
 
-- task: ALOpsDockerStart@1
+- task: ALOpsDockerCreate@1
+  displayName: 'ALOPS - Create Docker Image' # It will reuse the image if already exists, or build one if it doesn't.
   inputs:
-    docker_image: 'mcr.microsoft.com/businesscentral/sandbox'
-    docker_pull: true
+    artifacttype: Sandbox
+
+- task: ALOpsDockerStart@1
+  displayName: 'ALOPS - Start Docker Container' # No need to provide any details - it will get the details from previous step
 
 - task: ALOpsDockerWait@1
+  displayName: 'ALOPS - Wait for Docker Container to start'
   inputs:
     search_string: 'Ready for connections!'
+
 
 #########################################################################
 
 - task: ALOpsDockerExec@1
-  displayName: 'ALOPS Docker Exec: Inline'
+  displayName: 'ALOPS - Docker Exec: Inline'
   inputs:    
     scriptsource: 'InLine'
     inline_script: |
@@ -24,26 +39,26 @@ steps:
      Get-NAVServerInstance
 
 - task: ALOpsDockerExec@1
-  displayName: 'ALOPS Docker Exec: Download'
+  displayName: 'ALOPS - Docker Exec: Download'
   inputs:
     scriptsource: 'Download'
     script_location: 'https://raw.githubusercontent.com/HodorNV/ALOps/AdminHodor-patch-3/Examples/test.ps1'
 
 - task: ALOpsDockerExec@1
-  displayName: 'ALOPS Docker Exec: Workfolder'
+  displayName: 'ALOPS - Docker Exec: Workfolder'
   inputs:
     scriptsource: 'Workfolder'
     script_location: '*/test_script.ps1'  # PS1 file is located in the root of the repository
 
-- task: ALOpsDockerExec@1
-  displayName: 'ALOPS Docker Exec: Path'
-  inputs:
-    scriptsource: 'Path'
-    script_location: 'c:\scripts\test_script.ps1'  # PS1 file is located on the docker host
+# - task: ALOpsDockerExec@1
+#   displayName: 'ALOPS - Docker Exec: Path'
+#   inputs:
+#     scriptsource: 'Path'
+#     script_location: 'c:\scripts\test_script.ps1'  # PS1 file is located on the docker host
 
 #########################################################################
 
 - task: ALOpsDockerRemove@1
-  displayName: 'Remove Docker Container'
+  displayName: 'ALOPS - Remove Docker Container'
   enabled: true
   condition: always()

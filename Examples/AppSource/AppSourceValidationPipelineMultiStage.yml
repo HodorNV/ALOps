@@ -1,0 +1,22 @@
+trigger: none
+
+variables:
+- group: 'Secrets'  # link to a variable group that has secret variables, like URL to license file, or sasToken for insider builds
+- name: AppName
+  value: WaldoApp-Base #same name as in App.json
+- name: appversiontemplate
+  value: '1.0.[yyyyWW].*'
+- name: poolname
+  value: HOD-DOCKER #The agent pool: multiple agents will be able to run multiple validations (countries/versions) at the same time!
+
+stages:
+- template: AppSourceValidationTemplateMultiStage.yml  
+  parameters:
+    AppName: $(AppName)
+    appversiontemplate: $(appversiontemplate)
+    skipverification: true  #this should be false as AppSourceValidation will fail when the app is not signed!
+    countries: ['w1','be']
+    selectVersions: ['Current','NextMinor']
+    alsourcepath: App/app.json
+    pool: $(poolname)
+    sasToken: $(bc.sasToken) #part of the "Secrets" variable group

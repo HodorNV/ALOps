@@ -1,32 +1,47 @@
 name: $(Build.BuildId)
 
+# trigger:
+#  branches:
+#    include:
+#      - master
+
+variables:
+- group: 'Secrets'  # link to a variable group that has secret variables, like URL to license file, or sasToken for insider builds
+
+pool: HOD-DOCKER
+
 steps:
 - checkout: self
   clean: true 
 
-- task: ALOpsDockerStart@1
+- task: ALOpsDockerCreate@1
+  displayName: 'ALOPS - Create Docker Image' # It will reuse the image if already exists, or build one if it doesn't.
   inputs:
-    docker_image: 'mcr.microsoft.com/businesscentral/sandbox'
-    docker_pull: true
+    artifacttype: Sandbox
+
+- task: ALOpsDockerStart@1
+  displayName: 'ALOPS - Start Docker Container' # No need to provide any details - it will get the details from previous step
 
 - task: ALOpsDockerWait@1
+  displayName: 'ALOPS - Wait for Docker Container to start'
   inputs:
     search_string: 'Ready for connections!'
 
 #>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
 - task: ALOpsLicenseImport@1
-  displayName: 'ALOps License Import'
+  displayName: 'ALOPS - License Import'
   inputs:
     usedocker: true
-    license_path: 'https://license.example.com/SomePath/thelicense.flf'
+    license_path: '$(bc.license)'  # more info: https://www.youtube.com/watch?v=iVLOerdCuwA&t=3078s
 
 - task: ALOpsAppCompiler@1
-  displayName: 'ALOps Compile Extension'
+  displayName: 'ALOPS - Compile Extension'
   inputs:
     usedocker: true
     nav_app_version: '1.0.[yyyyWW].*'
-    failed_on_warnings: true    
+    failed_on_warnings: true
+    targetproject: 'app/app.json'   # point to the folder in your repo that you want to compile in this step
 
 #<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 

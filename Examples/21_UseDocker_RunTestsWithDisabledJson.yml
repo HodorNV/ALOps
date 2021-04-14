@@ -1,9 +1,6 @@
 name: $(Build.BuildId)
 
-# trigger:
-#  branches:
-#    include:
-#      - master
+trigger: none
 
 variables:
 - group: 'Secrets'  # link to a variable group that has secret variables, like URL to license file, or sasToken for insider builds
@@ -17,8 +14,7 @@ steps:
 - task: ALOpsDockerCreate@1
   displayName: 'ALOPS - Create Docker Image' # It will reuse the image if already exists, or build one if it doesn't.
   inputs:
-    artifacttype: OnPrem
-    artifactversion: 14
+    artifacttype: Sandbox
 
 - task: ALOpsDockerStart@1
   displayName: 'ALOPS - Start Docker Container' # No need to provide any details - it will get the details from previous step
@@ -28,28 +24,61 @@ steps:
   inputs:
     search_string: 'Ready for connections!'
 
-#>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-
 - task: ALOpsLicenseImport@1
   displayName: 'ALOPS - License Import'
   inputs:
     usedocker: true
     license_path: '$(bc.license)'  # more info: https://www.youtube.com/watch?v=iVLOerdCuwA&t=3078s
 
+ #>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+- task: ALOpsAppPublish@1
+  displayName: 'ALOPS - Install AL TestTool' # install necessary dependent apps for testability
+  inputs:
+    usedocker: true
+    installaltesttool: true
+    skip_verification: true
+    install_al_app_names: |
+     Tests-TestLibraries
+     System Application Test
+     System Application Test Library
+     Any
+     Library Assert
+     Test Runner
+
+#<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
 - task: ALOpsAppCompiler@1
-  displayName: 'ALOPS - Compile Extension'
+  displayName: 'ALOPS - Compile Extension: App'
   inputs:
     usedocker: true
     nav_app_version: '1.0.[yyyyWW].*'
+    targetproject: 'app/app.json'                           # The App
     failed_on_warnings: true
-    targetproject: 'app/app.json'
+    app_file_suffix: '_APP'                                 # A trick to uniquely identify the APP (from the TEST-app)
 
 - task: ALOpsAppPublish@1
-  displayName: 'Publish AL-App'
+  displayName: 'ALOPS - Publish Extension'
   inputs:
     usedocker: true
     nav_artifact_app_filter: '*.app'
-    skip_verification: true 
+    skip_verification: true
+
+- task: ALOpsAppCompiler@1
+  displayName: 'ALOPS - Compile Extension: Test-App'
+  inputs:
+    usedocker: true
+    nav_app_version: '1.0.[yyyyWW].*'
+    targetproject: 'test/app.json'                           # The Test-App
+    failed_on_warnings: true    
+    app_file_suffix: '_TEST'                                 # A trick to uniquely identify the Test-App (from the App)
+
+- task: ALOpsAppPublish@1
+  displayName: 'ALOPS - Publish Extension'
+  inputs:
+    usedocker: true
+    nav_artifact_app_filter: '*.app'
+    skip_verification: true   
 
 #>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
@@ -58,10 +87,12 @@ steps:
   inputs:
     usedocker: true
     import_action: "Skip"
-    show_available_tests: true
-    import_testtoolkit: true
+    import_testtoolkit: false
+    testpage: '130455'
+    testsuite: 'DEFAULT'
     failed_test_action: 'Ignore'
-  continueOnError: true    
+    disabledtests: 'yaml/21_DisabledTests.json' # you can refer to a file or an url
+  continueOnError: true   
 
 - task: PublishTestResults@2
   displayName: 'Publish Test Results **/TestResults.xml'

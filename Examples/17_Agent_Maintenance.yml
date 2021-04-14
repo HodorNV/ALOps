@@ -1,0 +1,17 @@
+name: $(Build.BuildId)
+
+trigger: none
+
+pool: HOD-DOCKER
+
+steps:
+- checkout: self
+  clean: true 
+
+- task: ALOpsAgentMaintenance@1
+  displayName: 'ALOps Agent Maintenance'
+  inputs:
+    removeoldtasks: true
+    removeunusedcontainers: true
+    removebcartifacts: true
+    daysunused: 31

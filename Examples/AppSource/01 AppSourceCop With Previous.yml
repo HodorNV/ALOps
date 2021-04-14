@@ -1,14 +1,11 @@
 name: $(Build.BuildId)
 
-# trigger:
-#  branches:
-#    include:
-#      - master
-
 variables:
 - group: 'Secrets'  # link to a variable group that has secret variables, like URL to license file, or sasToken for insider builds
 
 pool: HOD-DOCKER
+
+trigger: none
 
 steps:
 - checkout: self
@@ -18,6 +15,7 @@ steps:
   displayName: 'ALOPS - Create Docker Image' # It will reuse the image if already exists, or build one if it doesn't.
   inputs:
     artifacttype: Sandbox
+    artifactcountry: dk
 
 - task: ALOpsDockerStart@1
   displayName: 'ALOPS - Start Docker Container' # No need to provide any details - it will get the details from previous step
@@ -27,30 +25,35 @@ steps:
   inputs:
     search_string: 'Ready for connections!'
 
-#>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-
 - task: ALOpsLicenseImport@1
   displayName: 'ALOPS - License Import'
   inputs:
     usedocker: true
     license_path: '$(bc.license)'  # more info: https://www.youtube.com/watch?v=iVLOerdCuwA&t=3078s
 
+# To get the previous app to the container for the compiler to find it (and download it) as symbols, we need to publish the previous app
+- task: ALOpsAppPublish@1
+  displayName: 'ALOPS - Publish Previsou App'  
+  inputs:
+    usedocker: true
+    installpublishedapps: false
+    nav_artifact_app_filter: '*.app'    #As the previous app is the only app-file in the repo, it will just publish that one
+
 - task: ALOpsAppCompiler@1
   displayName: 'ALOPS - Compile Extension'
   inputs:
     usedocker: true
     nav_app_version: '1.0.[yyyyWW].*'
-    failed_on_warnings: true    
-    targetproject: 'app/app.json'   # point to the folder in your repo that you want to compile in this step
+    failed_on_warnings: true
+    targetproject: 'app/app.json'
+    al_analyzer: AppSource
 
-- task: ALOpsAppPublish@1
-  displayName: 'Publish AL-App'
-  inputs:
-    usedocker: true
-    nav_artifact_app_filter: '*.app'
-    skip_verification: true 
-
-#<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+# - task: ALOpsAppPublish@1
+#   displayName: 'ALOPS - Publish App' # to be able to run test
+#   inputs:
+#     usedocker: true
+#     nav_artifact_app_filter: '*.app'   
+#     skip_verification: true 
 
 - task: ALOpsDockerRemove@1
   displayName: 'ALOPS - Remove Docker Container'
