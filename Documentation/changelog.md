@@ -1,7 +1,7 @@
 # Change Log
 All notable changes to the "ALOps" extension.
 
-## [v1.441] - 2021-03-01
+## [v1.441] - 2021-04-13
 - All Tasks : Disable script scanning for AV/Defender
 - All Tasks: Fail Azure DevOps task on failed exit
 - All Tasks: improved copy-item with literal path's, special character compatibility
