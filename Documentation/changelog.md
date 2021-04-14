@@ -1,6 +1,29 @@
 # Change Log
 All notable changes to the "ALOps" extension.
 
+## [v1.441] - 2021-04-13
+- All Tasks : Disable script scanning for AV/Defender
+- All Tasks: Fail Azure DevOps task on failed exit
+- All Tasks: improved copy-item with literal path's, special character compatibility
+- All Tasks: Improved performance for Expand-Archive with System.IO.Compression
+- All Tasks: Improved powershell modules, Azure DevOps Diagnostics mode can be used
+- ALOpsAppCompile: Detect ruleset feature, ignore when not available in ALC.EXE
+- ALOpsAppCompile: Improved output parsing and Line detection
+- ALOpsAppCompile: New parameter [applicationinsightskey] for registering ApplicationInsights
+- ALOpsAppCompile: Print resulting app.json, allows for easy debugging
+- ALOpsAppSignVerify: improved Path resolving of artifacts
+- ALOpsAppTest:  Implemented [ExtensionID] based test-running
+- ALOpsAppTest: Configurable filename for Test-Results allowing for multiple result files
+- ALOpsAppValidation: Extra parameter [containername] for overruling the default containername used for validation
+- ALOpsDockerStart: Improved Additional Parameter parsing, allows for variables via parameter injection
+- ALOpsDockerWait: Improved parsing of Error and Warning strings
+- ALOpsDockerWait: Multiline Warning and Error string parsing
+- ALOpsDockerWait: Task failed with warning on WarningString matches
+- ALOpsExtensionAPI: Configurable API Version via parameter [apiversion]
+- ALOpsExtensionAPI: Easy parameters for Service2Service setup
+- ALOpsExtensionAPI: Improved deploymentStatus validation / Connection recovery for SaaS
+- ALOpsExtensionAPI: Poll dpeloyment status as Warning instead of Error
+
 ## [v1.440] - 2021-02-17
 - ALOpsAppCompile: Parameter added to overwrite "ShowMyCode" manifest setting
 - ALOpsAppCompile@1: download previous app for Breaking Changes check

@@ -1,16 +1,16 @@
-# Build Steps Overview
-Let's describe all the Build Steps that we have at our disposal
+    # Build Steps Overview
+    Let's describe all the Build Steps that we have at our disposal
 
-## List and describe all build steps
-Here is a list of all build steps you have at your disposal when you use ALOps
+    ## List and describe all build steps
+    Here is a list of all build steps you have at your disposal when you use ALOps
 
-### ALOps Tasks
-- ALOps Agent Maintenance
+        ### ALOps Tasks
+    - ALOps Agent Maintenance
   * Cleanup and maintain DevOps a Agent for Business Central.
   * YAML Template: 
     ```yaml
-        - task: ALOpsAgentMaintenance@1
-          displayName: 'ALOps Agent Maintenance'
+            - task: ALOpsAgentMaintenance@1
+            displayName: 'ALOps Agent Maintenance'
           inputs:
             removeoldtasks: False                 # Remove old ALOps tasks. $(removeoldtasks)
             removeunusedcontainers: False         # Remove unused container from Agent. $(removeunusedcontainers)
@@ -22,8 +22,8 @@ Here is a list of all build steps you have at your disposal when you use ALOps
   * Get a NAV App runtime package for onprem deployment.
   * YAML Template: 
     ```yaml
-        - task: ALOpsAppRuntimePackage@1
-          displayName: 'ALOps App Runtime Package'
+            - task: ALOpsAppRuntimePackage@1
+            displayName: 'ALOps App Runtime Package'
           inputs:
             usedocker: False                      # Run task in Docker container. $(usedocker)
             fixed_tag:                            # Allows recycling of docker containers. $(fixed_tag)
@@ -37,8 +37,8 @@ Here is a list of all build steps you have at your disposal when you use ALOps
   * Codesign Business Central extension with .pfx.
   * YAML Template: 
     ```yaml
-        - task: ALOpsAppSign@1
-          displayName: 'ALOps App Sign'
+            - task: ALOpsAppSign@1
+            displayName: 'ALOps App Sign'
           inputs:
             usedocker: False                      # Run task in Docker container. $(usedocker)
             fixed_tag:                            # Allows recycling of docker containers. $(fixed_tag)
@@ -53,8 +53,8 @@ Here is a list of all build steps you have at your disposal when you use ALOps
   * Verify CodeSign of Business Central extension.
   * YAML Template: 
     ```yaml
-        - task: ALOpsAppSignVerify@1
-          displayName: 'ALOps App Sign Verify'
+            - task: ALOpsAppSignVerify@1
+            displayName: 'ALOps App Sign Verify'
           inputs:
             usedocker: False                      # Run task in Docker container. $(usedocker)
             fixed_tag:                            # Allows recycling of docker containers. $(fixed_tag)
@@ -65,8 +65,8 @@ Here is a list of all build steps you have at your disposal when you use ALOps
   * Run Business Central Test-Suite and collect results.
   * YAML Template: 
     ```yaml
-        - task: ALOpsAppTest@1
-          displayName: 'ALOps App Test'
+            - task: ALOpsAppTest@1
+            displayName: 'ALOps App Test'
           inputs:
             usedocker: False                      # Run task in Docker container. $(usedocker)
             fixed_tag:                            # Allows recycling of docker containers. $(fixed_tag)
@@ -85,9 +85,11 @@ Here is a list of all build steps you have at your disposal when you use ALOps
             import_action: Overwrite              # Import Action for importing Test-Suite FOB files. $(import_action)
             testpage: 130409                      # Set the PageId used for testing. $(testpage)
             testsuite: DEFAULT                    # Set target Test Suite to activate. $(testsuite)
+            extensionid:                          # Set Extension ID. $(extensionid)
             installaltesttool: False              # Install the AL TestTool for v15. $(installaltesttool)
             failed_test_action: Warning           # Action to take when a Test failed. $(failed_test_action)
             override_finsql_path:                 # Overrule automatic detection of FinSql with fixed value. $(override_finsql_path)
+            resultfilename: TestResults.xml       # Set filename for the Result XML. $(resultfilename)
     ```
 - ALOps App Validation
   * Validate App from Business Central AppSource.
@@ -113,13 +115,14 @@ Here is a list of all build steps you have at your disposal when you use ALOps
             skipconnectiontest: False             #  $(skipconnectiontest)
             includewarnings: False                # Include this switch if you want to include Warnings. $(includewarnings)
             failonerror: True                     # Include this switch if you want to fail on the first error instead of returning all errors to the caller. $(failonerror)
+            containername: bcserver               # Only required when running multiple DevOps Agents on the same server. (Not recommended) $(containername)
     ```
 - ALOps App Cleaner
   * Remove all extensions from Business Central service tier.
   * YAML Template: 
     ```yaml
-        - task: ALOpsAppClean@1
-          displayName: 'ALOps App Cleaner'
+            - task: ALOpsAppClean@1
+            displayName: 'ALOps App Cleaner'
           inputs:
             usedocker: False                      # Run task in Docker container. $(usedocker)
             fixed_tag:                            # Allows recycling of docker containers. $(fixed_tag)
@@ -132,8 +135,8 @@ Here is a list of all build steps you have at your disposal when you use ALOps
   * Copy Business Central extensions from one service tier to another.
   * YAML Template: 
     ```yaml
-        - task: ALOpsAppCopy@1
-          displayName: 'ALOps App Copy'
+            - task: ALOpsAppCopy@1
+            displayName: 'ALOps App Copy'
           inputs:
             nav_computername: localhost           # Target Business Central Server running service tier. $(nav_computername)
             nav_serverinstance_source: BC140      # Source Business Central service tier to copy from. $(nav_serverinstance_source)
@@ -144,8 +147,8 @@ Here is a list of all build steps you have at your disposal when you use ALOps
   * Compile a Business Central extension from AL code.
   * YAML Template: 
     ```yaml
-        - task: ALOpsAppCompiler@1
-          displayName: 'ALOps App Compiler'
+            - task: ALOpsAppCompiler@1
+            displayName: 'ALOps App Compiler'
           inputs:
             usedocker: False                      # Run task in Docker container. $(usedocker)
             fixed_tag:                            # Allows recycling of docker containers. $(fixed_tag)
@@ -170,13 +173,15 @@ Here is a list of all build steps you have at your disposal when you use ALOps
             updatebuildnumber: True               # Update the Build number with the current version. $(updatebuildnumber)
             setup_working_folder: False           # Copy working folder to Docker container. $(setup_working_folder)
             showmycode: Keep                      # Overrule ShowMyCode by setting other option than 'Keep'. $(showmycode)
+            applicationinsightskey:               # Overwrite the ApplicationInsightsKey in app.json. Set to 'NONE' to remove InsightsKey. $(applicationinsightskey)
+            printappmanifest: True                # Print the final app.json before compile. $(printappmanifest)
     ```
 - ALOps Docker Create
   * Create Docker image based on NAV/BC Artifacts.
   * YAML Template: 
     ```yaml
-        - task: ALOpsDockerCreate@1
-          displayName: 'ALOps Docker Create'
+            - task: ALOpsDockerCreate@1
+            displayName: 'ALOps Docker Create'
           inputs:
             artifactspecification: Specific       # Set Artifact resolve method. $(artifactspecification)
             artifactversion:                      # BC/NAV Version, eg: 9, 10.4, NAV2016, 16.4.24524. $(artifactversion)
@@ -205,8 +210,8 @@ Here is a list of all build steps you have at your disposal when you use ALOps
   * Execute powershell script in container.
   * YAML Template: 
     ```yaml
-        - task: ALOpsDockerExec@1
-          displayName: 'ALOps Docker Execute'
+            - task: ALOpsDockerExec@1
+            displayName: 'ALOps Docker Execute'
           inputs:
             fixed_tag:                            # Allows recycling of docker containers. $(fixed_tag)
             scriptsource: InLine                  # Set type for requiring the script. $(scriptsource)
@@ -219,8 +224,8 @@ Here is a list of all build steps you have at your disposal when you use ALOps
   * Remove Business Central docker container.
   * YAML Template: 
     ```yaml
-        - task: ALOpsDockerRemove@1
-          displayName: 'ALOps Docker Remove'
+            - task: ALOpsDockerRemove@1
+            displayName: 'ALOps Docker Remove'
           inputs:
             usedocker: True                       # Run task in Docker container. $(usedocker)
             fixed_tag:                            # Allows recycling of docker containers. $(fixed_tag)
@@ -235,8 +240,8 @@ Here is a list of all build steps you have at your disposal when you use ALOps
   * Start Business Central docker container.
   * YAML Template: 
     ```yaml
-        - task: ALOpsDockerStart@1
-          displayName: 'ALOps Docker Start'
+            - task: ALOpsDockerStart@1
+            displayName: 'ALOps Docker Start'
           inputs:
             fixed_tag:                            # Allows recycling of docker containers. $(fixed_tag)
             ignore_no_container_warning: False    # Do not trigger warning when container with [fixed_tag] is not found. $(ignore_no_container_warning)
@@ -267,11 +272,12 @@ Here is a list of all build steps you have at your disposal when you use ALOps
   * Wait until the Business Central container is started.
   * YAML Template: 
     ```yaml
-        - task: ALOpsDockerWait@1
-          displayName: 'ALOps Docker Wait'
+            - task: ALOpsDockerWait@1
+            displayName: 'ALOps Docker Wait'
           inputs:
             fixed_tag:                            # Allows recycling of docker containers. $(fixed_tag)
             search_string: Ready for connections! # String to match in Docker Logs and return. $(search_string)
+            warning_string:                       # Show as Warning when the container logs contain the warning string. $(warning_string)
             error_string:                         # Throw error when the container logs contain the error string. $(error_string)
             setup_working_folder: True            # Copy working folder to Docker container. $(setup_working_folder)
             usecompression: True                  # Compress Source-Folder for transfer to docker container. $(usecompression)
@@ -281,19 +287,20 @@ Here is a list of all build steps you have at your disposal when you use ALOps
   * Get/Publish extensions with the Business Central API.
   * YAML Template: 
     ```yaml
-        - task: ALOpsExtensionAPI@1
-          displayName: 'ALOps Extension API'
+            - task: ALOpsExtensionAPI@1
+            displayName: 'ALOps Extension API'
           inputs:
             usedocker: False                      # Run task in Docker container. $(usedocker)
             fixed_tag:                            # Allows recycling of docker containers. $(fixed_tag)
             interaction: get                      # Set Interaction Method to use. (Get/Publish/Batch Publish). $(interaction)
             api_endpoint: https://api.businesscentral.dynamics.com/v2.0/$(azure_tenant_id)/Sandbox/api# Set API Endpoint. (protocol://host:port/serverinstance/api) $(api_endpoint)
+            apiversion: v1.0                      # Version of the API to use (beta / v1.0 / v2.0) $(apiversion)
             authentication: oauth                 # Set authentication Method to use. Default [Windows]. $(authentication)
             azure_tenant_id:                      # Azure Tenant Id. Only required for BC SaaS $(azure_tenant_id)
             azure_app_client_id:                  # Azure AD Application Client Id. $(azure_app_client_id)
             azure_app_client_secret:              # Azure AD Application Client Secret. $(azure_app_client_secret)
-            username:                             # Business Central Username. $(username)
-            password:                             # Business Central User Password. $(password)
+            username:                             # Business Central Username. Leave empty for Service-2-Service authentication. $(username)
+            password:                             # Business Central User Password. Leave empty for Service-2-Service authentication. $(password)
             bccompany:                            # Business Central Company (Id or Name). $(bccompany)
             artifact_path: $(System.ArtifactsDirectory)# Path for App Artifact. $(artifact_path)
             artifact_filter: *.app                # Filter used for locating App file relative to $(path_to_publish). $(artifact_filter)
@@ -303,8 +310,8 @@ Here is a list of all build steps you have at your disposal when you use ALOps
   * Import objects from .FOB file.
   * YAML Template: 
     ```yaml
-        - task: ALOpsFobImport@1
-          displayName: 'ALOps Import FOB'
+            - task: ALOpsFobImport@1
+            displayName: 'ALOps Import FOB'
           inputs:
             usedocker: False                      # Run task in Docker container. $(usedocker)
             fixed_tag:                            # Allows recycling of docker containers. $(fixed_tag)
@@ -320,15 +327,15 @@ Here is a list of all build steps you have at your disposal when you use ALOps
   * Print information about ALOps and executing host.
   * YAML Template: 
     ```yaml
-        - task: ALOpsInfo@1
-          displayName: 'ALOps Info'
+            - task: ALOpsInfo@1
+            displayName: 'ALOps Info'
     ```
 - ALOps License Import
   * Import Business Central license (.flf).
   * YAML Template: 
     ```yaml
-        - task: ALOpsLicenseImport@1
-          displayName: 'ALOps License Import'
+            - task: ALOpsLicenseImport@1
+            displayName: 'ALOps License Import'
           inputs:
             usedocker: False                      # Run task in Docker container. $(usedocker)
             fixed_tag:                            # Allows recycling of docker containers. $(fixed_tag)
@@ -342,8 +349,8 @@ Here is a list of all build steps you have at your disposal when you use ALOps
   * Import and Process RapidStart/Configuration Package
   * YAML Template: 
     ```yaml
-        - task: ALOpsPackageImport@1
-          displayName: 'ALOps Package Import'
+            - task: ALOpsPackageImport@1
+            displayName: 'ALOps Package Import'
           inputs:
             usedocker: True                       # Run task in Docker container. $(usedocker)
             fixed_tag:                            # Allows recycling of docker containers. $(fixed_tag)
@@ -353,8 +360,8 @@ Here is a list of all build steps you have at your disposal when you use ALOps
   * Publish Business Central extension to service tier.
   * YAML Template: 
     ```yaml
-        - task: ALOpsAppPublish@1
-          displayName: 'ALOps App Publish'
+            - task: ALOpsAppPublish@1
+            displayName: 'ALOps App Publish'
           inputs:
             usedocker: False                      # Run task in Docker container. $(usedocker)
             fixed_tag:                            # Allows recycling of docker containers. $(fixed_tag)
@@ -383,8 +390,8 @@ Here is a list of all build steps you have at your disposal when you use ALOps
   * Publish extension to ALOps Repository.
   * YAML Template: 
     ```yaml
-        - task: ALOpsRepositoryPublish@1
-          displayName: 'ALOps Repository Publish Extension'
+            - task: ALOpsRepositoryPublish@1
+            displayName: 'ALOps Repository Publish Extension'
           inputs:
             usedocker: False                      # Run task in Docker container. $(usedocker)
             fixed_tag:                            # Allows recycling of docker containers. $(fixed_tag)
@@ -399,8 +406,8 @@ Here is a list of all build steps you have at your disposal when you use ALOps
   * Replaced by Task [ALOps Extension API]
   * YAML Template: 
     ```yaml
-        - task: ALOpsSaaSGetExtensions@1
-          displayName: 'ALOps SaaS Get Extensions'
+            - task: ALOpsSaaSGetExtensions@1
+            displayName: 'ALOps SaaS Get Extensions'
           inputs:
             azure_api_endpoint: api.businesscentral.dynamics.com# Azure API Endpoint. $(azure_api_endpoint)
             azure_api_version: v2.0               # Azure API Endpoint version. $(azure_api_version)
@@ -416,8 +423,8 @@ Here is a list of all build steps you have at your disposal when you use ALOps
   * Replaced by Task [ALOps Extension API]
   * YAML Template: 
     ```yaml
-        - task: ALOpsSaaSPublishExtension@1
-          displayName: 'ALOps SaaS Publish Extension'
+            - task: ALOpsSaaSPublishExtension@1
+            displayName: 'ALOps SaaS Publish Extension'
           inputs:
             azure_api_endpoint: api.businesscentral.dynamics.com# Azure API Endpoint. $(azure_api_endpoint)
             azure_api_version: v2.0               # Azure API Endpoint version. $(azure_api_version)
