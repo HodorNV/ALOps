@@ -1,6 +1,14 @@
 # Change Log
 All notable changes to the "ALOps" extension.
 
+## [v1.442] - 2021-05-01
+- ALOpsAgentMaintenance: New integer parameter [pruneimagesdayscreated], when not zero Images are pruned based on creationdate
+- ALOpsAppCompile: BC ServiceTier folder added in AssemblyProbingPaths
+- ALOpsAppCompile: Global warnings and errors are now catched from ALC output
+- ALOpsAppCompile: New boolean parameter [output_alc_logs] for disabling printing the ALC logs
+- ALOpsAppCompile: New multiline parameter for specifying additional AssemblyProbingPaths, comma seperated string can also be used 
+- ALOpsAppValidation: Added parameters for specifying InstallApps and PreviousApps
+
 ## [v1.441] - 2021-04-13
 - All Tasks : Disable script scanning for AV/Defender
 - All Tasks: Fail Azure DevOps task on failed exit
