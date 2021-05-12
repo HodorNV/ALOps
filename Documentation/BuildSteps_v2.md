@@ -31,6 +31,8 @@
             storageaccount:                       # Non Default Storage Account. $(storageaccount) $(storageaccount)
             sastoken:                             # SAS Token used to access Storage Account. $(sastoken) $(sastoken)
             printappmanifest: True                # Print the final app.json before compile. $(printappmanifest) $(printappmanifest)
+            outputalclogs: True                   # Output ALC logs. $(outputalclogs) $(outputalclogs)
+            additionalprobingpaths:               # Add additional Assembly probing Paths. $(additionalprobingpaths) $(additionalprobingpaths)
     ```
 - ALOps Repository Publish Extension
   * Publish extension to ALOps Repository.
