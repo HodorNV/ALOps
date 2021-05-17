@@ -13,7 +13,8 @@
             displayName: 'ALOps Agent Maintenance'
           inputs:
             removeoldtasks: False                 # Remove old ALOps tasks. $(removeoldtasks)
-            removeunusedcontainers: False         # Remove unused container from Agent. $(removeunusedcontainers)
+            removeunusedcontainers: False         # Force docker container pruning. $(removeunusedcontainers)
+            pruneimagesdayscreated: 0             # Force docker image pruning based on creation date (x days). $(pruneimagesdayscreated)
             removebcartifacts: False              # Remove BC Artifacts. $(removebcartifacts)
             bcartifactscachefolder: C:\bcartifacts.cache# Set non-default BC Artifact Cache folder. $(bcartifactscachefolder)
             daysunused: 30                        # Define date-range for cleanup BC-Artifacts. $(daysunused)
@@ -95,14 +96,18 @@
   * Validate App from Business Central AppSource.
   * YAML Template: 
     ```yaml
-        - task: ALOpsAppValidation@1
-          displayName: 'ALOps App Validation'
+            - task: ALOpsAppValidation@1
+            displayName: 'ALOps App Validation'
           inputs:
             license_path:                         # Path of the FLF license to import. Must be a fully qualified path or relative to $(System.DefaultWorkingDirectory) or a downloadable Url. $(license_path)
             countries: W1                         # Comma seperated array of countries to validate. $(countries)
             affixes:                              # Comma seperated array of affixes. $(affixes)
-            artifact_path: $(System.ArtifactsDirectory) # Path for App Artifact. $(artifact_path)
-            artifact_filter: '*.app'              # Filter used for locating App file relative to $(path_to_publish). $(artifact_filter)
+            artifact_path: $(System.ArtifactsDirectory)# Path for App Artifact(s). $(artifact_path)
+            artifact_filter: *.app                # Filter used for locating App file relative to $(artifact_path). $(artifact_filter)
+            installapps_path: $(System.ArtifactsDirectory)# Path for InstallApps Artifact(s). $(installapps_path)
+            installapps_filter: *.app             # Filter used for locating App file relative to $(installapps_path). $(installapps_filter)
+            previousapps_path: $(System.ArtifactsDirectory)# Path for PreviousApps Artifact(s). $(previousapps_path)
+            previousapps_filter: *.app            # Filter used for locating App file relative to $(previousapps_path). $(previousapps_filter)
             memory: 8G                            # Set maximum memory for Container. $(memory)
             validateversion:                      # Full or partial version number. If specified, apps will also be validated against this version. $(validateversion)
             validatecurrent: False                # Validate against current version of Business Central. $(validatecurrent)
@@ -175,6 +180,8 @@
             showmycode: Keep                      # Overrule ShowMyCode by setting other option than 'Keep'. $(showmycode)
             applicationinsightskey:               # Overwrite the ApplicationInsightsKey in app.json. Set to 'NONE' to remove InsightsKey. $(applicationinsightskey)
             printappmanifest: True                # Print the final app.json before compile. $(printappmanifest)
+            output_alc_logs: True                 # Output ALC logs. $(output_alc_logs)
+            additionalprobingpaths:               # Add additional Assembly probing Paths. $(additionalprobingpaths)
     ```
 - ALOps Docker Create
   * Create Docker image based on NAV/BC Artifacts.
