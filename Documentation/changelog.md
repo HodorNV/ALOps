@@ -1,6 +1,16 @@
 # Change Log
 All notable changes to the "ALOps" extension.
 
+## [v1.443] - 2021-06-07
+- All Tasks: Fixed BC-Management module loading compatibility with BC v19
+- ALOpsAgentMaintenance: Prune images based on CreationDate
+- ALOpsAgentMaintenance: Remove VSIX folder when no platform of localised folders exists
+- ALOpsAppCompiler@v1: Backported "AL_Analyzer=NONE" to disable analyzers
+- ALOpsAppCompiler@v1: Backported "publishxlif" functionality from v2
+- ALOpsAppTest: Increased interaction timeout, allowing for long running tests
+- ALOpsDockerStart: "docker_pull" automatically disablen when using ALOpsDockerCreate images
+- ALOpsDockerStart: Multiple Add-In DLL versions can now be used in parallell. Duplicate folder names are renamed.
+
 ## [v1.442] - 2021-05-01
 - ALOpsAgentMaintenance: New integer parameter [pruneimagesdayscreated], when not zero Images are pruned based on creationdate
 - ALOpsAppCompile: BC ServiceTier folder added in AssemblyProbingPaths
