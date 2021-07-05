@@ -1,6 +1,17 @@
 # Change Log
 All notable changes to the "ALOps" extension.
 
+## [v1.444] - 2021-06-14
+- All Tasks: The Artifact Publish Folder for DevOps can be manipulated via Environment variable [Alops_ArtifactPublishFolder], defaults is [Dynamics 365]
+- ALOpsAppCompile: Improved parsing of BC Compile logs
+- ALOpsAppCompile: Ruleset patch matching with DefaultWorkingDirectory
+- ALOpsAppCompiler@2: Added [updatebuildnumber] conform v1. Updates the Build number with the App version in the pipeline.
+- ALOpsAppPublish: Implemented auto Uninstall of Apps when "Force Sync" is used
+- ALOpsAppSign: Can batch sign Apps compiled with ALOpsAppCompiler, use parameter [batchsigncompiledapps] to enabled
+- ALOpsAppValidation: Get countries from AppSourceCop.json is parameter [countries] is empty/blank
+- ALOpsDockerStart: Added [license] parameter, works with local path or Url
+- ALOpsDockerStart: Improved Copy-Addins method for larger Add-ins, fixed the PermissionDenied exception.
+
 ## [v1.443] - 2021-06-07
 - All Tasks: Fixed BC-Management module loading compatibility with BC v19
 - ALOpsAgentMaintenance: Prune images based on CreationDate
