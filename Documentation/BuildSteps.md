@@ -100,7 +100,7 @@
             displayName: 'ALOps App Validation'
           inputs:
             license_path:                         # Path of the FLF license to import. Must be a fully qualified path or relative to $(System.DefaultWorkingDirectory) or a downloadable Url. $(license_path)
-            countries: W1                         # Comma seperated array of countries to validate. $(countries)
+            countries: W1                         # Comma seperated array of countries to validate. When blank SupportedCountries value from AppSourceCop.json is used. $(countries)
             affixes:                              # Comma seperated array of affixes. $(affixes)
             artifact_path: $(System.ArtifactsDirectory)# Path for App Artifact(s). $(artifact_path)
             artifact_filter: *.app                # Filter used for locating App file relative to $(artifact_path). $(artifact_filter)
@@ -267,6 +267,7 @@
             docker_registry:                      # Docker registry for login, example: 'bcinsider.azurecr.io' $(docker_registry)
             memory_gb: -1                         # Set maximum memory for container in GB. $(memory_gb)
             container_restart: no                 # Set docker container restart preference. $(container_restart)
+            licensefile:                          # Set the BC License File. Path or Url. $(licensefile)
             docker_parameters:                    # Specify additional docker parameters. $(docker_parameters)
             sql_server:                           # External SQL Server. $(sql_server)
             sql_server_instance:                  # External SQL Server Instance. $(sql_server_instance)
