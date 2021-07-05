@@ -43,6 +43,7 @@
           inputs:
             usedocker: False                      # Run task in Docker container. $(usedocker)
             fixed_tag:                            # Allows recycling of docker containers. $(fixed_tag)
+            batchsigncompiledapps: False          # Batch Sign Apps taged by ALOpsAppCompile task. $(batchsigncompiledapps)
             artifact_path:                        # Path for storing App Artifact. $(artifact_path)
             nav_artifact_app_filter: *.app        # Path of the App to Codesign. Must be a fully qualified path or relative to $(System.DefaultWorkingDirectory). $(nav_artifact_app_filter)
             pfx_path:                             # Path or Url of the PFX file. $(pfx_path)
@@ -100,7 +101,7 @@
             displayName: 'ALOps App Validation'
           inputs:
             license_path:                         # Path of the FLF license to import. Must be a fully qualified path or relative to $(System.DefaultWorkingDirectory) or a downloadable Url. $(license_path)
-            countries: W1                         # Comma seperated array of countries to validate. When blank SupportedCountries value from AppSourceCop.json is used. $(countries)
+            countries:                            # Comma seperated array of countries to validate. When blank SupportedCountries value from AppSourceCop.json is used. $(countries)
             affixes:                              # Comma seperated array of affixes. $(affixes)
             artifact_path: $(System.ArtifactsDirectory)# Path for App Artifact(s). $(artifact_path)
             artifact_filter: *.app                # Filter used for locating App file relative to $(artifact_path). $(artifact_filter)
