@@ -20,6 +20,7 @@
             alsourcepath: $(System.DefaultWorkingDirectory)#  $(alsourcepath) $(alsourcepath)
             ruleset:                              # Overrule the Ruleset from VSCode settings. Path relative to [alsourcepath] $(ruleset) $(ruleset)
             appversiontemplate: 1.0.*.0           # Template for versioning Apps. '*' is replaced by the current Build Number. $(appversiontemplate) $(appversiontemplate)
+            updatebuildnumber: True               # Update the Build number with the current version. $(updatebuildnumber) $(updatebuildnumber)
             appfilenametemplate: %APP_PUBLISHER%_%APP_NAME%_%APP_VERSION%_%BC_TYPE%_%BC_VERSION%_%BC_COUNTRY%.app# Template for App filename. $(appfilenametemplate) $(appfilenametemplate)
             alcodeanalyzer:                       # AL Analyzer(s) used for compiling. (Example: CodeCop,UICop) $(alcodeanalyzer) $(alcodeanalyzer)
             showmycode: Keep                      # Overrule ShowMyCode by setting other option than 'Keep'. $(showmycode) $(showmycode)
