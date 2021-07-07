@@ -1,7 +1,7 @@
 # Change Log
 All notable changes to the "ALOps" extension.
 
-## [v1.444] - 2021-06-14
+## [v1.444] - 2021-07-05
 - All Tasks: The Artifact Publish Folder for DevOps can be manipulated via Environment variable [Alops_ArtifactPublishFolder], defaults is [Dynamics 365]
 - ALOpsAppCompile: Improved parsing of BC Compile logs
 - ALOpsAppCompile: Ruleset patch matching with DefaultWorkingDirectory
