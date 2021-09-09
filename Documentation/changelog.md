@@ -1,7 +1,7 @@
 # Change Log
 All notable changes to the "ALOps" extension.
 
-## [v1.445] - 2021-07-20
+## [v1.445] - 2021-09-09
 - ALOpsAgentMaintenance: Additional cleanup of temporary folder with format ????????.??? 
 - ALOpsAppCompile: ignore download previous if AppSourceCop is not enabled
 - ALOpsAppCompile: Parallel compile can now be disabled using boolean Environment Variable [Alops_DisableParallelCompile]
