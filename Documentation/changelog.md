@@ -1,7 +1,14 @@
 # Change Log
 All notable changes to the "ALOps" extension.
 
-## [v1.444] - 2021-06-14
+## [v1.445] - 2021-09-09
+- ALOpsAgentMaintenance: Additional cleanup of temporary folder with format ????????.??? 
+- ALOpsAppCompile: ignore download previous if AppSourceCop is not enabled
+- ALOpsAppCompile: Parallel compile can now be disabled using boolean Environment Variable [Alops_DisableParallelCompile]
+- ALOpsAppCompile: Solved locking issue on VSIX extract
+- ALOpsCompile: Print full ALC output on failure exitcode
+
+## [v1.444] - 2021-07-05
 - All Tasks: The Artifact Publish Folder for DevOps can be manipulated via Environment variable [Alops_ArtifactPublishFolder], defaults is [Dynamics 365]
 - ALOpsAppCompile: Improved parsing of BC Compile logs
 - ALOpsAppCompile: Ruleset patch matching with DefaultWorkingDirectory
