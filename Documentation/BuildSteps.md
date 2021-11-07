@@ -180,6 +180,9 @@
             updatebuildnumber: True               # Update the Build number with the current version. $(updatebuildnumber)
             setup_working_folder: False           # Copy working folder to Docker container. $(setup_working_folder)
             showmycode: Keep                      # Overrule ShowMyCode by setting other option than 'Keep'. $(showmycode)
+            resourceexposurepolicy_allowdebugging: Keep# Overrule allowDebugging by setting other option than 'Keep'. $(resourceexposurepolicy_allowdebugging)
+            resourceexposurepolicy_allowdownloadingsource: Keep# Overrule allowDownloadingSource by setting other option than 'Keep'. $(resourceexposurepolicy_allowdownloadingsource)
+            resourceexposurepolicy_includesourceinsymbolfile: Keep# Overrule includeSourceInSymbolFile by setting other option than 'Keep'. $(resourceexposurepolicy_includesourceinsymbolfile)
             applicationinsightskey:               # Overwrite the ApplicationInsightsKey in app.json. Set to 'NONE' to remove InsightsKey. $(applicationinsightskey)
             printappmanifest: True                # Print the final app.json before compile. $(printappmanifest)
             output_alc_logs: True                 # Output ALC logs. $(output_alc_logs)
@@ -277,6 +280,7 @@
             sql_database_user_password:           # External SQL Database Password. $(sql_database_user_password)
             sql_backup_file:                      # Restore BAK file on startup. $(sql_backup_file)
             encryption_key:                       # Encryption key for Service Tier. $(encryption_key)
+            taskscheduler: Keep                   # Overrule EnableTaskScheduler by setting other option than 'Keep'. $(taskscheduler)
     ```
 - ALOps Docker Wait
   * Wait until the Business Central container is started.
