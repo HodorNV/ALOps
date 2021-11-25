@@ -1,7 +1,7 @@
 # Change Log
 All notable changes to the "ALOps" extension.
 
-## [v1.446] - 2031-01-31
+## [v1.446] - 2021-11-25
 - ALOpsAppCompile (v1/v2):  Latest VSIX can be used by specifing "LATEST" in the alternative_vsix_path
 - ALOpsAppCompile: Disable MAXDEGREEOFPARALELISM when 'Alops_DisableParallelCompile' is enabled
 - ALOpsAppCompile: ResourceExposurePolicy - Auto remove ShowMyCode
