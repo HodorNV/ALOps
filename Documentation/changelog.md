@@ -1,6 +1,17 @@
 # Change Log
 All notable changes to the "ALOps" extension.
 
+## [v1.446] - 2021-11-25
+- ALOpsAppCompile (v1/v2):  Latest VSIX can be used by specifing "LATEST" in the alternative_vsix_path
+- ALOpsAppCompile: Disable MAXDEGREEOFPARALELISM when 'Alops_DisableParallelCompile' is enabled
+- ALOpsAppCompile: ResourceExposurePolicy - Auto remove ShowMyCode
+- ALOpsAppCompile: Weeknumber correction, Activates on 1/1/2022
+- ALOpsAppCompiler@2 - Provide support for resourceExposurePolicy
+- ALOpsDockerCreate: catch pull failure for remote repositories with login
+- ALOpsDockerStart: Map parameter for TaskScheduler
+- ALOpsExtensionAPI: Error-handling on failure
+- ALOpsExtensionAPI: improved failure detection, exit on timeout
+
 ## [v1.445] - 2021-09-09
 - ALOpsAgentMaintenance: Additional cleanup of temporary folder with format ????????.??? 
 - ALOpsAppCompile: ignore download previous if AppSourceCop is not enabled
