@@ -7,6 +7,7 @@ All notable changes to the "ALOps" extension.
 - ALOpsAppCompile: ResourceExposurePolicy - Auto remove ShowMyCode
 - ALOpsAppCompile: Weeknumber correction, Activates on 1/1/2022
 - ALOpsAppCompiler@2 - Provide support for resourceExposurePolicy
+- ALOpsAppSign: improved NavSip setup for Azure Devops Hosted Agents
 - ALOpsDockerCreate: catch pull failure for remote repositories with login
 - ALOpsDockerStart: Map parameter for TaskScheduler
 - ALOpsExtensionAPI: Error-handling on failure
