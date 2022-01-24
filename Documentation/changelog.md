@@ -1,6 +1,12 @@
 # Change Log
 All notable changes to the "ALOps" extension.
 
+## [v1.447] - 2021-12-31
+- ALOpsAppCompile: Allow values TRUE/FALSE for setting ResourceExposurePolicy
+- ALOpsAppCompile: bugfix concerning disabling parallel compile
+- ALOpsAppCompile: build in compatibility with applicationInsightsConnectionString 
+- ALOpsAppCompile: ignore Resourceexposurepolicy on runtime <= 8.0
+
 ## [v1.446] - 2021-11-25
 - ALOpsAppCompile (v1/v2):  Latest VSIX can be used by specifing "LATEST" in the alternative_vsix_path
 - ALOpsAppCompile: Disable MAXDEGREEOFPARALELISM when 'Alops_DisableParallelCompile' is enabled
