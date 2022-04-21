@@ -1,7 +1,11 @@
 # Change Log
 All notable changes to the "ALOps" extension.
 
-## [v1.447] - 2021-12-31
+## [v1.448] - 2022-04-21
+- ALOpsInfo: Add feature to detect highest used Application version in any "App.json" file, saved in variable "ALOPS_APPLICATION_VERSION"
+- ALOpsOpenAPI: Generate OpenAPI (Swagger) documentation based on Business Central API's
+
+## [v1.447] - 2022-01-24
 - ALOpsAppCompile: Allow values TRUE/FALSE for setting ResourceExposurePolicy
 - ALOpsAppCompile: bugfix concerning disabling parallel compile
 - ALOpsAppCompile: build in compatibility with applicationInsightsConnectionString 
