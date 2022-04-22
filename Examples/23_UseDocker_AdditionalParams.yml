@@ -1,0 +1,39 @@
+name: $(Build.BuildId)
+
+trigger: none
+
+variables:
+- group: 'Secrets'  # link to a variable group that has secret variables, like URL to license file, or sasToken for insider builds
+
+pool: HOD-DOCKER
+
+steps:
+- checkout: self
+  clean: true 
+
+- task: ALOpsDockerCreate@1
+  displayName: 'ALOPS - Create Docker Image' # It will reuse the image if already exists, or build one if it doesn't.
+  inputs:
+    artifacttype: Sandbox
+
+- task: ALOpsDockerStart@1
+  displayName: 'ALOPS - Start Docker Container' # No need to provide any details - it will get the details from previous step
+  inputs:
+   licensefile: $(bc.license)
+   docker_parameters: |
+     --env kaka=pipi
+     --env customNavSettings=EnableTaskScheduler=false
+
+- task: ALOpsDockerWait@1
+  displayName: 'ALOPS - Wait for Docker Container to start'
+  inputs:
+    search_string: 'Ready for connections!'
+
+#########################################################################
+### Your tasks go here, between [ALOpsDockerWait] and [ALOpsDockerRemove]
+#########################################################################
+
+- task: ALOpsDockerRemove@1
+  displayName: 'ALOPS - Remove Docker Container'
+  enabled: true
+  condition: always()
