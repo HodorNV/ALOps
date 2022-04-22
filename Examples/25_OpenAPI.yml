@@ -1,0 +1,66 @@
+name: $(Build.BuildId)
+
+# trigger:
+#  branches:
+#    include:
+#      - master
+
+variables:
+  - group: "Secrets" # link to a variable group that has secret variables, like URL to license file, or sasToken for insider builds
+
+pool: HOD-DOCKER
+
+steps:
+  - checkout: self
+    clean: true
+
+  - task: ALOpsDockerCreate@1
+    displayName: "ALOPS - Create Docker Image" # It will reuse the image if already exists, or build one if it doesn't.
+
+  - task: ALOpsDockerStart@1
+    displayName: "ALOPS - Start Docker Container" # No need to provide any details - it will get the details from previous step
+    inputs:
+      docker_pull: true
+      licensefile: "$(bc.license)"
+      enable_api_services: true #important for getting the API data later in the pipeline!
+
+  - task: ALOpsDockerWait@1
+    displayName: "ALOPS - Wait for Docker Container to start"
+    inputs:
+      search_string: "Ready for connections!"
+
+  - task: ALOpsAppCompiler@1
+    displayName: "ALOPS - Compile Extension"
+    inputs:
+      usedocker: true
+      nav_app_version: "1.0.[yyyyWW].*"
+      failed_on_warnings: true
+      targetproject: "app/app.json"
+      publishxlif: true
+
+  - task: ALOpsAppPublish@1
+    displayName: "ALOPS - Publish App" # to be able to run test
+    inputs:
+      usedocker: true
+      nav_artifact_app_filter: "*.app"
+      skip_verification: true
+
+  - task: ALOpsOpenAPI@1
+    inputs:
+      usedocker: true
+      api_endpoint: "https://$(ALOPS_DOCKER_HOSTNAME):7048/bc/api"
+      authentication: "basic"
+      username: "$(ALOPS_DOCKER_ADMINUSER)"
+      password: "$(ALOPS_DOCKER_ADMINPASSWORD)"
+      export_yaml: true
+      discover: true
+      publish_artifacts: true
+      api_exclude_routes: |
+        beta
+        v1.0
+        v2.0
+
+  - task: ALOpsDockerRemove@1
+    displayName: "ALOPS - Remove Docker Container"
+    enabled: true
+    condition: always()
