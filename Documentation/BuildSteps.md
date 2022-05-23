@@ -15,6 +15,7 @@
             removeoldtasks: False                 # Remove old ALOps tasks. $(removeoldtasks)
             removeunusedcontainers: False         # Force docker container pruning. $(removeunusedcontainers)
             pruneimagesdayscreated: 0             # Force docker image pruning based on creation date (x days). $(pruneimagesdayscreated)
+            pruneimagesosbased: False             # Prune images based on old OS. $(pruneimagesosbased)
             removebcartifacts: False              # Remove BC Artifacts. $(removebcartifacts)
             bcartifactscachefolder: C:\bcartifacts.cache# Set non-default BC Artifact Cache folder. $(bcartifactscachefolder)
             daysunused: 30                        # Define date-range for cleanup BC-Artifacts. $(daysunused)
@@ -167,9 +168,10 @@
             bc_password:                          # BC User Password for ServiceTier connection. $(bc_password)
             al_compiler_version: 0.12.15355       # AL Compiler version used for compiling. $(al_compiler_version)
             ruleset:                              # Overrule the Ruleset from VSCode settings. Path relative to [alsourcepath] $(ruleset)
+            suppresswarnings: KEEP                # Overrule the 'suppresswarnings' setting. $(suppresswarnings)
             al_analyzer:                          # AL Analyzer(s) used for compiling. (Example: CodeCop,UICop) $(al_analyzer)
             nav_app_version: 1.0.*.0              # Template for versioning NAV-Apps. '*' is replaced by the current Build Number. $(nav_app_version)
-            vsix_download_path:                   # Alternative VSIX download url. $(vsix_download_path)
+            vsix_download_path:                   # Alternative VSIX download url. 'Latest' can be specified. $(vsix_download_path)
             use_ssl: False                        # Use SSL for Business Central connections. $(use_ssl)
             download_test_symbols: False          # Download Test Symbols explicitly (without Test-Version reference in App.json). $(download_test_symbols)
             usecompression: True                  # Compress Source-Folder for transfer to docker container. $(usecompression)
@@ -319,6 +321,8 @@
             artifact_path: $(System.ArtifactsDirectory)# Path for App Artifact. $(artifact_path)
             artifact_filter: *.app                # Filter used for locating App file relative to $(path_to_publish). $(artifact_filter)
             showdeploymentstatus: True            # Show Extension Deployment Status. $(showdeploymentstatus)
+            checksecondsdelay: 5                  # Seconds of delay betweel deployment status checks. $(checksecondsdelay)
+            maxtries: 10                          # Max tries for status check. $(maxtries)
     ```
 - ALOps Import FOB
   * Import objects from .FOB file.

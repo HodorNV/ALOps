@@ -1,6 +1,16 @@
 # Change Log
 All notable changes to the "ALOps" extension.
 
+## [v1.449] - 2022-05-18
+- ALOpsAgentMaintenance: New parameter boolean 'pruneimagesosbased', allows for cleanup of images based on old OS
+- ALOpsAppCompiler: Extra parameter 'suppressWarnings' allows for overwriting in the app.json. Options: "KEEP","NONE", "<Array of exclusions>"
+- ALOpsAppCompiler@2: Improved Assembly resolve, fixes the missing "System.Collections.Immutable" reference
+- ALOpsAppCompiler@2: Ruleset not being applied when settings.json is missing
+- ALOpsDockerCreate: OS Detection for Windows Server 2019 (2022)
+- ALOpsExtensionAPI: More Resilient on Deployment, delay and max retries can be configured with [checksecondsdelay] and [maxtries]
+- ALOpsInfo: Add feature to detect highest used Application version in any "App.json" file, saved in variable "ALOPS_APPLICATION_VERSION", "ALOPS_APPLICATION_VERSION_MAJOR", "ALOPS_APPLICATION_VERSION_MINOR"
+
+
 ## [v1.448] - 2022-04-21
 - ALOpsInfo: Add feature to detect highest used Application version in any "App.json" file, saved in variable "ALOPS_APPLICATION_VERSION"
 - ALOpsOpenAPI: Generate OpenAPI (Swagger) documentation based on Business Central API's
