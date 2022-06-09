@@ -1,5 +1,8 @@
 name: $(Build.BuildId)
 
+variables:
+  - group: Secrets
+
 pool: HOD-DOCKER
 
 trigger: none
@@ -16,4 +19,5 @@ steps:
     artifacttype: 'Sandbox'
     appversiontemplate: '1.0.*.0'
     publishartifact: false
-    alternativevsixurl: '6.1.381323' # possibilities are a localpath, a url (preferred), or a version for downloading it from the marketplace
+    alternativevsixurl: '6.5.413786' # possibilities are a localpath, a url (preferred), or a version for downloading it from the marketplace.  
+    #alternativevsixurl: 'Latest'    # You can also use "Latest" to get the latest from the marketplace (important for using custom codecops)
