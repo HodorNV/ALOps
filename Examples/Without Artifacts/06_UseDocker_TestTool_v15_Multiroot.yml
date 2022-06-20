@@ -36,6 +36,8 @@ steps:
      Any
      Library Assert
      Test Runner
+     Permissions Mock
+     Library Variable Storage
 
 #<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
