@@ -93,6 +93,7 @@
             failed_test_action: Warning           # Action to take when a Test failed. $(failed_test_action)
             override_finsql_path:                 # Overrule automatic detection of FinSql with fixed value. $(override_finsql_path)
             resultfilename: TestResults.xml       # Set filename for the Result XML. $(resultfilename)
+            testrunnercodeunitid:                 # Set the Codeunit Id for the test-runner to use. $(testrunnercodeunitid)
     ```
 - ALOps App Validation
   * Validate App from Business Central AppSource.
@@ -321,8 +322,8 @@
             artifact_path: $(System.ArtifactsDirectory)# Path for App Artifact. $(artifact_path)
             artifact_filter: *.app                # Filter used for locating App file relative to $(path_to_publish). $(artifact_filter)
             showdeploymentstatus: True            # Show Extension Deployment Status. $(showdeploymentstatus)
-            checksecondsdelay: 5                  # Seconds of delay betweel deployment status checks. $(checksecondsdelay)
-            maxtries: 10                          # Max tries for status check. $(maxtries)
+            checksecondsdelay: 30                 # Seconds of delay betweel deployment status checks. $(checksecondsdelay)
+            maxtries: 20                          # Max tries for status check. $(maxtries)
     ```
 - ALOps Import FOB
   * Import objects from .FOB file.
