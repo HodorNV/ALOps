@@ -1,6 +1,16 @@
 # Change Log
 All notable changes to the "ALOps" extension.
 
+## [v1.450] - 2022-07-03
+- ALOpsAppCompile: Custom CodeCop libraries 
+- ALOpsAppCompile: Optimize Get Latest VSIX
+- ALOpsAppcompile: Use 64bit ALC.EXE when available
+- ALOpsAppPublish: Allow publishing same version of an App
+- ALOpsAppPublish: Increased default delays and retry count
+- ALOpsAppTest: bugfix, set authentication to AAD instead of AccessControlService
+- ALOpsAppTest: Testrunner Codeunit can be set with parameter [testrunnercodeunitid]
+- ALOpsOpenAPI: Major performance improvents
+
 ## [v1.449] - 2022-05-18
 - ALOpsAgentMaintenance: New parameter boolean 'pruneimagesosbased', allows for cleanup of images based on old OS
 - ALOpsAppCompiler: Extra parameter 'suppressWarnings' allows for overwriting in the app.json. Options: "KEEP","NONE", "<Array of exclusions>"
