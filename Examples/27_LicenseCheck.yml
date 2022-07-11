@@ -1,0 +1,21 @@
+name: $(Build.BuildId)
+
+pool: HOD-DOCKER
+
+trigger: none
+
+steps:
+- checkout: self
+  clean: true 
+
+- task: ALOpsAppCompiler@2
+  inputs:
+    artifacttype: 'OnPrem'
+    appversiontemplate: '1.0.*.0'
+
+- task: ALOpsAppLicenseCheck@1
+  inputs:
+    licensefile: 'http://whatever.com'                # Direct-download URL (Remark: local file doesn't work (yet)) (only .flf file supported, .bclicense not (yet)!)
+    artifact_path: '$(System.ArtifactsDirectory)'     # Optional
+    artifact_filter: '*.apps'                         # check all apps (interesting to test ISV-apps with your license as well.)
+    artifact_exclude: '*-TEST*,*_TEST*'               # an example to avoid the test-apps from the license-check
