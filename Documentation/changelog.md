@@ -1,6 +1,13 @@
 # Change Log
 All notable changes to the "ALOps" extension.
 
+## [v1.451] - 2022-07-30
+- ALOpsAppLicenseCheck: Validate App(s) against License
+- ALOpsAppPublish:  Sync-CheckOnly before Publish / Breaking Change detection
+- ALOpsExtensionAPI: Added Client Certificate Authentication 
+- ALOpsExtensionAPI: DEV-Port Deploy enabled by specifying the additional parameter [dev_endpoint]
+- ALOpsOpenAPI: Added Client Certificate Authentication 
+
 ## [v1.450] - 2022-07-03
 - ALOpsAppCompile: Custom CodeCop libraries 
 - ALOpsAppCompile: Optimize Get Latest VSIX
