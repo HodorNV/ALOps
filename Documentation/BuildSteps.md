@@ -410,6 +410,7 @@
             export_edmx: False                    # Export original API EDMX. $(export_edmx)
             export_yaml: True                     # Export API in YAML format. $(export_yaml)
             export_json: False                    # Export API in JSON format. $(export_json)
+            exclude_company_paths: False          # Exclude Company Paths. $(exclude_company_paths)
     ```
 - ALOps Package Import
   * Import and Process RapidStart/Configuration Package
