@@ -5,7 +5,14 @@
     Here is a list of all build steps you have at your disposal when you use ALOps
 
         ### ALOps Tasks
-    - ALOps Agent Maintenance
+    - ALOps AdminCenter API
+  * Interact with BC SaaS AdminCenter API.
+  * YAML Template: 
+    ```yaml
+            - task: ALOpsAdminCenterAPI@1
+            displayName: 'ALOps AdminCenter API'
+    ```
+- ALOps Agent Maintenance
   * Cleanup and maintain DevOps a Agent for Business Central.
   * YAML Template: 
     ```yaml
