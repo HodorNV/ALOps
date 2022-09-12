@@ -160,9 +160,7 @@
             validatenextmajor: False              # Validate against Next Major version of Business Central. $(validatenextmajor)
             sastoken:                             # SAS Token used to access Storage Account. $(sastoken)
             skipverification: False               #  $(skipverification)
-            skipupgrade: False                    #  $(skipupgrade)
             skipappsourcecop: False               #  $(skipappsourcecop)
-            skipconnectiontest: False             #  $(skipconnectiontest)
             includewarnings: False                # Include this switch if you want to include Warnings. $(includewarnings)
             failonerror: True                     # Include this switch if you want to fail on the first error instead of returning all errors to the caller. $(failonerror)
             containername: bcserver               # Only required when running multiple DevOps Agents on the same server. (Not recommended) $(containername)
@@ -369,6 +367,7 @@
             showdeploymentstatus: True            # Show Extension Deployment Status. $(showdeploymentstatus)
             checksecondsdelay: 30                 # Seconds of delay betweel deployment status checks. $(checksecondsdelay)
             maxtries: 20                          # Max tries for status check. $(maxtries)
+            replacepackageid: False               # Force a new PackageID for each deployment. $(replacepackageid)
     ```
 - ALOps Import FOB
   * Import objects from .FOB file.
