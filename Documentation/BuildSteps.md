@@ -5,7 +5,33 @@
     Here is a list of all build steps you have at your disposal when you use ALOps
 
         ### ALOps Tasks
-    - ALOps Agent Maintenance
+    - ALOps AdminCenter API
+  * Interact with BC SaaS AdminCenter API.
+  * YAML Template: 
+    ```yaml
+            - task: ALOpsAdminCenterAPI@1
+            displayName: 'ALOps AdminCenter API'
+          inputs:
+            azure_tenant_id:                      # Azure Tenant Id. Only required for BC SaaS $(azure_tenant_id)
+            azure_app_client_id:                  # Azure AD Application Client Id. $(azure_app_client_id)
+            azure_app_client_secret:              # Azure AD Application Client Secret. $(azure_app_client_secret)
+            azure_app_client_certificate:         # Azure AD Application Client Certificate. $(azure_app_client_certificate)
+            azure_app_client_certificate_password: # Azure AD Application Client Certificate Password. $(azure_app_client_certificate_password)
+            username:                             # Business Central Username. Leave empty for Service-2-Service authentication. $(username)
+            password:                             # Business Central User Password. Leave empty for Service-2-Service authentication. $(password)
+            checksecondsdelay: 30                 # Seconds of delay betweel deployment status checks. $(checksecondsdelay)
+            maxtries: 20                          # Max tries for status check. $(maxtries)
+            interaction: environment_list         # Set Interaction to use. $(interaction)
+            wait_for_operation: True              # Wait for operation. $(wait_for_operation)
+            environment:                          # Source Environment. $(environment)
+            target_environment:                   # Target Environment. $(target_environment)
+            use_update_window: False              # Use update window. $(use_update_window)
+            app_id:                               # App ID. $(app_id)
+            accept_isv_eula: False                # Accept ISV Eula. $(accept_isv_eula)
+            force_dependencies: False             # Force Dependencies. $(force_dependencies)
+            confirm_delete_data: False            # Confirm Delete Data. $(confirm_delete_data)
+    ```
+- ALOps Agent Maintenance
   * Cleanup and maintain DevOps a Agent for Business Central.
   * YAML Template: 
     ```yaml
@@ -27,11 +53,14 @@
             - task: ALOpsAppLicenseCheck@1
             displayName: 'ALOps App License Check'
           inputs:
+            usedocker: False                      # Run task in Docker container. $(usedocker)
+            fixed_tag:                            # Allows recycling of docker containers. $(fixed_tag)
             licensefile:                          # Set the BC License File. Path or Url. $(licensefile)
             artifact_path: $(System.ArtifactsDirectory)# Path for App Artifact. $(artifact_path)
-            artifact_filter: *.app                # Filter used for locating App file relative to $(path_to_publish). $(artifact_filter)
-            artifact_include:                     # Include-Filter used for locating App file relative to $(path_to_publish). $(artifact_include)
-            artifact_exclude:                     # Exclude-Filter used for locating App file relative to $(path_to_publish). $(artifact_exclude)
+            artifact_filter: *.app                # Filter used for locating App file relative to $(artifact_path). $(artifact_filter)
+            artifact_include:                     # Include-Filter used for locating App file relative to $(artifact_path). $(artifact_include)
+            artifact_exclude:                     # Exclude-Filter used for locating App file relative to $(artifact_path). $(artifact_exclude)
+            exclude_ranges:                       # Exclude-Ranges from LicenseCheck (Buffer / Tempory tables). Format: 60000..60099,70000..70100 $(exclude_ranges)
     ```
 - ALOps App Runtime Package
   * Get a NAV App runtime package for onprem deployment.
@@ -131,9 +160,7 @@
             validatenextmajor: False              # Validate against Next Major version of Business Central. $(validatenextmajor)
             sastoken:                             # SAS Token used to access Storage Account. $(sastoken)
             skipverification: False               #  $(skipverification)
-            skipupgrade: False                    #  $(skipupgrade)
             skipappsourcecop: False               #  $(skipappsourcecop)
-            skipconnectiontest: False             #  $(skipconnectiontest)
             includewarnings: False                # Include this switch if you want to include Warnings. $(includewarnings)
             failonerror: True                     # Include this switch if you want to fail on the first error instead of returning all errors to the caller. $(failonerror)
             containername: bcserver               # Only required when running multiple DevOps Agents on the same server. (Not recommended) $(containername)
@@ -199,6 +226,8 @@
             resourceexposurepolicy_allowdebugging: Keep# Overrule allowDebugging by setting other option than 'Keep'. $(resourceexposurepolicy_allowdebugging)
             resourceexposurepolicy_allowdownloadingsource: Keep# Overrule allowDownloadingSource by setting other option than 'Keep'. $(resourceexposurepolicy_allowdownloadingsource)
             resourceexposurepolicy_includesourceinsymbolfile: Keep# Overrule includeSourceInSymbolFile by setting other option than 'Keep'. $(resourceexposurepolicy_includesourceinsymbolfile)
+            internalsvisibleto: Keep              # Remove internalsVisibleTo by setting other option than 'Keep'. $(internalsvisibleto)
+            preprocessorsymbols:                  # Overwrite the preprocessorSymbols in app.json, comma seperated string. Set to 'NONE' to remove. $(preprocessorsymbols)
             applicationinsightskey:               # Overwrite the ApplicationInsightsKey in app.json. Set to 'NONE' to remove InsightsKey. $(applicationinsightskey)
             printappmanifest: True                # Print the final app.json before compile. $(printappmanifest)
             output_alc_logs: True                 # Output ALC logs. $(output_alc_logs)
@@ -325,6 +354,7 @@
             interaction: get                      # Set Interaction Method to use. (Get/Publish/Batch Publish). $(interaction)
             api_endpoint: https://api.businesscentral.dynamics.com/v2.0/$(azure_tenant_id)/Sandbox/api# Set API Endpoint. (protocol://host:port/serverinstance/api) $(api_endpoint)
             dev_endpoint:                         # Set DEV Endpoint. (protocol://host:port/serverinstance/dev) $(dev_endpoint)
+            dev_schemeupdatemode: synchronize     # Set Schema Update Mode to use with DEVPort deploy. (synchronize/recreate/forcesync) $(dev_schemeupdatemode)
             apiversion: v1.0                      # Version of the API to use (beta / v1.0 / v2.0) $(apiversion)
             authentication: oauth                 # Set authentication Method to use. Default [Windows]. $(authentication)
             azure_tenant_id:                      # Azure Tenant Id. Only required for BC SaaS $(azure_tenant_id)
@@ -340,6 +370,7 @@
             showdeploymentstatus: True            # Show Extension Deployment Status. $(showdeploymentstatus)
             checksecondsdelay: 30                 # Seconds of delay betweel deployment status checks. $(checksecondsdelay)
             maxtries: 20                          # Max tries for status check. $(maxtries)
+            replacepackageid: False               # Force a new PackageID for each deployment. $(replacepackageid)
     ```
 - ALOps Import FOB
   * Import objects from .FOB file.
@@ -407,6 +438,7 @@
             export_edmx: False                    # Export original API EDMX. $(export_edmx)
             export_yaml: True                     # Export API in YAML format. $(export_yaml)
             export_json: False                    # Export API in JSON format. $(export_json)
+            exclude_company_paths: False          # Exclude Company Paths. $(exclude_company_paths)
     ```
 - ALOps Package Import
   * Import and Process RapidStart/Configuration Package
