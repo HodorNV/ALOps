@@ -1,6 +1,15 @@
 # Change Log
 All notable changes to the "ALOps" extension.
 
+## [v1.453] - 2022-10-12
+- ALOpsAppCompile: Expand appversiontemplate with Major/Minor application from app.json. (* = Build Nr / ? = Original Version / A = Application Version)
+- ALOpsAppCompile: override global preprocessor symbols in app
+- ALOpsAppCompile: Remove internalsVisibleTo property from app.json
+- ALOpsAppPublish: Improved Get-AppOrder based on AppID
+- ALOpsExtensionAPI: Added SchemaSyncMode option
+- ALOpsExtensionAPI: Ignore Server 503 error when checking status
+- General: improved generic assembly loading
+
 ## [v1.451] - 2022-07-30
 - ALOpsAppLicenseCheck: Validate App(s) against License
 - ALOpsAppPublish:  Sync-CheckOnly before Publish / Breaking Change detection
