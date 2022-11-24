@@ -494,7 +494,7 @@
             alops_repository_username:            # Username for ALOps API Endpoint. $(alops_repository_username)
             alops_repository_password:            # Password for ALOps API Endpoint. $(alops_repository_password)
             artifact_path:                        # Path for App Artifact. $(artifact_path)
-            app_artifact_filter: *.app            # Path of the App to publish. Must be a fully qualified path or relative to $(System.DefaultWorkingDirectory). $(app_artifact_filter)
+            app_artifact_filter:                  # Path of the App to publish. Must be a fully qualified path or relative to $(System.DefaultWorkingDirectory). $(app_artifact_filter)
             upload_c_applications: False          # Upload Applications from Applications folder. $(upload_c_applications)
     ```
 - ALOps SaaS Get Extensions
