@@ -372,7 +372,7 @@
             checksecondsdelay: 30                 # Seconds of delay betweel deployment status checks. $(checksecondsdelay)
             maxtries: 20                          # Max tries for status check. $(maxtries)
             replacepackageid: False               # Force a new PackageID for each deployment. $(replacepackageid)
-            blocksymbolsonly: True                # Check App, block if SymbolsOnly App. $(blocksymbolsonly)
+            blocksymbolsonly: False               # Check App, block if SymbolsOnly App. $(blocksymbolsonly)
     ```
 - ALOps Import FOB
   * Import objects from .FOB file.
@@ -398,7 +398,7 @@
             - task: ALOpsInfo@1
             displayName: 'ALOps Info'
           inputs:
-            scanforsymbolonlyapps: Keep           # Scan for SymbolOnly Apps. $(scanforsymbolonlyapps)
+            scanforsymbolonlyapps: Disabled       # Scan for SymbolOnly Apps. $(scanforsymbolonlyapps)
     ```
 - ALOps License Import
   * Import Business Central license (.flf).
@@ -484,7 +484,7 @@
             tenant: default                       # Tenant to publish to when Scope is set to Tenant. $(tenant)
             batch_publish_folder:                 # Path containing Apps to publish. $(batch_publish_folder)
             publisherazureactivedirectorytenantid: # Publisher Azure AD TenantId. $(publisherazureactivedirectorytenantid)
-            blocksymbolsonly: True                # Check App, block if SymbolsOnly App. $(blocksymbolsonly)
+            blocksymbolsonly: False               # Check App, block if SymbolsOnly App. $(blocksymbolsonly)
     ```
 - ALOps Repository Publish Extension
   * Publish extension to ALOps Repository.
