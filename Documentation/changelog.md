@@ -1,7 +1,7 @@
 # Change Log
 All notable changes to the "ALOps" extension.
 
-## [v1.454] - 2022-12-31
+## [v1.454] - 2022-11-29
 - All tasks: optimized loading of NAV Management DLLs and other modules
 - ALOpsAppCompile: Added string parameter 'ignorepragmas', when not blank ignores all PRAMA's set in code.
 - ALOpsAppCompile: Optimised Get-ArfitactUrl, runs only once per task.
