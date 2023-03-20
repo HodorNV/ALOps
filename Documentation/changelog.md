@@ -5,10 +5,10 @@ All notable changes to the "ALOps" extension.
 - All Tasks: BC v22 compatibility
 - All Tasks: Bump BcContainerHelper to latest version v4.0.14
 - ALOpsAppCompile @1/@2: Added parameter for enabling "External Rulesets "
+- ALOpsAppCompile: Custom Linter json
 - ALOpsAppLicenseCheck: Solved bug with Permissions masks for BCLicense files
 - ALOpsAppTest: fixed ability to set filter on TestCodeunits to run
 - ALOpsAppValidation: Increase logging on License import
-- ALOpsAppCompile: Custom Linter json
 
 ## [v1.454] - 2022-11-29
 - All tasks: optimized loading of NAV Management DLLs and other modules
