@@ -233,6 +233,7 @@
             printappmanifest: True                # Print the final app.json before compile. $(printappmanifest)
             output_alc_logs: True                 # Output ALC logs. $(output_alc_logs)
             additionalprobingpaths:               # Add additional Assembly probing Paths. $(additionalprobingpaths)
+            enable_external_rulesets: False       # Enable External Rulesets. $(enable_external_rulesets)
     ```
 - ALOps Docker Create
   * Create Docker image based on NAV/BC Artifacts.
