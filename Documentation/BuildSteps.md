@@ -211,6 +211,7 @@
             ruleset:                              # Overrule the Ruleset from VSCode settings. Path relative to [alsourcepath] $(ruleset)
             suppresswarnings: KEEP                # Overrule the 'suppresswarnings' setting. $(suppresswarnings)
             al_analyzer:                          # AL Analyzer(s) used for compiling. (Example: CodeCop,UICop) $(al_analyzer)
+            ignorepragmas:                        # Report Suppressed Diagnostics: diagnostics suppressed in source code should be emitted. $(ignorepragmas)
             nav_app_version: 1.0.*.0              # Template for versioning NAV-Apps. '*' is replaced by the current Build Number. $(nav_app_version)
             vsix_download_path:                   # Alternative VSIX download url. 'Latest' can be specified. $(vsix_download_path)
             use_ssl: False                        # Use SSL for Business Central connections. $(use_ssl)
@@ -371,6 +372,7 @@
             checksecondsdelay: 30                 # Seconds of delay betweel deployment status checks. $(checksecondsdelay)
             maxtries: 20                          # Max tries for status check. $(maxtries)
             replacepackageid: False               # Force a new PackageID for each deployment. $(replacepackageid)
+            blocksymbolsonly: False               # Check App, block if SymbolsOnly App. $(blocksymbolsonly)
     ```
 - ALOps Import FOB
   * Import objects from .FOB file.
@@ -395,6 +397,8 @@
     ```yaml
             - task: ALOpsInfo@1
             displayName: 'ALOps Info'
+          inputs:
+            scanforsymbolonlyapps: Disabled       # Scan for SymbolOnly Apps. $(scanforsymbolonlyapps)
     ```
 - ALOps License Import
   * Import Business Central license (.flf).
@@ -480,6 +484,7 @@
             tenant: default                       # Tenant to publish to when Scope is set to Tenant. $(tenant)
             batch_publish_folder:                 # Path containing Apps to publish. $(batch_publish_folder)
             publisherazureactivedirectorytenantid: # Publisher Azure AD TenantId. $(publisherazureactivedirectorytenantid)
+            blocksymbolsonly: False               # Check App, block if SymbolsOnly App. $(blocksymbolsonly)
     ```
 - ALOps Repository Publish Extension
   * Publish extension to ALOps Repository.

@@ -1,6 +1,17 @@
 # Change Log
 All notable changes to the "ALOps" extension.
 
+## [v1.454] - 2022-11-29
+- All tasks: optimized loading of NAV Management DLLs and other modules
+- ALOpsAppCompile: Added string parameter 'ignorepragmas', when not blank ignores all PRAMA's set in code.
+- ALOpsAppCompile: Optimised Get-ArfitactUrl, runs only once per task.
+- ALOpsAppCompile@1: Added 'AppId' for App-Downloading from NST, proper name/publisher resolve.
+- ALOpsAppLicenseCheck: Can parse .bclicense files now, .flf files can still be used.
+- ALOpsAppPublish: New parameter [blocksymbolsonly] with default 'true'. Check for SymbolsOnly app before publish.
+- ALOpsDockerRemove: fixed some parameters not visible in visual editor
+- ALOpsExtensionAPI: New parameter [blocksymbolsonly] with default 'true'. Check for SymbolsOnly app before publish.
+- ALOpsOpenAPI: When parameter "exclude_company_paths" is set to 'true', Company specific paths are removed. Default Company can be set via Authentication (Header)
+
 ## [v1.453] - 2022-10-12
 - ALOpsAppCompile: Expand appversiontemplate with Major/Minor application from app.json. (* = Build Nr / ? = Original Version / A = Application Version)
 - ALOpsAppCompile: override global preprocessor symbols in app
