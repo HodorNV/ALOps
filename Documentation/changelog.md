@@ -1,6 +1,13 @@
 # Change Log
 All notable changes to the "ALOps" extension.
 
+## [v1.455] - 2023-03-18
+- All Tasks: BC v22 compatibility
+- All Tasks: Bump BcContainerHelper to latest version v4.0.14
+- ALOpsAppCompile @1/@2: Added parameter for enabling "External Rulesets "
+- ALOpsAppLicenseCheck: Solved bug with Permissions masks for BCLicense files
+- ALOpsAppValidation: Increase logging on License import
+
 ## [v1.454] - 2022-11-29
 - All tasks: optimized loading of NAV Management DLLs and other modules
 - ALOpsAppCompile: Added string parameter 'ignorepragmas', when not blank ignores all PRAMA's set in code.
