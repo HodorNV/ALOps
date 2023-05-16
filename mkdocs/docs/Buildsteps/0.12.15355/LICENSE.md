@@ -1,1 +1,0 @@
-The extension is made available under the following [Microsoft Software License Terms](https://go.microsoft.com/fwlink/?linkid=863604) and the following [Microsoft Enterprise and Developer Privacy Statement](https://go.microsoft.com/fwlink/?linkid=837448).
