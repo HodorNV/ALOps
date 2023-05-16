@@ -1,0 +1,1534 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../Help/QnA/">
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.1.12">
+    
+    
+      
+        <title>Changelog - ALOps Docs</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.85bb2934.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.a6bdf11c.min.css">
+      
+      
+
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  
+
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#change_log" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="ALOps Docs" class="md-header__button md-logo" aria-label="ALOps Docs" data-md-component="logo">
+      
+  <img src="../img/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            ALOps Docs
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Changelog
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+          
+            
+            
+            
+            <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+            
+              <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+              </label>
+            
+          
+            
+            
+            
+            <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to system preference"  type="radio" name="__palette" id="__palette_2">
+            
+              <label class="md-header__button md-icon" title="Switch to system preference" for="__palette_1" hidden>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12c0-2.42-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+              </label>
+            
+          
+        </form>
+      
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/HodorNV/ALOps" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href=".." class="md-tabs__link">
+      Home
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../Setup/SettingUpYourFirstBuild/" class="md-tabs__link">
+        Setup
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../Buildsteps/Buildstepsv1/" class="md-tabs__link">
+        Build steps
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../UsefulInfo/Globals/" class="md-tabs__link">
+        Useful Information
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../Help/Troubleshooting/" class="md-tabs__link">
+        Help
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+    
+  
+
+
+  <li class="md-tabs__item">
+    <a href="./" class="md-tabs__link md-tabs__link--active">
+      Changelog
+    </a>
+  </li>
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="ALOps Docs" class="md-nav__button md-logo" aria-label="ALOps Docs" data-md-component="logo">
+      
+  <img src="../img/logo.png" alt="logo">
+
+    </a>
+    ALOps Docs
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/HodorNV/ALOps" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        Home
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+        
+      
+      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+      
+      
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+          Setup
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          Setup
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Setup/SettingUpYourFirstBuild/" class="md-nav__link">
+        Your First Pipeline
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Setup/SetupLicense/" class="md-nav__link">
+        Your ALOps License
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+        
+      
+      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+      
+      
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+          Build steps
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          Build steps
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Buildsteps/Buildstepsv1/" class="md-nav__link">
+        v1
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Buildsteps/Buildstepsv2/" class="md-nav__link">
+        v2
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Buildsteps/Buildstepsv3/" class="md-nav__link">
+        v3
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+        
+      
+      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+      
+      
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+          Useful Information
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          Useful Information
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../UsefulInfo/Globals/" class="md-nav__link">
+        Global Variables
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../UsefulInfo/WorkingWithArtifacts/" class="md-nav__link">
+        Artifact Handling
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+        
+      
+      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5" >
+      
+      
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+          Help
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_5">
+          <span class="md-nav__icon md-icon"></span>
+          Help
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Help/Troubleshooting/" class="md-nav__link">
+        Troubleshooting
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Help/QnA/" class="md-nav__link">
+        Q&A
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Changelog
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Changelog
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#v1453_-_2022-10-12" class="md-nav__link">
+    [v1.453] - 2022-10-12
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v1451_-_2022-07-30" class="md-nav__link">
+    [v1.451] - 2022-07-30
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v1450_-_2022-07-03" class="md-nav__link">
+    [v1.450] - 2022-07-03
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v1449_-_2022-05-18" class="md-nav__link">
+    [v1.449] - 2022-05-18
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v1448_-_2022-04-21" class="md-nav__link">
+    [v1.448] - 2022-04-21
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v1447_-_2022-01-24" class="md-nav__link">
+    [v1.447] - 2022-01-24
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v1446_-_2021-11-25" class="md-nav__link">
+    [v1.446] - 2021-11-25
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v1445_-_2021-09-09" class="md-nav__link">
+    [v1.445] - 2021-09-09
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v1444_-_2021-07-05" class="md-nav__link">
+    [v1.444] - 2021-07-05
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v1443_-_2021-06-07" class="md-nav__link">
+    [v1.443] - 2021-06-07
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v1442_-_2021-05-01" class="md-nav__link">
+    [v1.442] - 2021-05-01
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v1441_-_2021-04-13" class="md-nav__link">
+    [v1.441] - 2021-04-13
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v1440_-_2021-02-17" class="md-nav__link">
+    [v1.440] - 2021-02-17
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v1439_-_2021-02-05" class="md-nav__link">
+    [v1.439] - 2021-02-05
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v1438_-_2020-12-31" class="md-nav__link">
+    [v1.438] - 2020-12-31
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v1437_-_2020-12-14" class="md-nav__link">
+    [v1.437] - 2020-12-14
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v1436_-_2020-11-25" class="md-nav__link">
+    [v1.436] - 2020-11-25
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v1435_-_2020-10-11" class="md-nav__link">
+    [v1.435] - 2020-10-11
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v1434_-_2020-09-15" class="md-nav__link">
+    [v1.434] - 2020-09-15
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v1433_-_2020-08-25" class="md-nav__link">
+    [v1.433] - 2020-08-25
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v1432_-_2020-08-03" class="md-nav__link">
+    [v1.432] - 2020-08-03
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v1431_-_2020-06-30" class="md-nav__link">
+    [v1.431] - 2020-06-30
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v1430_-_2020-05-31" class="md-nav__link">
+    [v1.430] - 2020-05-31
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v1429_-_2020-04-30" class="md-nav__link">
+    [v1.429] - 2020-04-30
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v1428_-_2020-03-29" class="md-nav__link">
+    [v1.428] - 2020-03-29
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v1427_-_2020-01-25" class="md-nav__link">
+    [v1.427] - 2020-01-25
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v1426_-_2019-11-30" class="md-nav__link">
+    [v1.426] - 2019-11-30
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v1425_-_2019-10-15" class="md-nav__link">
+    [v1.425] - 2019-10-15
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v1424_-_2019-09-17" class="md-nav__link">
+    [v1.424] - 2019-09-17
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v1423_-_2019-08-30" class="md-nav__link">
+    [v1.423] - 2019-08-30
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v1422_-_2019-07-10" class="md-nav__link">
+    [v1.422] - 2019-07-10
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v1421_-_2019-06-25" class="md-nav__link">
+    [v1.421] - 2019-06-25
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v1420_-_2019-06-17" class="md-nav__link">
+    [v1.420] - 2019-06-17
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+<h1 id="change_log">Change Log<a class="headerlink" href="#change_log" title="Permanent link">#</a></h1>
+<p>All notable changes to the "ALOps" extension.</p>
+<h2 id="v1453_-_2022-10-12">[v1.453] - 2022-10-12<a class="headerlink" href="#v1453_-_2022-10-12" title="Permanent link">#</a></h2>
+<ul>
+<li>ALOpsAppCompile: Expand appversiontemplate with Major/Minor application from app.json. (* = Build Nr / ? = Original Version / A = Application Version)</li>
+<li>ALOpsAppCompile: override global preprocessor symbols in app</li>
+<li>ALOpsAppCompile: Remove internalsVisibleTo property from app.json</li>
+<li>ALOpsAppPublish: Improved Get-AppOrder based on AppID</li>
+<li>ALOpsExtensionAPI: Added SchemaSyncMode option</li>
+<li>ALOpsExtensionAPI: Ignore Server 503 error when checking status</li>
+<li>General: improved generic assembly loading</li>
+</ul>
+<h2 id="v1451_-_2022-07-30">[v1.451] - 2022-07-30<a class="headerlink" href="#v1451_-_2022-07-30" title="Permanent link">#</a></h2>
+<ul>
+<li>ALOpsAppLicenseCheck: Validate App(s) against License</li>
+<li>ALOpsAppPublish:  Sync-CheckOnly before Publish / Breaking Change detection</li>
+<li>ALOpsExtensionAPI: Added Client Certificate Authentication </li>
+<li>ALOpsExtensionAPI: DEV-Port Deploy enabled by specifying the additional parameter [dev_endpoint]</li>
+<li>ALOpsOpenAPI: Added Client Certificate Authentication </li>
+</ul>
+<h2 id="v1450_-_2022-07-03">[v1.450] - 2022-07-03<a class="headerlink" href="#v1450_-_2022-07-03" title="Permanent link">#</a></h2>
+<ul>
+<li>ALOpsAppCompile: Custom CodeCop libraries </li>
+<li>ALOpsAppCompile: Optimize Get Latest VSIX</li>
+<li>ALOpsAppcompile: Use 64bit ALC.EXE when available</li>
+<li>ALOpsAppPublish: Allow publishing same version of an App</li>
+<li>ALOpsAppPublish: Increased default delays and retry count</li>
+<li>ALOpsAppTest: bugfix, set authentication to AAD instead of AccessControlService</li>
+<li>ALOpsAppTest: Testrunner Codeunit can be set with parameter [testrunnercodeunitid]</li>
+<li>ALOpsOpenAPI: Major performance improvents</li>
+</ul>
+<h2 id="v1449_-_2022-05-18">[v1.449] - 2022-05-18<a class="headerlink" href="#v1449_-_2022-05-18" title="Permanent link">#</a></h2>
+<ul>
+<li>ALOpsAgentMaintenance: New parameter boolean 'pruneimagesosbased', allows for cleanup of images based on old OS</li>
+<li>ALOpsAppCompiler: Extra parameter 'suppressWarnings' allows for overwriting in the app.json. Options: "KEEP","NONE", "<Array of exclusions>"</li>
+<li>ALOpsAppCompiler@2: Improved Assembly resolve, fixes the missing "System.Collections.Immutable" reference</li>
+<li>ALOpsAppCompiler@2: Ruleset not being applied when settings.json is missing</li>
+<li>ALOpsDockerCreate: OS Detection for Windows Server 2019 (2022)</li>
+<li>ALOpsExtensionAPI: More Resilient on Deployment, delay and max retries can be configured with [checksecondsdelay] and [maxtries]</li>
+<li>ALOpsInfo: Add feature to detect highest used Application version in any "App.json" file, saved in variable "ALOPS_APPLICATION_VERSION", "ALOPS_APPLICATION_VERSION_MAJOR", "ALOPS_APPLICATION_VERSION_MINOR"</li>
+</ul>
+<h2 id="v1448_-_2022-04-21">[v1.448] - 2022-04-21<a class="headerlink" href="#v1448_-_2022-04-21" title="Permanent link">#</a></h2>
+<ul>
+<li>ALOpsInfo: Add feature to detect highest used Application version in any "App.json" file, saved in variable "ALOPS_APPLICATION_VERSION"</li>
+<li>ALOpsOpenAPI: Generate OpenAPI (Swagger) documentation based on Business Central API's</li>
+</ul>
+<h2 id="v1447_-_2022-01-24">[v1.447] - 2022-01-24<a class="headerlink" href="#v1447_-_2022-01-24" title="Permanent link">#</a></h2>
+<ul>
+<li>ALOpsAppCompile: Allow values TRUE/FALSE for setting ResourceExposurePolicy</li>
+<li>ALOpsAppCompile: bugfix concerning disabling parallel compile</li>
+<li>ALOpsAppCompile: build in compatibility with applicationInsightsConnectionString </li>
+<li>ALOpsAppCompile: ignore Resourceexposurepolicy on runtime &lt;= 8.0</li>
+</ul>
+<h2 id="v1446_-_2021-11-25">[v1.446] - 2021-11-25<a class="headerlink" href="#v1446_-_2021-11-25" title="Permanent link">#</a></h2>
+<ul>
+<li>ALOpsAppCompile (v1/v2):  Latest VSIX can be used by specifing "LATEST" in the alternative_vsix_path</li>
+<li>ALOpsAppCompile: Disable MAXDEGREEOFPARALELISM when 'Alops_DisableParallelCompile' is enabled</li>
+<li>ALOpsAppCompile: ResourceExposurePolicy - Auto remove ShowMyCode</li>
+<li>ALOpsAppCompile: Weeknumber correction, Activates on 1/1/2022</li>
+<li>ALOpsAppCompiler@2 - Provide support for resourceExposurePolicy</li>
+<li>ALOpsAppSign: improved NavSip setup for Azure Devops Hosted Agents</li>
+<li>ALOpsDockerCreate: catch pull failure for remote repositories with login</li>
+<li>ALOpsDockerStart: Map parameter for TaskScheduler</li>
+<li>ALOpsExtensionAPI: Error-handling on failure</li>
+<li>ALOpsExtensionAPI: improved failure detection, exit on timeout</li>
+</ul>
+<h2 id="v1445_-_2021-09-09">[v1.445] - 2021-09-09<a class="headerlink" href="#v1445_-_2021-09-09" title="Permanent link">#</a></h2>
+<ul>
+<li>ALOpsAgentMaintenance: Additional cleanup of temporary folder with format ????????.??? </li>
+<li>ALOpsAppCompile: ignore download previous if AppSourceCop is not enabled</li>
+<li>ALOpsAppCompile: Parallel compile can now be disabled using boolean Environment Variable [Alops_DisableParallelCompile]</li>
+<li>ALOpsAppCompile: Solved locking issue on VSIX extract</li>
+<li>ALOpsCompile: Print full ALC output on failure exitcode</li>
+</ul>
+<h2 id="v1444_-_2021-07-05">[v1.444] - 2021-07-05<a class="headerlink" href="#v1444_-_2021-07-05" title="Permanent link">#</a></h2>
+<ul>
+<li>All Tasks: The Artifact Publish Folder for DevOps can be manipulated via Environment variable [Alops_ArtifactPublishFolder], defaults is [Dynamics 365]</li>
+<li>ALOpsAppCompile: Improved parsing of BC Compile logs</li>
+<li>ALOpsAppCompile: Ruleset patch matching with DefaultWorkingDirectory</li>
+<li>ALOpsAppCompiler@2: Added [updatebuildnumber] conform v1. Updates the Build number with the App version in the pipeline.</li>
+<li>ALOpsAppPublish: Implemented auto Uninstall of Apps when "Force Sync" is used</li>
+<li>ALOpsAppSign: Can batch sign Apps compiled with ALOpsAppCompiler, use parameter [batchsigncompiledapps] to enabled</li>
+<li>ALOpsAppValidation: Get countries from AppSourceCop.json is parameter [countries] is empty/blank</li>
+<li>ALOpsDockerStart: Added [license] parameter, works with local path or Url</li>
+<li>ALOpsDockerStart: Improved Copy-Addins method for larger Add-ins, fixed the PermissionDenied exception.</li>
+</ul>
+<h2 id="v1443_-_2021-06-07">[v1.443] - 2021-06-07<a class="headerlink" href="#v1443_-_2021-06-07" title="Permanent link">#</a></h2>
+<ul>
+<li>All Tasks: Fixed BC-Management module loading compatibility with BC v19</li>
+<li>ALOpsAgentMaintenance: Prune images based on CreationDate</li>
+<li>ALOpsAgentMaintenance: Remove VSIX folder when no platform of localised folders exists</li>
+<li>ALOpsAppCompiler@v1: Backported "AL_Analyzer=NONE" to disable analyzers</li>
+<li>ALOpsAppCompiler@v1: Backported "publishxlif" functionality from v2</li>
+<li>ALOpsAppTest: Increased interaction timeout, allowing for long running tests</li>
+<li>ALOpsDockerStart: "docker_pull" automatically disablen when using ALOpsDockerCreate images</li>
+<li>ALOpsDockerStart: Multiple Add-In DLL versions can now be used in parallell. Duplicate folder names are renamed.</li>
+</ul>
+<h2 id="v1442_-_2021-05-01">[v1.442] - 2021-05-01<a class="headerlink" href="#v1442_-_2021-05-01" title="Permanent link">#</a></h2>
+<ul>
+<li>ALOpsAgentMaintenance: New integer parameter [pruneimagesdayscreated], when not zero Images are pruned based on creationdate</li>
+<li>ALOpsAppCompile: BC ServiceTier folder added in AssemblyProbingPaths</li>
+<li>ALOpsAppCompile: Global warnings and errors are now catched from ALC output</li>
+<li>ALOpsAppCompile: New boolean parameter [output_alc_logs] for disabling printing the ALC logs</li>
+<li>ALOpsAppCompile: New multiline parameter for specifying additional AssemblyProbingPaths, comma seperated string can also be used </li>
+<li>ALOpsAppValidation: Added parameters for specifying InstallApps and PreviousApps</li>
+</ul>
+<h2 id="v1441_-_2021-04-13">[v1.441] - 2021-04-13<a class="headerlink" href="#v1441_-_2021-04-13" title="Permanent link">#</a></h2>
+<ul>
+<li>All Tasks : Disable script scanning for AV/Defender</li>
+<li>All Tasks: Fail Azure DevOps task on failed exit</li>
+<li>All Tasks: improved copy-item with literal path's, special character compatibility</li>
+<li>All Tasks: Improved performance for Expand-Archive with System.IO.Compression</li>
+<li>All Tasks: Improved powershell modules, Azure DevOps Diagnostics mode can be used</li>
+<li>ALOpsAppCompile: Detect ruleset feature, ignore when not available in ALC.EXE</li>
+<li>ALOpsAppCompile: Improved output parsing and Line detection</li>
+<li>ALOpsAppCompile: New parameter [applicationinsightskey] for registering ApplicationInsights</li>
+<li>ALOpsAppCompile: Print resulting app.json, allows for easy debugging</li>
+<li>ALOpsAppSignVerify: improved Path resolving of artifacts</li>
+<li>ALOpsAppTest:  Implemented [ExtensionID] based test-running</li>
+<li>ALOpsAppTest: Configurable filename for Test-Results allowing for multiple result files</li>
+<li>ALOpsAppValidation: Extra parameter [containername] for overruling the default containername used for validation</li>
+<li>ALOpsDockerStart: Improved Additional Parameter parsing, allows for variables via parameter injection</li>
+<li>ALOpsDockerWait: Improved parsing of Error and Warning strings</li>
+<li>ALOpsDockerWait: Multiline Warning and Error string parsing</li>
+<li>ALOpsDockerWait: Task failed with warning on WarningString matches</li>
+<li>ALOpsExtensionAPI: Configurable API Version via parameter [apiversion]</li>
+<li>ALOpsExtensionAPI: Easy parameters for Service2Service setup</li>
+<li>ALOpsExtensionAPI: Improved deploymentStatus validation / Connection recovery for SaaS</li>
+<li>ALOpsExtensionAPI: Poll dpeloyment status as Warning instead of Error</li>
+</ul>
+<h2 id="v1440_-_2021-02-17">[v1.440] - 2021-02-17<a class="headerlink" href="#v1440_-_2021-02-17" title="Permanent link">#</a></h2>
+<ul>
+<li>ALOpsAppCompile: Parameter added to overwrite "ShowMyCode" manifest setting</li>
+<li>ALOpsAppCompile@1: download previous app for Breaking Changes check</li>
+<li>ALOpsAppCompile@1: Download previous version of App</li>
+<li>ALOpsAppCompile@2: improved unpacking for Artifacts</li>
+<li>ALOpsAppCompiler@2: Compatibility update for pre-BC-v15 versions</li>
+<li>ALOpsAppPublish: added parameter [forceinstall] which will force installation of Apps ignoring previous state</li>
+<li>ALOpsAppPublish: new parameter [publisherazureactivedirectorytenantid] </li>
+<li>ALOpsAppTest: Option to create test-suites on-the-fly by specifying the [testfilter] parameter</li>
+<li>ALOpsAppTest: Parameter added for loading DisabledTests via File or Url</li>
+<li>ALOpsAppValidation: new Task for running BcContainerHelper's AppValidation </li>
+<li>ALOpsDockerStart: improved unpacking for Artifacts</li>
+<li>ALOpsExtensionAPI: Alternate to BC-Artifacts when BC-Management DLL's are not available</li>
+<li>ALOpsExtensionAPI: Improved error catching on API calls</li>
+</ul>
+<h2 id="v1439_-_2021-02-05">[v1.439] - 2021-02-05<a class="headerlink" href="#v1439_-_2021-02-05" title="Permanent link">#</a></h2>
+<ul>
+<li>All Tasks: Use same artifact folder names when publishing pipeline artifacts</li>
+<li>ALOpsAgentMaintenance: improved container/image pruning</li>
+<li>ALOpsAppPublish: ignore/skip errors when installing AL-Test-Apps</li>
+<li>ALOpsDockerStart: Added option for 'multitenant' environments</li>
+<li>ALOpsExtensionAPI: added Service-2-Service authentication, only client_id and client_secret is required</li>
+</ul>
+<h2 id="v1438_-_2020-12-31">[v1.438] - 2020-12-31<a class="headerlink" href="#v1438_-_2020-12-31" title="Permanent link">#</a></h2>
+<ul>
+<li>ALOpsAppCompile: ALAnalyzer can be disabled by setting the parameter to 'NONE'</li>
+<li>ALOpsAppCompile: Ruleset can be disabled by setting it to 'NONE', Url's can be specificied for downloading remote rulesets</li>
+<li>ALOpsAppCompile@2: Allow custom VSIX for compilation. Filepath or Url.</li>
+<li>ALOpsAppCompile@2: Register NavSip in non-docker environments</li>
+<li>ALOpsAppSign: Improved AppFile resolving</li>
+<li>ALOpsAppSign: Improved path resolving / Register NavSip if required</li>
+<li>ALOpsDockerRemove: Action filter for SQL-Backup and EventLog extraction: Always or OnFailure</li>
+<li>ALOpsDockerRemove: EventLogs can be extracted from the container. Always or OnFailure.</li>
+</ul>
+<h2 id="v1437_-_2020-12-14">[v1.437] - 2020-12-14<a class="headerlink" href="#v1437_-_2020-12-14" title="Permanent link">#</a></h2>
+<ul>
+<li>ALOpsAppCompile: Read CodeAnalyzers from VSCode settings</li>
+<li>ALOpsAppCompile@2: Define Ruleset via parameter [ruleset], overrules VSCode settings</li>
+<li>ALOpsAppCompile@2: Generate hash table of generated Apps in BatchCompile Mode</li>
+<li>ALOpsAppCompile@2: New string Parameter [appfilenametemplate] that allows for setting custom appnames, prefixes and suffixes</li>
+<li>ALOpsAppCompile@2: XLIF can be publsihed as Artifact by setting boolean parameter [publishxlif]</li>
+<li>ALOpsAppPublish: Installation of published Apps can be skipped by setting [installpublishedapps] = false</li>
+<li>ALOpsAppTest: [companyname] and [profile] can now be set for executing tests</li>
+<li>ALOpsDockerRemove: Export Container Database via new parameters [createsqlbackup], [sqlcompression], [zipsqlbackup], [publishsqlbackup]</li>
+<li>ALOpsFobImport: New boolean parameter [force_full_generate_symbol_reference], will trigger a full generate symbols after FOB Import.</li>
+</ul>
+<h2 id="v1436_-_2020-11-25">[v1.436] - 2020-11-25<a class="headerlink" href="#v1436_-_2020-11-25" title="Permanent link">#</a></h2>
+<ul>
+<li>ALOPSAppCompile: implemented /parallel and /maxDegreeOfParallelism with VSCode defaults</li>
+<li>ALOPSAppCompile: new integer Global variable [alops_webrequest_timeout_ms] to set timeout for DownloadSymbols</li>
+<li>ALOPSAppCompile: Only copy Platform Apps if no Localized version exists</li>
+<li>ALOpsAppCompile@2: Escape AssemblyProbingPaths in pipeline log</li>
+<li>ALOPSAppPublish: Get-NAVAppInfo does not account for UTF-8, replace UTF8 characters in Build-Tag</li>
+<li>ALOPSAppPublish: Use Unique Folder for each Batch Publish</li>
+<li>ALOPSAppTest: New parameter [tenant] for targeting tests at a specific tenant</li>
+<li>ALOPSDockerCreate: Fail pipeline on Error, Force task status</li>
+<li>ALOPSDockerCreate: New string parameter [memory] with default 8G</li>
+<li>ALOPSDockerRemove: Exit status error when container does not exist</li>
+<li>Global: Show Task inputs for all Tasks</li>
+</ul>
+<h2 id="v1435_-_2020-10-11">[v1.435] - 2020-10-11<a class="headerlink" href="#v1435_-_2020-10-11" title="Permanent link">#</a></h2>
+<ul>
+<li>ALOpsAgentMaintenance: New task that allows for auto-cleanup of BCArtifacts, Containers and ALOps Tasks</li>
+<li>ALOpsAppClean: allow removal of Microsoft Apps with new boolean parameter [includemicrosoftapps]</li>
+<li>ALOpsAppCompile: Added warning for square brackets in AppName/AppPublisher, Improved handling of FilePaths</li>
+<li>ALOpsAppCompile: Force copy non default [app.json]</li>
+<li>ALOpsAppPublish: Strict AL Apps installation. Added bool parameter [strictappnames]</li>
+<li>ALOpsDockerCreate: Allow usage of "select" parameter for NextMinor/NextMajor/...</li>
+<li>ALOpsDockerCreate: Default MultiTenant to false</li>
+<li>ALOpsDockerCreate: Silent BCContainerHelper installation, ignore install errors if BCContainerHelper is present</li>
+<li>ALOpsDockerStart: Reset default inputs when blanked out</li>
+<li>ALOpsExtensionAPI: Fail task on errors in App Publish</li>
+<li>ALOpsExtensionAPI: OAuth authentication when running in docker</li>
+<li>Global: added boolean [Alops_UpdateHostsFile] Environment Variable which will set/remove the current Container in the Hosts file on the agent</li>
+<li>Global: Install-Update BcContainerHelper bugfix</li>
+</ul>
+<h2 id="v1434_-_2020-09-15">[v1.434] - 2020-09-15<a class="headerlink" href="#v1434_-_2020-09-15" title="Permanent link">#</a></h2>
+<ul>
+<li>ALOpsDockerCreate: Allow Clobber on BcContainerHelper</li>
+<li>ALOpsDockerCreate: allow usage of 'myScript' feature with multiline parameter [myscripts]</li>
+<li>ALOpsDockerCreate: Allow using BcContainerHelper pre-release</li>
+<li>ALOpsDockerCreate: Set type default to Sandbox for BcInsider</li>
+<li>ALOpsDockerCreate: Uninstall NavContainerHelper will not be implemented, AllowClobber and Fully Qualitified CmdLets instead</li>
+<li>ALOpsDockerStart: fixed bug with recycling containers</li>
+</ul>
+<h2 id="v1433_-_2020-08-25">[v1.433] - 2020-08-25<a class="headerlink" href="#v1433_-_2020-08-25" title="Permanent link">#</a></h2>
+<ul>
+<li>ALOpsAppCompile: Save Extension Artifact path in global variable $(ALOPS_COMPILE_ARTIFACT)</li>
+<li>ALOpsAppPublish: New parameter [publish_scope] / [tenant]</li>
+<li>ALOpsAppTest: Dynamicly resolve .PSM1 file in case of Multi-Version installations</li>
+<li>ALOpsDockerCreate: added boolean parameter [forcecreateimage] to force image creation</li>
+<li>ALOpsDockerCreate: added parameter [imagenametemplate] to allow setting the image template name</li>
+<li>ALOpsDockerCreate: Added parameters [sastoken] and [storageaccount] to allow for Insider/Custom Artifact Urls</li>
+<li>ALOpsDockerCreate: New task that allows creating BC-Docker images from BC-Artifacts</li>
+<li>ALOpsDockerStart: Improved security on DockerLogin for Windows Server 2016</li>
+<li>ALOpsDockerStart: Never pull images on local registry</li>
+<li>ALOpsDockerWait: new parameter [printlogs] which can be used to disable log printing of docker logs</li>
+<li>ALOpsDockerWait: Reset Container IP in global variables [ALOPS_DOCKER_IPADDRESS]</li>
+<li>ALOpsExtensionAPI: Set parameters [artifact_path] default to [$(System.ArtifactsDirectory)]</li>
+</ul>
+<h2 id="v1432_-_2020-08-03">[v1.432] - 2020-08-03<a class="headerlink" href="#v1432_-_2020-08-03" title="Permanent link">#</a></h2>
+<ul>
+<li>ALOpsAppCompile: UTF-8 compatibility, affects Extension names, Manifest parsing and Download Extension</li>
+<li>ALOpsAppPublish: Added boolean parameter [forcesync] allowing destructive changes</li>
+<li>ALOpsDockerStart: Compression performance, switched to DotNet ZIP instead of Powershell</li>
+<li>ALOpsDockerStart: Disable docker pull for local repository images bugfix</li>
+</ul>
+<h2 id="v1431_-_2020-06-30">[v1.431] - 2020-06-30<a class="headerlink" href="#v1431_-_2020-06-30" title="Permanent link">#</a></h2>
+<ul>
+<li>ALOpsAppCompile: SSL Verification can now be disabled with the global boolean parameter [alops_disable_ssl]</li>
+<li>ALOpsAppCompile: UrlEncode on Url-Builder can now be disabled with global boolean variable named "alops_disable_urlencoding" (Character Convert)</li>
+<li>ALOpsAppCompiler: only upload compile log with "PublishArtifacts" enabled</li>
+<li>ALOpsAppPublish: Allow ForceSync via new boolean parameter [forcesync]</li>
+<li>ALOpsAppTest: Import Test Suite v17 / Auto add required Apps for Test-Suite</li>
+</ul>
+<h2 id="v1430_-_2020-05-31">[v1.430] - 2020-05-31<a class="headerlink" href="#v1430_-_2020-05-31" title="Permanent link">#</a></h2>
+<ul>
+<li>All Tasks: Improved NAV/BC Module loading for Multi-Build environments</li>
+<li>ALOpsAppPublish: InstallAlTestTool - Auto add additional Apps required for the Test-Framework</li>
+<li>ALOpsAppTest: BC v16/v17 compatibility/improvements</li>
+<li>ALOpsDockerStart: Default value for parameter 'accept_image_outdated' set to "TRUE"</li>
+<li>ALOpsDockerWait: Report transfer ZIP size</li>
+<li>ALopsExtensionAPI: Auto select correct version of Module in Multi-Build environments</li>
+<li>Disable Cleanup old Tasks by default (Performance)</li>
+<li>Docker Based Tasks: Direct PSSession support to other container. Use global parameters [alops-docker-computer] / [alops-docker-username] / [alops-docker-password]</li>
+</ul>
+<h2 id="v1429_-_2020-04-30">[v1.429] - 2020-04-30<a class="headerlink" href="#v1429_-_2020-04-30" title="Permanent link">#</a></h2>
+<ul>
+<li>All Tasks: Allow for Windows-Authentication in docker containers (GSMA)</li>
+<li>All Tasks: Improved error-handling on all REST calls</li>
+<li>ALOpsAppPublish: Allow updating Apps in Batch-Publish cfr single publish</li>
+<li>ALOpsAppPublish: AppUpgrade issues are now logged to the pipeline</li>
+<li>ALOpsAppPublish: Batch_Publish_Folder is now copied to the container on demand</li>
+<li>ALOpsAppPublish: enable force install dependency by default</li>
+<li>ALOpsAppTest: Error and Warning close dialog enhancement</li>
+<li>ALOpsExtensionAPI: new tasks to handle BC-Extensions API calls</li>
+<li>ALOpsFobImport: added parameter [override_finsql_path] which allows to override the default finsql.exe resolving</li>
+<li>ALOpsLicenseImport: License-Path made dynamics (filtering) instead of literal</li>
+<li>ALOpsSaaSGetExtension: Task is replaced by the new Task [ALOps Extension API]</li>
+<li>ALOpsSaasPublishExtension: Task is replaced by the new Task [ALOps Extension API]</li>
+</ul>
+<h2 id="v1428_-_2020-03-29">[v1.428] - 2020-03-29<a class="headerlink" href="#v1428_-_2020-03-29" title="Permanent link">#</a></h2>
+<ul>
+<li>All Tasks: Dynamic resolve of Management DLL's for Multiversion NAV/BC installations</li>
+<li>ALOpsAppCompiler: compatibility with propagated dependencies</li>
+<li>ALOpsAppCompiler: improved direction of ALC.EXE output</li>
+<li>ALOpsAppCompiler: replace invalid path characters with underscore in App-Filename</li>
+<li>ALOpsAppPublish: removed 'Scope' parameter for NAV2018 compatibility</li>
+<li>ALOpsAppRuntimePackage: remove ShowMyCode for NAV20</li>
+<li>ALOpsAppTest: BC16 overwrite faulty standard Test-Libraries</li>
+<li>ALOpsAppTest: improved stability for BC15 / upgraded to work with BC16</li>
+<li>ALOpsDockerStart: auto split parameter [docker_parameters] so it can be set via Variables</li>
+<li>ALOpsDockerStart: only convert microsoft images to lowercase</li>
+<li>ALOpsDockerStart: parameter [vsix_download_path] enabled for use in docker containers</li>
+<li>ALOpsDockerWait: default behaviour changed, workfolder is now copied to the container on the WAIT step</li>
+<li>ALOpsFobImport: fixed empty "servername" parameter, improved GenerateSymbolReferences</li>
+<li>ALOpsFobImport: Generating symbol references can be enabled/disable with parameter [generate_symbol_reference]</li>
+<li>ALOpsFobImport: improved FinSql execution and error catching</li>
+<li>ALopsImportPackage: added parameter 'fixed_tag' for use with Docker</li>
+<li>ALOpsInfo: print extra information for debugging: diskspace, windows version, updates, memory stats...</li>
+<li>ALOpsLicenseImport: the scope of the license import can be set with parameter [license_scope]</li>
+</ul>
+<h2 id="v1427_-_2020-01-25">[v1.427] - 2020-01-25<a class="headerlink" href="#v1427_-_2020-01-25" title="Permanent link">#</a></h2>
+<ul>
+<li>ALOpsAppClean: detect ServerInstance on custom Docker images</li>
+<li>ALOpsAppCompile: Allow to retain version parts from app.json. '*' is replaced by the build-id, '?' specifies to retain the version part of the orriginal app.json</li>
+<li>ALOpsAppCompile: Allow to update build number in DevOps</li>
+<li>ALOpsAppCompile: check docker info credentials</li>
+<li>ALOpsAppCompile: Multiroot workspace support</li>
+<li>ALOpsAppCompiler: Remove params [AssemblyProbingPaths] and [Ruleset] for NAV2018</li>
+<li>ALOpsAppPublish: new parameter [batch_publish_folder] which allows for batch publishing of Apps, install order is automatically detected</li>
+<li>ALOpsAppPublish: Set Path Variable</li>
+<li>ALOpsAppRuntimePackage: New task for creating runtime packages from existing Apps</li>
+<li>ALOpsAppSign: added instant validation of app after signing / Improved validation of timestamp</li>
+<li>ALOpsAppSign: Added parameter [pfx_password] for setting password additional to the environment variable </li>
+<li>ALOpsDockerStart: allow login with Keyvault instead of ServiceConnection</li>
+<li>ALOpsDockerWait: Added parameter [error_string] which allow to set an extra exit condition</li>
+<li>ALOpsLicenseImport: Disable print License by default, license can be printed in the pipeline by setting parameter [print_license_info]</li>
+<li>Documentation: added pipeline examples in documentation section</li>
+<li>General: Allow for Host/Container memory monitoring</li>
+<li>General: Improved Json Importing, printout json on parse failure</li>
+<li>General: task output of all task cleaned up / bulk logging transferred to verbose</li>
+</ul>
+<h2 id="v1426_-_2019-11-30">[v1.426] - 2019-11-30<a class="headerlink" href="#v1426_-_2019-11-30" title="Permanent link">#</a></h2>
+<ul>
+<li>ALOpsAppCompile: Additional AssemblyProbingPaths via discovery</li>
+<li>ALOpsAppPublish: Allow for default AL Application installed in docker containers</li>
+<li>ALOpsAppTest: Allow selecting TestSuite via parameter [testsuite]</li>
+<li>ALOpsRepositoryPublish: added default icon for Apps without icon</li>
+</ul>
+<h2 id="v1425_-_2019-10-15">[v1.425] - 2019-10-15<a class="headerlink" href="#v1425_-_2019-10-15" title="Permanent link">#</a></h2>
+<ul>
+<li>ALOpsAppCompile/ALOpsAppSign: new parameter [publish_artifact] to disable artifact publishing from step</li>
+<li>ALOpsAppCompile: Allow to set filename suffix</li>
+<li>ALOpsAppCompile: clean empty entries from Compile log artifact</li>
+<li>ALOpsAppPublish: Dynamic Resolving of App Artifacts / new parameter [artifact_path]</li>
+<li>ALOpsAppPublish: Install-AL-Apps for docker /  extra parameter [installaltesttool] en [install_al_app_names]</li>
+<li>ALOpsAppSign: Docker: Replace local artifact from container</li>
+<li>ALOpsAppSign: Dynamic Resolving of App Artifacts / new parameter [artifact_path]</li>
+<li>ALOpsAppSign: set Error instead of warning on DNSResolve</li>
+<li>ALOpsAppSignVerify: Dynamic Resolving of App Artifacts / new parameter [artifact_path]</li>
+<li>ALOpsAppTest: Wave2 compatibel, new parameters [testpage] en [installaltesttool]</li>
+<li>ALOpsDockerExec: new tasks that allows for running powershell scripts on the container</li>
+<li>
+<p>ALOpsDockerStart: Catch error on Docker login</p>
+</li>
+<li>
+<p>ALOpsDockerStart: parameter to ignore warning with fixed_tag</p>
+</li>
+<li>ALOpsImportFob: Dynamicly resolve .psm1 file, bypass via finsql for non standard installations</li>
+<li>ALOpsRepositoryPublish: Dynamic Resolving of App Artifacts / new parameter [artifact_path]</li>
+<li>ALOpsRepositoryPublish: New task in beta, allows publishing of the Extension to a repository in Business Central</li>
+<li>ALOpsSaaSPublishExtension: Allow folder upload of docker Applications for and PackageCache, new parameters [upload_package_cache] and [upload_c_applications]</li>
+<li>ALOpsSaaSPublishExtension: Dynamic Resolving of App Artifacts / new parameter [artifact_path]</li>
+<li>ALOpsSaaSPublishExtension: monitor/report deployment status</li>
+<li>Multi stage pipeline support</li>
+</ul>
+<h2 id="v1424_-_2019-09-17">[v1.424] - 2019-09-17<a class="headerlink" href="#v1424_-_2019-09-17" title="Permanent link">#</a></h2>
+<ul>
+<li>ALOpsAppCompiler: Now allows for dynamic resolving of "vsix_download_path", wildcards can be used.</li>
+<li>ALOpsAppPublish: dynamic resolving of "nav_artifact_app_filter", wildcards can be used.</li>
+<li>ALOpsAppSign: dynamic resolving of "nav_artifact_app_filter", wildcards can be used.</li>
+<li>ALOpsAppSignVerify: dynamic resolving of "nav_artifact_app_filter", wildcards can be used.</li>
+<li>ALOpsAppTest: extend authentication to cover all scenarios</li>
+<li>ALOpsAppTest: update routines from NavContainerHelper</li>
+<li>ALOpsDockerStart: improvements made for compatibility for in use in Release Flows</li>
+<li>ALOpsSaaSPublishExtension: dynamic resolving of "nav_artifact_app_filter", wildcards can be used.</li>
+</ul>
+<h2 id="v1423_-_2019-08-30">[v1.423] - 2019-08-30<a class="headerlink" href="#v1423_-_2019-08-30" title="Permanent link">#</a></h2>
+<ul>
+<li>ALOpsAppCompiler: Add 'bc_username' and 'bc_password' parameters  to  allow  basic authentication</li>
+<li>ALOpsAppSign: Add 'timestamp_uri' string parameter  to specify which timestamp server to use.</li>
+<li>ALOpsAppSign: Check Timestamp  server if specified, trigger warning when offline.</li>
+<li>ALOpsAppTest: Add 'bc_username' and 'bc_password' parameters  to  allow  basic authentication</li>
+<li>ALOpsLicenseImport: enabled FLF import from DockerHost and Repository location.</li>
+<li>ALOpsSaaSGetExtensions: Add 'azure_api_endpoint' string parameter to overrule API Endpoint.</li>
+<li>ALOpsSaaSGetExtensions: Add 'azure_api_version' picklist parameter to specify Azure API Version to use.</li>
+<li>ALOpsSaaSGetExtensions: Add 'bc_companyname'  string parameter to  specify target company.</li>
+<li>ALOpsSaaSPublishExtension: Add  'azure_api_endpoint' string parameter to overrule API Endpoint.</li>
+<li>ALOpsSaaSPublishExtension: Add 'azure_api_version' picklist parameter to specify Azure API Version to use.</li>
+<li>ALOpsSaaSPublishExtension: Add 'bc_companyname'  string parameter to  specify target company.</li>
+<li>ALOpsSaaSPublishExtension: Added retry loop on status check</li>
+<li>Docker: Retrieve ServerInstanceName from configuration for Wave2 compatibility.</li>
+<li>Improved Docker-Session management with Auto-Retry and Broken Connection detection.</li>
+<li>Improved the HelpMarkDown of all ALOps task inputs, variable names cleary visible in help.</li>
+</ul>
+<h2 id="v1422_-_2019-07-10">[v1.422] - 2019-07-10<a class="headerlink" href="#v1422_-_2019-07-10" title="Permanent link">#</a></h2>
+<ul>
+<li>ALOpsAppClean: added missing dependency to 'Get-NAVAppDependencies'</li>
+<li>ALOpsAppCompiler: Extended AssemblyProbingPaths with "c:\windows\assembly"</li>
+<li>ALOpsAppTest: Add 'failed_test_action' picklist parameter. define action (Ignore / Warning / Error) to take when a Test(s) fails</li>
+<li>ALOpsDockerRemove: containers exited with errors are also removed instead of skipped</li>
+<li>ALOpsDockerWait: detect when container exited on error and fail build</li>
+<li>ALOpsSaaSPublishExtension: new Task in preview mode. Publish an AL extension to Business Central SaaS</li>
+<li>Framework: Update VstsTaskSDK from v0.10 to v0.11</li>
+<li>New environment boolean variable 'Alops_PrintMemoryStats', when enabled print the current memory status at the beginning of every task</li>
+<li>Print execution of external executables/commands to the devops build log</li>
+<li>Random Vsts Task Freezes: deadlocks in the StandardOutput and StandardError stream processing of the DevOps Agent / Mitigated by force closing the environment</li>
+</ul>
+<h2 id="v1421_-_2019-06-25">[v1.421] - 2019-06-25<a class="headerlink" href="#v1421_-_2019-06-25" title="Permanent link">#</a></h2>
+<ul>
+<li>All PS1 files are CodeSigned for beter compatibility with standard powershell restrictions</li>
+<li>ALOpsAppClean: Add 'sync_mode' picklist parameter (Add/Clean/Development/ForceSync)</li>
+<li>ALOpsAppClean: enable for use in docker containers, use_docker parameter</li>
+<li>ALOpsAppTest: DisableNameChecking when importing Microsoft.Dynamics.Nav.Ide to avoid false warnings in pipeline</li>
+<li>ALOpsDockerRemove: added boolean parameter 'print_logs', default enabled. Prints logs on container remove.</li>
+<li>ALOpsDockerStart: Add -ltsc2019 or -ltsc2016 to Docker Image depending on OS</li>
+<li>ALOpsDockerStart: added parameter 'encryption_key', link a secret downloadable Url of the Encryption Key.</li>
+<li>ALOpsDockerStart: container can now be connected to Azure SQL Database</li>
+<li>ALOpsDockerStart: container can now be started based on a SQL BAK file via parameter 'sql_backup_file'</li>
+<li>ALOpsDockerStart: new default value for memory_gb parameter = '-1' (unlimited memory)</li>
+<li>ALOpsDockerStart: Print all docker parameters used for RUN command</li>
+<li>ALOpsFobImport: Added parameter for NAV Server Instance name</li>
+<li>ALOpsFobImport: allow for multiple FOB files to be imported in a single step, parameter 'filePath' can contain a filter like '.fob/*.fob'</li>
+<li>ALOpsFobImport: DisableNameChecking when importing Microsoft.Dynamics.Nav.Ide to avoid false warnings in pipeline</li>
+<li>ALOpsFobImport: integrate SQL-Database authentication for SQL mixed mode or Azure SQL</li>
+<li>ALOpsLicenseImport: Print flf license information before import</li>
+<li>ALOpsSaaSGetExtensions: new Task in preview mode, first of the SaaS enabled tasks. Displays the extensions installed in Business Central SaaS</li>
+<li>Templates: Corrected the version on the PublishTestResults step to Version 2, PublishTestResults@2</li>
+</ul>
+<h2 id="v1420_-_2019-06-17">[v1.420] - 2019-06-17<a class="headerlink" href="#v1420_-_2019-06-17" title="Permanent link">#</a></h2>
+<ul>
+<li>Added YAML templates for AL Projects: https://dev.azure.com/HodorNV/ALOps%20Templates</li>
+<li>ALOpsAppCompiler: Added boolean parameter 'download_test_symbols' for enabling explicit Test-Package download</li>
+<li>ALOpsAppCompiler: Added parameter 'al_analyzer', a comma separated list of Analyzers. Example: PerTenantExtensionCop,UICop,CodeCop</li>
+<li>ALOpsAppCompiler: Automatically add AssemblyProbingPath if projects contains external controls</li>
+<li>ALOpsAppSign: The PFX password should be linked to the environment variable 'pfx_password'</li>
+<li>ALOpsAppTest: added Auto-Retry on the "Warm-up" step for the Test-Client</li>
+<li>ALOpsAppTest: Added boolean parameter 'import_testtoolkit', can be used to skip the import of the default test-suite-objects.</li>
+<li>ALOpsDockerStart: Added multi-line parameter 'docker_parameters', these will be added to the [docker run] command</li>
+<li>ALOpsDockerStart: Removed 'No container found' message when not working with Fixed-Docker-Tags</li>
+</ul>
+
+
+  
+
+
+
+  <form class="md-feedback" name="feedback" hidden>
+    <fieldset>
+      <legend class="md-feedback__title">
+        Was this page helpful?
+      </legend>
+      <div class="md-feedback__inner">
+        <div class="md-feedback__list">
+          
+            <button class="md-feedback__icon md-icon" type="submit" title="This page was helpful" data-md-value="1">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 12a8 8 0 0 0-8-8 8 8 0 0 0-8 8 8 8 0 0 0 8 8 8 8 0 0 0 8-8m2 0a10 10 0 0 1-10 10A10 10 0 0 1 2 12 10 10 0 0 1 12 2a10 10 0 0 1 10 10M10 9.5c0 .8-.7 1.5-1.5 1.5S7 10.3 7 9.5 7.7 8 8.5 8s1.5.7 1.5 1.5m7 0c0 .8-.7 1.5-1.5 1.5S14 10.3 14 9.5 14.7 8 15.5 8s1.5.7 1.5 1.5m-5 7.73c-1.75 0-3.29-.73-4.19-1.81L9.23 14c.45.72 1.52 1.23 2.77 1.23s2.32-.51 2.77-1.23l1.42 1.42c-.9 1.08-2.44 1.81-4.19 1.81Z"/></svg>
+            </button>
+          
+            <button class="md-feedback__icon md-icon" type="submit" title="This page could be improved" data-md-value="0">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 12a8 8 0 0 0-8-8 8 8 0 0 0-8 8 8 8 0 0 0 8 8 8 8 0 0 0 8-8m2 0a10 10 0 0 1-10 10A10 10 0 0 1 2 12 10 10 0 0 1 12 2a10 10 0 0 1 10 10m-6.5-4c.8 0 1.5.7 1.5 1.5s-.7 1.5-1.5 1.5-1.5-.7-1.5-1.5.7-1.5 1.5-1.5M10 9.5c0 .8-.7 1.5-1.5 1.5S7 10.3 7 9.5 7.7 8 8.5 8s1.5.7 1.5 1.5m2 4.5c1.75 0 3.29.72 4.19 1.81l-1.42 1.42C14.32 16.5 13.25 16 12 16s-2.32.5-2.77 1.23l-1.42-1.42C8.71 14.72 10.25 14 12 14Z"/></svg>
+            </button>
+          
+        </div>
+        <div class="md-feedback__note">
+          
+            <div data-md-value="1" hidden>
+              
+              
+                
+              
+              Thanks for your feedback!
+            </div>
+          
+            <div data-md-value="0" hidden>
+              
+              
+                
+              
+              Thanks for your feedback! Help us improve this page by using our <a href="..." target="_blank" rel="noopener">feedback form</a>.
+            </div>
+          
+        </div>
+      </div>
+    </fieldset>
+  </form>
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+      <div class="md-consent" data-md-component="consent" id="__consent" hidden>
+        <div class="md-consent__overlay"></div>
+        <aside class="md-consent__inner">
+          <form class="md-consent__form md-grid md-typeset" name="consent">
+            
+
+  
+    
+  
+
+
+  
+    
+  
+
+
+
+  
+
+
+<h4>Cookie consent</h4>
+<p>We use cookies to recognize your repeated visits and preferences, as well as to measure the effectiveness of our documentation and whether users find what they're searching for. With your consent, you're helping us to make our documentation better.</p>
+<input class="md-toggle" type="checkbox" id="__settings" >
+<div class="md-consent__settings">
+  <ul class="task-list">
+    
+      
+      
+        
+        
+      
+      <li class="task-list-item">
+        <label class="task-list-control">
+          <input type="checkbox" name="analytics" checked>
+          <span class="task-list-indicator"></span>
+          Google Analytics
+        </label>
+      </li>
+    
+      
+      
+        
+        
+      
+      <li class="task-list-item">
+        <label class="task-list-control">
+          <input type="checkbox" name="github" checked>
+          <span class="task-list-indicator"></span>
+          GitHub
+        </label>
+      </li>
+    
+  </ul>
+</div>
+<div class="md-consent__controls">
+  
+    
+      <button class="md-button md-button--primary">Accept</button>
+    
+    
+    
+  
+    
+    
+    
+      <label class="md-button" for="__settings">Manage settings</label>
+    
+  
+</div>
+          </form>
+        </aside>
+      </div>
+      <script>var consent=__md_get("__consent");if(consent)for(var input of document.forms.consent.elements)input.name&&(input.checked=consent[input.name]||!1);else"file:"!==location.protocol&&setTimeout(function(){document.querySelector("[data-md-component=consent]").hidden=!1},250);var action,form=document.forms.consent;for(action of["submit","reset"])form.addEventListener(action,function(e){if(e.preventDefault(),"reset"===e.type)for(var n of document.forms.consent.elements)n.name&&(n.checked=!1);__md_set("__consent",Object.fromEntries(Array.from(new FormData(form).keys()).map(function(e){return[e,!0]}))),location.hash="",location.reload()})</script>
+    
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tracking", "navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.expand", "navigation.path", "navigation.indexes", "toc.integrate"], "search": "../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.c2be25ad.min.js"></script>
+      
+    
+  </body>
+</html>
