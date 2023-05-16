@@ -9,8 +9,8 @@
   * Compile Business Central extension(s) from AL code.
   * YAML Template: 
     ```yaml
-            - task: ALOpsAppCompiler@2
-            displayName: 'ALOps App Compiler'
+        - task: ALOpsAppCompiler@2
+          displayName: 'ALOps App Compiler'
           inputs:
             artifactversion:                      # BC/NAV Version, eg: 9, 10.4, NAV2016, 16.4.24524. $(artifactversion) $(artifactversion)
             artifacttype: OnPrem                  # Set Artifact Type. $(artifacttype) $(artifacttype)
@@ -47,7 +47,7 @@
   * Publish extension to ALOps Repository.
   * YAML Template: 
     ```yaml
-            - task: ALOpsRepositoryPublish@2
-            displayName: 'ALOps Repository Publish Extension'
+        - task: ALOpsRepositoryPublish@2
+          displayName: 'ALOps Repository Publish Extension'
     ```
 
