@@ -76,7 +76,7 @@
   * Execute powershell script in container.
   * YAML Template:
    
-!INCLUDE "ALOpsDockerExecute_v1.md"
+!INCLUDE "ALOpsDockerExec_v1.md"
     
 ## ALOps Docker Remove
   * Remove Business Central docker container.
@@ -138,11 +138,11 @@
    
 !INCLUDE "ALOpsAppPublish_v1.md"
     
-## ALOps Repository Publish Extension
+## ALOps Repository Publish
   * Publish extension to ALOps Repository.
   * YAML Template:
    
-!INCLUDE "ALOpsRepositoryPublishExtension_v1.md"
+!INCLUDE "ALOpsRepositoryPublish_v1.md"
     
 ## ALOps SaaS Get Extensions
   * Replaced by Task [ALOps Extension API]

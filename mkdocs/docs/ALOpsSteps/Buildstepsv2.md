@@ -7,9 +7,3 @@
 
 !INCLUDE "ALOpsAppCompiler_v2.md"
 
-## ALOps Repository Publish
-  * Publish extension to ALOps Repository.
-  * YAML Template: 
-
-!INCLUDE "ALOpsRepositoryPublish_v2.md"
-
