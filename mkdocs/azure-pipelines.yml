@@ -21,9 +21,9 @@ steps:
     script: |
       $SourceFolder = $env:SYSTEM_DEFAULTWORKINGDIRECTORY
 
-      $StepFiles = Get-ChildItem -Path "$($SourceFolder)\docs\ALOpsSteps\v*\*.md" -Recurse
+      $StepFiles = Get-ChildItem -Path "$($SourceFolder)\mkdocs\docs\ALOpsSteps\v*\*.md" -Recurse
 
-      $SourceFiles = Get-ChildItem -Path $SourceFolder -Filter "*.md" -Recurse
+      $SourceFiles = Get-ChildItem -Path "$SourceFolder\mkdocs" -Filter "*.md" -Recurse
       foreach($SourceFile in $SourceFiles)
       {
           $Content = Get-Content -Path $SourceFile.FullName -Raw 
@@ -35,6 +35,8 @@ steps:
 
           $Content | Set-Content -Path $SourceFile.FullName -Encoding UTF8 -Confirm:$false -Force:$true
       }      
+
+      Set-Location "$($SourceFolder)\mkdocs"
       
       mkdocs build --site-dir "$(System.ArtifactsDirectory)"
 
