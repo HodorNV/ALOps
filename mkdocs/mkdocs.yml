@@ -6,9 +6,10 @@ nav:
         - Setup:
                 - Your First Pipeline: Setup/SettingUpYourFirstBuild.md
                 - Your ALOps License: Setup/SetupLicense.md
-        - BuildSteps: 
-                - v1: "Buildsteps/BuildSteps.md"
-                - v2: "Buildsteps/BuildSteps_v2.md"
+        - Build steps: 
+                - v1: "Buildsteps/Buildsteps.md"
+                - v2: "Buildsteps/Buildstepsv2.md"
+                - v3: "Buildsteps/Buildstepsv3.md"
         - Useful Information: 
                 - Global Variables: "UsefulInfo/Globals.md"
                 - Artifact Handling: "UsefulInfo/WorkingWithArtifacts.md"
