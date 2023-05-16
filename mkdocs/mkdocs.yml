@@ -7,7 +7,7 @@ nav:
                 - Your First Pipeline: Setup/SettingUpYourFirstBuild.md
                 - Your ALOps License: Setup/SetupLicense.md
         - Build steps: 
-                - v1: "Buildsteps/Buildsteps.md"
+                - v1: "Buildsteps/Buildstepsv1.md"
                 - v2: "Buildsteps/Buildstepsv2.md"
                 - v3: "Buildsteps/Buildstepsv3.md"
         - Useful Information: 
