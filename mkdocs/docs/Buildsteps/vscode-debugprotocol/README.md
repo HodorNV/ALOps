@@ -7,6 +7,17 @@ This npm module contains declarations for the json-based Visual Studio Code debu
 
 ## History
 
+* 1.27.x:
+* Adds a new `capabilities` event that hints to the frontend that one or more capabilities got updated.
+* Initial support for logPoints: new attribute `SourceBreakpoint.logMessage` and capability `supportsLogPoint`.
+
+* 1.26.x:
+no protocol changes
+
+* 1.25.x:
+  * Adds a new enum value `virtual` for the `presentationHint` attribute of type `Variable`.
+  * To remove env variables from the environment support a 'null' value for `env` attribute in `runInTerminal` request.
+
 * 1.24.x:
   * Adds `removed` to the value set of the `reason` attribute of the `BreakpointEvent`.
   * Adds a `locale` attribute to the `initialize` request. The adapter can use this information to translate user visible information.
