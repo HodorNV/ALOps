@@ -2,6 +2,9 @@
 
 ALOps provides a set of building blocks that enables you to create your own build and deployment pipelines. The building blocks are called **Build Steps** and are defined in YAML files.  Let's take a look at the build steps that are available in ALOps.
 
+Related:
+[Build steps v2](Buildstepsv2.md)
+
 ## ALOps AdminCenter API
 This buildstep lets you interact with the AdminCenter API.  As such, this is a wrapper for the default Admin API and provides these interactions:
 

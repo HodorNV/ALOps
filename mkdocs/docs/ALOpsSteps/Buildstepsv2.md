@@ -1,5 +1,9 @@
 # Build Steps Overview
-    Let's describe all the Build Steps that we have at our disposal
+
+ALOps provides a set of building blocks that enables you to create your own build and deployment pipelines. The building blocks are called **Build Steps** and are defined in YAML files.  Let's take a look at the build steps that are available in ALOps.
+
+Related:
+[Build steps v1](Buildstepsv1.md)
 
 ## ALOps App Compiler
 Compile Business Central extension(s) from AL code.
