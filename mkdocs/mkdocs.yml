@@ -9,7 +9,7 @@ nav:
         - Build steps: 
                 - v1: "ALOpsSteps/Buildstepsv1.md"
                 - v2: "ALOpsSteps/Buildstepsv2.md"
-                - v3: "ALOpsSteps/Buildstepsv3.md"
+                # - v3: "ALOpsSteps/Buildstepsv3.md"
         - Useful Information: 
                 - Global Variables: "UsefulInfo/Globals.md"
                 - Artifact Handling: "UsefulInfo/WorkingWithArtifacts.md"
