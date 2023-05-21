@@ -284,9 +284,20 @@ Full Yaml Description:
 
 ## ALOps OpenAPI
 
-Generate OpenAPI descriptions from Business Central API's.  The result is an extra artifact in the form of a json or yaml file (preferred), that represents a description of the API.  
+Generate OpenAPI descriptions from Business Central API's.  The result is an extra artifact in the form of a json or yaml file (preferred), that represents a description of the API.  You can simply copy/paste the contents of this yaml-file to a swagger editor (like: https://editor.swagger.io/) to test it out.
 
-> TIP: you can simply copy/paste the contents of this yaml-file to a swagger editor (like: https://editor.swagger.io/) to test it out.
+**<u>Important</u>!**
+**You need to make sure you enabled API Services on your docker container.  When creating a docker container with ALOps, pay attention to the parameter `enable_api_services`:**
+
+```yaml
+    - task: ALOpsDockerStart@1
+      displayName: 'ALOps Docker Start'
+      inputs:
+        ...
+        enable_api_services: False            # Enable API Services. $(enable_api_services)
+        ...
+```
+
 
 Full Yaml Description:
 
