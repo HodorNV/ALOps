@@ -7,20 +7,20 @@ You can simply download ALOps to your DevOps environment by:
 - Open the organization you want to work in
 - On the right top corner, click the right basket to browse the marketplace. 
 
-<img src="Images\FirstBuildPipeline1.png">
+<img src="..\img\FirstBuildPipeline1.png">
 
 - Search for "ALOps" and open that page
 - Click "Get"
 
-<img src="Images\FirstBuildPipeline2.png">
+<img src="..\img\FirstBuildPipeline2.png">
 
 - select your collection/organization and click "Install"
 
-<img src="Images\FirstBuildPipeline8.png">
+<img src="..\img\FirstBuildPipeline8.png">
 
 The tool is being downloaded to your marketplace.  If you go to "Manage Extensions", you'll find it in your "Installed" Extensions.
 
-<img src="Images\FirstBuildPipeline3.png">
+<img src="..\img\FirstBuildPipeline3.png">
 
 You are now good to go to add steps from ALOps in your build pipelines!
 
@@ -28,20 +28,20 @@ You are now good to go to add steps from ALOps in your build pipelines!
 ALOps provides templates for AL Apps in [this public project](https://dev.azure.com/HodorNV/ALOps%20Templates/).  We will import the code from one of the repos into our own repo.  This can simply be done by:
 - Navigate to one of the repos of the above link, like
 
-<img src="Images\FirstBuildPipeline4.png">
+<img src="..\img\FirstBuildPipeline4.png">
 
 - Now, copy the "clone" link.
 
-<img src="Images\FirstBuildPipeline5.png">
+<img src="..\img\FirstBuildPipeline5.png">
 
 - Time to create your own repository, so open your own DevOps organization, and create a new repository (or project)
 - When you have don that, your files-page will show a few options.  We will use the import-option.
 
-<img src="Images\FirstBuildPipeline6.png">
+<img src="..\img\FirstBuildPipeline6.png">
 
 - Paste the copied url and click "Import"
 
-<img src="Images\FirstBuildPipeline7.png">
+<img src="..\img\FirstBuildPipeline7.png">
 
 You have now a new repo, with the code imported from the template project from ALOps.
 
