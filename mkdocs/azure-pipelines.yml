@@ -8,7 +8,7 @@ variables:
     value: 'ALOps_Docs'
 
 trigger:
-- mkdocs
+- master
 
 pool:
   name: ALOPS-MKDOCS
