@@ -16,6 +16,19 @@ Full Yaml Description:
 
 !INCLUDE "ALOpsAdminCenterAPI_v1.md"
 
+## ALOps AppSource
+The purpose of this step is to upload your apps to your offerings on AppSource.
+
+It's smart.  As you can see below, there isn't much you need to set up, other than your connection to partnercenter.  This is how it works:
+- in a pipeline (probably a release pipeline), you foresee all the artifacts
+- "ALOpsAppSource"-step will read your offerings on AppSource
+- It will first find the "main" artifact, that corresponds with your offering
+- it will find all dependencies (recursive) of that main artifact
+- it will upload all artifacts to AppSource, in the correct way
+- it will do that for all offerings it can find all artifacts for
+
+!INCLUDE "ALOpsAppSource_v1.md"
+
 ## ALOps Agent Maintenance
 
 Cleanup and maintain DevOps a Agent for Business Central.
