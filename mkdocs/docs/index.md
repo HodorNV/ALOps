@@ -12,6 +12,8 @@ Another good way to get started is to watch [our introduction videos](https://ww
 - [ALOps Introduction - YouTube](https://www.youtube.com/watch?v=iVLOerdCuwA)
 - [Handling Dependencies in DevOps (with ALOps) - YouTube](https://www.youtube.com/watch?v=CCJG9cnjmLs&t=1s)
 
+And then there are **example pipelines**, which you can find [here](https://github.com/HodorNV/ALOps/tree/master/Examples).
+
 ## More information about ALOps
 
 Here are some more links about ALOps and how to work with it:
