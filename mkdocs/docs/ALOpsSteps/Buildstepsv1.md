@@ -20,6 +20,7 @@ Full Yaml Description:
 The purpose of this step is to upload your apps to your offerings on AppSource.
 
 It's smart.  As you can see below, there isn't much you need to set up, other than your connection to partnercenter.  This is how it works:
+
 - in a pipeline (probably a release pipeline), you foresee all the artifacts
 - "ALOpsAppSource"-step will read your offerings on AppSource
 - It will first find the "main" artifact, that corresponds with your offering
