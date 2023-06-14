@@ -20,7 +20,6 @@ steps:
     script: |
       $FileName = "DownloadFile.ps1"
       $GitHubUri = "https://raw.githubusercontent.com/StefanMaron/vsc-lintercop/master/$FileName"
-      $BCLinterCopFileName = "BusinessCentral.LinterCop.dll"
 
       try
       {
@@ -34,7 +33,7 @@ steps:
 
       Write-Host "Success. Now executing $FileName" -ForegroundColor Green
 
-      & $env:AGENT_BUILDDIRECTORY\$FileName $env:BUILD_SOURCESDIRECTORY\$BCLinterCopFileName $false
+      & $env:AGENT_BUILDDIRECTORY\$FileName $env:BUILD_SOURCESDIRECTORY $false
 
 - task: ALOpsAppCompiler@2
   inputs:
