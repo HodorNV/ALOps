@@ -96,6 +96,16 @@ Full Yaml Description:
 
 Run Business Central Test-Suite and collect results.
 
+> Note! when you run the step, and it executes no tests, the step will fail!  This is by design, because it's a good practice to always have tests in your app.  If you don't have tests, you can simply add a dummy test, like this:
+
+```al
+[Test]
+procedure DummyTest()
+begin
+    exit;
+end;
+```
+
 Full Yaml Description:
 
 !INCLUDE "ALOpsAppTest_v1.md"
