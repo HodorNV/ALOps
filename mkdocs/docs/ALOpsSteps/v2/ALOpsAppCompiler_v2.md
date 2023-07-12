@@ -6,7 +6,6 @@
         artifacttype: OnPrem                  # Set Artifact Type. $(artifacttype) $(artifacttype)
         artifactcountry:                      # The Country for the Artifact. $(artifactcountry) $(artifactcountry)
         versionselect: Latest                 # The version to be selected from the Artifacts. $(versionselect) $(versionselect)
-        alternativeartifacturl:               # Overrule the ArtifactUrl which would be determined by [artifacttype/artifactcountry/versionselect]. $(alternativeartifacturl) $(alternativeartifacturl)
         alternativevsixurl:                   # Alternative VSIX download url. Overrules BC Artificat VSIX. 'Latest' can be specified. $(alternativevsixurl) $(alternativevsixurl)
         alsourcepath: $(System.DefaultWorkingDirectory)#  $(alsourcepath) $(alsourcepath)
         ruleset:                              # Overrule the Ruleset from VSCode settings. Path relative to [alsourcepath] $(ruleset) $(ruleset)
