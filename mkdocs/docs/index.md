@@ -2,7 +2,7 @@
 
 Welcome to ALOps, an extension for Microsoft Azure DevOps, that provides building blocks for easily setting up build pipelines for AL Language Extensions, aka "Microsoft Dynamics 365 Business Central Extensions". 
 
-These building can be used to create a build pipeline for your AL Language Extension, that will build your extension, publish it to a Dynamics 365 Business Central Server, run tests on the server, and much more!  A list of all the buildsteps can be found [here](/ALOpsSteps/Buildstepsv1/).
+These building blocks can be used to create a build pipeline for your AL Language Extension, that will build your extension, publish it to a Dynamics 365 Business Central Server, run tests on the server, and much more!  A list of all the buildsteps can be found [here](/ALOpsSteps/Buildstepsv1/).
 
 ## Getting Started
 As ALOps provide building blocks for DevOps, you'll see it's very easy to get started.  It's all described right [here](Setup/SettingUpYourFirstBuild/).

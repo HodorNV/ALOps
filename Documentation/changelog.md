@@ -1,6 +1,40 @@
 # Change Log
 All notable changes to the "ALOps" extension.
 
+## [v1.458] - 2023-07-26
+- All Tasks: added "HelpMarkDown" for all parameters, improved documentation
+- All Tasks: Global Parameter [alops_disable_buildtags] for disabling build tags
+- ALOpsAdminCenterAPI: Auto update AppSourceApps in BC SaaS Environment
+- ALOpsAppCompile@2: Improved handling of Invalid Characters in naming
+- ALOpsAppPublish: Improved handling of Invalid Characters in naming
+- ALOpsAppTest: Validation check on existings test, fail pipeline if no tests
+
+## [v1.457] - 2023-06-17
+- ALOpsAppCompile: better error handling Get-ArtifactUrl, next-major catch during release
+- ALOpsAppCompile: extra parameter ArtifactUrl overrule
+- ALOpsAppCompile: improved error handling
+- ALOpsAppCompile@1/@2: Download Artifact url once, improved performance
+
+## [v1.455] - 2023-03-18
+- All Tasks: BC v22 compatibility
+- All Tasks: Bump BcContainerHelper to latest version v4.0.14
+- ALOpsAppCompile @1/@2: Added parameter for enabling "External Rulesets "
+- ALOpsAppCompile: Custom Linter json
+- ALOpsAppLicenseCheck: Solved bug with Permissions masks for BCLicense files
+- ALOpsAppTest: fixed ability to set filter on TestCodeunits to run
+- ALOpsAppValidation: Increase logging on License import
+
+## [v1.454] - 2022-11-29
+- All tasks: optimized loading of NAV Management DLLs and other modules
+- ALOpsAppCompile: Added string parameter 'ignorepragmas', when not blank ignores all PRAMA's set in code.
+- ALOpsAppCompile: Optimised Get-ArfitactUrl, runs only once per task.
+- ALOpsAppCompile@1: Added 'AppId' for App-Downloading from NST, proper name/publisher resolve.
+- ALOpsAppLicenseCheck: Can parse .bclicense files now, .flf files can still be used.
+- ALOpsAppPublish: New parameter [blocksymbolsonly] with default 'true'. Check for SymbolsOnly app before publish.
+- ALOpsDockerRemove: fixed some parameters not visible in visual editor
+- ALOpsExtensionAPI: New parameter [blocksymbolsonly] with default 'true'. Check for SymbolsOnly app before publish.
+- ALOpsOpenAPI: When parameter "exclude_company_paths" is set to 'true', Company specific paths are removed. Default Company can be set via Authentication (Header)
+
 ## [v1.454] - 2022-11-29
 - All tasks: optimized loading of NAV Management DLLs and other modules
 - ALOpsAppCompile: Added string parameter 'ignorepragmas', when not blank ignores all PRAMA's set in code.
