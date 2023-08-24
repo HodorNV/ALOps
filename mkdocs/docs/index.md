@@ -26,6 +26,8 @@ Here are some more links about ALOps and how to work with it:
 - [Global Variables](/UsefulInfo/Globals/)
 - [Working with Artifacts](/UsefulInfo/WorkingWithArtifacts/)
 
+For an entire overview of all releases, you can consult the [changelog](/changelog/).
+
 ## More Information about Microsoft Dynamics 365 Business Central 
 
 Here is some more information about **Microsoft Dynamics 365 Business Central**

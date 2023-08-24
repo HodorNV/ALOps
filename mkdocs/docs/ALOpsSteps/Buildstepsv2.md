@@ -11,6 +11,9 @@ Compile Business Central extension(s) from AL code.
 Full Yaml Description: 
 
 !INCLUDE "ALOpsAppCompiler_v2.md"
+### Parameters
+#### nav_app_version
+Same as described in [v1](Buildstepsv1.md#nav_app_version)
 
 ### Examples
 

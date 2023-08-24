@@ -150,6 +150,23 @@ Full Yaml Description:
 
 !INCLUDE "ALOpsAppCompiler_v1.md"
 
+### Parameters
+#### nav_app_version
+let's you manage the version of the app during the compile step.
+
+You can use a combination of the following
+
+- `?`: takes the corresponding app-version from the app.json (from the "version" property)
+- `A`: takes the corresponding Applicaiton-version from the app.json (from the "application" property)
+- `*`: takes the build number from DevOps
+- `[yyyyWW]`: You can use the default .Net date fromats to formate a date number (in this example the year and weeknumber) into the version
+
+Examples:
+
+- `A.A.*.0` - will take the Major and the Minor from the Application you have defined in app.json, the build number from DevOps, and the revision number will be 0
+- `?.?.[yyyyWW].*` - will take the Major and the Minor from the Version you have defined in app.json,  the build number from DevOps, and the revision number will be the build number
+- `?.?.?.?` - will simply take over the version from app.json
+
 ### Examples
 
 - [Default Build Including Tests · HodorNV/ALOps · GitHub](https://github.com/HodorNV/ALOps/blob/master/Examples/01_DefaultBuild_IncludingTestability.yml)
