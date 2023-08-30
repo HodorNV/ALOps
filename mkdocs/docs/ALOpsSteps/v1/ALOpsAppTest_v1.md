@@ -4,7 +4,7 @@
       inputs:
         usedocker: False                      # Run task in Docker container. $(usedocker)
         fixed_tag:                            # Allows recycling of docker containers. $(fixed_tag)
-        nav_serverinstance: BC140             # Business Central Server Instance Name. $(nav_serverinstance)
+        nav_serverinstance:                   # Business Central Server Instance Name. $(nav_serverinstance)
         tenant: default                       # Business Central Tenant. $(tenant)
         companyname:                          # Business Central Company. $(companyname)
         profile:                              # Business Central Profile. $(profile)
