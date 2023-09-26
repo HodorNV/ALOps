@@ -33,5 +33,6 @@
         printappmanifest: True                # Print the final app.json before compile. $(printappmanifest) $(printappmanifest)
         outputalclogs: True                   # Output ALC logs. $(outputalclogs) $(outputalclogs)
         additionalprobingpaths:               # Add additional Assembly probing Paths. $(additionalprobingpaths) $(additionalprobingpaths)
+        allowed_publisher_names:              # Allowed Publisher names. $(allowed_publisher_names) $(allowed_publisher_names)
 ```
 
