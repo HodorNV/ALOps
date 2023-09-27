@@ -5,6 +5,7 @@ All troubleshooting items:
 - [Unit tests seem to fail for some odd reason](#Unit-tests-seem-to-fail-for-some-odd-reason)
 - [Failed publishing test results to DevOps ](#Failed-publishing-test-results-to-DevOps)
 - [I have unclear problems with compiling my app or imorting a fob](#I-have-unclear-problems-with-compiling-my-app-or-imorting-a-fob)
+- [Wait for Docker Container Slow](#Wait-for-Docker-Container-Slow)
 
 ---
 
@@ -53,6 +54,11 @@ Most of these problems are solved by setting up the containers with Hyper-V isol
     docker_parameters: '--isolation=hyperv'
 ```
 It's important to understand that this problem is caused by the combination of the Docker image and the state of Windows Server of your build agent.
+
+---
+
+## Wait for Docker Container Slow
+If you are experiencing a very long delay on the Docker Start step, watch the sequence.  If it is getting "stuck" on or near the "Transfer compressed Archive to session" line, do a quick check if the size of that Archive is expected.  If the build agent isn't clearing out the work folder regularly (__TODO: "Best Practices - Maintenance"__), consider going into your Build Agent's ```work``` folder and removing the ```\#\``` temporary working folders.  They can grow to unexpected sizes, which can slow container starting.
 
 
 [Back To Main Page](../README.md)
