@@ -4,7 +4,7 @@ Let's list some common problems and their solutions:
 All troubleshooting items:
 - [Unit tests seem to fail for some odd reason](#Unit-tests-seem-to-fail-for-some-odd-reason)
 - [Failed publishing test results to DevOps ](#Failed-publishing-test-results-to-DevOps)
-- [I have unclear problems with compiling my app or imorting a fob](#I-have-unclear-problems-with-compiling-my-app-or-imorting-a-fob)
+- [I have unclear problems with compiling my app or importing a fob](#I-have-unclear-problems-with-compiling-my-app-or-importing-a-fob)
 
 ---
 
@@ -37,7 +37,7 @@ Publishing the test results is a default DevOps step, but for publishing AL Test
 
 ---
 
-## I have unclear problems with compiling my app or imorting a fob
+## I have unclear problems with compiling my app or importing a fob
 There are a lot of problems caused by a Windows update (Feb 2020) that makes Docker fail to run 32-bit application like finsql.exe or alc.exe.  Familiar errors are:
 - `AL Compiler Exit Code: -1073741502`
 - `Exception calling "GetResponse" with "0" argument(s)`
