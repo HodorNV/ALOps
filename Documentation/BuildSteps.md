@@ -61,6 +61,7 @@
             artifact_include:                     # Include-Filter used for locating App file relative to $(artifact_path). $(artifact_include)
             artifact_exclude:                     # Exclude-Filter used for locating App file relative to $(artifact_path). $(artifact_exclude)
             exclude_ranges:                       # Exclude-Ranges from LicenseCheck (Buffer / Tempory tables). Format: 60000..60099,70000..70100 $(exclude_ranges)
+            warning_only: False                   # Only post warning, do not fail pipeline. $(warning_only)
     ```
 - ALOps App Runtime Package
   * Get a NAV App runtime package for onprem deployment.
@@ -246,6 +247,7 @@
             additionalprobingpaths:               # Add additional Assembly probing Paths. $(additionalprobingpaths)
             enable_external_rulesets: False       # Enable External Rulesets. $(enable_external_rulesets)
             allowed_publisher_names:              # Allowed Publisher names. $(allowed_publisher_names)
+            allowed_publisher_names_separator: ,  # Allowed Publisher names Separator. $(allowed_publisher_names_separator)
     ```
 - ALOps Docker Create
   * Create Docker image based on NAV/BC Artifacts.
