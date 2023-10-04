@@ -1,6 +1,15 @@
 # Change Log
 All notable changes to the "ALOps" extension.
 
+## [v1.459] - 2023-07-31
+- All: Bump BcContainerHelper version to v5.0.7
+- ALOpsAgentMaintenance: improved delete error handling, continue cleanup on failure
+- ALOpsAppCompile: Extra parameter [allowed_publisher_names] for checking on Allowed Publisher Names
+- ALOpsAppCompile: read AppManifest in read-only mode, improving multi-processing
+- ALOpsAppLicenseCheck: extra boolean parameter [warning_only], only report as warning does not fail pipeline
+- ALOpsExtensionAPI: Extra logging on authentication requests for DEV-Port deploy
+- ALOpsExtensionAPI: Force API Language en-US, should solve endless status-check
+
 ## [v1.458] - 2023-07-26
 - All Tasks: added "HelpMarkDown" for all parameters, improved documentation
 - All Tasks: Global Parameter [alops_disable_buildtags] for disabling build tags
