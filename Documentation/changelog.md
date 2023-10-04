@@ -1,7 +1,7 @@
 # Change Log
 All notable changes to the "ALOps" extension.
 
-## [v1.459] - 2023-07-31
+## [v1.459] - 2023-10-04
 - All: Bump BcContainerHelper version to v5.0.7
 - ALOpsAgentMaintenance: improved delete error handling, continue cleanup on failure
 - ALOpsAppCompile: Extra parameter [allowed_publisher_names] for checking on Allowed Publisher Names
