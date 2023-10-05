@@ -10,5 +10,6 @@
         artifact_include:                     # Include-Filter used for locating App file relative to $(artifact_path). $(artifact_include)
         artifact_exclude:                     # Exclude-Filter used for locating App file relative to $(artifact_path). $(artifact_exclude)
         exclude_ranges:                       # Exclude-Ranges from LicenseCheck (Buffer / Tempory tables). Format: 60000..60099,70000..70100 $(exclude_ranges)
+        warning_only: False                   # Only post warning, do not fail pipeline. $(warning_only)
 ```
 
