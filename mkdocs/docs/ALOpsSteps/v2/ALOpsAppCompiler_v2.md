@@ -35,5 +35,6 @@
         additionalprobingpaths:               # Add additional Assembly probing Paths. $(additionalprobingpaths) $(additionalprobingpaths)
         allowed_publisher_names:              # Allowed Publisher names. $(allowed_publisher_names) $(allowed_publisher_names)
         allowed_publisher_names_separator: ,  # Allowed Publisher names Separator. $(allowed_publisher_names_separator) $(allowed_publisher_names_separator)
+        accept_insider_eula: False            # Accept Insider EULA. $(accept_insider_eula) $(accept_insider_eula)
 ```
 
