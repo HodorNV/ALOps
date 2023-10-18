@@ -22,5 +22,6 @@
         includewarnings: False                # Include this switch if you want to include Warnings. $(includewarnings)
         failonerror: True                     # Include this switch if you want to fail on the first error instead of returning all errors to the caller. $(failonerror)
         containername: bcserver               # Only required when running multiple DevOps Agents on the same server. (Not recommended) $(containername)
+        accept_insider_eula: False            # Accept Insider EULA. $(accept_insider_eula)
 ```
 
