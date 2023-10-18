@@ -24,5 +24,6 @@
         includetestlibrariesonly: False       # Included only the Test-Libraries in created image. $(includetestlibrariesonly)
         includetestframeworkonly: False       # Included only the Test-Framework in created image. $(includetestframeworkonly)
         includeperformancetoolkit: False      # Include Performance-Toolkit in created image. $(includeperformancetoolkit)
+        accept_insider_eula: False            # Accept Insider EULA. $(accept_insider_eula)
 ```
 
