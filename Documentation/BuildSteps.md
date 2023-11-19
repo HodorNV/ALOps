@@ -61,6 +61,12 @@
             artifact_include:                     # Include-Filter used for locating App file relative to $(artifact_path). $(artifact_include)
             artifact_exclude:                     # Exclude-Filter used for locating App file relative to $(artifact_path). $(artifact_exclude)
             exclude_ranges:                       # Exclude-Ranges from LicenseCheck (Buffer / Tempory tables). Format: 60000..60099,70000..70100 $(exclude_ranges)
+            exclude_tables: False                 # Exclude Table objects from LicenseCheck. $(exclude_tables)
+            exclude_codeunits: False              # Exclude Codeunit objects from LicenseCheck. $(exclude_codeunits)
+            exclude_pages: False                  # Exclude Page objects from LicenseCheck. $(exclude_pages)
+            exclude_reports: False                # Exclude Report objects from LicenseCheck. $(exclude_reports)
+            exclude_xmlports: False               # Exclude XMLPort objects from LicenseCheck. $(exclude_xmlports)
+            exclude_queries: False                # Exclude Query objects from LicenseCheck. $(exclude_queries)
             warning_only: False                   # Only post warning, do not fail pipeline. $(warning_only)
     ```
 - ALOps App Runtime Package
@@ -75,6 +81,7 @@
             nav_serverinstance: BC140             # Specifies the name of a Business Central Server instance. $(nav_serverinstance)
             nav_tenant: default                   # Specifies the ID of a specific tenant that you want to act on, such as Tenant1. $(nav_tenant)
             targetproject: ./app.json             # Path of the project to export as RuntimePackage. Must be a fully qualified path or relative to $(System.DefaultWorkingDirectory). $(targetproject)
+            appfilenametemplate: %APP_PUBLISHER%_%APP_NAME%_%APP_VERSION%_runtime.app# Template for App filename. $(appfilenametemplate)
             showmycode: False                     # Overwrites the ShowMyCode value in the manifest. $(showmycode)
             publish_artifact: True                # Publish generated Runtime-App Artifact to DevOps. $(publish_artifact)
     ```
@@ -274,6 +281,7 @@
             forcecreateimage: False               # Forces image creation, skipping Pull image. $(forcecreateimage)
             myscripts:                            # Specify myScripts to be added to the image. $(myscripts)
             imagenametemplate: %IMAGE_PREFIX%:%ARTIFACT_TYPE%-%ARTIFACT_VERSION%-%ARTIFACT_COUNTRY%-%OS_VERSION%-%OS_LTSC%# Template for defining Image names or using a fixed name $(imagenametemplate)
+            use_generic_image:                    # The base image to use for Image creation. $(use_generic_image)
             licensefile:                          # BC License File to be included in the Image $(licensefile)
             includetesttoolkit: False             # Included the TestToolkit in created image. $(includetesttoolkit)
             includetestlibrariesonly: False       # Included only the Test-Libraries in created image. $(includetestlibrariesonly)
