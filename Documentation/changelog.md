@@ -14,6 +14,7 @@ All notable changes to the "ALOps" extension.
 - All Tasks: added "HelpMarkDown" for all parameters, improved documentation
 - All Tasks: Global Parameter [alops_disable_buildtags] for disabling build tags
 - ALOpsAdminCenterAPI: Auto update AppSourceApps in BC SaaS Environment
+- ALOpsAppCompile@1: Fixed ApplicationVersion template parsing
 - ALOpsAppCompile@2: Improved handling of Invalid Characters in naming
 - ALOpsAppPublish: Improved handling of Invalid Characters in naming
 - ALOpsAppTest: Validation check on existings test, fail pipeline if no tests
@@ -23,6 +24,9 @@ All notable changes to the "ALOps" extension.
 - ALOpsAppCompile: extra parameter ArtifactUrl overrule
 - ALOpsAppCompile: improved error handling
 - ALOpsAppCompile@1/@2: Download Artifact url once, improved performance
+
+## [v1.456] - 2023-04-15
+- ALOpsAppCompile: VSIX Versions 'LATEST' / 'PRERELEASE' / SPECIFIC
 
 ## [v1.455] - 2023-03-18
 - All Tasks: BC v22 compatibility
