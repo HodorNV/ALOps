@@ -19,6 +19,7 @@
         forcecreateimage: False               # Forces image creation, skipping Pull image. $(forcecreateimage)
         myscripts:                            # Specify myScripts to be added to the image. $(myscripts)
         imagenametemplate: %IMAGE_PREFIX%:%ARTIFACT_TYPE%-%ARTIFACT_VERSION%-%ARTIFACT_COUNTRY%-%OS_VERSION%-%OS_LTSC%# Template for defining Image names or using a fixed name $(imagenametemplate)
+        use_generic_image:                    # The base image to use for Image creation. $(use_generic_image)
         licensefile:                          # BC License File to be included in the Image $(licensefile)
         includetesttoolkit: False             # Included the TestToolkit in created image. $(includetesttoolkit)
         includetestlibrariesonly: False       # Included only the Test-Libraries in created image. $(includetestlibrariesonly)
