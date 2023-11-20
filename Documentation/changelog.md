@@ -1,6 +1,24 @@
 # Change Log
 All notable changes to the "ALOps" extension.
 
+## [v1.461] - 2023-11-20
+- All Docker Tasks: Improved error catching on docker command, fixed the ALOpsDockerWait timeout
+- ALOpsAppRuntimePackage: Artifacts name can now be manipulated via parameter "appfilenametemplate", 'BC Version' had to be inserted into the template
+- ALOpsAppSourceDeploy: Version update
+- ALOpsDockerCreate: Added parameter 'usegenericImage'
+- ALOpsLicenseCheck: Added check on Pages object type
+- ALOpsLicenseCheck: Improved processsing, all apps are processed before failing pipeline
+- ALOpsLicenseCheck: Specific Object-Types can be excluded via: exclude_tables, exclude_codeunits, exclude_pages, exclude_reports, exclude_xmlports, exclude_queries
+- ALOpsLicenseCheck: Warning output is collected into environment variable "ALOPS_CHECKLICENSE_OUTPUT"
+- ALOpsOpenAPI: Corrected Action Names with "Dynamics.NAV"
+
+## [v1.460] - 2023-10-31
+- All Tasks: Migrate from insider SAS token to insider EULA
+- ALOpsAdminCenterAPI: update single app with filter
+- ALOpsAppCompile v1 v2: SetTrackSourceAndBuildMetadata runtime
+- ALOpsAppCompile@2: Track Source via new parameter "track_source_build_metadata", default TRUE
+- ALOpsAppSource: improve AZ module loading
+
 ## [v1.459] - 2023-10-04
 - All: Bump BcContainerHelper version to v5.0.7
 - ALOpsAgentMaintenance: improved delete error handling, continue cleanup on failure
