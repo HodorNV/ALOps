@@ -24,6 +24,7 @@
         publish_artifact: True                # Publish generated App Artifact to DevOps. $(publish_artifact)
         publishxlif: False                    # Publish generated XLIF to DevOps. $(publishxlif)
         failed_on_warnings: False             # Fail task when any warning occurs. $(failed_on_warnings)
+        failonany: False                      # Fail task when any message occurs. $(failonany)
         app_file_suffix:                      # Set a suffix tag on the compiled App filename. $(app_file_suffix)
         updatebuildnumber: True               # Update the Build number with the current version. $(updatebuildnumber)
         setup_working_folder: False           # Copy working folder to Docker container. $(setup_working_folder)
