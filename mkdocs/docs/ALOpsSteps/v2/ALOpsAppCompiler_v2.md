@@ -28,6 +28,7 @@
         publishartifact: True                 # Publish generated App Artifact to DevOps. $(publishartifact) $(publishartifact)
         publishxlif: False                    # Publish generated XLIF to DevOps. $(publishxlif) $(publishxlif)
         failonwarnings: False                 # Fail task when any warning occurs. $(failonwarnings) $(failonwarnings)
+        failonany: False                      # Fail task when any message occurs. $(failonany) $(failonany)
         storageaccount:                       # Non Default Storage Account. $(storageaccount) $(storageaccount)
         sastoken:                             # SAS Token used to access Storage Account. $(sastoken) $(sastoken)
         printappmanifest: True                # Print the final app.json before compile. $(printappmanifest) $(printappmanifest)
