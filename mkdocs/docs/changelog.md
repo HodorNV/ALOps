@@ -1,6 +1,33 @@
 # Change Log
 All notable changes to the "ALOps" extension.
 
+## [v1.462] - 2024-02-06
+- ALOpsAdminCenter: Force API calls in en-US format
+- ALOpsAppCompile: Added option to fail on any info/warning/error log
+- ALOpsAppCompiler: Allow use of external ruleset (HTTPS)
+- ALOpsAppSource: solved issue with apps without dependencies
+- ALOpsAppValidation: Enabled run without license file
+- ALOpsExtensionAPI: force API calls in en-US format
+- Bump BcContainerHelper to v6.0.5
+
+## [v1.461] - 2023-11-20
+- All Docker Tasks: Improved error catching on docker command, fixed the ALOpsDockerWait timeout
+- ALOpsAppRuntimePackage: Artifacts name can now be manipulated via parameter "appfilenametemplate", 'BC Version' had to be inserted into the template
+- ALOpsAppSourceDeploy: Version update
+- ALOpsDockerCreate: Added parameter 'usegenericImage'
+- ALOpsLicenseCheck: Added check on Pages object type
+- ALOpsLicenseCheck: Improved processsing, all apps are processed before failing pipeline
+- ALOpsLicenseCheck: Specific Object-Types can be excluded via: exclude_tables, exclude_codeunits, exclude_pages, exclude_reports, exclude_xmlports, exclude_queries
+- ALOpsLicenseCheck: Warning output is collected into environment variable "ALOPS_CHECKLICENSE_OUTPUT"
+- ALOpsOpenAPI: Corrected Action Names with "Dynamics.NAV"
+
+## [v1.460] - 2023-10-31
+- All Tasks: Migrate from insider SAS token to insider EULA
+- ALOpsAdminCenterAPI: update single app with filter
+- ALOpsAppCompile v1 v2: SetTrackSourceAndBuildMetadata runtime
+- ALOpsAppCompile@2: Track Source via new parameter "track_source_build_metadata", default TRUE
+- ALOpsAppSource: improve AZ module loading
+
 ## [v1.459] - 2023-10-04
 - All: Bump BcContainerHelper version to v5.0.7
 - ALOpsAgentMaintenance: improved delete error handling, continue cleanup on failure
@@ -14,6 +41,7 @@ All notable changes to the "ALOps" extension.
 - All Tasks: added "HelpMarkDown" for all parameters, improved documentation
 - All Tasks: Global Parameter [alops_disable_buildtags] for disabling build tags
 - ALOpsAdminCenterAPI: Auto update AppSourceApps in BC SaaS Environment
+- ALOpsAppCompile@1: Fixed ApplicationVersion template parsing
 - ALOpsAppCompile@2: Improved handling of Invalid Characters in naming
 - ALOpsAppPublish: Improved handling of Invalid Characters in naming
 - ALOpsAppTest: Validation check on existings test, fail pipeline if no tests
@@ -23,6 +51,9 @@ All notable changes to the "ALOps" extension.
 - ALOpsAppCompile: extra parameter ArtifactUrl overrule
 - ALOpsAppCompile: improved error handling
 - ALOpsAppCompile@1/@2: Download Artifact url once, improved performance
+
+## [v1.456] - 2023-04-15
+- ALOpsAppCompile: VSIX Versions 'LATEST' / 'PRERELEASE' / SPECIFIC
 
 ## [v1.455] - 2023-03-18
 - All Tasks: BC v22 compatibility
