@@ -1,6 +1,15 @@
 # Change Log
 All notable changes to the "ALOps" extension.
 
+## [v1.462] - 2024-02-06
+- ALOpsAdminCenter: Force API calls in en-US format
+- ALOpsAppCompile: Added option to fail on any info/warning/error log
+- ALOpsAppCompiler: Allow use of external ruleset (HTTPS)
+- ALOpsAppSource: solved issue with apps without dependencies
+- ALOpsAppValidation: Enabled run without license file
+- ALOpsExtensionAPI: force API calls in en-US format
+- Bump BcContainerHelper to v6.0.5
+
 ## [v1.461] - 2023-11-20
 - All Docker Tasks: Improved error catching on docker command, fixed the ALOpsDockerWait timeout
 - ALOpsAppRuntimePackage: Artifacts name can now be manipulated via parameter "appfilenametemplate", 'BC Version' had to be inserted into the template
