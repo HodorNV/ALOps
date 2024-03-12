@@ -1,55 +1,17 @@
 name: $(Build.BuildId)
 
-# trigger:
-#  branches:
-#    include:
-#      - master
-#      - main
-
-variables:
-- group: 'Secrets'  # link to a variable group that has secret variables, like URL to license file.
-
 pool: HOD-DOCKER
+
+trigger: none
 
 steps:
 - checkout: self
   clean: true 
 
-- task: ALOpsDockerCreate@1
-  displayName: 'ALOPS - Create Docker Image' # It will reuse the image if already exists, or build one if it doesn't.
+# This compiler (v2) is not going to use a docker container, but it's going to use the artifacts that you specify in the parameters
+# The compiler will "Batch Compile", meaning: it will compile everything in the workingfolder
+
+- task: ALOpsAppCompiler@2
   inputs:
     artifacttype: Sandbox
-
-- task: ALOpsDockerStart@1
-  displayName: 'ALOPS - Start Docker Container' # No need to provide any details - it will get the details from previous step
-
-- task: ALOpsDockerWait@1
-  displayName: 'ALOPS - Wait for Docker Container to start'
-  inputs:
-    search_string: 'Ready for connections!'
-
-- task: ALOpsLicenseImport@1
-  displayName: 'ALOPS - License Import'
-  inputs:
-    usedocker: true
-    license_path: '$(bc.license)'  # more info: https://www.youtube.com/watch?v=iVLOerdCuwA&t=3078s
-
-- task: ALOpsAppCompiler@1
-  displayName: 'ALOPS - Compile Extension'
-  inputs:
-    usedocker: true
-    nav_app_version: '1.0.[yyyyWW].*'
-    failed_on_warnings: true
-    targetproject: 'app/app.json'
-
-- task: ALOpsAppPublish@1
-  displayName: 'ALOPS - Publish App' # to be able to run test
-  inputs:
-    usedocker: true
-    nav_artifact_app_filter: '*.app'   
-    skip_verification: true 
-
-- task: ALOpsDockerRemove@1
-  displayName: 'ALOPS - Remove Docker Container'
-  enabled: true
-  condition: always()
+    versionselect: Weekly  # Weekly in stead of Daily save lots of time a day because there are multiple new artifacts per day

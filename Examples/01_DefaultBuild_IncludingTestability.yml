@@ -1,0 +1,108 @@
+name: $(Build.BuildId)
+
+# trigger:
+#  branches:
+#    include:
+#      - master
+#      - main
+
+variables:
+- group: 'Secrets'  # link to a variable group that has secret variables, like URL to license file, or sasToken for insider builds
+
+pool: HOD-DOCKER
+
+steps:
+- checkout: self
+  clean: true 
+
+- task: ALOpsDockerCreate@1
+  displayName: 'ALOps - Create Docker Image if necessary' # It will reuse the image if already exists, or build one if it doesn't.
+  inputs:
+    artifacttype: Sandbox
+    versionselect: Weekly
+    licensefile: '$(bc.license)'  # more info: https://www.youtube.com/watch?v=iVLOerdCuwA&t=3078s
+
+- task: ALOpsDockerStart@1
+  displayName: 'ALOps - Start Docker Container' # No need to provide any details - it will get the details from previous step
+  inputs:
+    docker_pull: false
+    docker_parameters: | 
+      --env customNavSettings=EnableTaskScheduler=false 
+    licensefile: '$(bc.license)'
+
+- task: ALOpsDockerWait@1
+  displayName: 'ALOps - Wait for Docker Container to start'
+  inputs:
+    search_string: 'Ready for connections!'
+
+#Install Test-apps - included in artifact, so easy to reference the names of the apps - ALOps will find them
+- task: ALOpsAppPublish@1
+  displayName: 'ALOps - Install AL TestTool' # install necessary dependent apps for testability
+  inputs:
+    usedocker: true
+    installaltesttool: true
+    skip_verification: true
+    install_al_app_names: |
+     Tests-TestLibraries
+     System Application Test
+     System Application Test Library
+     Any
+     Library Assert
+     Test Runner
+     Permissions Mock
+     Library Variable Storage
+
+- task: ALOpsAppCompiler@1
+  displayName: 'ALOps - Compile Extension: App'
+  inputs:
+    usedocker: true
+    nav_app_version: '?.?.*.0'                              # ? = Take digit from the app.json, * = buildnumber
+    targetproject: 'app/app.json'                           # The App
+    failed_on_warnings: true
+    app_file_suffix: '_APP'                                 # A trick to uniquely identify the APP (from the TEST-app)
+
+- task: ALOpsAppPublish@1
+  displayName: 'ALOps - Publish Extension'
+  inputs:
+    usedocker: true
+    nav_artifact_app_filter: '*.app'
+    skip_verification: true
+
+- task: ALOpsAppCompiler@1
+  displayName: 'ALOps - Compile Extension: Test-App'
+  inputs:
+    usedocker: true
+    nav_app_version: '?.?.*.0'
+    targetproject: 'test/app.json'                           # The Test-App
+    failed_on_warnings: true    
+    app_file_suffix: '_TEST'                                 # A trick to uniquely identify the Test-App (from the App)
+
+- task: ALOpsAppPublish@1
+  displayName: 'ALOps - Publish Extension'
+  inputs:
+    usedocker: true
+    nav_artifact_app_filter: '*.app'
+    skip_verification: true   
+
+- task: ALOpsAppTest@1
+  displayName: 'ALOps - Run TestSuite'
+  inputs:
+    usedocker: true
+    import_action: "Skip"
+    import_testtoolkit: false
+    testpage: '130455'
+    testsuite: 'DEFAULT'
+    failed_test_action: 'Ignore'
+  continueOnError: true   
+
+- task: PublishTestResults@2
+  displayName: 'Publish Test Results **/TestResults.xml'
+  inputs:
+    testResultsFormat: XUnit
+    testResultsFiles: '**/TestResults.xml'
+    testRunTitle: 'BC Test Results: $(Build.BuildId)'
+
+- task: ALOpsDockerRemove@1
+  displayName: 'ALOps - Remove Docker Container'
+  enabled: true
+  condition: always()

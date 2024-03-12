@@ -5,12 +5,38 @@
     Here is a list of all build steps you have at your disposal when you use ALOps
 
         ### ALOps Tasks
-    - ALOps Agent Maintenance
+    - ALOps AdminCenter API
+  * Interact with BC SaaS AdminCenter API.
+  * YAML Template: 
+    ```yaml
+        - task: ALOpsAdminCenterAPI@1
+          displayName: 'ALOps AdminCenter API'
+          inputs:
+            azure_tenant_id:                      # Azure Tenant Id. Only required for BC SaaS $(azure_tenant_id)
+            azure_app_client_id:                  # Azure AD Application Client Id. $(azure_app_client_id)
+            azure_app_client_secret:              # Azure AD Application Client Secret. $(azure_app_client_secret)
+            azure_app_client_certificate:         # Azure AD Application Client Certificate. $(azure_app_client_certificate)
+            azure_app_client_certificate_password: # Azure AD Application Client Certificate Password. $(azure_app_client_certificate_password)
+            username:                             # Business Central Username. Leave empty for Service-2-Service authentication. $(username)
+            password:                             # Business Central User Password. Leave empty for Service-2-Service authentication. $(password)
+            checksecondsdelay: 30                 # Seconds of delay betweel deployment status checks. $(checksecondsdelay)
+            maxtries: 20                          # Max tries for status check. $(maxtries)
+            interaction: environment_list         # Set Interaction to use. $(interaction)
+            wait_for_operation: True              # Wait for operation. $(wait_for_operation)
+            environment:                          # Source Environment. $(environment)
+            target_environment:                   # Target Environment. $(target_environment)
+            use_update_window: False              # Use update window. $(use_update_window)
+            app_id:                               # App ID. $(app_id)
+            accept_isv_eula: False                # Accept ISV Eula. $(accept_isv_eula)
+            force_dependencies: False             # Force Dependencies. $(force_dependencies)
+            confirm_delete_data: False            # Confirm Delete Data. $(confirm_delete_data)
+    ```
+- ALOps Agent Maintenance
   * Cleanup and maintain DevOps a Agent for Business Central.
   * YAML Template: 
     ```yaml
-            - task: ALOpsAgentMaintenance@1
-            displayName: 'ALOps Agent Maintenance'
+        - task: ALOpsAgentMaintenance@1
+          displayName: 'ALOps Agent Maintenance'
           inputs:
             removeoldtasks: False                 # Remove old ALOps tasks. $(removeoldtasks)
             removeunusedcontainers: False         # Force docker container pruning. $(removeunusedcontainers)
@@ -24,27 +50,38 @@
   * Check App files agains a license.
   * YAML Template: 
     ```yaml
-            - task: ALOpsAppLicenseCheck@1
-            displayName: 'ALOps App License Check'
+        - task: ALOpsAppLicenseCheck@1
+          displayName: 'ALOps App License Check'
           inputs:
+            usedocker: False                      # Run task in Docker container. $(usedocker)
+            fixed_tag:                            # Allows recycling of docker containers. $(fixed_tag)
             licensefile:                          # Set the BC License File. Path or Url. $(licensefile)
             artifact_path: $(System.ArtifactsDirectory)# Path for App Artifact. $(artifact_path)
-            artifact_filter: *.app                # Filter used for locating App file relative to $(path_to_publish). $(artifact_filter)
-            artifact_include:                     # Include-Filter used for locating App file relative to $(path_to_publish). $(artifact_include)
-            artifact_exclude:                     # Exclude-Filter used for locating App file relative to $(path_to_publish). $(artifact_exclude)
+            artifact_filter: *.app                # Filter used for locating App file relative to $(artifact_path). $(artifact_filter)
+            artifact_include:                     # Include-Filter used for locating App file relative to $(artifact_path). $(artifact_include)
+            artifact_exclude:                     # Exclude-Filter used for locating App file relative to $(artifact_path). $(artifact_exclude)
+            exclude_ranges:                       # Exclude-Ranges from LicenseCheck (Buffer / Tempory tables). Format: 60000..60099,70000..70100 $(exclude_ranges)
+            exclude_tables: False                 # Exclude Table objects from LicenseCheck. $(exclude_tables)
+            exclude_codeunits: False              # Exclude Codeunit objects from LicenseCheck. $(exclude_codeunits)
+            exclude_pages: False                  # Exclude Page objects from LicenseCheck. $(exclude_pages)
+            exclude_reports: False                # Exclude Report objects from LicenseCheck. $(exclude_reports)
+            exclude_xmlports: False               # Exclude XMLPort objects from LicenseCheck. $(exclude_xmlports)
+            exclude_queries: False                # Exclude Query objects from LicenseCheck. $(exclude_queries)
+            warning_only: False                   # Only post warning, do not fail pipeline. $(warning_only)
     ```
 - ALOps App Runtime Package
   * Get a NAV App runtime package for onprem deployment.
   * YAML Template: 
     ```yaml
-            - task: ALOpsAppRuntimePackage@1
-            displayName: 'ALOps App Runtime Package'
+        - task: ALOpsAppRuntimePackage@1
+          displayName: 'ALOps App Runtime Package'
           inputs:
             usedocker: False                      # Run task in Docker container. $(usedocker)
             fixed_tag:                            # Allows recycling of docker containers. $(fixed_tag)
             nav_serverinstance: BC140             # Specifies the name of a Business Central Server instance. $(nav_serverinstance)
             nav_tenant: default                   # Specifies the ID of a specific tenant that you want to act on, such as Tenant1. $(nav_tenant)
             targetproject: ./app.json             # Path of the project to export as RuntimePackage. Must be a fully qualified path or relative to $(System.DefaultWorkingDirectory). $(targetproject)
+            appfilenametemplate: %APP_PUBLISHER%_%APP_NAME%_%APP_VERSION%_runtime.app# Template for App filename. $(appfilenametemplate)
             showmycode: False                     # Overwrites the ShowMyCode value in the manifest. $(showmycode)
             publish_artifact: True                # Publish generated Runtime-App Artifact to DevOps. $(publish_artifact)
     ```
@@ -52,8 +89,8 @@
   * Codesign Business Central extension with .pfx.
   * YAML Template: 
     ```yaml
-            - task: ALOpsAppSign@1
-            displayName: 'ALOps App Sign'
+        - task: ALOpsAppSign@1
+          displayName: 'ALOps App Sign'
           inputs:
             usedocker: False                      # Run task in Docker container. $(usedocker)
             fixed_tag:                            # Allows recycling of docker containers. $(fixed_tag)
@@ -69,24 +106,35 @@
   * Verify CodeSign of Business Central extension.
   * YAML Template: 
     ```yaml
-            - task: ALOpsAppSignVerify@1
-            displayName: 'ALOps App Sign Verify'
+        - task: ALOpsAppSignVerify@1
+          displayName: 'ALOps App Sign Verify'
           inputs:
             usedocker: False                      # Run task in Docker container. $(usedocker)
             fixed_tag:                            # Allows recycling of docker containers. $(fixed_tag)
             artifact_path:                        # Path for App Artifact. $(artifact_path)
             nav_artifact_app_filter: *.app        # Path of the App to verify. Must be a fully qualified path or relative to $(System.DefaultWorkingDirectory). $(nav_artifact_app_filter)
     ```
+- ALOps AppSource
+  * Compile a Business Central extension from AL code.
+  * YAML Template: 
+    ```yaml
+        - task: ALOpsAppSource@1
+          displayName: 'ALOps AppSource'
+          inputs:
+            azure_tenant_id:                      # Azure Tenant Id. Only required for BC SaaS $(azure_tenant_id)
+            azure_app_client_id:                  # Azure AD Application Client Id. $(azure_app_client_id)
+            azure_app_client_secret:              # Azure AD Application Client Secret. $(azure_app_client_secret)
+    ```
 - ALOps App Test
   * Run Business Central Test-Suite and collect results.
   * YAML Template: 
     ```yaml
-            - task: ALOpsAppTest@1
-            displayName: 'ALOps App Test'
+        - task: ALOpsAppTest@1
+          displayName: 'ALOps App Test'
           inputs:
             usedocker: False                      # Run task in Docker container. $(usedocker)
             fixed_tag:                            # Allows recycling of docker containers. $(fixed_tag)
-            nav_serverinstance: BC140             # Business Central Server Instance Name. $(nav_serverinstance)
+            nav_serverinstance:                   # Business Central Server Instance Name. $(nav_serverinstance)
             tenant: default                       # Business Central Tenant. $(tenant)
             companyname:                          # Business Central Company. $(companyname)
             profile:                              # Business Central Profile. $(profile)
@@ -112,8 +160,8 @@
   * Validate App from Business Central AppSource.
   * YAML Template: 
     ```yaml
-            - task: ALOpsAppValidation@1
-            displayName: 'ALOps App Validation'
+        - task: ALOpsAppValidation@1
+          displayName: 'ALOps App Validation'
           inputs:
             license_path:                         # Path of the FLF license to import. Must be a fully qualified path or relative to $(System.DefaultWorkingDirectory) or a downloadable Url. $(license_path)
             countries:                            # Comma seperated array of countries to validate. When blank SupportedCountries value from AppSourceCop.json is used. $(countries)
@@ -131,19 +179,18 @@
             validatenextmajor: False              # Validate against Next Major version of Business Central. $(validatenextmajor)
             sastoken:                             # SAS Token used to access Storage Account. $(sastoken)
             skipverification: False               #  $(skipverification)
-            skipupgrade: False                    #  $(skipupgrade)
             skipappsourcecop: False               #  $(skipappsourcecop)
-            skipconnectiontest: False             #  $(skipconnectiontest)
             includewarnings: False                # Include this switch if you want to include Warnings. $(includewarnings)
             failonerror: True                     # Include this switch if you want to fail on the first error instead of returning all errors to the caller. $(failonerror)
             containername: bcserver               # Only required when running multiple DevOps Agents on the same server. (Not recommended) $(containername)
+            accept_insider_eula: False            # Accept Insider EULA. $(accept_insider_eula)
     ```
 - ALOps App Cleaner
   * Remove all extensions from Business Central service tier.
   * YAML Template: 
     ```yaml
-            - task: ALOpsAppClean@1
-            displayName: 'ALOps App Cleaner'
+        - task: ALOpsAppClean@1
+          displayName: 'ALOps App Cleaner'
           inputs:
             usedocker: False                      # Run task in Docker container. $(usedocker)
             fixed_tag:                            # Allows recycling of docker containers. $(fixed_tag)
@@ -156,8 +203,8 @@
   * Copy Business Central extensions from one service tier to another.
   * YAML Template: 
     ```yaml
-            - task: ALOpsAppCopy@1
-            displayName: 'ALOps App Copy'
+        - task: ALOpsAppCopy@1
+          displayName: 'ALOps App Copy'
           inputs:
             nav_computername: localhost           # Target Business Central Server running service tier. $(nav_computername)
             nav_serverinstance_source: BC140      # Source Business Central service tier to copy from. $(nav_serverinstance_source)
@@ -168,8 +215,8 @@
   * Compile a Business Central extension from AL code.
   * YAML Template: 
     ```yaml
-            - task: ALOpsAppCompiler@1
-            displayName: 'ALOps App Compiler'
+        - task: ALOpsAppCompiler@1
+          displayName: 'ALOps App Compiler'
           inputs:
             usedocker: False                      # Run task in Docker container. $(usedocker)
             fixed_tag:                            # Allows recycling of docker containers. $(fixed_tag)
@@ -184,6 +231,7 @@
             ruleset:                              # Overrule the Ruleset from VSCode settings. Path relative to [alsourcepath] $(ruleset)
             suppresswarnings: KEEP                # Overrule the 'suppresswarnings' setting. $(suppresswarnings)
             al_analyzer:                          # AL Analyzer(s) used for compiling. (Example: CodeCop,UICop) $(al_analyzer)
+            ignorepragmas:                        # Report Suppressed Diagnostics: diagnostics suppressed in source code should be emitted. $(ignorepragmas)
             nav_app_version: 1.0.*.0              # Template for versioning NAV-Apps. '*' is replaced by the current Build Number. $(nav_app_version)
             vsix_download_path:                   # Alternative VSIX download url. 'Latest' can be specified. $(vsix_download_path)
             use_ssl: False                        # Use SSL for Business Central connections. $(use_ssl)
@@ -199,17 +247,22 @@
             resourceexposurepolicy_allowdebugging: Keep# Overrule allowDebugging by setting other option than 'Keep'. $(resourceexposurepolicy_allowdebugging)
             resourceexposurepolicy_allowdownloadingsource: Keep# Overrule allowDownloadingSource by setting other option than 'Keep'. $(resourceexposurepolicy_allowdownloadingsource)
             resourceexposurepolicy_includesourceinsymbolfile: Keep# Overrule includeSourceInSymbolFile by setting other option than 'Keep'. $(resourceexposurepolicy_includesourceinsymbolfile)
+            internalsvisibleto: Keep              # Remove internalsVisibleTo by setting other option than 'Keep'. $(internalsvisibleto)
+            preprocessorsymbols:                  # Overwrite the preprocessorSymbols in app.json, comma seperated string. Set to 'NONE' to remove. $(preprocessorsymbols)
             applicationinsightskey:               # Overwrite the ApplicationInsightsKey in app.json. Set to 'NONE' to remove InsightsKey. $(applicationinsightskey)
             printappmanifest: True                # Print the final app.json before compile. $(printappmanifest)
             output_alc_logs: True                 # Output ALC logs. $(output_alc_logs)
             additionalprobingpaths:               # Add additional Assembly probing Paths. $(additionalprobingpaths)
+            enable_external_rulesets: False       # Enable External Rulesets. $(enable_external_rulesets)
+            allowed_publisher_names:              # Allowed Publisher names. $(allowed_publisher_names)
+            allowed_publisher_names_separator: ,  # Allowed Publisher names Separator. $(allowed_publisher_names_separator)
     ```
 - ALOps Docker Create
   * Create Docker image based on NAV/BC Artifacts.
   * YAML Template: 
     ```yaml
-            - task: ALOpsDockerCreate@1
-            displayName: 'ALOps Docker Create'
+        - task: ALOpsDockerCreate@1
+          displayName: 'ALOps Docker Create'
           inputs:
             artifactspecification: Specific       # Set Artifact resolve method. $(artifactspecification)
             artifactversion:                      # BC/NAV Version, eg: 9, 10.4, NAV2016, 16.4.24524. $(artifactversion)
@@ -228,18 +281,20 @@
             forcecreateimage: False               # Forces image creation, skipping Pull image. $(forcecreateimage)
             myscripts:                            # Specify myScripts to be added to the image. $(myscripts)
             imagenametemplate: %IMAGE_PREFIX%:%ARTIFACT_TYPE%-%ARTIFACT_VERSION%-%ARTIFACT_COUNTRY%-%OS_VERSION%-%OS_LTSC%# Template for defining Image names or using a fixed name $(imagenametemplate)
+            use_generic_image:                    # The base image to use for Image creation. $(use_generic_image)
             licensefile:                          # BC License File to be included in the Image $(licensefile)
             includetesttoolkit: False             # Included the TestToolkit in created image. $(includetesttoolkit)
             includetestlibrariesonly: False       # Included only the Test-Libraries in created image. $(includetestlibrariesonly)
             includetestframeworkonly: False       # Included only the Test-Framework in created image. $(includetestframeworkonly)
             includeperformancetoolkit: False      # Include Performance-Toolkit in created image. $(includeperformancetoolkit)
+            accept_insider_eula: False            # Accept Insider EULA. $(accept_insider_eula)
     ```
 - ALOps Docker Execute
   * Execute powershell script in container.
   * YAML Template: 
     ```yaml
-            - task: ALOpsDockerExec@1
-            displayName: 'ALOps Docker Execute'
+        - task: ALOpsDockerExec@1
+          displayName: 'ALOps Docker Execute'
           inputs:
             fixed_tag:                            # Allows recycling of docker containers. $(fixed_tag)
             scriptsource: InLine                  # Set type for requiring the script. $(scriptsource)
@@ -252,8 +307,8 @@
   * Remove Business Central docker container.
   * YAML Template: 
     ```yaml
-            - task: ALOpsDockerRemove@1
-            displayName: 'ALOps Docker Remove'
+        - task: ALOpsDockerRemove@1
+          displayName: 'ALOps Docker Remove'
           inputs:
             usedocker: True                       # Run task in Docker container. $(usedocker)
             fixed_tag:                            # Allows recycling of docker containers. $(fixed_tag)
@@ -268,8 +323,8 @@
   * Start Business Central docker container.
   * YAML Template: 
     ```yaml
-            - task: ALOpsDockerStart@1
-            displayName: 'ALOps Docker Start'
+        - task: ALOpsDockerStart@1
+          displayName: 'ALOps Docker Start'
           inputs:
             fixed_tag:                            # Allows recycling of docker containers. $(fixed_tag)
             ignore_no_container_warning: False    # Do not trigger warning when container with [fixed_tag] is not found. $(ignore_no_container_warning)
@@ -302,8 +357,8 @@
   * Wait until the Business Central container is started.
   * YAML Template: 
     ```yaml
-            - task: ALOpsDockerWait@1
-            displayName: 'ALOps Docker Wait'
+        - task: ALOpsDockerWait@1
+          displayName: 'ALOps Docker Wait'
           inputs:
             fixed_tag:                            # Allows recycling of docker containers. $(fixed_tag)
             search_string: Ready for connections! # String to match in Docker Logs and return. $(search_string)
@@ -317,14 +372,15 @@
   * Get/Publish extensions with the Business Central API.
   * YAML Template: 
     ```yaml
-            - task: ALOpsExtensionAPI@1
-            displayName: 'ALOps Extension API'
+        - task: ALOpsExtensionAPI@1
+          displayName: 'ALOps Extension API'
           inputs:
             usedocker: False                      # Run task in Docker container. $(usedocker)
             fixed_tag:                            # Allows recycling of docker containers. $(fixed_tag)
             interaction: get                      # Set Interaction Method to use. (Get/Publish/Batch Publish). $(interaction)
             api_endpoint: https://api.businesscentral.dynamics.com/v2.0/$(azure_tenant_id)/Sandbox/api# Set API Endpoint. (protocol://host:port/serverinstance/api) $(api_endpoint)
             dev_endpoint:                         # Set DEV Endpoint. (protocol://host:port/serverinstance/dev) $(dev_endpoint)
+            dev_schemeupdatemode: synchronize     # Set Schema Update Mode to use with DEVPort deploy. (synchronize/recreate/forcesync) $(dev_schemeupdatemode)
             apiversion: v1.0                      # Version of the API to use (beta / v1.0 / v2.0) $(apiversion)
             authentication: oauth                 # Set authentication Method to use. Default [Windows]. $(authentication)
             azure_tenant_id:                      # Azure Tenant Id. Only required for BC SaaS $(azure_tenant_id)
@@ -340,13 +396,15 @@
             showdeploymentstatus: True            # Show Extension Deployment Status. $(showdeploymentstatus)
             checksecondsdelay: 30                 # Seconds of delay betweel deployment status checks. $(checksecondsdelay)
             maxtries: 20                          # Max tries for status check. $(maxtries)
+            replacepackageid: False               # Force a new PackageID for each deployment. $(replacepackageid)
+            blocksymbolsonly: False               # Check App, block if SymbolsOnly App. $(blocksymbolsonly)
     ```
 - ALOps Import FOB
   * Import objects from .FOB file.
   * YAML Template: 
     ```yaml
-            - task: ALOpsFobImport@1
-            displayName: 'ALOps Import FOB'
+        - task: ALOpsFobImport@1
+          displayName: 'ALOps Import FOB'
           inputs:
             usedocker: False                      # Run task in Docker container. $(usedocker)
             fixed_tag:                            # Allows recycling of docker containers. $(fixed_tag)
@@ -362,15 +420,17 @@
   * Print information about ALOps and executing host.
   * YAML Template: 
     ```yaml
-            - task: ALOpsInfo@1
-            displayName: 'ALOps Info'
+        - task: ALOpsInfo@1
+          displayName: 'ALOps Info'
+          inputs:
+            scanforsymbolonlyapps: Disabled       # Scan for SymbolOnly Apps. $(scanforsymbolonlyapps)
     ```
 - ALOps License Import
   * Import Business Central license (.flf).
   * YAML Template: 
     ```yaml
-            - task: ALOpsLicenseImport@1
-            displayName: 'ALOps License Import'
+        - task: ALOpsLicenseImport@1
+          displayName: 'ALOps License Import'
           inputs:
             usedocker: False                      # Run task in Docker container. $(usedocker)
             fixed_tag:                            # Allows recycling of docker containers. $(fixed_tag)
@@ -384,8 +444,8 @@
   * Generate OpenAPI descriptions from Business Central API's.
   * YAML Template: 
     ```yaml
-            - task: ALOpsOpenAPI@1
-            displayName: 'ALOps OpenAPI'
+        - task: ALOpsOpenAPI@1
+          displayName: 'ALOps OpenAPI'
           inputs:
             usedocker: False                      # Run task in Docker container. $(usedocker)
             fixed_tag:                            # Allows recycling of docker containers. $(fixed_tag)
@@ -407,13 +467,14 @@
             export_edmx: False                    # Export original API EDMX. $(export_edmx)
             export_yaml: True                     # Export API in YAML format. $(export_yaml)
             export_json: False                    # Export API in JSON format. $(export_json)
+            exclude_company_paths: False          # Exclude Company Paths. $(exclude_company_paths)
     ```
 - ALOps Package Import
   * Import and Process RapidStart/Configuration Package
   * YAML Template: 
     ```yaml
-            - task: ALOpsPackageImport@1
-            displayName: 'ALOps Package Import'
+        - task: ALOpsPackageImport@1
+          displayName: 'ALOps Package Import'
           inputs:
             usedocker: True                       # Run task in Docker container. $(usedocker)
             fixed_tag:                            # Allows recycling of docker containers. $(fixed_tag)
@@ -423,8 +484,8 @@
   * Publish Business Central extension to service tier.
   * YAML Template: 
     ```yaml
-            - task: ALOpsAppPublish@1
-            displayName: 'ALOps App Publish'
+        - task: ALOpsAppPublish@1
+          displayName: 'ALOps App Publish'
           inputs:
             usedocker: False                      # Run task in Docker container. $(usedocker)
             fixed_tag:                            # Allows recycling of docker containers. $(fixed_tag)
@@ -448,13 +509,14 @@
             tenant: default                       # Tenant to publish to when Scope is set to Tenant. $(tenant)
             batch_publish_folder:                 # Path containing Apps to publish. $(batch_publish_folder)
             publisherazureactivedirectorytenantid: # Publisher Azure AD TenantId. $(publisherazureactivedirectorytenantid)
+            blocksymbolsonly: False               # Check App, block if SymbolsOnly App. $(blocksymbolsonly)
     ```
 - ALOps Repository Publish Extension
   * Publish extension to ALOps Repository.
   * YAML Template: 
     ```yaml
-            - task: ALOpsRepositoryPublish@1
-            displayName: 'ALOps Repository Publish Extension'
+        - task: ALOpsRepositoryPublish@1
+          displayName: 'ALOps Repository Publish Extension'
           inputs:
             usedocker: False                      # Run task in Docker container. $(usedocker)
             fixed_tag:                            # Allows recycling of docker containers. $(fixed_tag)
@@ -469,8 +531,8 @@
   * Replaced by Task [ALOps Extension API]
   * YAML Template: 
     ```yaml
-            - task: ALOpsSaaSGetExtensions@1
-            displayName: 'ALOps SaaS Get Extensions'
+        - task: ALOpsSaaSGetExtensions@1
+          displayName: 'ALOps SaaS Get Extensions'
           inputs:
             azure_api_endpoint: api.businesscentral.dynamics.com# Azure API Endpoint. $(azure_api_endpoint)
             azure_api_version: v2.0               # Azure API Endpoint version. $(azure_api_version)
@@ -486,8 +548,8 @@
   * Replaced by Task [ALOps Extension API]
   * YAML Template: 
     ```yaml
-            - task: ALOpsSaaSPublishExtension@1
-            displayName: 'ALOps SaaS Publish Extension'
+        - task: ALOpsSaaSPublishExtension@1
+          displayName: 'ALOps SaaS Publish Extension'
           inputs:
             azure_api_endpoint: api.businesscentral.dynamics.com# Azure API Endpoint. $(azure_api_endpoint)
             azure_api_version: v2.0               # Azure API Endpoint version. $(azure_api_version)
