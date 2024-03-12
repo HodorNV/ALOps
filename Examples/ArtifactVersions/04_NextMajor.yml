@@ -7,7 +7,7 @@ name: $(Build.BuildId)
 #      - main
 
 variables:
-- group: 'Secrets'  # link to a variable group that has secret variables, like URL to license file, or sasToken for insider builds
+- group: 'Secrets'  # link to a variable group that has secret variables, like URL to license file.
 
 pool: HOD-DOCKER
 
@@ -17,10 +17,10 @@ steps:
 
 - task: ALOpsDockerCreate@1
   displayName: 'ALOPS - Create Docker Image' # It will reuse the image if already exists, or build one if it doesn't.
-  inputs:
-    sastoken: $(bc.sasToken)
+  inputs:    
     artifacttype: Sandbox
     versionselect: NextMajor
+    accept_insider_eula: true
     
 - task: ALOpsDockerStart@1
   displayName: 'ALOPS - Start Docker Container' # No need to provide any details - it will get the details from previous step
