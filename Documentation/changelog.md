@@ -35,6 +35,23 @@ All notable changes to the "ALOps" extension.
 - ALOpsExtensionAPI: New parameter [blocksymbolsonly] with default 'true'. Check for SymbolsOnly app before publish.
 - ALOpsOpenAPI: When parameter "exclude_company_paths" is set to 'true', Company specific paths are removed. Default Company can be set via Authentication (Header)
 
+## [v1.463] - 2024-03-12
+- All Tasks: NAV Management DLLs Renamed to Business Central
+- All Tasks: Use ALTool for app information where possible
+- ALOpsAppCompile: Performance improvement / Minimize use of Get-BCArtifactUrl
+- ALOpsAppCompile@2: Use ALTool when possible
+- ALOpsAppLicenseCheck: Exclude temporary tables from check
+- ALOpsDockerExec: now v24 compatibel
+
+## [v1.462] - 2024-02-06
+- ALOpsAdminCenter: Force API calls in en-US format
+- ALOpsAppCompile: Added option to fail on any info/warning/error log
+- ALOpsAppCompiler: Allow use of external ruleset (HTTPS)
+- ALOpsAppSource: solved issue with apps without dependencies
+- ALOpsAppValidation: Enabled run without license file
+- ALOpsExtensionAPI: force API calls in en-US format
+- Bump BcContainerHelper to v6.0.5
+
 ## [v1.461] - 2023-11-20
 - All Docker Tasks: Improved error catching on docker command, fixed the ALOpsDockerWait timeout
 - ALOpsAppRuntimePackage: Artifacts name can now be manipulated via parameter "appfilenametemplate", 'BC Version' had to be inserted into the template
