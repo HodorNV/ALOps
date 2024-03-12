@@ -3,7 +3,7 @@ name: $(Build.BuildId)
 trigger: none
 
 variables:
-- group: 'Secrets'  # link to a variable group that has secret variables, like URL to license file, or sasToken for insider builds
+- group: 'Secrets'  # link to a variable group that has secret variables, like URL to license file.
 
 # the realy magic for saving the event log, is in the Docker Remove step
 

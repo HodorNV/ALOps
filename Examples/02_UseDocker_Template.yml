@@ -7,7 +7,7 @@ name: $(Build.BuildId)
 #      - main
 
 variables:
-- group: 'Secrets'  # link to a variable group that has secret variables, like URL to license file, or sasToken for insider builds
+- group: 'Secrets'  # link to a variable group that has secret variables, like URL to license file.
 - name: 'Alops_UpdateHostsFile' # You could use this to be able to easily log into your container to troubleshoot.
   value: True
 
