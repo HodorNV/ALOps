@@ -1,7 +1,7 @@
 # Change Log
 All notable changes to the "ALOps" extension.
 
-## [v1.463] - 2024-02-27
+## [v1.463] - 2024-03-12
 - All Tasks: NAV Management DLLs Renamed to Business Central
 - All Tasks: Use ALTool for app information where possible
 - ALOpsAppCompile: Performance improvement / Minimize use of Get-BCArtifactUrl
