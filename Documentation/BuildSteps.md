@@ -68,6 +68,7 @@
             exclude_xmlports: False               # Exclude XMLPort objects from LicenseCheck. $(exclude_xmlports)
             exclude_queries: False                # Exclude Query objects from LicenseCheck. $(exclude_queries)
             warning_only: False                   # Only post warning, do not fail pipeline. $(warning_only)
+            pwsh: False                           # Run task in Powershell Core. $(pwsh)
     ```
 - ALOps App Runtime Package
   * Get a NAV App runtime package for onprem deployment.
@@ -124,6 +125,7 @@
             azure_tenant_id:                      # Azure Tenant Id. Only required for BC SaaS $(azure_tenant_id)
             azure_app_client_id:                  # Azure AD Application Client Id. $(azure_app_client_id)
             azure_app_client_secret:              # Azure AD Application Client Secret. $(azure_app_client_secret)
+            pwsh: False                           # Run task in Powershell Core. $(pwsh)
     ```
 - ALOps App Test
   * Run Business Central Test-Suite and collect results.
@@ -399,6 +401,7 @@
             maxtries: 20                          # Max tries for status check. $(maxtries)
             replacepackageid: False               # Force a new PackageID for each deployment. $(replacepackageid)
             blocksymbolsonly: False               # Check App, block if SymbolsOnly App. $(blocksymbolsonly)
+            pwsh: False                           # Run task in Powershell Core. $(pwsh)
     ```
 - ALOps Import FOB
   * Import objects from .FOB file.
