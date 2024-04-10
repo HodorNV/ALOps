@@ -4,8 +4,9 @@ repo_name: GitHub
 nav:
         - Home: "index.md"
         - Setup:
+                - DevOps Agent: Setup/BuildAgent.md
                 - Your First Pipeline: Setup/SettingUpYourFirstBuild.md
-                - Your ALOps License: Setup/SetupLicense.md
+                - Your ALOps License: Setup/SetupLicense.md                
         - Build steps: 
                 - v1: "ALOpsSteps/Buildstepsv1.md"
                 - v2: "ALOpsSteps/Buildstepsv2.md"
