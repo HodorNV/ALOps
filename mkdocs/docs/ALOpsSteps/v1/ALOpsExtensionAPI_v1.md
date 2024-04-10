@@ -25,6 +25,5 @@
         maxtries: 20                          # Max tries for status check. $(maxtries)
         replacepackageid: False               # Force a new PackageID for each deployment. $(replacepackageid)
         blocksymbolsonly: False               # Check App, block if SymbolsOnly App. $(blocksymbolsonly)
-        pwsh: False                           # Run task in Powershell Core. $(pwsh)
 ```
 
