@@ -17,6 +17,5 @@
         exclude_xmlports: False               # Exclude XMLPort objects from LicenseCheck. $(exclude_xmlports)
         exclude_queries: False                # Exclude Query objects from LicenseCheck. $(exclude_queries)
         warning_only: False                   # Only post warning, do not fail pipeline. $(warning_only)
-        pwsh: False                           # Run task in Powershell Core. $(pwsh)
 ```
 
