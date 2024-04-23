@@ -25,5 +25,6 @@
         override_finsql_path:                 # Overrule automatic detection of FinSql with fixed value. $(override_finsql_path)
         resultfilename: TestResults.xml       # Set filename for the Result XML. $(resultfilename)
         testrunnercodeunitid:                 # Set the Codeunit Id for the test-runner to use. $(testrunnercodeunitid)
+        allow_zero_tests: False               # Allow Test-App with no tests $(allow_zero_tests)
 ```
 
