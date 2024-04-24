@@ -157,6 +157,7 @@
             override_finsql_path:                 # Overrule automatic detection of FinSql with fixed value. $(override_finsql_path)
             resultfilename: TestResults.xml       # Set filename for the Result XML. $(resultfilename)
             testrunnercodeunitid:                 # Set the Codeunit Id for the test-runner to use. $(testrunnercodeunitid)
+            allow_zero_tests: False               # Allow Test-App with no tests $(allow_zero_tests)
     ```
 - ALOps App Validation
   * Validate App from Business Central AppSource.
@@ -370,6 +371,7 @@
             setup_working_folder: True            # Copy working folder to Docker container. $(setup_working_folder)
             usecompression: True                  # Compress Source-Folder for transfer to docker container. $(usecompression)
             printlogs: True                       # Print all container logs. $(printlogs)
+            exclude_git_folder: False             # Exclude .git Folder $(exclude_git_folder)
     ```
 - ALOps Extension API
   * Get/Publish extensions with the Business Central API.
