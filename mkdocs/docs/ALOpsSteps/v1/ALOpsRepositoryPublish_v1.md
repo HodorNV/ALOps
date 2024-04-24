@@ -10,5 +10,6 @@
         artifact_path:                        # Path for App Artifact. $(artifact_path)
         app_artifact_filter: *.app            # Path of the App to publish. Must be a fully qualified path or relative to $(System.DefaultWorkingDirectory). $(app_artifact_filter)
         upload_c_applications: False          # Upload Applications from Applications folder. $(upload_c_applications)
+        pwsh: False                           # Run task in Powershell Core. $(pwsh)
 ```
 
