@@ -292,6 +292,7 @@
             includetestframeworkonly: False       # Included only the Test-Framework in created image. $(includetestframeworkonly)
             includeperformancetoolkit: False      # Include Performance-Toolkit in created image. $(includeperformancetoolkit)
             accept_insider_eula: False            # Accept Insider EULA. $(accept_insider_eula)
+            alternativeartifacturl:               # Overrule the ArtifactUrl which would be determined by [artifacttype/artifactcountry/versionselect]. $(alternativeartifacturl)
     ```
 - ALOps Docker Execute
   * Execute powershell script in container.
@@ -534,6 +535,7 @@
             artifact_path:                        # Path for App Artifact. $(artifact_path)
             app_artifact_filter: *.app            # Path of the App to publish. Must be a fully qualified path or relative to $(System.DefaultWorkingDirectory). $(app_artifact_filter)
             upload_c_applications: False          # Upload Applications from Applications folder. $(upload_c_applications)
+            pwsh: False                           # Run task in Powershell Core. $(pwsh)
     ```
 - ALOps SaaS Get Extensions
   * Replaced by Task [ALOps Extension API]
