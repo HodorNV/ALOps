@@ -5,7 +5,7 @@
         artifactversion:                      # BC/NAV Version, eg: 9, 10.4, NAV2016, 16.4.24524. $(artifactversion) $(artifactversion)
         artifacttype: OnPrem                  # Set Artifact Type. $(artifacttype) $(artifacttype)
         artifactcountry:                      # The Country for the Artifact. $(artifactcountry) $(artifactcountry)
-        versionselect: Weekly                 # The version to be selected from the Artifacts. $(versionselect) $(versionselect)
+        versionselect: Latest                 # The version to be selected from the Artifacts. $(versionselect) $(versionselect)
         alternativeartifacturl:               # Overrule the ArtifactUrl which would be determined by [artifacttype/artifactcountry/versionselect]. $(alternativeartifacturl) $(alternativeartifacturl)
         alternativevsixurl:                   # Alternative VSIX download url. Overrules BC Artificat VSIX. 'Latest' can be specified. $(alternativevsixurl) $(alternativevsixurl)
         alsourcepath: $(System.DefaultWorkingDirectory)# Set the root folder for findings App.json's recursivly $(alsourcepath) $(alsourcepath)
