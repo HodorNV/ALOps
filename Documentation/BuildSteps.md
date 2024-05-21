@@ -188,6 +188,19 @@
             containername: bcserver               # Only required when running multiple DevOps Agents on the same server. (Not recommended) $(containername)
             accept_insider_eula: False            # Accept Insider EULA. $(accept_insider_eula)
     ```
+- ALOps BCPT
+  * Run Business Central BCPT-Suite and collect results.
+  * YAML Template: 
+    ```yaml
+        - task: ALOpsBCPT@1
+          displayName: 'ALOps BCPT'
+          inputs:
+            usedocker: False                      # Run task in Docker container. $(usedocker)
+            fixed_tag:                            # Allows recycling of docker containers. $(fixed_tag)
+            export_results: False                 # Export BCPT Results. $(export_results)
+            suite_code:                           # BCPT Suite to run. $(suite_code)
+            test_runner_page: 149002              # BCPT Page to run. $(test_runner_page)
+    ```
 - ALOps App Cleaner
   * Remove all extensions from Business Central service tier.
   * YAML Template: 
