@@ -369,7 +369,15 @@ Publish Business Central extension to service tier.  This publish will NOT use t
 Full Yaml Description:
 
 !INCLUDE "ALOpsAppPublish_v1.md"
-    
+
+## ALOps BCPT Run
+
+Run Business Central Performance Test.  This is a wrapper for the BCPT, which is a tool to run performance tests on Business Central.  The BCPT (**B**usiness **C**entral **P**erformance **T**oolkit) is a tool that is provided by Microsoft.
+
+Full Yaml Description:
+
+!INCLUDE "ALOpsBCPT_v1.md"
+
 ## ALOps Repository Publish
 
 ***Remark: This step does not work for you!  It is part of ALOps, but it's purely used by the team of ALOps and not meant to be used by its customers.***
