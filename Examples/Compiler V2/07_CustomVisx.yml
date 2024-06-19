@@ -21,3 +21,4 @@ steps:
     publishartifact: false
     alternativevsixurl: '6.5.413786' # possibilities are a localpath, a url (preferred), or a version for downloading it from the marketplace.  
     #alternativevsixurl: 'Latest'    # You can also use "Latest" to get the latest from the marketplace (important for using custom codecops)
+    #alternativevsixurl: 'Prerelease' # to use the Prerelease version of the VSIX

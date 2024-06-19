@@ -9,5 +9,6 @@
         setup_working_folder: True            # Copy working folder to Docker container. $(setup_working_folder)
         usecompression: True                  # Compress Source-Folder for transfer to docker container. $(usecompression)
         printlogs: True                       # Print all container logs. $(printlogs)
+        exclude_git_folder: False             # Exclude .git Folder $(exclude_git_folder)
 ```
 

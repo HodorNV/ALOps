@@ -25,5 +25,6 @@ Test Runner
         batch_publish_folder:                 # Path containing Apps to publish. $(batch_publish_folder)
         publisherazureactivedirectorytenantid: # Publisher Azure AD TenantId. $(publisherazureactivedirectorytenantid)
         blocksymbolsonly: False               # Check App, block if SymbolsOnly App. $(blocksymbolsonly)
+        pwsh: False                           # Run task in Powershell Core. $(pwsh)
 ```
 
