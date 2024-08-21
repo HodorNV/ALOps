@@ -1,6 +1,37 @@
 # Change Log
 All notable changes to the "ALOps" extension.
 
+## [v1.466] - 2024-08-21
+- ALOpsAgentMaintenance: Improved delete routine, added failsafe in case of failure
+- ALOpsAppCompile: added additional Probing Paths for building Base Application
+- ALOpsAppCompile: BuildInfo Url corrected
+- ALOpsAppCompile@2: Build tags for app names
+- ALOpsAppLicenseCheck: Solved issue with System.Reflection.DispatchProxy
+- ALOpsAppPublish: Added datacache for several static loads, improves performance
+- ALOpsAppPublish: ALTool parsing
+- ALOpsAppSource: Applied filter for BusinessCentral Apps only
+- ALOpsDockerCreate: Double LTSC Tag
+- ALOpsExtensionAPI: DEVPort Deploy freeze fix tryout for AsyncPost
+- ALOpsLicenseCheck: Exclude ranges bugfix powershell 7
+- AppLicenseCheck: Expiry Date Check. Use parameters 'expiry_text' (text at beginning of line), 'expiry_dateformat' (format to use for parsing), 'expiry_dayswarning' (daycount for generating warning)
+- Get-AppOrder: ALTOOL Implementation
+
+## [v1.465] - 2024-05-23
+- All Tasks: Allow translation only apps
+- All Tasks: Improved assembly resolve for BC v24
+- All Tasks: Overrule of BC-Artifacts used for common tasks. Environment variable 'alops_overrule_bcartifactversion'. Format 'type:version:country'. Exmaple 'onprem:14:w1'
+- ALOpsAppCompile@2: Auto correct corrupted VSIX
+- ALOpsAppPublish: ALTOOL for Manifest extraction
+- ALOpsAppTest: allow for tests to be executed. Use bolean parameter 'allow_zero_tests'
+- ALOpsDockerCreate: Added 'alternativeartifacturl'
+- ALOpsDockerCreate: Double LTSC Tag
+- ALOpsDockerWait: Exclude ".git" folder transfering into container. Set boolean parameter "exclude_git_folder" to true
+- ALOpsDockerWait: Exclude GIT Folder from ZIP. Set boolean parameter "exclude_git_folder" to true
+- ALOpsLicenseCheck: Exclude ranges bugfix powershell 7
+
+## [v1.464] - 2024-04-24
+- All Tasks: Fix for Powershell 7 String.Split issue
+
 ## [v1.463] - 2024-03-12
 - All Tasks: NAV Management DLLs Renamed to Business Central
 - All Tasks: Use ALTool for app information where possible
@@ -17,6 +48,7 @@ All notable changes to the "ALOps" extension.
 - ALOpsAppValidation: Enabled run without license file
 - ALOpsExtensionAPI: force API calls in en-US format
 - Bump BcContainerHelper to v6.0.5
+- Licensing: multiple PerRun subscriptions per license
 
 ## [v1.461] - 2023-11-20
 - All Docker Tasks: Improved error catching on docker command, fixed the ALOpsDockerWait timeout
