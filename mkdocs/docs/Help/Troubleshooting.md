@@ -46,3 +46,25 @@ Most of these problems are solved by setting up the containers with Hyper-V isol
     docker_parameters: '--isolation=hyperv'
 ```
 It's important to understand that this problem is caused by the combination of the Docker image and the state of Windows Server of your build agent.
+
+---
+
+## ALOps Extension API uses wrong bcartifactsCacheFolder setting
+
+ALOps is dependent from BCCH (BCContainerHelper) for only some of its CMDLets.  But none of its (global) variables.
+The `bcartifactsCacheFolder` is a value ALOps is not aware of.  But the issue can be solved with a simple server setting (creating a symbolic link).
+This makes you can still work with moving your cache folder to another drive, but still use the default values in ALOps.
+
+You can create a symbolic link with the following PowerShell command:
+```powershell
+New-Item -ItemType SymbolicLink -Path "c:\bc.artifactscache" -Target "e:\BcContainerHelper\bcartifacts.cache"
+```
+
+or in a command prompt:
+```cmd
+mklink /d "c:\bc.artifactscache" "e:\BcContainerHelper\bcartifacts.cache"
+```
+
+More info:
+- [Microsoft Learn: Symbolic Links](https://learn.microsoft.com/en-us/windows/win32/fileio/symbolic-links)
+- [https://github.com/HodorNV/ALOps/issues/779](https://github.com/HodorNV/ALOps/issues/779)
