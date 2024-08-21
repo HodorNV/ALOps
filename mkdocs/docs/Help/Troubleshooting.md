@@ -68,3 +68,23 @@ mklink /d "c:\bc.artifactscache" "e:\BcContainerHelper\bcartifacts.cache"
 More info:
 - [Microsoft Learn: Symbolic Links](https://learn.microsoft.com/en-us/windows/win32/fileio/symbolic-links)
 - [https://github.com/HodorNV/ALOps/issues/779](https://github.com/HodorNV/ALOps/issues/779)
+
+---
+
+## I can't deploy my app: Deployment Scopes
+
+Apps can be deployed in different scopes:
+
+- Dev: used for development purposes.  Whatever you deploy from VSCode, will be deployed in this scope.
+- Global: used for deploying apps that are used by all tenants.
+
+Usually, when you deploy from the pipeline, you will deploy in Global Scope.  However, there is one reason to deploy in Dev Scope: when you want to deploy an app that is not yet published to the AppSource.  In that case, you can deploy in Dev Scope, so you can test the app in a sandbox.
+
+ALOps supports to either deploy in Dev Scope or in Global Scope (default).
+
+**Now - you cannot mix scops.  If you deploy an app in Dev Scope, you cannot deploy the same app in Global Scope.**
+
+It is highly discouraged to use dev scope unless there is no other way.  
+
+---
+

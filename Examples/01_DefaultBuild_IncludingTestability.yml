@@ -1,5 +1,7 @@
 name: $(Build.BuildId)
 
+trigger: none  #remove this and enable the below if you want this to be a CI pipeline
+
 # trigger:
 #  branches:
 #    include:
@@ -7,7 +9,7 @@ name: $(Build.BuildId)
 #      - main
 
 variables:
-- group: 'Secrets'  # link to a variable group that has secret variables, like URL to license file, or sasToken for insider builds
+- group: 'Secrets'  # link to a variable group that has secret variables
 
 pool: HOD-DOCKER
 
@@ -20,7 +22,6 @@ steps:
   inputs:
     artifacttype: Sandbox
     versionselect: Weekly
-    licensefile: '$(bc.license)'  # more info: https://www.youtube.com/watch?v=iVLOerdCuwA&t=3078s
 
 - task: ALOpsDockerStart@1
   displayName: 'ALOps - Start Docker Container' # No need to provide any details - it will get the details from previous step
@@ -28,7 +29,6 @@ steps:
     docker_pull: false
     docker_parameters: | 
       --env customNavSettings=EnableTaskScheduler=false 
-    licensefile: '$(bc.license)'
 
 - task: ALOpsDockerWait@1
   displayName: 'ALOps - Wait for Docker Container to start'

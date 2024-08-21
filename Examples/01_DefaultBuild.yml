@@ -4,6 +4,9 @@ pool: HOD-DOCKER
 
 trigger: none
 
+variables:
+- group: 'Secrets'  # link to a variable group that has secret variables, like URL to license file, or sasToken for insider builds
+
 steps:
 - checkout: self
   clean: true 

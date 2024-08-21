@@ -97,7 +97,6 @@ Full Yaml Description:
 Run Business Central Test-Suite and collect results.
 
 > Note! when you run the step, and it executes no tests, the step will fail!  This is by design, because it's a good practice to always have tests in your app.  If you don't have tests, you can simply add a dummy test, like this:
-
 ```al
 [Test]
 procedure DummyTest()
@@ -105,6 +104,7 @@ begin
     exit;
 end;
 ```
+Or - simply use the parameter `allow_zero_tests: true` to allow the step to pass when no tests are found. ([ref](https://github.com/HodorNV/ALOps/issues/741))
 
 Full Yaml Description:
 
@@ -235,6 +235,14 @@ Start Business Central docker container.  Usually, this step is combined in the 
 ```
 
 This particular step will create and start the container, which you have to wait for (see [ALOps Docker Wait](#ALOps Docker Wait))
+
+Tip: with the `docker_parameters` you can add additional parameters to the docker run command.  
+
+Some examples:
+
+- In the example above, we disable the TaskScheduler.  
+- To disable SSL: `docker_parameters: '--env useSSL=N'` ([ref](https://github.com/HodorNV/ALOps/issues/773))
+- To set PublicDNSName: `docker_parameters: '--hostname $(dockerName).int.abc.at'` ([ref](https://github.com/HodorNV/ALOps/issues/772))
 
 Full Yaml Description:
 

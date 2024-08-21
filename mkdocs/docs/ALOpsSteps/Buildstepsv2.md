@@ -12,8 +12,18 @@ Full Yaml Description:
 
 !INCLUDE "ALOpsAppCompiler_v2.md"
 ### Parameters
+#### alternativevsixurl
+By default, it will take the compiler from the BC artifacts.  If you want to use a different version, you can specify the URL here. Some keywords are also possible, like:
+
+- `latest` - will always take the latest version
+- `prerelease` - will take the latest prerelease version
+
 #### nav_app_version
 Same as described in [v1](Buildstepsv1.md#nav_app_version)
+
+#### applicationinsightskey
+Depending on the BC Version, ALOps will either set the "ApplicationInsightsKey" or the "ApplicationInsightsConnectionString".  So to keep it simple, you can use this parameter for both cases.
+
 
 ### Examples
 
