@@ -6,6 +6,7 @@ All notable changes to the "ALOps" extension.
 - ALOpsAppCompile: added additional Probing Paths for building Base Application
 - ALOpsAppCompile: BuildInfo Url corrected
 - ALOpsAppCompile@2: Build tags for app names
+- ALOpsAppCopy: Improved performance in tenant loop
 - ALOpsAppLicenseCheck: Solved issue with System.Reflection.DispatchProxy
 - ALOpsAppPublish: Added datacache for several static loads, improves performance
 - ALOpsAppPublish: ALTool parsing
