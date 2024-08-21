@@ -10,9 +10,18 @@ steps:
   clean: true 
 
 # This compiler (v2) is not going to use a docker container, but it's going to use the artifacts that you specify in the parameters
-
+   
 - task: ALOpsAppCompiler@2
   inputs:
-    versionselect: NextMajor
     artifacttype: Sandbox
-    sastoken: $(bc.sasToken)
+    versionselect: 'NextMajor'
+    publishartifact: false
+    accept_insider_eula: true # in stead of SAS Token, you should accept the EULA for insider builds
+  
+# Since this build will probably be used for testing daily, we can clean up the artifacts as much as we can.
+- task: ALOpsAgentMaintenance@3
+  inputs:
+    prunedockercontainers: true
+    prunedockerimages: true
+    removeoldtasks: true
+  condition: always()
