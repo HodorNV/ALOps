@@ -13,6 +13,7 @@ All notable changes to the "ALOps" extension.
 - ALOpsAppSource: Applied filter for BusinessCentral Apps only
 - ALOpsDockerCreate: Double LTSC Tag
 - ALOpsExtensionAPI: DEVPort Deploy freeze fix tryout for AsyncPost
+- ALOpsExtensionAPI: v2.0 endpoint compatibel
 - ALOpsLicenseCheck: Exclude ranges bugfix powershell 7
 - AppLicenseCheck: Expiry Date Check. Use parameters 'expiry_text' (text at beginning of line), 'expiry_dateformat' (format to use for parsing), 'expiry_dayswarning' (daycount for generating warning)
 - Get-AppOrder: ALTOOL Implementation
