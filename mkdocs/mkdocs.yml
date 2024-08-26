@@ -12,8 +12,11 @@ nav:
                 - v2: "ALOpsSteps/Buildstepsv2.md"
                 # - v3: "ALOpsSteps/Buildstepsv3.md"
         - Useful Information: 
+                - Tips 'n Tricks: "UsefulInfo/TipsnTricks.md"
                 - Global Variables: "UsefulInfo/Globals.md"
                 - Artifact Handling: "UsefulInfo/WorkingWithArtifacts.md"
+                - S2S Authenticaiton: "UsefulInfo/S2SAuthentication.md"
+                - Build Agents: "UsefulInfo/BuildAgents.md"
         - Help: 
                 - Troubleshooting: "Help/Troubleshooting.md"
                 - Q&A: "Help/QnA.md"
