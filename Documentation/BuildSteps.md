@@ -61,6 +61,9 @@
             artifact_include:                     # Include-Filter used for locating App file relative to $(artifact_path). $(artifact_include)
             artifact_exclude:                     # Exclude-Filter used for locating App file relative to $(artifact_path). $(artifact_exclude)
             exclude_ranges:                       # Exclude-Ranges from LicenseCheck (Buffer / Tempory tables). Format: 60000..60099,70000..70100 $(exclude_ranges)
+            expiry_text:                          # String to find in license to match for ExpiryDate. $(expiry_text)
+            expiry_dateformat:                    # Date Format of the Expiry date, example: dd.MM.yyyy $(expiry_dateformat)
+            expiry_dayswarning:                   # Amount of days before License-Expiry for triggering a warning $(expiry_dayswarning)
             exclude_tables: False                 # Exclude Table objects from LicenseCheck. $(exclude_tables)
             exclude_codeunits: False              # Exclude Codeunit objects from LicenseCheck. $(exclude_codeunits)
             exclude_pages: False                  # Exclude Page objects from LicenseCheck. $(exclude_pages)
@@ -68,6 +71,7 @@
             exclude_xmlports: False               # Exclude XMLPort objects from LicenseCheck. $(exclude_xmlports)
             exclude_queries: False                # Exclude Query objects from LicenseCheck. $(exclude_queries)
             warning_only: False                   # Only post warning, do not fail pipeline. $(warning_only)
+            pwsh: False                           # Run task in Powershell Core. $(pwsh)
     ```
 - ALOps App Runtime Package
   * Get a NAV App runtime package for onprem deployment.
@@ -124,6 +128,7 @@
             azure_tenant_id:                      # Azure Tenant Id. Only required for BC SaaS $(azure_tenant_id)
             azure_app_client_id:                  # Azure AD Application Client Id. $(azure_app_client_id)
             azure_app_client_secret:              # Azure AD Application Client Secret. $(azure_app_client_secret)
+            pwsh: False                           # Run task in Powershell Core. $(pwsh)
     ```
 - ALOps App Test
   * Run Business Central Test-Suite and collect results.
@@ -155,6 +160,7 @@
             override_finsql_path:                 # Overrule automatic detection of FinSql with fixed value. $(override_finsql_path)
             resultfilename: TestResults.xml       # Set filename for the Result XML. $(resultfilename)
             testrunnercodeunitid:                 # Set the Codeunit Id for the test-runner to use. $(testrunnercodeunitid)
+            allow_zero_tests: False               # Allow Test-App with no tests $(allow_zero_tests)
     ```
 - ALOps App Validation
   * Validate App from Business Central AppSource.
@@ -184,6 +190,19 @@
             failonerror: True                     # Include this switch if you want to fail on the first error instead of returning all errors to the caller. $(failonerror)
             containername: bcserver               # Only required when running multiple DevOps Agents on the same server. (Not recommended) $(containername)
             accept_insider_eula: False            # Accept Insider EULA. $(accept_insider_eula)
+    ```
+- ALOps BCPT
+  * Run Business Central BCPT-Suite and collect results.
+  * YAML Template: 
+    ```yaml
+        - task: ALOpsBCPT@1
+          displayName: 'ALOps BCPT'
+          inputs:
+            usedocker: False                      # Run task in Docker container. $(usedocker)
+            fixed_tag:                            # Allows recycling of docker containers. $(fixed_tag)
+            export_results: False                 # Export BCPT Results. $(export_results)
+            suite_code:                           # BCPT Suite to run. $(suite_code)
+            test_runner_page: 149002              # BCPT Page to run. $(test_runner_page)
     ```
 - ALOps App Cleaner
   * Remove all extensions from Business Central service tier.
@@ -289,6 +308,7 @@
             includetestframeworkonly: False       # Included only the Test-Framework in created image. $(includetestframeworkonly)
             includeperformancetoolkit: False      # Include Performance-Toolkit in created image. $(includeperformancetoolkit)
             accept_insider_eula: False            # Accept Insider EULA. $(accept_insider_eula)
+            alternativeartifacturl:               # Overrule the ArtifactUrl which would be determined by [artifacttype/artifactcountry/versionselect]. $(alternativeartifacturl)
     ```
 - ALOps Docker Execute
   * Execute powershell script in container.
@@ -368,6 +388,7 @@
             setup_working_folder: True            # Copy working folder to Docker container. $(setup_working_folder)
             usecompression: True                  # Compress Source-Folder for transfer to docker container. $(usecompression)
             printlogs: True                       # Print all container logs. $(printlogs)
+            exclude_git_folder: False             # Exclude .git Folder $(exclude_git_folder)
     ```
 - ALOps Extension API
   * Get/Publish extensions with the Business Central API.
@@ -399,6 +420,7 @@
             maxtries: 20                          # Max tries for status check. $(maxtries)
             replacepackageid: False               # Force a new PackageID for each deployment. $(replacepackageid)
             blocksymbolsonly: False               # Check App, block if SymbolsOnly App. $(blocksymbolsonly)
+            pwsh: False                           # Run task in Powershell Core. $(pwsh)
     ```
 - ALOps Import FOB
   * Import objects from .FOB file.
@@ -425,6 +447,7 @@
           displayName: 'ALOps Info'
           inputs:
             scanforsymbolonlyapps: Disabled       # Scan for SymbolOnly Apps. $(scanforsymbolonlyapps)
+            pwsh: False                           # Run task in Powershell Core. $(pwsh)
     ```
 - ALOps License Import
   * Import Business Central license (.flf).
@@ -511,6 +534,7 @@
             batch_publish_folder:                 # Path containing Apps to publish. $(batch_publish_folder)
             publisherazureactivedirectorytenantid: # Publisher Azure AD TenantId. $(publisherazureactivedirectorytenantid)
             blocksymbolsonly: False               # Check App, block if SymbolsOnly App. $(blocksymbolsonly)
+            pwsh: False                           # Run task in Powershell Core. $(pwsh)
     ```
 - ALOps Repository Publish Extension
   * Publish extension to ALOps Repository.
@@ -527,6 +551,7 @@
             artifact_path:                        # Path for App Artifact. $(artifact_path)
             app_artifact_filter: *.app            # Path of the App to publish. Must be a fully qualified path or relative to $(System.DefaultWorkingDirectory). $(app_artifact_filter)
             upload_c_applications: False          # Upload Applications from Applications folder. $(upload_c_applications)
+            pwsh: False                           # Run task in Powershell Core. $(pwsh)
     ```
 - ALOps SaaS Get Extensions
   * Replaced by Task [ALOps Extension API]
