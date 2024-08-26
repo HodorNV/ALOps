@@ -3,7 +3,7 @@ name: $(Build.BuildId)
 pool: HOD-DOCKER
 
 variables:
-  - group: 'Secrets'  # link to a variable group that has secret variables, like URL to license file, or sasToken for insider builds
+  - group: 'Secrets'  # link to a variable group that has secret variables, like URL to license file.
     
 steps:
 - checkout: self
