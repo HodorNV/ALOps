@@ -18,6 +18,7 @@ There are a few global variables ALOps can read during execution of all steps, t
 * `alops_DisableParallelCompile`: Disable parallel compile as default setting
 * `alops_webrequest_timeout_ms`: Default timeout is 30 seconds, but you can override it with this variable.
 * `alops_interactiontimeout_minutes`: For when running testsuites, you can override the default with this variable.
+* `alops_overrule_bcartifactversion`: Overrule of BC-Artifacts used for common tasks. Format `type:version:country`. Exmaple `onprem:14:w1`
 
 ## Overrides for anything OAuth (Any Step)
 You can use below globals as a default for any OAuth settings in any step.  
