@@ -24,6 +24,11 @@ Same as described in [v1](Buildstepsv1.md#nav_app_version)
 #### applicationinsightskey
 Depending on the BC Version, ALOps will either set the "ApplicationInsightsKey" or the "ApplicationInsightsConnectionString".  So to keep it simple, you can use this parameter for both cases.
 
+#### updateruntime
+It could come in handy to control "runtime" from the pipeline.  You can do that with the "updateruntime" parameter, which will set the runtime in the app.json file.
+Examples:
+- `11.0`, `12.0` - will set it to a fixed runtime
+- `Highest` - will set it to the highest runtime available - depending on the used VSIX!
 
 ### Examples
 

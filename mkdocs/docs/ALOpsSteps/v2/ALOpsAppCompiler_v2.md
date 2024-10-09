@@ -6,6 +6,7 @@
         artifacttype: OnPrem                  # Set Artifact Type. $(artifacttype) $(artifacttype)
         artifactcountry:                      # The Country for the Artifact. $(artifactcountry) $(artifactcountry)
         versionselect: Latest                 # The version to be selected from the Artifacts. $(versionselect) $(versionselect)
+        updateruntime:                        # Updates the Runtime parameter in app.json. $(updateruntime) $(updateruntime)
         alternativeartifacturl:               # Overrule the ArtifactUrl which would be determined by [artifacttype/artifactcountry/versionselect]. $(alternativeartifacturl) $(alternativeartifacturl)
         alternativevsixurl:                   # Alternative VSIX download url. Overrules BC Artificat VSIX. 'Latest' can be specified. $(alternativevsixurl) $(alternativevsixurl)
         alsourcepath: $(System.DefaultWorkingDirectory)# Set the root folder for findings App.json's recursivly $(alsourcepath) $(alsourcepath)
