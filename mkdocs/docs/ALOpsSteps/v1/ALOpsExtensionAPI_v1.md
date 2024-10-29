@@ -8,7 +8,7 @@
         api_endpoint: https://api.businesscentral.dynamics.com/v2.0/$(azure_tenant_id)/Sandbox/api# Set API Endpoint. (protocol://host:port/serverinstance/api) $(api_endpoint)
         dev_endpoint:                         # Set DEV Endpoint. (protocol://host:port/serverinstance/dev) $(dev_endpoint)
         dev_schemeupdatemode: synchronize     # Set Schema Update Mode to use with DEVPort deploy. (synchronize/recreate/forcesync) $(dev_schemeupdatemode)
-        dev_dependencypublishingoption:       # Set Dependency Publishing Option for DEV Endpoint. $(dev_dependencypublishingoption)
+        dev_dependencypublishingoption: none  # Set Dependency Publishing Option for DEV Endpoint. $(dev_dependencypublishingoption)
         apiversion: v1.0                      # Version of the API to use (beta / v1.0 / v2.0) $(apiversion)
         authentication: oauth                 # Set authentication Method to use. Default [Windows]. $(authentication)
         azure_tenant_id:                      # Azure Tenant Id. Only required for BC SaaS $(azure_tenant_id)
