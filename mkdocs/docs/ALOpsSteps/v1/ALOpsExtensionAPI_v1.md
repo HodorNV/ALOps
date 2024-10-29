@@ -21,10 +21,13 @@
         artifact_path: $(System.ArtifactsDirectory)# Path for App Artifact. $(artifact_path)
         artifact_filter: *.app                # Filter used for locating App file relative to $(path_to_publish). $(artifact_filter)
         showdeploymentstatus: True            # Show Extension Deployment Status. $(showdeploymentstatus)
+        vsix_only: False                      # Only use VSIX, do not use BC-Artifacts. $(vsix_only)
         checksecondsdelay: 30                 # Seconds of delay betweel deployment status checks. $(checksecondsdelay)
         maxtries: 20                          # Max tries for status check. $(maxtries)
         replacepackageid: False               # Force a new PackageID for each deployment. $(replacepackageid)
         blocksymbolsonly: False               # Check App, block if SymbolsOnly App. $(blocksymbolsonly)
+        schedule: current                     # Set the Schedule $(schedule)
+        schema_sync_mode: add                 # Set the Schema Update Mode $(schema_sync_mode)
         pwsh: False                           # Run task in Powershell Core. $(pwsh)
 ```
 
