@@ -204,6 +204,17 @@
             suite_code:                           # BCPT Suite to run. $(suite_code)
             test_runner_page: 149002              # BCPT Page to run. $(test_runner_page)
     ```
+- ALOps BC Replay
+  * Run BC-Replay for Business Central.
+  * YAML Template: 
+    ```yaml
+        - task: ALOpsBCReplay@1
+          displayName: 'ALOps BC Replay'
+          inputs:
+            usedocker: False                      # Run task in Docker container. $(usedocker)
+            fixed_tag:                            # Allows recycling of docker containers. $(fixed_tag)
+            pwsh: True                            # Run task in Powershell Core. $(pwsh)
+    ```
 - ALOps App Cleaner
   * Remove all extensions from Business Central service tier.
   * YAML Template: 
@@ -403,6 +414,7 @@
             api_endpoint: https://api.businesscentral.dynamics.com/v2.0/$(azure_tenant_id)/Sandbox/api# Set API Endpoint. (protocol://host:port/serverinstance/api) $(api_endpoint)
             dev_endpoint:                         # Set DEV Endpoint. (protocol://host:port/serverinstance/dev) $(dev_endpoint)
             dev_schemeupdatemode: synchronize     # Set Schema Update Mode to use with DEVPort deploy. (synchronize/recreate/forcesync) $(dev_schemeupdatemode)
+            dev_dependencypublishingoption: none  # Set Dependency Publishing Option for DEV Endpoint. $(dev_dependencypublishingoption)
             apiversion: v1.0                      # Version of the API to use (beta / v1.0 / v2.0) $(apiversion)
             authentication: oauth                 # Set authentication Method to use. Default [Windows]. $(authentication)
             azure_tenant_id:                      # Azure Tenant Id. Only required for BC SaaS $(azure_tenant_id)
@@ -416,10 +428,13 @@
             artifact_path: $(System.ArtifactsDirectory)# Path for App Artifact. $(artifact_path)
             artifact_filter: *.app                # Filter used for locating App file relative to $(path_to_publish). $(artifact_filter)
             showdeploymentstatus: True            # Show Extension Deployment Status. $(showdeploymentstatus)
+            vsix_only: False                      # Only use VSIX, do not use BC-Artifacts. $(vsix_only)
             checksecondsdelay: 30                 # Seconds of delay betweel deployment status checks. $(checksecondsdelay)
             maxtries: 20                          # Max tries for status check. $(maxtries)
             replacepackageid: False               # Force a new PackageID for each deployment. $(replacepackageid)
             blocksymbolsonly: False               # Check App, block if SymbolsOnly App. $(blocksymbolsonly)
+            schedule: current                     # Set the Schedule $(schedule)
+            schema_sync_mode: add                 # Set the Schema Update Mode $(schema_sync_mode)
             pwsh: False                           # Run task in Powershell Core. $(pwsh)
     ```
 - ALOps Import FOB
