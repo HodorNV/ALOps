@@ -266,6 +266,8 @@ This is mainly a wrapper for the default Business Central Automation API, to mak
 
 For authentication, it's important to set it up correctly!  We would advise to use Service-to-Service authentication.  The best description we could find is here: https://www.kauffmann.nl/2020/09/14/service-to-service-authentication-for-automation-apis-in-business-central/
 
+> Important: when using `schema_sync_mode` or `schedule`, you need to use `apiversion`: "v2.0"
+
 Full Yaml Description:
 
 !INCLUDE "ALOpsExtensionAPI_v1.md"
