@@ -1,6 +1,15 @@
 # Change Log
 All notable changes to the "ALOps" extension.
 
+## [v1.467] - 2024-08-31
+- All Tasks: Global boolean parameter [alops_pwsh] to enabled powershell 7 over all tasks that are pwsh enabled
+- ALOpsAppCompile@2: Ability to set Runtime in app.json via parameter [updateruntime]. Use 'HIGHEST' for maximum supported runtime.
+- ALOpsAppPublish: multi-tenant improvement
+- ALOpsExtensionAPI: Added dev_dependencypublishingoption with options [none / default / ignore / strict]
+- ALOpsExtensionAPI: added parameter [schedule] with options [current / nextminor / nextmajor]. Requires API Version 2.0
+- ALOpsExtensionAPI: added parameter [schema_sync_mode] with options [add / forcesync]. Requires API Version 2.0
+
+
 ## [v1.466] - 2024-08-21
 - ALOpsAgentMaintenance: Improved delete routine, added failsafe in case of failure
 - ALOpsAppCompile: added additional Probing Paths for building Base Application
