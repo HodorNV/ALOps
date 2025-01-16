@@ -128,6 +128,7 @@
             azure_tenant_id:                      # Azure Tenant Id. Only required for BC SaaS $(azure_tenant_id)
             azure_app_client_id:                  # Azure AD Application Client Id. $(azure_app_client_id)
             azure_app_client_secret:              # Azure AD Application Client Secret. $(azure_app_client_secret)
+            autopromote: False                    # Auto Promote AppSource App after publish. $(autopromote)
             pwsh: False                           # Run task in Powershell Core. $(pwsh)
     ```
 - ALOps App Test
@@ -433,8 +434,8 @@
             maxtries: 20                          # Max tries for status check. $(maxtries)
             replacepackageid: False               # Force a new PackageID for each deployment. $(replacepackageid)
             blocksymbolsonly: False               # Check App, block if SymbolsOnly App. $(blocksymbolsonly)
-            schedule: current                     # Set the Schedule $(schedule)
-            schema_sync_mode: add                 # Set the Schema Update Mode $(schema_sync_mode)
+            schedule: current                     # Set the Schedule. Requires API Version 2.0 $(schedule)
+            schema_sync_mode: add                 # Set the Schema Update Mode. Requires API Version 2.0 $(schema_sync_mode)
             pwsh: False                           # Run task in Powershell Core. $(pwsh)
     ```
 - ALOps Import FOB
