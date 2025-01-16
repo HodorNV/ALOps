@@ -28,6 +28,8 @@ It's smart.  As you can see below, there isn't much you need to set up, other th
 - it will upload all artifacts to AppSource, in the correct way
 - it will do that for all offerings it can find all artifacts for
 
+`autopromote`: When you want to automatically publish your app after it has been validated online, set autopromote to "true"
+
 !INCLUDE "ALOpsAppSource_v1.md"
 
 ## ALOps Agent Maintenance
