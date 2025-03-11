@@ -12,7 +12,7 @@
         signmethod: PFX                       # Set Signmethod to use. PFX is legacy, HSM is the modern way $(signmethod)
         pfx_path:                             # Path or Url of the PFX file. $(pfx_path)
         pfx_password:                         # Password for the PFX File. Recommended to use Azure-KeyVault secrets. $(pfx_password)
-        hsm_method: KEYVAULT                  # Set HSM Signmethod to use. $(hsm_method)
+        hsmmethod: KEYVAULT                   # Set HSM Signmethod to use. $(hsmmethod)
         hsm_description:                      # Set the Description. $(hsm_description)
         hsm_description_url:                  # Set the Description Url. $(hsm_description_url)
         hsm_digestalgorithm: sha256           # Set the Digest Algorithm. $(hsm_digestalgorithm)
