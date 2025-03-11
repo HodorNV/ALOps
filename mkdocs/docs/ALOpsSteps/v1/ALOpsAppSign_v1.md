@@ -9,7 +9,7 @@
         nav_artifact_app_filter: *.app        # Path of the App to Codesign. Must be a fully qualified path or relative to $(System.DefaultWorkingDirectory). $(nav_artifact_app_filter)
         publish_artifact: True                # Publish generated App Artifact to DevOps. $(publish_artifact)
         timestamp_uri:                        # Uri of the timestamp service used during signing. $(timestamp_uri)
-        sign_method: PFX                      # Set Signmethod to use. PFX is legacy, HSM is the modern way $(sign_method)
+        signmethod: PFX                       # Set Signmethod to use. PFX is legacy, HSM is the modern way $(signmethod)
         pfx_path:                             # Path or Url of the PFX file. $(pfx_path)
         pfx_password:                         # Password for the PFX File. Recommended to use Azure-KeyVault secrets. $(pfx_password)
         hsm_method: KEYVAULT                  # Set HSM Signmethod to use. $(hsm_method)
