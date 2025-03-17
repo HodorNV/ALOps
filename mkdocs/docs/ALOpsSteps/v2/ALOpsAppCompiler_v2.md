@@ -24,7 +24,6 @@
         resourceexposurepolicy_includesourceinsymbolfile: Keep# Overrule includeSourceInSymbolFile by setting other option than 'Keep'. $(resourceexposurepolicy_includesourceinsymbolfile) $(resourceexposurepolicy_includesourceinsymbolfile)
         internalsvisibleto: Keep              # Remove internalsVisibleTo by setting other option than 'Keep'. $(internalsvisibleto) $(internalsvisibleto)
         preprocessorsymbols:                  # Overwrite the preprocessorSymbols in app.json, comma seperated string. Set to 'NONE' to remove. $(preprocessorsymbols) $(preprocessorsymbols)
-        generatereportlayouts: True           # Set Generate Report Layouts compiler option. $(generatereportlayouts) $(generatereportlayouts)
         applicationinsightskey:               # Overwrite the ApplicationInsightsKey in app.json. Set to 'NONE' to remove InsightsKey. $(applicationinsightskey) $(applicationinsightskey)
         alcachepath: $(System.DefaultWorkingDirectory)#  $(alcachepath) $(alcachepath)
         publishartifact: True                 # Publish generated App Artifact to DevOps. $(publishartifact) $(publishartifact)
