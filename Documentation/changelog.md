@@ -2,8 +2,17 @@
 All notable changes to the "ALOps" extension.
 
 ## [v1.469] - 2025-03-13
-- ALOpsAppCompiler @1/@2: GenerateReportLayouts compiler option can be set
+- ALOpsAgentMaintenance: Docker cleanup steps are ignored if docker is not installed
+- ALOpsAppCompile: improvement for Windows 10 / 11 concerning NonInteractive mode
+- ALOpsAppCompiler@1: bugfix for half-defined resourceExposurePolicy objects
+- ALOpsAppCompiler@1: GenerateReportLayouts compiler option can be set
+- ALOpsAppCompiler@2: ALCacheFolder is now multi-root, preventing system apps from beeing overwriten
+- ALOpsAppCompiler@2: bugfix for half-defined resourceExposurePolicy objects
+- ALOpsAppCompiler@2: GenerateReportLayouts compiler option can be set
+- ALOpsAppSign: Additional support for HSM / Azure / Trusted signing 
 - ALOpsExtensionAPI: Failed previous attemps will be retried, no new build required
+- ALOpsLicenseCheck: Namespaces are now fully included in the license check
+- ALOpsPackageImport@2: New v2 Task for processing Configuration Packages, fully supporting API
 
 ## [v1.467] - 2024-08-31
 - All Tasks: Global boolean parameter [alops_pwsh] to enabled powershell 7 over all tasks that are pwsh enabled
