@@ -1,6 +1,10 @@
 # Change Log
 All notable changes to the "ALOps" extension.
 
+## [v1.469] - 2025-03-13
+- ALOpsAppCompiler @1/@2: GenerateReportLayouts compiler option can be set
+- ALOpsExtensionAPI: Failed previous attemps will be retried, no new build required
+
 ## [v1.467] - 2024-08-31
 - All Tasks: Global boolean parameter [alops_pwsh] to enabled powershell 7 over all tasks that are pwsh enabled
 - ALOpsAppCompile@2: Ability to set Runtime in app.json via parameter [updateruntime]. Use 'HIGHEST' for maximum supported runtime.
