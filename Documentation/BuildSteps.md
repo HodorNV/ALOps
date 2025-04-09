@@ -301,6 +301,7 @@
             enable_external_rulesets: False       # Enable External Rulesets. $(enable_external_rulesets)
             allowed_publisher_names:              # Allowed Publisher names. $(allowed_publisher_names)
             allowed_publisher_names_separator: ,  # Allowed Publisher names Separator. $(allowed_publisher_names_separator)
+            generatereportlayouts: True           # Set Generate Report Layouts compiler option. $(generatereportlayouts)
     ```
 - ALOps Docker Create
   * Create Docker image based on NAV/BC Artifacts.
