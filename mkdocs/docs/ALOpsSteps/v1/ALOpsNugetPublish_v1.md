@@ -8,5 +8,6 @@
         nuget_source_apikey:                  # APIKey for the NuGet Source. $(nuget_source_apikey)
         suffix:                               # Nuget Version Suffix. $(suffix)
         use_suffix_for_dependencies_same_publisher: False# Use Suffix for dependencies same Publisher. $(use_suffix_for_dependencies_same_publisher)
+        pwsh: False                           # Run task in Powershell Core. $(pwsh)
 ```
 
