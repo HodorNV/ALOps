@@ -42,6 +42,8 @@
         allowed_publisher_names:              # Allowed Publisher names. $(allowed_publisher_names)
         allowed_publisher_names_separator: ,  # Allowed Publisher names Separator. $(allowed_publisher_names_separator)
         generatereportlayouts: True           # Set Generate Report Layouts compiler option. $(generatereportlayouts)
+        alc_continuebuildonerror: False       # Set ALC Continue Build On Error option. $(alc_continuebuildonerror)
+        alc_errorlog: False                   # Set ALC Error Log option. $(alc_errorlog)
         pwsh: False                           # Run task in Powershell Core. $(pwsh)
 ```
 
