@@ -302,6 +302,8 @@
             allowed_publisher_names:              # Allowed Publisher names. $(allowed_publisher_names)
             allowed_publisher_names_separator: ,  # Allowed Publisher names Separator. $(allowed_publisher_names_separator)
             generatereportlayouts: True           # Set Generate Report Layouts compiler option. $(generatereportlayouts)
+            alc_continuebuildonerror: False       # Set ALC Continue Build On Error option. $(alc_continuebuildonerror)
+            alc_errorlog: False                   # Set ALC Error Log option. $(alc_errorlog)
             pwsh: False                           # Run task in Powershell Core. $(pwsh)
     ```
 - ALOps Docker Create
@@ -400,6 +402,10 @@
             sql_backup_file:                      # Restore BAK file on startup. $(sql_backup_file)
             encryption_key:                       # Encryption key for Service Tier. $(encryption_key)
             taskscheduler: Keep                   # Overrule EnableTaskScheduler by setting other option than 'Keep'. $(taskscheduler)
+            keyvault_pfxfile:                     # KeyVault PFX File. $(keyvault_pfxfile)
+            keyvault_pfxpassword:                 # KeyVault PFX Password. $(keyvault_pfxpassword)
+            keyvault_clientid:                    # KeyVault ClientID. $(keyvault_clientid)
+            keyvault_publisher_validation: False  # Keyvault Publisher Validation. $(keyvault_publisher_validation)
     ```
 - ALOps Docker Wait
   * Wait until the Business Central container is started.
@@ -494,6 +500,41 @@
             remove_license_file: True             # Remove license file after import. $(remove_license_file)
             print_license_info: False             # Set if License is printed into the pipeline. $(print_license_info)
             license_scope: Default                # Set the scope for license upload. $(license_scope)
+    ```
+- ALOps Nuget Download
+  * Download BC Apps from Nuget.
+  * YAML Template: 
+    ```yaml
+        - task: ALOpsNugetDownload@1
+          displayName: 'ALOps Nuget Download'
+          inputs:
+            nuget_username:                       # Username for the NuGet Source. $(nuget_username)
+            nuget_password:                       # Password for the NuGet Source. $(nuget_password)
+            nuget_source_apikey:                  # APIKey for the NuGet Source. $(nuget_source_apikey)
+            nuget_spec_file: $(System.DefaultWorkingDirectory)\nuget.json# Nuget Spec File. $(nuget_spec_file)
+            nuget_select_type_filter:             # Nuget Select Type Filter. $(nuget_select_type_filter)
+            download_folder: $(System.ArtifactsDirectory)# Target download folder. $(download_folder)
+            artifact_folder_name: Nuget           # Artifact Folder name where resolved.json get uploaded. $(artifact_folder_name)
+            dependency_publisher_filter:          # Dependency Publisher Filter. ';' as Seperator. 'NONE' skips all dependencies $(dependency_publisher_filter)
+            skip_microsoft_apps: True             # Skip Microsoft Apps. $(skip_microsoft_apps)
+            pwsh: False                           # Run task in Powershell Core. $(pwsh)
+    ```
+- ALOps Nuget Publish
+  * Publish BC Apps to Nuget.
+  * YAML Template: 
+    ```yaml
+        - task: ALOpsNugetPublish@1
+          displayName: 'ALOps Nuget Publish'
+          inputs:
+            artifact_path: $(System.ArtifactsDirectory)# Path for App Artifact(s). $(artifact_path)
+            artifact_filter: *.app                # Filter used for locating App file relative to $(artifact_path). $(artifact_filter)
+            nuget_source_uri:                     # The NuGet source Url. $(nuget_source_uri)
+            nuget_username:                       # Username for the NuGet Source. $(nuget_username)
+            nuget_password:                       # Password for the NuGet Source. $(nuget_password)
+            nuget_source_apikey:                  # APIKey for the NuGet Source. $(nuget_source_apikey)
+            suffix:                               # Nuget Version Suffix. $(suffix)
+            use_suffix_for_dependencies_same_publisher: False# Use Suffix for dependencies same Publisher. $(use_suffix_for_dependencies_same_publisher)
+            pwsh: False                           # Run task in Powershell Core. $(pwsh)
     ```
 - ALOps OpenAPI
   * Generate OpenAPI descriptions from Business Central API's.
