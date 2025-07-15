@@ -24,6 +24,7 @@
         resourceexposurepolicy_includesourceinsymbolfile: Keep# Overrule includeSourceInSymbolFile by setting other option than 'Keep'. $(resourceexposurepolicy_includesourceinsymbolfile) $(resourceexposurepolicy_includesourceinsymbolfile)
         internalsvisibleto: Keep              # Remove internalsVisibleTo by setting other option than 'Keep'. $(internalsvisibleto) $(internalsvisibleto)
         preprocessorsymbols:                  # Overwrite the preprocessorSymbols in app.json, comma seperated string. Set to 'NONE' to remove. $(preprocessorsymbols) $(preprocessorsymbols)
+        generatereportlayouts: True           # Set Generate Report Layouts compiler option. $(generatereportlayouts) $(generatereportlayouts)
         applicationinsightskey:               # Overwrite the ApplicationInsightsKey in app.json. Set to 'NONE' to remove InsightsKey. $(applicationinsightskey) $(applicationinsightskey)
         alcachepath: $(System.DefaultWorkingDirectory)#  $(alcachepath) $(alcachepath)
         publishartifact: True                 # Publish generated App Artifact to DevOps. $(publishartifact) $(publishartifact)
@@ -39,5 +40,8 @@
         allowed_publisher_names_separator: ,  # Allowed Publisher names Separator. $(allowed_publisher_names_separator) $(allowed_publisher_names_separator)
         accept_insider_eula: False            # Accept Insider EULA. $(accept_insider_eula) $(accept_insider_eula)
         track_source_build_metadata: True     # Track Source and Build Metadata $(track_source_build_metadata) $(track_source_build_metadata)
+        alc_continuebuildonerror: False       # Set ALC Continue Build On Error option. $(alc_continuebuildonerror) $(alc_continuebuildonerror)
+        alc_errorlog: False                   # Set ALC Error Log option. $(alc_errorlog) $(alc_errorlog)
+        pwsh: False                           # Run task in Powershell Core. $(pwsh) $(pwsh)
 ```
 

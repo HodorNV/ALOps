@@ -28,5 +28,9 @@
         sql_backup_file:                      # Restore BAK file on startup. $(sql_backup_file)
         encryption_key:                       # Encryption key for Service Tier. $(encryption_key)
         taskscheduler: Keep                   # Overrule EnableTaskScheduler by setting other option than 'Keep'. $(taskscheduler)
+        keyvault_pfxfile:                     # KeyVault PFX File. $(keyvault_pfxfile)
+        keyvault_pfxpassword:                 # KeyVault PFX Password. $(keyvault_pfxpassword)
+        keyvault_clientid:                    # KeyVault ClientID. $(keyvault_clientid)
+        keyvault_publisher_validation: False  # Keyvault Publisher Validation. $(keyvault_publisher_validation)
 ```
 

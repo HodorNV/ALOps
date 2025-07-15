@@ -27,8 +27,8 @@
         maxtries: 20                          # Max tries for status check. $(maxtries)
         replacepackageid: False               # Force a new PackageID for each deployment. $(replacepackageid)
         blocksymbolsonly: False               # Check App, block if SymbolsOnly App. $(blocksymbolsonly)
-        schedule: current                     # Set the Schedule $(schedule)
-        schema_sync_mode: add                 # Set the Schema Update Mode $(schema_sync_mode)
+        schedule: current                     # Set the Schedule. Requires API Version 2.0 $(schedule)
+        schema_sync_mode: add                 # Set the Schema Update Mode. Requires API Version 2.0 $(schema_sync_mode)
         pwsh: False                           # Run task in Powershell Core. $(pwsh)
 ```
 
