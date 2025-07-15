@@ -1,6 +1,18 @@
 # Change Log
 All notable changes to the "ALOps" extension.
 
+## [v1.471] - 2025-07-08
+- ALOpsAppCompile: die /errorlog of /continuebuildonerror
+- ALOpsAppCompile: v1 en v2: suppressWarnings to JSON Array
+- ALOpsDockerWait:  skip for powershell 7
+- ALOpsNugetDownloa: new task
+- ALOpsNugetPublish: new task
+
+## [v1.470] - 2025-06-04
+- ALOps Powershell: Remove Powershell 7 stub from DockerWait and DockerExec
+- ALOpsDocker: exclude builds
+- Bump BcContainerhelper to v6.1.6
+
 ## [v1.469] - 2025-03-13
 - ALOpsAgentMaintenance: Docker cleanup steps are ignored if docker is not installed
 - ALOpsAppCompile: improvement for Windows 10 / 11 concerning NonInteractive mode
@@ -13,6 +25,14 @@ All notable changes to the "ALOps" extension.
 - ALOpsExtensionAPI: Failed previous attemps will be retried, no new build required
 - ALOpsLicenseCheck: Namespaces are now fully included in the license check
 - ALOpsPackageImport@2: New v2 Task for processing Configuration Packages, fully supporting API
+
+## [v1.468] - 2024-11-22
+- ALOpsAgentMaintenance: Improve delete Empty Folders
+- ALOpsAgentMaintenance: Improve delete VSIX cache
+- ALOpsAppCompile@1: Update runtime
+- ALOpsAppPublish: bugfix, unpublish in multitenant with only one tenant
+- ALOpsAppSourceDeploy: AutoPromote option
+- ALOpsExtensionAPI: Prevent possible freezing with DevPortDeploy
 
 ## [v1.467] - 2024-08-31
 - All Tasks: Global boolean parameter [alops_pwsh] to enabled powershell 7 over all tasks that are pwsh enabled
