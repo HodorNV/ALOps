@@ -1,0 +1,25 @@
+name: $(Build.BuildId)
+
+pool: HOD-DOCKER
+
+trigger: none
+
+variables:
+- group: 'Secrets'  # link to a variable group that has secret variables, like URL to license file, or sasToken for insider builds
+- group: 'HodorBCSaaSQA'
+
+steps:
+- checkout: self
+  clean: true 
+
+- task: ALOpsPackageImport@2
+  displayName: 'ALOps Package Import'
+  inputs:
+    packagesfolder: '$(System.DefaultWorkingDirectory)\.RapidStartPackages\'
+    api_endpoint: 'https://api.businesscentral.dynamics.com/v2.0/$(azure_tenant_id)/QA/api'
+    apiversion: 'v1.0'
+    authentication: 'oauth'
+    azure_tenant_id: '$(azure_tenant_id)'
+    azure_app_client_id: '$(azure_client_id)'
+    azure_app_client_secret: '$(azure_client_secret)'
+    bccompany: 'Hodor NV'
