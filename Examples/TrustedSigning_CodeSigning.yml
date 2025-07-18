@@ -1,0 +1,81 @@
+name: 'Trusted Signing with Microsoft Code Signing Service'
+
+# This example demonstrates how to use ALOps with Microsoft Trusted Signing
+# which is often more cost-effective than Azure Key Vault Premium
+
+trigger:
+  branches:
+    include:
+    - main
+
+pool: 'your-build-pool'
+
+variables:
+- group: 'TrustedSigning-Variables' # Contains:
+  # - AzureTenantId: Azure AD Tenant ID
+  # - TrustedSigningClientId: App Registration Client ID
+  # - TrustedSigningClientSecret: App Registration Client Secret
+  # - TrustedSigningEndpoint: Trusted Signing endpoint URL
+  # - TrustedSigningAccount: Trusted Signing account name
+  # - CertificateProfile: Certificate profile name
+
+steps:
+- checkout: self
+  clean: true
+
+- task: ALOpsAppCompiler@2
+  displayName: 'Compile App'
+  inputs:
+    artifacttype: 'Sandbox'
+    appversiontemplate: '1.0.*.0'
+    publishartifact: false
+
+- task: ALOpsAppSign@1
+  displayName: 'Sign with Microsoft Trusted Signing'
+  inputs:
+    # Use HSM method with Trusted Signing
+    signmethod: HSM
+    hsmmethod: TRUSTEDSIGNING                # Microsoft's managed signing service
+    usedocker: false
+    
+    # Artifact Configuration
+    artifact_path: $(ALOPS_COMPILE_ARTIFACT)
+    nav_artifact_app_filter: '*.app'
+    
+    # Trusted Signing Configuration
+    hsm_signing_endpoint: '$(TrustedSigningEndpoint)' # e.g., 'https://westus2.codesigning.azure.net'
+    hsm_signing_account: '$(TrustedSigningAccount)'   # Your Trusted Signing account
+    hsm_trusted_certificateprofile: '$(CertificateProfile)' # Certificate profile name
+    
+    # Authentication
+    hsm_tenantid: '$(AzureTenantId)'
+    hsm_clientid: '$(TrustedSigningClientId)'
+    hsm_client_secret: '$(TrustedSigningClientSecret)'
+    
+    # Signing Metadata
+    hsm_description: 'Business Central Extension'
+    hsm_description_url: 'https://www.yourcompany.com'
+    hsm_digestalgorithm: 'sha256'
+    
+    # Timestamp and output
+    timestamp_uri: 'http://timestamp.digicert.com'
+    publish_artifact: true
+
+- task: ALOpsAppSignVerify@1
+  displayName: 'Verify Signature'
+  inputs:
+    usedocker: false
+    artifact_path: $(ALOPS_COMPILE_ARTIFACT)
+
+# Trusted Signing is often preferred over Azure Key Vault because:
+# - Lower cost (no monthly HSM key fees)
+# - Managed by Microsoft (no certificate management)
+# - Simpler setup (no Key Vault Premium required)
+# - Built-in compliance (FIPS 140-2 Level 3)
+#
+# Setup steps:
+# 1. Create Trusted Signing account in Azure portal
+# 2. Complete identity validation process
+# 3. Create certificate profile
+# 4. Create App Registration with Trusted Signing permissions
+# 5. Configure pipeline variables

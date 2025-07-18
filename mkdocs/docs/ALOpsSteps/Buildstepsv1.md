@@ -72,7 +72,9 @@ Full Yaml Description:
 
 ## ALOps App Sign
 
-Codesign Business Central extension with .pfx.f
+Codesign Business Central extension with certificates. Supports both traditional PFX certificates and modern HSM (Hardware Security Module) methods including Azure Key Vault and Microsoft Trusted Signing.
+
+> **📖 For comprehensive setup guides, examples, and troubleshooting, see [App Signing Guide](../UsefulInfo/AppSigning.md)**
 
 Full Yaml Description:
 
@@ -82,6 +84,8 @@ Full Yaml Description:
 
 - [Use Docker, Sign And Verify · HodorNV/ALOps · GitHub](https://github.com/HodorNV/ALOps/blob/master/Examples/09_UseDocker_SignAndVerify.yml)	
 - [CompilerV2 combined with AppSigning](https://github.com/HodorNV/ALOps/blob/master/Examples/Compiler%20V2/06_AppSigning.yml)
+- [HSM Code Signing with Azure Key Vault](https://github.com/HodorNV/ALOps/blob/master/Examples/HSM_CodeSigning_AzureKeyVault.yml)
+- [Microsoft Trusted Signing](https://github.com/HodorNV/ALOps/blob/master/Examples/TrustedSigning_CodeSigning.yml)
 
 ## ALOps App Sign Verify
 

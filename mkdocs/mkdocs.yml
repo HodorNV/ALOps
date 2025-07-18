@@ -15,6 +15,7 @@ nav:
                 - Tips 'n Tricks: "UsefulInfo/TipsnTricks.md"
                 - Global Variables: "UsefulInfo/Globals.md"
                 - Artifact Handling: "UsefulInfo/WorkingWithArtifacts.md"
+                - App Signing: "UsefulInfo/AppSigning.md"
                 - S2S Authenticaiton: "UsefulInfo/S2SAuthentication.md"
                 - Build Agents: "UsefulInfo/BuildAgents.md"
         - Help: 
