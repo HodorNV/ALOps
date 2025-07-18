@@ -17,6 +17,7 @@ nav:
                 - Artifact Handling: "UsefulInfo/WorkingWithArtifacts.md"
                 - S2S Authenticaiton: "UsefulInfo/S2SAuthentication.md"
                 - Build Agents: "UsefulInfo/BuildAgents.md"
+                - App Signing Setup: "UsefulInfo/AppSigningSetup.md"
         - Help: 
                 - Troubleshooting: "Help/Troubleshooting.md"
                 - Q&A: "Help/QnA.md"
