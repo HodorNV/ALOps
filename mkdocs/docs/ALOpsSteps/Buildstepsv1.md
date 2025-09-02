@@ -466,30 +466,21 @@ This task publishes Business Central applications to NuGet sources after success
 - `suffix`: Version suffix for pre-release packages (e.g., "beta", "rc1", "preview")
 - `use_suffix_for_dependencies_same_publisher`: Apply suffix to dependencies from same publisher (default: `false`)
 
-### Authentication Examples
+### Example
 
-#### API Key Authentication (Recommended)
+A typical upload to Azure Artifacts
 ```yaml
-- task: ALOpsNugetPublish@1
-  inputs:
-    nuget_source_uri: 'https://api.nuget.org/v3/index.json'
-    nuget_source_apikey: '$(NuGetApiKey)'
+  - task: ALOpsPackageImport@2
+    displayName: 'ALOps Package Import'
+    inputs:
+      packagesfolder: '$(System.DefaultWorkingDirectory)\.RapidStartPackages\'
+      api_endpoint: 'https://api.businesscentral.dynamics.com/v2.0/$(azure_tenant_id)/QA/api'
+      azure_tenant_id: '$(azure_tenant_id)'
+      azure_app_client_id: '$(azure_client_id)'
+      azure_app_client_secret: '$(azure_client_secret)'
 ```
 
-#### Username/Password Authentication
-```yaml
-- task: ALOpsNugetPublish@1
-  inputs:
-    nuget_source_uri: 'https://pkgs.dev.azure.com/myorg/_packaging/myfeed/nuget/v3/index.json'
-    nuget_username: '$(NuGetUsername)'
-    nuget_password: '$(NuGetPassword)'
-```
-
-### Common NuGet Source Examples
-
-- **NuGet.org**: `https://api.nuget.org/v3/index.json`
-- **Azure Artifacts**: `https://pkgs.dev.azure.com/{org}/{project}/_packaging/{feed}/nuget/v3/index.json`
-- **Nexus**: `https://nexus.company.com/repository/nuget-hosted/`
+> **Tip**: we suggest to use v2 as v3 api demands quite some agent setup. [More info](https://learn.microsoft.com/en-us/azure/devops/artifacts/nuget/nuget-exe?view=azure-devops&tabs=windows)
 
 > **Security Tip**: Always store API keys and passwords as secure variables in Azure DevOps Library
 
