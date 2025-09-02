@@ -10,5 +10,6 @@
         appfilenametemplate: %APP_PUBLISHER%_%APP_NAME%_%APP_VERSION%_runtime.app# Template for App filename. $(appfilenametemplate)
         showmycode: False                     # Overwrites the ShowMyCode value in the manifest. $(showmycode)
         publish_artifact: True                # Publish generated Runtime-App Artifact to DevOps. $(publish_artifact)
+        batchgeneratepackages: False          # Generates packages for all apps in the solution. 'TargetProject' parameter is ignored. $(batchgeneratepackages)
 ```
 
