@@ -41,7 +41,7 @@
         accept_insider_eula: False            # Accept Insider EULA. $(accept_insider_eula) $(accept_insider_eula)
         track_source_build_metadata: True     # Track Source and Build Metadata $(track_source_build_metadata) $(track_source_build_metadata)
         alc_continuebuildonerror: False       # Set ALC Continue Build On Error option. $(alc_continuebuildonerror) $(alc_continuebuildonerror)
-        alc_errorlog: False                   # Set ALC Error Log option. $(alc_errorlog) $(alc_errorlog)
+        alc_errorlog: False                   # Set ALC Error Log option. When enabled will publish the log as an Artifact. $(alc_errorlog) $(alc_errorlog)
         pwsh: False                           # Run task in Powershell Core. $(pwsh) $(pwsh)
 ```
 
