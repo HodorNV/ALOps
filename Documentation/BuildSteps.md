@@ -25,6 +25,7 @@
             wait_for_operation: True              # Wait for operation. $(wait_for_operation)
             environment:                          # Source Environment. $(environment)
             target_environment:                   # Target Environment. $(target_environment)
+            target_environment_type: Sandbox      # Used with Environment Copy, sets the type of the target environment. $(target_environment_type)
             use_update_window: False              # Use update window. $(use_update_window)
             app_id:                               # App ID. $(app_id)
             accept_isv_eula: False                # Accept ISV Eula. $(accept_isv_eula)
@@ -88,6 +89,7 @@
             appfilenametemplate: %APP_PUBLISHER%_%APP_NAME%_%APP_VERSION%_runtime.app# Template for App filename. $(appfilenametemplate)
             showmycode: False                     # Overwrites the ShowMyCode value in the manifest. $(showmycode)
             publish_artifact: True                # Publish generated Runtime-App Artifact to DevOps. $(publish_artifact)
+            batchgeneratepackages: False          # Generates packages for all apps in the solution. 'TargetProject' parameter is ignored. $(batchgeneratepackages)
     ```
 - ALOps App Sign
   * Codesign Business Central extension with .pfx.
@@ -141,7 +143,9 @@
             azure_tenant_id:                      # Azure Tenant Id. Only required for BC SaaS $(azure_tenant_id)
             azure_app_client_id:                  # Azure AD Application Client Id. $(azure_app_client_id)
             azure_app_client_secret:              # Azure AD Application Client Secret. $(azure_app_client_secret)
+            apply_offering_version_filter: False  # Apply version filter to the AppSource Apps. New Offering must have a Higher version for it to upload. $(apply_offering_version_filter)
             autopromote: False                    # Auto Promote AppSource App after publish. $(autopromote)
+            offering_name_filter_array:           # Semicolon-separated list of offering names to filter. $(offering_name_filter_array)
             pwsh: False                           # Run task in Powershell Core. $(pwsh)
     ```
 - ALOps App Test
@@ -447,7 +451,7 @@
             username:                             # Business Central Username. Leave empty for Service-2-Service authentication. $(username)
             password:                             # Business Central User Password. Leave empty for Service-2-Service authentication. $(password)
             bccompany:                            # Business Central Company (Id or Name). $(bccompany)
-            artifact_path: $(System.ArtifactsDirectory)# Path for App Artifact. $(artifact_path)
+            artifact_path: $(System.ArtifactsDirectory)# Path for App Artifact. If using 'Multistate Pipeline', use '$(Pipeline.Workspace)' instead. $(artifact_path)
             artifact_filter: *.app                # Filter used for locating App file relative to $(path_to_publish). $(artifact_filter)
             showdeploymentstatus: True            # Show Extension Deployment Status. $(showdeploymentstatus)
             vsix_only: False                      # Only use VSIX, do not use BC-Artifacts. $(vsix_only)
