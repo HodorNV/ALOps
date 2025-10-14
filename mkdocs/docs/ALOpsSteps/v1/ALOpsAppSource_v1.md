@@ -10,6 +10,7 @@
         autopromote_checksecondsdelay: 30     # Seconds of delay betweel deployment status checks. $(autopromote_checksecondsdelay)
         autopromote_maxtries: 120             # Max tries for status check. $(autopromote_maxtries)
         offering_name_filter_array:           # Semicolon-separated list of offering names to filter. $(offering_name_filter_array)
+        skip_version_change: False            # Skip version change. $(skip_version_change)
         pwsh: False                           # Run task in Powershell Core. $(pwsh)
 ```
 
