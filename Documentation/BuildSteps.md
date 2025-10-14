@@ -31,6 +31,8 @@
             accept_isv_eula: False                # Accept ISV Eula. $(accept_isv_eula)
             force_dependencies: False             # Force Dependencies. $(force_dependencies)
             confirm_delete_data: False            # Confirm Delete Data. $(confirm_delete_data)
+            application_insightskey:              # Application Insights Key. $(application_insightskey)
+            security_group_id:                    # Security Group Id. $(security_group_id)
     ```
 - ALOps Agent Maintenance
   * Cleanup and maintain DevOps a Agent for Business Central.
@@ -145,7 +147,10 @@
             azure_app_client_secret:              # Azure AD Application Client Secret. $(azure_app_client_secret)
             apply_offering_version_filter: False  # Apply version filter to the AppSource Apps. New Offering must have a Higher version for it to upload. $(apply_offering_version_filter)
             autopromote: False                    # Auto Promote AppSource App after publish. $(autopromote)
+            autopromote_checksecondsdelay: 30     # Seconds of delay betweel deployment status checks. $(autopromote_checksecondsdelay)
+            autopromote_maxtries: 120             # Max tries for status check. $(autopromote_maxtries)
             offering_name_filter_array:           # Semicolon-separated list of offering names to filter. $(offering_name_filter_array)
+            skip_version_change: False            # Skip version change. $(skip_version_change)
             pwsh: False                           # Run task in Powershell Core. $(pwsh)
     ```
 - ALOps App Test
@@ -538,6 +543,7 @@
             nuget_source_apikey:                  # APIKey for the NuGet Source. $(nuget_source_apikey)
             suffix:                               # Nuget Version Suffix. $(suffix)
             use_suffix_for_dependencies_same_publisher: False# Use Suffix for dependencies same Publisher. $(use_suffix_for_dependencies_same_publisher)
+            keep_app_filename: False              # Keep the original app filename. $(keep_app_filename)
             pwsh: False                           # Run task in Powershell Core. $(pwsh)
     ```
 - ALOps OpenAPI
