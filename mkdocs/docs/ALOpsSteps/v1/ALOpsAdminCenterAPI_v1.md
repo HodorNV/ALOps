@@ -21,5 +21,7 @@
         accept_isv_eula: False                # Accept ISV Eula. $(accept_isv_eula)
         force_dependencies: False             # Force Dependencies. $(force_dependencies)
         confirm_delete_data: False            # Confirm Delete Data. $(confirm_delete_data)
+        application_insightskey:              # Application Insights Key. $(application_insightskey)
+        security_group_id:                    # Security Group Id. $(security_group_id)
 ```
 
