@@ -19,7 +19,7 @@
         username:                             # Business Central Username. Leave empty for Service-2-Service authentication. $(username)
         password:                             # Business Central User Password. Leave empty for Service-2-Service authentication. $(password)
         bccompany:                            # Business Central Company (Id or Name). $(bccompany)
-        artifact_path: $(System.ArtifactsDirectory)# Path for App Artifact. $(artifact_path)
+        artifact_path: $(System.ArtifactsDirectory)# Path for App Artifact. If using 'Multistate Pipeline', use '$(Pipeline.Workspace)' instead. $(artifact_path)
         artifact_filter: *.app                # Filter used for locating App file relative to $(path_to_publish). $(artifact_filter)
         showdeploymentstatus: True            # Show Extension Deployment Status. $(showdeploymentstatus)
         vsix_only: False                      # Only use VSIX, do not use BC-Artifacts. $(vsix_only)

@@ -15,10 +15,13 @@
         wait_for_operation: True              # Wait for operation. $(wait_for_operation)
         environment:                          # Source Environment. $(environment)
         target_environment:                   # Target Environment. $(target_environment)
+        target_environment_type: Sandbox      # Used with Environment Copy, sets the type of the target environment. $(target_environment_type)
         use_update_window: False              # Use update window. $(use_update_window)
         app_id:                               # App ID. $(app_id)
         accept_isv_eula: False                # Accept ISV Eula. $(accept_isv_eula)
         force_dependencies: False             # Force Dependencies. $(force_dependencies)
         confirm_delete_data: False            # Confirm Delete Data. $(confirm_delete_data)
+        application_insightskey:              # Application Insights Key. $(application_insightskey)
+        security_group_id:                    # Security Group Id. $(security_group_id)
 ```
 

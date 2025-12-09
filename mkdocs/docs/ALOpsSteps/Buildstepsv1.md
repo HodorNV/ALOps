@@ -360,6 +360,134 @@ Full Yaml Description:
 
 [OpenAPI · HodorNV/ALOps · GitHub](https://github.com/HodorNV/ALOps/blob/master/Examples/25_OpenAPI.yml)    
 
+## ALOps NuGet Download
+
+Download Business Central extensions from NuGet Package source.
+
+This task downloads Business Central applications from NuGet sources based on a specification file. It's particularly useful for dependency management, environment setup, and ensuring consistent versions across environments.
+
+### How it works
+
+- The task reads a `nuget.json` specification file that defines which apps to download
+- It supports authentication via username/password or API key
+- Downloads apps to a specified folder with organized subfolders
+- Creates a `resolved.json` file with dependency information to be used in subsequent steps
+- Supports filtering by publisher and type
+- Can skip Microsoft apps to reduce download time
+
+### Key Features
+
+- **Dependency Management**: Download required app dependencies before compilation
+- **Environment Setup**: Prepare runtime dependencies for deployment  
+- **Version Control**: Ensure consistent versions across environments
+- **Publisher Filtering**: Control which dependencies are downloaded based on publisher
+- **Type Filtering**: Select specific app types from the specification file
+
+### Parameters
+
+#### Authentication
+- `nuget_username` & `nuget_password`: Basic authentication credentials (store password as secure variable)
+- `nuget_source_apikey`: Alternative API key authentication (store as secure variable)
+
+#### Configuration
+- `nuget_spec_file`: Path to JSON specification file (default: `$(System.DefaultWorkingDirectory)\nuget.json`)
+- `nuget_select_type_filter`: Filter specific types using wildcards (e.g., `MyApp*`)
+- `download_folder`: Target directory for downloaded apps (default: `$(System.ArtifactsDirectory)`)
+- `dependency_publisher_filter`: Control dependency downloads by publisher (`;` separated, use `NONE` to skip all)
+- `skip_microsoft_apps`: Skip Microsoft-published apps (default: `true`)
+
+### Example nuget.json specification file
+
+```json
+{
+  "Types": [
+    {
+      "name": "Runtime",
+      "deploy": true,
+      "feeds": [
+        {
+          "feed": "https://api.nuget.org/v3/index.json",
+          "dependencies": [
+            {
+              "id": "MyCompany.MyApp",
+              "version": "1.0.0"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
+```
+
+Full Yaml Description:
+
+!INCLUDE "ALOpsNugetDownload_v1.md"
+
+## ALOps NuGet Publish
+
+Publish Business Central extension to NuGet Package source.
+
+This task publishes Business Central applications to NuGet sources after successful compilation. It's typically used in Build and Release pipelines to automatically publish apps to NuGet feeds for distribution and dependency management.
+
+### How it works
+
+- The task searches for Business Central app files (.app) in the specified directory
+- It supports various file filters to select specific apps for publishing
+- Authenticates with NuGet sources using API key or username/password
+- Supports version suffixes for pre-release packages
+- Can apply version suffixes to dependencies from the same publisher
+
+### Key Features
+
+- **CI/CD Integration**: Automatically publish apps after successful build
+- **Pre-release Publishing**: Use version suffixes for beta/preview releases  
+- **Dependency Management**: Publish libraries for consumption by other projects
+- **Flexible Authentication**: Support for API key or username/password authentication
+- **File Filtering**: Control which apps are published using file patterns
+
+### Parameters
+
+#### Required Parameters
+- `nuget_source_uri`: The URL of the NuGet repository where apps will be published
+
+#### App Discovery
+- `artifact_path`: Directory where .app files are located (default: `$(System.ArtifactsDirectory)`)
+- `artifact_filter`: File pattern to locate app files (default: `*.app`)
+  - `*.app`: All .app files
+  - `MyApp*.app`: Apps starting with "MyApp"  
+  - `**/*.app`: All .app files recursively in subdirectories
+
+#### Authentication
+- `nuget_username` & `nuget_password`: Basic authentication credentials (store password as secure variable)
+- `nuget_source_apikey`: Alternative API key authentication (store as secure variable)
+
+#### Version Management
+- `suffix`: Version suffix for pre-release packages (e.g., "beta", "rc1", "preview")
+- `use_suffix_for_dependencies_same_publisher`: Apply suffix to dependencies from same publisher (default: `false`)
+
+### Example
+
+A typical upload to Azure Artifacts
+```yaml
+  - task: ALOpsNugetPublish@1
+    inputs:
+      nuget_source_uri: 'https://pkgs.dev.azure.com/ALOps/test/_packaging/test/nuget/v2'
+      nuget_username: 'devops'
+      nuget_password: '$(devops_pat)'
+      nuget_source_apikey: '$(devops_pat)'
+      artifact_filter: '*.app'
+      pwsh: true
+```
+
+> **Tip**: we suggest to use v2 as v3 api demands quite some agent setup. [More info](https://learn.microsoft.com/en-us/azure/devops/artifacts/nuget/nuget-exe?view=azure-devops&tabs=windows)
+
+> **Security Tip**: Always store API keys and passwords as secure variables in Azure DevOps Library
+
+Full Yaml Description:
+
+!INCLUDE "ALOpsNugetPublish_v1.md"
+
 ## ALOps Package Import
 
 Import and Process RapidStart/Configuration Package
@@ -389,6 +517,14 @@ Run Business Central Performance Test.  This is a wrapper for the BCPT, which is
 Full Yaml Description:
 
 !INCLUDE "ALOpsBCPT_v1.md"
+
+## ALOps BC Replay
+
+Run Business Central Replay functionality.
+
+Full Yaml Description:
+
+!INCLUDE "ALOpsBCReplay_v1.md"
 
 ## ALOps Repository Publish
 
