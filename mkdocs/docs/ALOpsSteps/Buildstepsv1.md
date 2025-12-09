@@ -470,14 +470,14 @@ This task publishes Business Central applications to NuGet sources after success
 
 A typical upload to Azure Artifacts
 ```yaml
-  - task: ALOpsPackageImport@2
-    displayName: 'ALOps Package Import'
+  - task: ALOpsNugetPublish@1
     inputs:
-      packagesfolder: '$(System.DefaultWorkingDirectory)\.RapidStartPackages\'
-      api_endpoint: 'https://api.businesscentral.dynamics.com/v2.0/$(azure_tenant_id)/QA/api'
-      azure_tenant_id: '$(azure_tenant_id)'
-      azure_app_client_id: '$(azure_client_id)'
-      azure_app_client_secret: '$(azure_client_secret)'
+      nuget_source_uri: 'https://pkgs.dev.azure.com/ALOps/test/_packaging/test/nuget/v2'
+      nuget_username: 'devops'
+      nuget_password: '$(devops_pat)'
+      nuget_source_apikey: '$(devops_pat)'
+      artifact_filter: '*.app'
+      pwsh: true
 ```
 
 > **Tip**: we suggest to use v2 as v3 api demands quite some agent setup. [More info](https://learn.microsoft.com/en-us/azure/devops/artifacts/nuget/nuget-exe?view=azure-devops&tabs=windows)
