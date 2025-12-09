@@ -186,6 +186,20 @@ Full Yaml Description:
 
 Remove Business Central docker container.
 
+### Parameters
+
+#### createeventlogbackup
+Controls whether to create an event log backup from the container before removal. This is particularly useful for debugging pipeline issues.
+
+**Options:**
+- `Always` - Always create event log backup
+- `OnFailure` - Only create backup when the build fails
+- `Disabled` - Don't create event log backup (default)
+
+> **Important:** The parameter accepts `Always`, `OnFailure`, or `Disabled` - NOT "enabled" or "true".
+
+**Use Case:** When troubleshooting pipeline hangs during app installation/publishing, set this to `Always` and check the build artifacts for error details. See [Q&A: Pipeline hangs during app installation](../Help/QnA.md#my-pipeline-hangs-during-app-installationpublishing-how-can-i-debug-this) for more information.
+
 Full Yaml Description:
 
 !INCLUDE "ALOpsDockerRemove_v1.md"
