@@ -91,3 +91,66 @@ You can generate error logs without automatic publishing and then manually copy/
 
 **Related:** See issue [#875](https://github.com/HodorNV/ALOps/issues/875) for the original discussion.
 
+---
+
+## How can I access the Business Central web client in a container during a pipeline?
+
+> **Important:** Accessing the BC web client during pipeline execution is generally **not recommended best practice**. Containers on build agents are designed to be temporary and ephemeral. However, it can be useful for troubleshooting specific issues.
+
+### Accessing the Web Client
+
+To access the Business Central web client in a container, you need to map the container's ports to the host machine:
+
+```yaml
+- task: ALOpsDockerStart@1
+  displayName: 'ALOps - Start Docker Container'
+  inputs:
+    docker_parameters: '--publish 9443:443'  # Map container port 443 to host port 9443
+```
+
+After the container starts successfully:
+
+1. **Access the URL:** Open your browser to `https://localhost:9443/BC`
+2. **Find credentials:** Check the output of the `ALOpsDockerWait` step for username and password
+3. **Alternative:** Credentials are also stored in pipeline variables (use the `ALOpsInfo` step to view all variables)
+
+### Better Debugging Alternatives
+
+Instead of accessing the web client directly, consider these recommended approaches:
+
+**1. Download Event Logs**
+
+Use the `ALOpsDockerRemove` task to automatically save event logs:
+
+```yaml
+- task: ALOpsDockerRemove@1
+  displayName: 'ALOPS - Remove Docker'
+  condition: always()
+  inputs:
+    createeventlogbackup: Always  # or OnFailure
+```
+
+See [Q&A: Pipeline hangs during app installation](#my-pipeline-hangs-during-app-installationpublishing-how-can-i-debug-this) for more details.
+
+**2. Download the Database**
+
+After the container is removed, you can download the database and create a local container using BCContainerHelper for thorough investigation.
+
+**3. Use ALOpsInfo**
+
+Add the `ALOpsInfo` step to see all pipeline variables, container details, and environment information:
+
+```yaml
+- task: ALOpsInfo@1
+  displayName: 'ALOps - Print Pipeline Info'
+```
+
+### Why This Is Discouraged
+
+- Build agents should not host long-running containers
+- Containers are meant to be created, used, and destroyed within the pipeline
+- Interactive debugging breaks the automation principle of CI/CD
+- Event logs and database downloads provide better post-mortem analysis
+
+**Related:** See issue [#825](https://github.com/HodorNV/ALOps/issues/825) for the original discussion.
+
