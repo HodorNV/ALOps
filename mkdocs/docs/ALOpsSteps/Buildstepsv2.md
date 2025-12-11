@@ -30,6 +30,24 @@ Examples:
 - `11.0`, `12.0` - will set it to a fixed runtime
 - `Highest` - will set it to the highest runtime available - depending on the used VSIX!
 
+#### publishartifact and alc_errorlog
+The `publishartifact` parameter controls whether **compiled .app files** are published as pipeline artifacts. It does **NOT** control the publishing of error logs.
+
+When `alc_errorlog: true` is set, error log files will **always** be published as artifacts, regardless of the `publishartifact` setting. This is by design to ensure error logs are available for debugging even when app files are not published.
+
+**Example:**
+```yaml
+- task: ALOpsAppCompiler@2
+  inputs:
+    publishartifact: false    # .app files will NOT be published
+    alc_errorlog: true        # Error logs WILL be published
+```
+
+**To prevent error logs from being published:**
+- Set `alc_errorlog: false` (or omit it, as the default is `false`)
+
+**Related:** See issue [#875](https://github.com/HodorNV/ALOps/issues/875) for discussion about this behavior.
+
 ### Examples
 
 - [Default](https://github.com/HodorNV/ALOps/blob/master/Examples/Compiler%20V2/01_Default.yml)

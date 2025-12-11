@@ -45,3 +45,49 @@ After the build completes, check your build artifacts for the event log file. Th
 - See issue [#886](https://github.com/HodorNV/ALOps/issues/886) for a detailed example
 - See also issue [#783](https://github.com/HodorNV/ALOps/issues/783) about timeout on sync with breaking changes
 
+---
+
+## Why are error logs published when publishartifact is set to false?
+
+When using the `ALOpsAppCompiler@2` task with `alc_errorlog: true`, error log files are published as pipeline artifacts even when `publishartifact: false` is set.
+
+**This is by design.** The `publishartifact` parameter controls only the publishing of **compiled .app files**, not error logs or other diagnostic outputs.
+
+**Understanding the parameters:**
+- `publishartifact: false` → Compiled .app files will NOT be published
+- `alc_errorlog: true` → Error log files WILL be published (regardless of `publishartifact` setting)
+
+**To prevent error logs from being published:**
+- Set `alc_errorlog: false` (or omit the parameter, as `false` is the default)
+
+**Example configuration:**
+```yaml
+- task: ALOpsAppCompiler@2
+  displayName: 'Compile Apps'
+  inputs:
+    publishartifact: false    # Don't publish .app files
+    alc_errorlog: false       # Don't publish error logs
+```
+
+**If you need error logs but want to control their naming/organization:**
+
+You can generate error logs without automatic publishing and then manually copy/rename them in a subsequent step:
+
+```yaml
+- task: ALOpsAppCompiler@2
+  inputs:
+    alc_errorlog: true         # Generate error logs
+    alc_continuebuildonerror: true
+    publishartifact: false     # Don't auto-publish
+
+# Then in a later step, manually publish with custom naming
+- task: CopyFiles@2
+  condition: failed()
+  inputs:
+    SourceFolder: '$(Build.ArtifactStagingDirectory)'
+    Contents: '*_ALCErrorLog.txt'
+    TargetFolder: '$(Build.ArtifactStagingDirectory)/ErrorLogs'
+```
+
+**Related:** See issue [#875](https://github.com/HodorNV/ALOps/issues/875) for the original discussion.
+
