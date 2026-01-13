@@ -35,6 +35,62 @@ All notable changes to the "ALOps" extension.
 - ALOpsExtensionAPI: New parameter [blocksymbolsonly] with default 'true'. Check for SymbolsOnly app before publish.
 - ALOpsOpenAPI: When parameter "exclude_company_paths" is set to 'true', Company specific paths are removed. Default Company can be set via Authentication (Header)
 
+## [v1.473] - 2025-10-14
+- All Tasks: ALOps Code Analysis: update for BC v27 compatibility
+- All Tasks: Performance:  ProgressPreference defaults to SilentlyContinue
+- ALOpsAdminCenterAPI: allow deletion of production environments
+- ALOpsAdminCenterAPI: Get/Set ApplicationInsightKey
+- ALOpsAdminCenterAPI: New action that allows settings "Security Group" settings on an environment
+- ALOpsAdminCenterAPI: Validate GUID for 'Set Security Group'
+- ALOpsAppCompile: false warning op compilation started, improved log processing
+- ALOpsAppPublish:  new option [keep_app_filename] for keeping filename original in the package
+- ALOpsAppPublish: Validate existing packages on AppID instead op PackageID
+- ALOpsAppSource: maxtries and timeout now configurable
+- ALOpsAppSource: new boolean [skip_version_change], can be used to publish AppSource hotfixes or updates on previous versions
+- ALOpsExtensionAPI: Warning if DEV-Scope and no Devport deploy
+
+## [v1.471] - 2025-07-08
+- ALOpsAppCompile: die /errorlog of /continuebuildonerror
+- ALOpsAppCompile: v1 en v2: suppressWarnings to JSON Array
+- ALOpsDockerWait:  skip for powershell 7
+- ALOpsNugetDownloa: new task
+- ALOpsNugetPublish: new task
+
+## [v1.470] - 2025-06-04
+- ALOps Powershell: Remove Powershell 7 stub from DockerWait and DockerExec
+- ALOpsDocker: exclude builds
+- Bump BcContainerhelper to v6.1.6
+
+## [v1.469] - 2025-03-13
+- ALOpsAgentMaintenance: Docker cleanup steps are ignored if docker is not installed
+- ALOpsAppCompile: improvement for Windows 10 / 11 concerning NonInteractive mode
+- ALOpsAppCompiler@1: bugfix for half-defined resourceExposurePolicy objects
+- ALOpsAppCompiler@1: GenerateReportLayouts compiler option can be set
+- ALOpsAppCompiler@2: ALCacheFolder is now multi-root, preventing system apps from beeing overwriten
+- ALOpsAppCompiler@2: bugfix for half-defined resourceExposurePolicy objects
+- ALOpsAppCompiler@2: GenerateReportLayouts compiler option can be set
+- ALOpsAppSign: Additional support for HSM / Azure / Trusted signing 
+- ALOpsExtensionAPI: Failed previous attemps will be retried, no new build required
+- ALOpsLicenseCheck: Namespaces are now fully included in the license check
+- ALOpsPackageImport@2: New v2 Task for processing Configuration Packages, fully supporting API
+
+## [v1.468] - 2024-11-22
+- ALOpsAgentMaintenance: Improve delete Empty Folders
+- ALOpsAgentMaintenance: Improve delete VSIX cache
+- ALOpsAppCompile@1: Update runtime
+- ALOpsAppPublish: bugfix, unpublish in multitenant with only one tenant
+- ALOpsAppSourceDeploy: AutoPromote option
+- ALOpsExtensionAPI: Prevent possible freezing with DevPortDeploy
+
+## [v1.467] - 2024-08-31
+- All Tasks: Global boolean parameter [alops_pwsh] to enabled powershell 7 over all tasks that are pwsh enabled
+- ALOpsAppCompile@2: Ability to set Runtime in app.json via parameter [updateruntime]. Use 'HIGHEST' for maximum supported runtime.
+- ALOpsAppPublish: multi-tenant improvement
+- ALOpsExtensionAPI: Added dev_dependencypublishingoption with options [none / default / ignore / strict]
+- ALOpsExtensionAPI: added parameter [schedule] with options [current / nextminor / nextmajor]. Requires API Version 2.0
+- ALOpsExtensionAPI: added parameter [schema_sync_mode] with options [add / forcesync]. Requires API Version 2.0
+
+
 ## [v1.466] - 2024-08-21
 - ALOpsAgentMaintenance: Improved delete routine, added failsafe in case of failure
 - ALOpsAppCompile: added additional Probing Paths for building Base Application

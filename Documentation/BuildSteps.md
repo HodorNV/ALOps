@@ -25,11 +25,14 @@
             wait_for_operation: True              # Wait for operation. $(wait_for_operation)
             environment:                          # Source Environment. $(environment)
             target_environment:                   # Target Environment. $(target_environment)
+            target_environment_type: Sandbox      # Used with Environment Copy, sets the type of the target environment. $(target_environment_type)
             use_update_window: False              # Use update window. $(use_update_window)
             app_id:                               # App ID. $(app_id)
             accept_isv_eula: False                # Accept ISV Eula. $(accept_isv_eula)
             force_dependencies: False             # Force Dependencies. $(force_dependencies)
             confirm_delete_data: False            # Confirm Delete Data. $(confirm_delete_data)
+            application_insightskey:              # Application Insights Key. $(application_insightskey)
+            security_group_id:                    # Security Group Id. $(security_group_id)
     ```
 - ALOps Agent Maintenance
   * Cleanup and maintain DevOps a Agent for Business Central.
@@ -88,6 +91,7 @@
             appfilenametemplate: %APP_PUBLISHER%_%APP_NAME%_%APP_VERSION%_runtime.app# Template for App filename. $(appfilenametemplate)
             showmycode: False                     # Overwrites the ShowMyCode value in the manifest. $(showmycode)
             publish_artifact: True                # Publish generated Runtime-App Artifact to DevOps. $(publish_artifact)
+            batchgeneratepackages: False          # Generates packages for all apps in the solution. 'TargetProject' parameter is ignored. $(batchgeneratepackages)
     ```
 - ALOps App Sign
   * Codesign Business Central extension with .pfx.
@@ -96,15 +100,28 @@
         - task: ALOpsAppSign@1
           displayName: 'ALOps App Sign'
           inputs:
+            signmethod: PFX                       # Set Signmethod to use. PFX is legacy, HSM is the modern way $(signmethod)
             usedocker: False                      # Run task in Docker container. $(usedocker)
             fixed_tag:                            # Allows recycling of docker containers. $(fixed_tag)
             batchsigncompiledapps: False          # Batch Sign Apps taged by ALOpsAppCompile task. $(batchsigncompiledapps)
             artifact_path:                        # Path for storing App Artifact. $(artifact_path)
             nav_artifact_app_filter: *.app        # Path of the App to Codesign. Must be a fully qualified path or relative to $(System.DefaultWorkingDirectory). $(nav_artifact_app_filter)
-            pfx_path:                             # Path or Url of the PFX file. $(pfx_path)
-            timestamp_uri:                        # Uri of the timestamp service used during signing. $(timestamp_uri)
             publish_artifact: True                # Publish generated App Artifact to DevOps. $(publish_artifact)
+            timestamp_uri:                        # Uri of the timestamp service used during signing. $(timestamp_uri)
+            pfx_path:                             # Path or Url of the PFX file. $(pfx_path)
             pfx_password:                         # Password for the PFX File. Recommended to use Azure-KeyVault secrets. $(pfx_password)
+            hsmmethod: KEYVAULT                   # Set HSM Signmethod to use. $(hsmmethod)
+            hsm_description:                      # Set the Description. $(hsm_description)
+            hsm_description_url:                  # Set the Description Url. $(hsm_description_url)
+            hsm_digestalgorithm: sha256           # Set the Digest Algorithm. $(hsm_digestalgorithm)
+            hsm_signing_endpoint:                 # Set the Trusted Signing Endpoint. $(hsm_signing_endpoint)
+            hsm_signing_account:                  # Set the Trusted Signing Account. $(hsm_signing_account)
+            hsm_trusted_certificateprofile:       # Set the Trusted Certificate Profile. $(hsm_trusted_certificateprofile)
+            hsm_keyvault_name:                    # Set the KeyVault Name. $(hsm_keyvault_name)
+            hsm_keyvault_certificate_name:        # Set the KeyVault Certificate Name. $(hsm_keyvault_certificate_name)
+            hsm_tenantid:                         # Set the Tenant ID. $(hsm_tenantid)
+            hsm_clientid:                         # Set the Client ID. $(hsm_clientid)
+            hsm_client_secret:                    # Set the Client Secret. $(hsm_client_secret)
     ```
 - ALOps App Sign Verify
   * Verify CodeSign of Business Central extension.
@@ -128,6 +145,12 @@
             azure_tenant_id:                      # Azure Tenant Id. Only required for BC SaaS $(azure_tenant_id)
             azure_app_client_id:                  # Azure AD Application Client Id. $(azure_app_client_id)
             azure_app_client_secret:              # Azure AD Application Client Secret. $(azure_app_client_secret)
+            apply_offering_version_filter: False  # Apply version filter to the AppSource Apps. New Offering must have a Higher version for it to upload. $(apply_offering_version_filter)
+            autopromote: False                    # Auto Promote AppSource App after publish. $(autopromote)
+            autopromote_checksecondsdelay: 30     # Seconds of delay betweel deployment status checks. $(autopromote_checksecondsdelay)
+            autopromote_maxtries: 120             # Max tries for status check. $(autopromote_maxtries)
+            offering_name_filter_array:           # Semicolon-separated list of offering names to filter. $(offering_name_filter_array)
+            skip_version_change: False            # Skip version change. $(skip_version_change)
             pwsh: False                           # Run task in Powershell Core. $(pwsh)
     ```
 - ALOps App Test
@@ -204,6 +227,17 @@
             suite_code:                           # BCPT Suite to run. $(suite_code)
             test_runner_page: 149002              # BCPT Page to run. $(test_runner_page)
     ```
+- ALOps BC Replay
+  * Run BC-Replay for Business Central.
+  * YAML Template: 
+    ```yaml
+        - task: ALOpsBCReplay@1
+          displayName: 'ALOps BC Replay'
+          inputs:
+            usedocker: False                      # Run task in Docker container. $(usedocker)
+            fixed_tag:                            # Allows recycling of docker containers. $(fixed_tag)
+            pwsh: True                            # Run task in Powershell Core. $(pwsh)
+    ```
 - ALOps App Cleaner
   * Remove all extensions from Business Central service tier.
   * YAML Template: 
@@ -276,6 +310,10 @@
             enable_external_rulesets: False       # Enable External Rulesets. $(enable_external_rulesets)
             allowed_publisher_names:              # Allowed Publisher names. $(allowed_publisher_names)
             allowed_publisher_names_separator: ,  # Allowed Publisher names Separator. $(allowed_publisher_names_separator)
+            generatereportlayouts: True           # Set Generate Report Layouts compiler option. $(generatereportlayouts)
+            alc_continuebuildonerror: False       # Set ALC Continue Build On Error option. $(alc_continuebuildonerror)
+            alc_errorlog: False                   # Set ALC Error Log option. $(alc_errorlog)
+            pwsh: False                           # Run task in Powershell Core. $(pwsh)
     ```
 - ALOps Docker Create
   * Create Docker image based on NAV/BC Artifacts.
@@ -373,6 +411,10 @@
             sql_backup_file:                      # Restore BAK file on startup. $(sql_backup_file)
             encryption_key:                       # Encryption key for Service Tier. $(encryption_key)
             taskscheduler: Keep                   # Overrule EnableTaskScheduler by setting other option than 'Keep'. $(taskscheduler)
+            keyvault_pfxfile:                     # KeyVault PFX File. $(keyvault_pfxfile)
+            keyvault_pfxpassword:                 # KeyVault PFX Password. $(keyvault_pfxpassword)
+            keyvault_clientid:                    # KeyVault ClientID. $(keyvault_clientid)
+            keyvault_publisher_validation: False  # Keyvault Publisher Validation. $(keyvault_publisher_validation)
     ```
 - ALOps Docker Wait
   * Wait until the Business Central container is started.
@@ -403,6 +445,7 @@
             api_endpoint: https://api.businesscentral.dynamics.com/v2.0/$(azure_tenant_id)/Sandbox/api# Set API Endpoint. (protocol://host:port/serverinstance/api) $(api_endpoint)
             dev_endpoint:                         # Set DEV Endpoint. (protocol://host:port/serverinstance/dev) $(dev_endpoint)
             dev_schemeupdatemode: synchronize     # Set Schema Update Mode to use with DEVPort deploy. (synchronize/recreate/forcesync) $(dev_schemeupdatemode)
+            dev_dependencypublishingoption: none  # Set Dependency Publishing Option for DEV Endpoint. $(dev_dependencypublishingoption)
             apiversion: v1.0                      # Version of the API to use (beta / v1.0 / v2.0) $(apiversion)
             authentication: oauth                 # Set authentication Method to use. Default [Windows]. $(authentication)
             azure_tenant_id:                      # Azure Tenant Id. Only required for BC SaaS $(azure_tenant_id)
@@ -413,13 +456,16 @@
             username:                             # Business Central Username. Leave empty for Service-2-Service authentication. $(username)
             password:                             # Business Central User Password. Leave empty for Service-2-Service authentication. $(password)
             bccompany:                            # Business Central Company (Id or Name). $(bccompany)
-            artifact_path: $(System.ArtifactsDirectory)# Path for App Artifact. $(artifact_path)
+            artifact_path: $(System.ArtifactsDirectory)# Path for App Artifact. If using 'Multistate Pipeline', use '$(Pipeline.Workspace)' instead. $(artifact_path)
             artifact_filter: *.app                # Filter used for locating App file relative to $(path_to_publish). $(artifact_filter)
             showdeploymentstatus: True            # Show Extension Deployment Status. $(showdeploymentstatus)
+            vsix_only: False                      # Only use VSIX, do not use BC-Artifacts. $(vsix_only)
             checksecondsdelay: 30                 # Seconds of delay betweel deployment status checks. $(checksecondsdelay)
             maxtries: 20                          # Max tries for status check. $(maxtries)
             replacepackageid: False               # Force a new PackageID for each deployment. $(replacepackageid)
             blocksymbolsonly: False               # Check App, block if SymbolsOnly App. $(blocksymbolsonly)
+            schedule: current                     # Set the Schedule. Requires API Version 2.0 $(schedule)
+            schema_sync_mode: add                 # Set the Schema Update Mode. Requires API Version 2.0 $(schema_sync_mode)
             pwsh: False                           # Run task in Powershell Core. $(pwsh)
     ```
 - ALOps Import FOB
@@ -463,6 +509,42 @@
             remove_license_file: True             # Remove license file after import. $(remove_license_file)
             print_license_info: False             # Set if License is printed into the pipeline. $(print_license_info)
             license_scope: Default                # Set the scope for license upload. $(license_scope)
+    ```
+- ALOps Nuget Download
+  * Download BC Apps from Nuget.
+  * YAML Template: 
+    ```yaml
+        - task: ALOpsNugetDownload@1
+          displayName: 'ALOps Nuget Download'
+          inputs:
+            nuget_username:                       # Username for the NuGet Source. $(nuget_username)
+            nuget_password:                       # Password for the NuGet Source. $(nuget_password)
+            nuget_source_apikey:                  # APIKey for the NuGet Source. $(nuget_source_apikey)
+            nuget_spec_file: $(System.DefaultWorkingDirectory)\nuget.json# Nuget Spec File. $(nuget_spec_file)
+            nuget_select_type_filter:             # Nuget Select Type Filter. $(nuget_select_type_filter)
+            download_folder: $(System.ArtifactsDirectory)# Target download folder. $(download_folder)
+            artifact_folder_name: Nuget           # Artifact Folder name where resolved.json get uploaded. $(artifact_folder_name)
+            dependency_publisher_filter:          # Dependency Publisher Filter. ';' as Seperator. 'NONE' skips all dependencies $(dependency_publisher_filter)
+            skip_microsoft_apps: True             # Skip Microsoft Apps. $(skip_microsoft_apps)
+            pwsh: False                           # Run task in Powershell Core. $(pwsh)
+    ```
+- ALOps Nuget Publish
+  * Publish BC Apps to Nuget.
+  * YAML Template: 
+    ```yaml
+        - task: ALOpsNugetPublish@1
+          displayName: 'ALOps Nuget Publish'
+          inputs:
+            artifact_path: $(System.ArtifactsDirectory)# Path for App Artifact(s). $(artifact_path)
+            artifact_filter: *.app                # Filter used for locating App file relative to $(artifact_path). $(artifact_filter)
+            nuget_source_uri:                     # The NuGet source Url. $(nuget_source_uri)
+            nuget_username:                       # Username for the NuGet Source. $(nuget_username)
+            nuget_password:                       # Password for the NuGet Source. $(nuget_password)
+            nuget_source_apikey:                  # APIKey for the NuGet Source. $(nuget_source_apikey)
+            suffix:                               # Nuget Version Suffix. $(suffix)
+            use_suffix_for_dependencies_same_publisher: False# Use Suffix for dependencies same Publisher. $(use_suffix_for_dependencies_same_publisher)
+            keep_app_filename: False              # Keep the original app filename. $(keep_app_filename)
+            pwsh: False                           # Run task in Powershell Core. $(pwsh)
     ```
 - ALOps OpenAPI
   * Generate OpenAPI descriptions from Business Central API's.
