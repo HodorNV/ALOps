@@ -1,6 +1,20 @@
 # Change Log
 All notable changes to the "ALOps" extension.
 
+## [v1.473] - 2025-10-14
+- All Tasks: ALOps Code Analysis: update for BC v27 compatibility
+- All Tasks: Performance:  ProgressPreference defaults to SilentlyContinue
+- ALOpsAdminCenterAPI: allow deletion of production environments
+- ALOpsAdminCenterAPI: Get/Set ApplicationInsightKey
+- ALOpsAdminCenterAPI: New action that allows settings "Security Group" settings on an environment
+- ALOpsAdminCenterAPI: Validate GUID for 'Set Security Group'
+- ALOpsAppCompile: false warning op compilation started, improved log processing
+- ALOpsAppPublish:  new option [keep_app_filename] for keeping filename original in the package
+- ALOpsAppPublish: Validate existing packages on AppID instead op PackageID
+- ALOpsAppSource: maxtries and timeout now configurable
+- ALOpsAppSource: new boolean [skip_version_change], can be used to publish AppSource hotfixes or updates on previous versions
+- ALOpsExtensionAPI: Warning if DEV-Scope and no Devport deploy
+
 ## [v1.471] - 2025-07-08
 - ALOpsAppCompile: die /errorlog of /continuebuildonerror
 - ALOpsAppCompile: v1 en v2: suppressWarnings to JSON Array
