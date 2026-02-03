@@ -19,6 +19,7 @@
             updateruntime:                        # Updates the Runtime parameter in app.json. $(updateruntime) $(updateruntime)
             alternativeartifacturl:               # Overrule the ArtifactUrl which would be determined by [artifacttype/artifactcountry/versionselect]. $(alternativeartifacturl) $(alternativeartifacturl)
             alternativevsixurl:                   # Alternative VSIX download url. Overrules BC Artificat VSIX. 'Latest' can be specified. $(alternativevsixurl) $(alternativevsixurl)
+            vsix_cache_hours: 0                   # Number of hours to cache the VSIX file. If the cached file is older, it will be re-downloaded. $(vsix_cache_hours) $(vsix_cache_hours)
             alsourcepath: $(System.DefaultWorkingDirectory)# Set the root folder for findings App.json's recursivly $(alsourcepath) $(alsourcepath)
             ruleset:                              # Overrule the Ruleset from VSCode settings. Path relative to [alsourcepath] $(ruleset) $(ruleset)
             suppresswarnings: KEEP                # Overrule the 'suppresswarnings' setting. $(suppresswarnings) $(suppresswarnings)
