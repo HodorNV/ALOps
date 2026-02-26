@@ -39,5 +39,6 @@
         additionalprobingpaths:               # Additional paths (one per line) to probe for .NET assemblies referenced from AL. $(additionalprobingpaths) $(additionalprobingpaths) $(additionalprobingpaths)
         maxcpucount:                          # Maximum number of concurrent compilations in parallel mode. Defaults to the number of processors. Has no effect in serial mode. $(maxcpucount) $(maxcpucount) $(maxcpucount)
         sastoken:                             # SAS token used for masking in the pipeline log. $(sastoken) $(sastoken) $(sastoken)
+        pwsh: True                            # Run task in Powershell Core. $(pwsh) $(pwsh) $(pwsh)
 ```
 
