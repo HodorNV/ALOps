@@ -39,6 +39,11 @@
         additionalprobingpaths:               # Additional paths (one per line) to probe for .NET assemblies referenced from AL. $(additionalprobingpaths) $(additionalprobingpaths) $(additionalprobingpaths)
         maxcpucount:                          # Maximum number of concurrent compilations in parallel mode. Defaults to the number of processors. Has no effect in serial mode. $(maxcpucount) $(maxcpucount) $(maxcpucount)
         sastoken:                             # SAS token used for masking in the pipeline log. $(sastoken) $(sastoken) $(sastoken)
+        auto_resolve_ms_symbols: true         # When enabled, scans all app.json dependency lists for Microsoft-published apps, checks the symbol cache, and automatically downloads any missing symbols from the MSSymbols NuGet feed before compilation. $(auto_resolve_ms_symbols) $(auto_resolve_ms_symbols) $(auto_resolve_ms_symbols)
+        bc_localization: W1                   # Business Central country/localisation code used to select the correct MSSymbols NuGet package (e.g. `W1`, `BE`, `NL`, `US`, `GB`). Determines the entry-point package: `Microsoft.Application.<country>.symbols`. Defaults to `W1`. $(bc_localization) $(bc_localization) $(bc_localization)
+        bc_version:                           # Business Central version filter in Major.Minor format, e.g. `27.4`. When empty the version is auto-detected from the `application` field in app.json (e.g. `"application": "27.4.0.0"` â†’ `27.4`). $(bc_version) $(bc_version) $(bc_version)
+        ms_symbols_feed: https://dynamicssmb2.pkgs.visualstudio.com/DynamicsBCPublicFeeds/_packaging/MSSymbols/nuget/v3/index.json# NuGet v3 service index URL for the Microsoft MSSymbols feed. The default points to the public MSSymbols feed which requires no authentication. $(ms_symbols_feed) $(ms_symbols_feed) $(ms_symbols_feed)
+        ms_symbols_pat:                       # Optional Personal Access Token for authenticated access to the MSSymbols feed. Leave empty when using the default public feed. $(ms_symbols_pat) $(ms_symbols_pat) $(ms_symbols_pat)
         pwsh: True                            # Run task in Powershell Core. $(pwsh) $(pwsh) $(pwsh)
 ```
 
