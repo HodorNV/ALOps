@@ -10,11 +10,11 @@
         multifactor_type: None                # MFA mechanism. Only available with AAD authentication. Maps to `-MultiFactorType`. $(multifactor_type) $(multifactor_type) $(multifactor_type)
         multifactor_secret_key:               # Name of the environment variable storing the MFA secret. For TOTP: the TOTP secret key. For Certificate: Base64-encoded PFX certificate. Maps to `-MultiFactorSecretKey`. $(multifactor_secret_key) $(multifactor_secret_key) $(multifactor_secret_key)
         result_dir: $(Agent.TempDirectory)\bcreplay_results# Directory to write test results. Maps to `-ResultDir`. $(result_dir) $(result_dir) $(result_dir)
-        npm_install: True                     # Automatically install `@microsoft/bc-replay` and Playwright browsers before running. When `false`, expects `@microsoft/bc-replay` to be pre-installed (e.g. in a prior pipeline step). Requires Node.js >= 16.14.0 on the agent. $(npm_install) $(npm_install) $(npm_install)
+        npm_install: true                     # Automatically install `@microsoft/bc-replay` and Playwright browsers before running. When `false`, expects `@microsoft/bc-replay` to be pre-installed (e.g. in a prior pipeline step). Requires Node.js >= 16.14.0 on the agent. $(npm_install) $(npm_install) $(npm_install)
         bcreplay_version: latest              # Version of `@microsoft/bc-replay` to install. Use `latest` for the newest version or pin to a specific version (e.g. `0.1.119`). Only used when Auto-Install is enabled. $(bcreplay_version) $(bcreplay_version) $(bcreplay_version)
         failed_action: Error                  # Action to take when one or more replay recordings fail. `Error`: fail the task. `Warning`: succeed with issues. `Ignore`: succeed silently. $(failed_action) $(failed_action) $(failed_action)
-        publish_results: True                 # Publish replay results as Azure DevOps test results (visible in the Tests tab). $(publish_results) $(publish_results) $(publish_results)
-        publish_summary: True                 # Generate and publish a markdown summary report as a build artifact. $(publish_summary) $(publish_summary) $(publish_summary)
-        pwsh: True                            # Run task in Powershell Core. $(pwsh) $(pwsh) $(pwsh)
+        publish_results: true                 # Publish replay results as Azure DevOps test results (visible in the Tests tab). $(publish_results) $(publish_results) $(publish_results)
+        publish_summary: true                 # Generate and publish a markdown summary report as a build artifact. $(publish_summary) $(publish_summary) $(publish_summary)
+        pwsh: true                            # Run task in Powershell Core. $(pwsh) $(pwsh) $(pwsh)
 ```
 
