@@ -1,6 +1,6 @@
 ```yaml
     - task: ALOpsInfo@3
-      displayName: 'ALOps Info v3'
+      displayName: 'ALOps Info'
       inputs:
         freemem_threshold: 0                  # Minimum required free memory percentage. Set to 0 to disable. When free memory drops below this value, a warning or error is generated based on the threshold action. $(freemem_threshold) $(freemem_threshold) $(freemem_threshold)
         freemem_threshold_action: Warn        # Action to take when the free memory threshold is not met. Warn = task succeeds with issues. Error = task fails. $(freemem_threshold_action) $(freemem_threshold_action) $(freemem_threshold_action)
