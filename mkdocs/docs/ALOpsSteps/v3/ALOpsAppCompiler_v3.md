@@ -1,6 +1,6 @@
 ```yaml
     - task: ALOpsAppCompiler@3
-      displayName: 'ALOps App Compiler v3'
+      displayName: 'ALOps App Compiler'
       inputs:
         altool_package_version: 17.0.30.49729-beta# Version of the `microsoft.dynamics.businesscentral.development.tools` NuGet package to use as compiler tooling. $(altool_package_version) $(altool_package_version) $(altool_package_version)
         altool_cache_hours: 0                 # Number of hours to cache the downloaded NuGet package on the agent. Set to 0 to always download fresh. $(altool_cache_hours) $(altool_cache_hours) $(altool_cache_hours)
