@@ -1,6 +1,6 @@
 ```yaml
     - task: ALOpsBCReplay@3
-      displayName: 'ALOps BC Replay V3'
+      displayName: 'ALOps BC Replay'
       inputs:
         tests: $(System.DefaultWorkingDirectory)\recordings\*.yml# File glob pattern to select the recording `.yml` files to run. Maps to the `-Tests` parameter of `npx replay`. $(tests) $(tests) $(tests)
         start_address:                        # URL to the deployed BC web client. For Docker: `http://localhost:<port>/`. For SaaS: `https://<tenant>.businesscentral.dynamics.com/`. Maps to `-StartAddress`. $(start_address) $(start_address) $(start_address)
