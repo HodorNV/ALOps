@@ -44,6 +44,9 @@
         bc_version:                           # Business Central version filter in Major.Minor format, e.g. `27.4`. When empty the version is auto-detected from the `application` field in app.json (e.g. `"application": "27.4.0.0"` ? `27.4`). $(bc_version) $(bc_version) $(bc_version)
         ms_symbols_feed: https://dynamicssmb2.pkgs.visualstudio.com/DynamicsBCPublicFeeds/_packaging/MSSymbols/nuget/v3/index.json# NuGet v3 service index URL for the Microsoft MSSymbols feed. The default points to the public MSSymbols feed which requires no authentication. $(ms_symbols_feed) $(ms_symbols_feed) $(ms_symbols_feed)
         ms_symbols_pat:                       # Optional Personal Access Token for authenticated access to the MSSymbols feed. Leave empty when using the default public feed. $(ms_symbols_pat) $(ms_symbols_pat) $(ms_symbols_pat)
+        auto_resolve_appsource_symbols: true  # When enabled, attempts to resolve missing third-party (ISV) symbol dependencies from the AppSourceSymbols NuGet feed before compilation. Version matching uses the dependency's own version (Major.Minor) from app.json. $(auto_resolve_appsource_symbols) $(auto_resolve_appsource_symbols) $(auto_resolve_appsource_symbols)
+        appsource_symbols_feed: https://dynamicssmb2.pkgs.visualstudio.com/DynamicsBCPublicFeeds/_packaging/AppSourceSymbols/nuget/v3/index.json# NuGet v3 service index URL for the AppSourceSymbols feed. The default points to the public AppSourceSymbols feed. $(appsource_symbols_feed) $(appsource_symbols_feed) $(appsource_symbols_feed)
+        appsource_symbols_pat:                # Optional Personal Access Token for authenticated access to the AppSourceSymbols feed. Leave empty when using the default public feed. $(appsource_symbols_pat) $(appsource_symbols_pat) $(appsource_symbols_pat)
         pwsh: True                            # Run task in Powershell Core. $(pwsh) $(pwsh) $(pwsh)
 ```
 
