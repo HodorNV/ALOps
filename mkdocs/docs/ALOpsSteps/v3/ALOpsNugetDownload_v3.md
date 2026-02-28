@@ -1,6 +1,6 @@
 ```yaml
     - task: ALOpsNugetDownload@3
-      displayName: 'ALOps Nuget Download v3'
+      displayName: 'ALOps Nuget Download'
       inputs:
         nuget_username:                       # Username for the NuGet Source. For Azure DevOps feeds, use any value (e.g. 'az') combined with a PAT as password. $(nuget_username) $(nuget_username) $(nuget_username)
         nuget_password:                       # Password or Personal Access Token (PAT) for the NuGet Source. $(nuget_password) $(nuget_password) $(nuget_password)
