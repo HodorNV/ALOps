@@ -4,6 +4,7 @@ ALOps provides a set of building blocks that enables you to create your own buil
 
 Related:
 [Build steps v2](Buildstepsv2.md)
+[Build steps v3](Buildstepsv3.md)
 
 ## ALOps AdminCenter API
 This buildstep lets you interact with the AdminCenter API.  As such, this is a wrapper for the default Admin API and provides these interactions:
