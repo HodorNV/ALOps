@@ -4,6 +4,7 @@ ALOps provides a set of building blocks that enables you to create your own buil
 
 Related:
 [Build steps v1](Buildstepsv1.md)
+[Build steps v3](Buildstepsv3.md)
 
 ## ALOps App Compiler
 Compile Business Central extension(s) from AL code.
