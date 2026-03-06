@@ -56,7 +56,11 @@
             pwsh: True                            # Run the task in PowerShell Core (`pwsh`) instead of Windows PowerShell. $(pwsh) $(pwsh) $(pwsh)
     ```
 - ALOps App License Check
-  * Check App files against a Business Central license file.
+  * Validates Business Central App (.app) files against a BC license to ensure all objects are licensed.
+
+**Requirements:** This task requires the Microsoft Dynamics NAV/BC platform assemblies (NCL) to be available on the build agent. These are only present on agents with a full NAV/BC installation.
+
+**Recommended:** Run this task inside a Docker container using a BC artifact image (set 'In Docker' to true), which provides all required platform components without a local BC installation.
   * YAML Template: 
     ```yaml
         - task: ALOpsAppLicenseCheck@3
@@ -71,6 +75,7 @@
             expiry_text:                          # String to find in license to match for ExpiryDate. $(expiry_text) $(expiry_text) $(expiry_text)
             expiry_dateformat:                    # Date Format of the Expiry date, example: dd.MM.yyyy $(expiry_dateformat) $(expiry_dateformat) $(expiry_dateformat)
             expiry_dayswarning:                   # Amount of days before License-Expiry for triggering a warning $(expiry_dayswarning) $(expiry_dayswarning) $(expiry_dayswarning)
+            expiry_checkonly: False               # When enabled, only the license expiry check is performed and the full license object check is skipped. $(expiry_checkonly) $(expiry_checkonly) $(expiry_checkonly)
             exclude_tables: False                 # Exclude Table objects from LicenseCheck. $(exclude_tables) $(exclude_tables) $(exclude_tables)
             exclude_codeunits: False              # Exclude Codeunit objects from LicenseCheck. $(exclude_codeunits) $(exclude_codeunits) $(exclude_codeunits)
             exclude_pages: False                  # Exclude Page objects from LicenseCheck. $(exclude_pages) $(exclude_pages) $(exclude_pages)
