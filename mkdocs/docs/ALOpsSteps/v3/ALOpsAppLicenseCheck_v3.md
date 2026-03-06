@@ -11,6 +11,7 @@
         expiry_text:                          # String to find in license to match for ExpiryDate. $(expiry_text) $(expiry_text) $(expiry_text)
         expiry_dateformat:                    # Date Format of the Expiry date, example: dd.MM.yyyy $(expiry_dateformat) $(expiry_dateformat) $(expiry_dateformat)
         expiry_dayswarning:                   # Amount of days before License-Expiry for triggering a warning $(expiry_dayswarning) $(expiry_dayswarning) $(expiry_dayswarning)
+        expiry_checkonly: False               # When enabled, only the license expiry check is performed and the full license object check is skipped. $(expiry_checkonly) $(expiry_checkonly) $(expiry_checkonly)
         exclude_tables: False                 # Exclude Table objects from LicenseCheck. $(exclude_tables) $(exclude_tables) $(exclude_tables)
         exclude_codeunits: False              # Exclude Codeunit objects from LicenseCheck. $(exclude_codeunits) $(exclude_codeunits) $(exclude_codeunits)
         exclude_pages: False                  # Exclude Page objects from LicenseCheck. $(exclude_pages) $(exclude_pages) $(exclude_pages)
