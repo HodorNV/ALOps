@@ -19,5 +19,6 @@
         fail_on_warnings: false               # Fail the task if aldoc emits warning messages. $(fail_on_warnings) $(fail_on_warnings) $(fail_on_warnings)
         publishartifact: true                 # Upload the generated documentation as an Azure DevOps build artifact. $(publishartifact) $(publishartifact) $(publishartifact)
         artifact_name: ALDocOutput            # Name of the Azure DevOps build artifact for the documentation output. $(artifact_name) $(artifact_name) $(artifact_name)
+        pwsh: True                            # Run the task in PowerShell Core (`pwsh`) instead of Windows PowerShell. $(pwsh) $(pwsh) $(pwsh)
 ```
 
