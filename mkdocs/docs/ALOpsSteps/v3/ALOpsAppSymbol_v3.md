@@ -10,5 +10,6 @@
         verify_symbol: true                   # When `true`, runs `altool IsSymbolOnly` on each generated symbol package to verify it is indeed a symbol-only package. If verification fails, the task fails with an error. $(verify_symbol) $(verify_symbol) $(verify_symbol)
         publishartifact: true                 # Upload the generated symbol `.app` file(s) as Azure DevOps build artifacts. The artifact name is controlled by the `artifact_name` parameter. $(publishartifact) $(publishartifact) $(publishartifact)
         artifact_name: ALOpsSymbolArtifact    # Name of the Azure DevOps build artifact for the symbol packages. Only used when `publishartifact` is `true`. $(artifact_name) $(artifact_name) $(artifact_name)
+        pwsh: True                            # Run the task in PowerShell Core (`pwsh`) instead of Windows PowerShell. $(pwsh) $(pwsh) $(pwsh)
 ```
 
