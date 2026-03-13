@@ -15,5 +15,6 @@
         failed_action: Error                  # Action to take when one or more replay recordings fail. `Error`: fail the task. `Warning`: succeed with issues. `Ignore`: succeed silently. $(failed_action) $(failed_action) $(failed_action)
         publish_results: true                 # Publish replay results as Azure DevOps test results (visible in the Tests tab). $(publish_results) $(publish_results) $(publish_results)
         publish_summary: true                 # Generate and publish a markdown summary report as a build artifact. $(publish_summary) $(publish_summary) $(publish_summary)
+        pwsh: true                            # Run task in Powershell Core. $(pwsh) $(pwsh) $(pwsh)
 ```
 
