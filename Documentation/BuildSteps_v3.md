@@ -27,7 +27,6 @@
             daysunused: 30                        # Threshold in days for cleanup operations. Items not used within this period are removed. Applies to BCArtifacts, AgentTemp, WindowsTemp, and PackageCache operations. $(daysunused) $(daysunused) $(daysunused)
             dryrun: False                         # When enabled, reports what would be cleaned without actually deleting anything. Use this for change management review before running actual cleanup. $(dryrun) $(dryrun) $(dryrun)
             erroraction: Warn                     # How cleanup failures affect the task result. 'Error' fails the task on any cleanup error. 'Warn' marks the task as SucceededWithIssues. 'Ignore' silently continues. $(erroraction) $(erroraction) $(erroraction)
-            pwsh: False                           # Run task in PowerShell Core (pwsh) instead of Windows PowerShell. $(pwsh) $(pwsh) $(pwsh)
     ```
 - ALOps AL Documentation
   * Generates DocFx-based reference documentation for AL extensions using aldoc.exe from the microsoft.dynamics.businesscentral.development.tools NuGet package. Supports init, build, refresh, and full workflows including optional DocFx static site generation.
@@ -53,7 +52,6 @@
             fail_on_warnings: false               # Fail the task if aldoc emits warning messages. $(fail_on_warnings) $(fail_on_warnings) $(fail_on_warnings)
             publishartifact: true                 # Upload the generated documentation as an Azure DevOps build artifact. $(publishartifact) $(publishartifact) $(publishartifact)
             artifact_name: ALDocOutput            # Name of the Azure DevOps build artifact for the documentation output. $(artifact_name) $(artifact_name) $(artifact_name)
-            pwsh: True                            # Run the task in PowerShell Core (`pwsh`) instead of Windows PowerShell. $(pwsh) $(pwsh) $(pwsh)
     ```
 - ALOps App License Check
   * Validates Business Central App (.app) files against a BC license to ensure all objects are licensed.
@@ -101,7 +99,6 @@
             verify_symbol: true                   # When `true`, runs `altool IsSymbolOnly` on each generated symbol package to verify it is indeed a symbol-only package. If verification fails, the task fails with an error. $(verify_symbol) $(verify_symbol) $(verify_symbol)
             publishartifact: true                 # Upload the generated symbol `.app` file(s) as Azure DevOps build artifacts. The artifact name is controlled by the `artifact_name` parameter. $(publishartifact) $(publishartifact) $(publishartifact)
             artifact_name: ALOpsSymbolArtifact    # Name of the Azure DevOps build artifact for the symbol packages. Only used when `publishartifact` is `true`. $(artifact_name) $(artifact_name) $(artifact_name)
-            pwsh: True                            # Run the task in PowerShell Core (`pwsh`) instead of Windows PowerShell. $(pwsh) $(pwsh) $(pwsh)
     ```
 - ALOps BC Replay
   * Run BC-Replay for Business Central. Replays recorded `.yml` user sessions against a BC web client using Playwright. Supports Windows, AAD, and UserPassword authentication. Always uses server-side replay mode.
@@ -123,7 +120,6 @@
             failed_action: Error                  # Action to take when one or more replay recordings fail. `Error`: fail the task. `Warning`: succeed with issues. `Ignore`: succeed silently. $(failed_action) $(failed_action) $(failed_action)
             publish_results: true                 # Publish replay results as Azure DevOps test results (visible in the Tests tab). $(publish_results) $(publish_results) $(publish_results)
             publish_summary: true                 # Generate and publish a markdown summary report as a build artifact. $(publish_summary) $(publish_summary) $(publish_summary)
-            pwsh: true                            # Run task in Powershell Core. $(pwsh) $(pwsh) $(pwsh)
     ```
 - ALOps App Compiler
   * Compile Business Central extension(s) from AL code using altool.exe (microsoft.dynamics.businesscentral.development.tools NuGet package). Supports serial and parallel compilation modes.
@@ -178,7 +174,6 @@
             auto_resolve_appsource_symbols: true  # Attempts to resolve missing third-party (ISV) symbol dependencies from the AppSourceSymbols NuGet feed. Searches by the dependency's `appId` GUID. **Important:** version matching uses the dependency's own `Major.Minor` version from `app.json`, **not** the `bc_version` parameter. No transitive NuGet dependency resolution is performed (ISV packages are self-contained). Uses `appsource_symbols_feed` and `appsource_symbols_pat`. $(auto_resolve_appsource_symbols) $(auto_resolve_appsource_symbols) $(auto_resolve_appsource_symbols)
             appsource_symbols_feed: https://dynamicssmb2.pkgs.visualstudio.com/DynamicsBCPublicFeeds/_packaging/AppSourceSymbols/nuget/v3/index.json# NuGet v3 service index URL for the AppSourceSymbols feed. The default points to the public AppSourceSymbols feed (no authentication required). $(appsource_symbols_feed) $(appsource_symbols_feed) $(appsource_symbols_feed)
             appsource_symbols_pat:                # Personal Access Token for authenticated access to the AppSourceSymbols feed. When provided, it is sent as Basic auth. The token is automatically masked in pipeline logs. Leave empty for the default public feed (no authentication required). $(appsource_symbols_pat) $(appsource_symbols_pat) $(appsource_symbols_pat)
-            pwsh: True                            # Run the task in PowerShell Core (`pwsh`) instead of Windows PowerShell. Default is `true`. ALOpsAppCompilerV3 targets PowerShell 7; the entry script includes PS7 bootstrap logic. $(pwsh) $(pwsh) $(pwsh)
     ```
 - ALOps Info
   * Print information about ALOps and the executing host. Provides detailed CPU, Memory, Disk and Windows Update diagnostics. Supports configurable thresholds for free memory and free disk space.
@@ -192,7 +187,6 @@
             freedisk_threshold: 0                 # Minimum required free disk space percentage. Set to 0 to disable. When any drive's free space drops below this value, a warning or error is generated based on the threshold action. $(freedisk_threshold) $(freedisk_threshold) $(freedisk_threshold)
             freedisk_threshold_action: Warn       # Action to take when the free disk threshold is not met. Warn = task succeeds with issues. Error = task fails. $(freedisk_threshold_action) $(freedisk_threshold_action) $(freedisk_threshold_action)
             docker_containers_action: Error       # Action to take when existing Docker containers are found on the agent. Ignore = no action. Warn = task succeeds with issues. Error = task fails. $(docker_containers_action) $(docker_containers_action) $(docker_containers_action)
-            pwsh: True                            # Run task in Powershell Core. $(pwsh) $(pwsh) $(pwsh)
     ```
 - ALOps Nuget Download
   * Download BC Apps from NuGet feeds. Supports NuGet protocol v2 (OData) and v3 (JSON). Auto-detects feed protocol. Does not require nuget.exe.
@@ -211,6 +205,5 @@
             artifact_folder_name: Nuget           # Artifact folder name used when uploading the resolved.json as a build artifact. $(artifact_folder_name) $(artifact_folder_name) $(artifact_folder_name)
             dependency_publisher_filter:          # Semicolon-separated list of publisher names to include when resolving dependencies. Leave empty to allow all publishers. Set to 'NONE' to skip dependency resolution entirely. $(dependency_publisher_filter) $(dependency_publisher_filter) $(dependency_publisher_filter)
             skip_microsoft_apps: True             # Skip packages whose ID starts with 'microsoft.' during dependency resolution. $(skip_microsoft_apps) $(skip_microsoft_apps) $(skip_microsoft_apps)
-            pwsh: False                           # Run task in PowerShell Core. $(pwsh) $(pwsh) $(pwsh)
     ```
 
