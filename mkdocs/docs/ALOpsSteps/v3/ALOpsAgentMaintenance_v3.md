@@ -17,5 +17,6 @@
         daysunused: 30                        # Threshold in days for cleanup operations. Items not used within this period are removed. Applies to BCArtifacts, AgentTemp, WindowsTemp, and PackageCache operations. $(daysunused) $(daysunused) $(daysunused)
         dryrun: False                         # When enabled, reports what would be cleaned without actually deleting anything. Use this for change management review before running actual cleanup. $(dryrun) $(dryrun) $(dryrun)
         erroraction: Warn                     # How cleanup failures affect the task result. 'Error' fails the task on any cleanup error. 'Warn' marks the task as SucceededWithIssues. 'Ignore' silently continues. $(erroraction) $(erroraction) $(erroraction)
+        pwsh: False                           # Run task in PowerShell Core (pwsh) instead of Windows PowerShell. $(pwsh) $(pwsh) $(pwsh)
 ```
 
