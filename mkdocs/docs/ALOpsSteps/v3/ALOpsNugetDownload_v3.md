@@ -12,6 +12,5 @@
         artifact_folder_name: Nuget           # Artifact folder name used when uploading the resolved.json as a build artifact. $(artifact_folder_name) $(artifact_folder_name) $(artifact_folder_name)
         dependency_publisher_filter:          # Semicolon-separated list of publisher names to include when resolving dependencies. Leave empty to allow all publishers. Set to 'NONE' to skip dependency resolution entirely. $(dependency_publisher_filter) $(dependency_publisher_filter) $(dependency_publisher_filter)
         skip_microsoft_apps: True             # Skip packages whose ID starts with 'microsoft.' during dependency resolution. $(skip_microsoft_apps) $(skip_microsoft_apps) $(skip_microsoft_apps)
-        pwsh: False                           # Run task in PowerShell Core. $(pwsh) $(pwsh) $(pwsh)
 ```
 
