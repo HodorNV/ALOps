@@ -7,7 +7,6 @@
         artifact_filter: *.app                # Filter used for locating App file relative to $(artifact_path). $(artifact_filter) $(artifact_filter) $(artifact_filter)
         artifact_include:                     # Include-Filter used for locating App file relative to $(artifact_path). $(artifact_include) $(artifact_include) $(artifact_include)
         artifact_exclude:                     # Exclude-Filter used for locating App file relative to $(artifact_path). $(artifact_exclude) $(artifact_exclude) $(artifact_exclude)
-        use_alops_compiler_apps: false        # When enabled, `artifact_path` and `artifact_filter` are ignored. Instead, the task reads app paths from the `ALOPS_COMPILE_ARTIFACT_ARRAY` environment variable (comma-separated), which is populated by a preceding ALOpsAppCompiler task. $(use_alops_compiler_apps) $(use_alops_compiler_apps) $(use_alops_compiler_apps)
         exclude_ranges:                       # Exclude-Ranges from LicenseCheck (Buffer / Temporary tables). Format: 60000..60099,70000..70100 $(exclude_ranges) $(exclude_ranges) $(exclude_ranges)
         expiry_text:                          # String to find in license to match for ExpiryDate. $(expiry_text) $(expiry_text) $(expiry_text)
         expiry_dateformat:                    # Date Format of the Expiry date, example: dd.MM.yyyy $(expiry_dateformat) $(expiry_dateformat) $(expiry_dateformat)
