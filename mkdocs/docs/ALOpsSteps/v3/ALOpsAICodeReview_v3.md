@@ -2,7 +2,7 @@
     - task: ALOpsAICodeReview@3
       displayName: 'ALOps AI Code Review'
       inputs:
-        ai_provider: AZUREOPENAI              # Select the AI provider to use for code review. Supported providers: Azure OpenAI, OpenAI, Anthropic (Claude), GitHub Models. $(ai_provider) $(ai_provider) $(ai_provider)
+        aiprovider: AZUREOPENAI               # Select the AI provider to use for code review. Supported providers: Azure OpenAI, OpenAI, Anthropic (Claude), GitHub Models. $(aiprovider) $(aiprovider) $(aiprovider)
         ai_api_key:                           # Use a pipeline secret variable. $(ai_api_key) $(ai_api_key) $(ai_api_key)
         ai_base_url:                          # Azure OpenAI only. E.g. https://resource.openai.azure.com $(ai_base_url) $(ai_base_url) $(ai_base_url)
         ai_deployment:                        # Azure OpenAI only. E.g. gpt-4o $(ai_deployment) $(ai_deployment) $(ai_deployment)
@@ -12,7 +12,7 @@
         ai_max_input_tokens: 120000           # Maximum number of tokens sent to the AI per request. Reduce if hitting context window limits. $(ai_max_input_tokens) $(ai_max_input_tokens) $(ai_max_input_tokens)
         ai_timeout_sec: 120                   # Timeout in seconds for each AI API request. $(ai_timeout_sec) $(ai_timeout_sec) $(ai_timeout_sec)
         include_few_shot_examples: false      # Include example reviews in the prompt to guide the AI output format. Improves consistency but increases token usage. $(include_few_shot_examples) $(include_few_shot_examples) $(include_few_shot_examples)
-        ai_fallback_provider: NONE            # Optional fallback AI provider used when the primary provider fails or is rate-limited. $(ai_fallback_provider) $(ai_fallback_provider) $(ai_fallback_provider)
+        aifallbackprovider: NONE              # Optional fallback AI provider used when the primary provider fails or is rate-limited. $(aifallbackprovider) $(aifallbackprovider) $(aifallbackprovider)
         ai_fallback_api_key:                  # Use a pipeline secret variable. $(ai_fallback_api_key) $(ai_fallback_api_key) $(ai_fallback_api_key)
         ai_fallback_base_url:                 # Azure OpenAI only. E.g. https://resource.openai.azure.com $(ai_fallback_base_url) $(ai_fallback_base_url) $(ai_fallback_base_url)
         ai_fallback_deployment:               # Azure OpenAI only. E.g. gpt-4o $(ai_fallback_deployment) $(ai_fallback_deployment) $(ai_fallback_deployment)
