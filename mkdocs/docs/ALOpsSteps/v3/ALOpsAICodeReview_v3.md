@@ -2,7 +2,7 @@
     - task: ALOpsAICodeReview@3
       displayName: 'ALOps AI Code Review'
       inputs:
-        ai_provider: azure-openai             # Select the AI provider to use for code review. Supported providers: Azure OpenAI, OpenAI, Anthropic (Claude), GitHub Models. $(ai_provider) $(ai_provider) $(ai_provider)
+        ai_provider: AZUREOPENAI              # Select the AI provider to use for code review. Supported providers: Azure OpenAI, OpenAI, Anthropic (Claude), GitHub Models. $(ai_provider) $(ai_provider) $(ai_provider)
         ai_api_key:                           # Use a pipeline secret variable. $(ai_api_key) $(ai_api_key) $(ai_api_key)
         ai_base_url:                          # Azure OpenAI only. E.g. https://resource.openai.azure.com $(ai_base_url) $(ai_base_url) $(ai_base_url)
         ai_deployment:                        # Azure OpenAI only. E.g. gpt-4o $(ai_deployment) $(ai_deployment) $(ai_deployment)
@@ -12,7 +12,7 @@
         ai_max_input_tokens: 120000           # Maximum number of tokens sent to the AI per request. Reduce if hitting context window limits. $(ai_max_input_tokens) $(ai_max_input_tokens) $(ai_max_input_tokens)
         ai_timeout_sec: 120                   # Timeout in seconds for each AI API request. $(ai_timeout_sec) $(ai_timeout_sec) $(ai_timeout_sec)
         include_few_shot_examples: false      # Include example reviews in the prompt to guide the AI output format. Improves consistency but increases token usage. $(include_few_shot_examples) $(include_few_shot_examples) $(include_few_shot_examples)
-        ai_fallback_provider: none            # Optional fallback AI provider used when the primary provider fails or is rate-limited. $(ai_fallback_provider) $(ai_fallback_provider) $(ai_fallback_provider)
+        ai_fallback_provider: NONE            # Optional fallback AI provider used when the primary provider fails or is rate-limited. $(ai_fallback_provider) $(ai_fallback_provider) $(ai_fallback_provider)
         ai_fallback_api_key:                  # Use a pipeline secret variable. $(ai_fallback_api_key) $(ai_fallback_api_key) $(ai_fallback_api_key)
         ai_fallback_base_url:                 # Azure OpenAI only. E.g. https://resource.openai.azure.com $(ai_fallback_base_url) $(ai_fallback_base_url) $(ai_fallback_base_url)
         ai_fallback_deployment:               # Azure OpenAI only. E.g. gpt-4o $(ai_fallback_deployment) $(ai_fallback_deployment) $(ai_fallback_deployment)
@@ -23,7 +23,7 @@
         rules_path:                           # Path to a custom rules file or directory. Leave blank to use the built-in default rules. $(rules_path) $(rules_path) $(rules_path)
         diff_context_lines: 10                # Number of surrounding unchanged lines to include around each diff hunk for context. $(diff_context_lines) $(diff_context_lines) $(diff_context_lines)
         max_files: 20                         # Maximum number of changed files to review per pipeline run. $(max_files) $(max_files) $(max_files)
-        fail_on_severity: error               # Minimum severity level that causes the pipeline task to fail. Use 'Never' to post annotations without failing. $(fail_on_severity) $(fail_on_severity) $(fail_on_severity)
+        fail_on_severity: ERROR               # Minimum severity level that causes the pipeline task to fail. Use 'Never' to post annotations without failing. $(fail_on_severity) $(fail_on_severity) $(fail_on_severity)
         max_cost_usd: 0                       # Maximum allowed estimated cost in USD per run. The task fails if exceeded. Set to 0 to disable the cost limit. $(max_cost_usd) $(max_cost_usd) $(max_cost_usd)
         post_pr_comments: false               # When enabled, review findings are posted as inline comments on the active pull request. $(post_pr_comments) $(post_pr_comments) $(post_pr_comments)
         pr_comment_dedup: true                # Skip posting a comment if an identical comment already exists on the pull request. $(pr_comment_dedup) $(pr_comment_dedup) $(pr_comment_dedup)
