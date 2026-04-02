@@ -1,6 +1,10 @@
 # Change Log
 All notable changes to the "ALOps" extension.
 
+## [v1.476] - 2026-03-31
+- - Replaced parameter "analyzers" with "alcodeanalyzer"
+- Bug in workspace compile of  "ALTOOL" in parallel mode, resolves wrong
+
 ## [v1.473] - 2025-10-14
 - All Tasks: ALOps Code Analysis: update for BC v27 compatibility
 - All Tasks: Performance:  ProgressPreference defaults to SilentlyContinue
