@@ -2,7 +2,7 @@
     - task: ALOpsAppSymbol@3
       displayName: 'ALOps App Symbol'
       inputs:
-        altool_package_version: 17.0.30.49729-beta# Version of the `microsoft.dynamics.businesscentral.development.tools` NuGet package to download from nuget.org. The package contains `altool.exe` which provides the `CreateSymbolPackage` command. Pre-release suffixes (e.g. `-beta`) are supported. $(altool_package_version) $(altool_package_version) $(altool_package_version)
+        altool_package_version: 18.0.33.65164-beta# Version of the `microsoft.dynamics.businesscentral.development.tools` NuGet package to download from nuget.org. The package contains `altool.exe` which provides the `CreateSymbolPackage` command. Pre-release suffixes (e.g. `-beta`) are supported. $(altool_package_version) $(altool_package_version) $(altool_package_version)
         altool_cache_hours: 0                 # Number of hours the downloaded NuGet package is cached on the agent (under `$AGENT_TOOLSDIRECTORY`). Set to `0` to always download fresh. Non-numeric values silently default to `0`. $(altool_cache_hours) $(altool_cache_hours) $(altool_cache_hours)
         app_source_path: $(System.DefaultWorkingDirectory)# Root folder searched recursively for `.app` files to convert into symbol packages. All matching files (see `app_file_filter`) will be processed. $(app_source_path) $(app_source_path) $(app_source_path)
         app_file_filter: *.app                # File filter/glob pattern for selecting which `.app` files to process. Default is `*.app` which matches all app files in `app_source_path`. $(app_file_filter) $(app_file_filter) $(app_file_filter)
