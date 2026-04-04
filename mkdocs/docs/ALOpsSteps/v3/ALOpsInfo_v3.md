@@ -7,6 +7,5 @@
         free_disk_threshold: 0                # Minimum free disk space percentage required per drive. Set to 0 to disable the check. $(free_disk_threshold) $(free_disk_threshold) $(free_disk_threshold)
         free_disk_threshold_action: Warn      # Action to take when free disk space is below the threshold. $(free_disk_threshold_action) $(free_disk_threshold_action) $(free_disk_threshold_action)
         docker_containers_action: Error       # Action to take when Docker containers are found on the agent. Set to Ignore to skip the check. $(docker_containers_action) $(docker_containers_action) $(docker_containers_action)
-        pwsh: false                           # Run task in Powershell Core. $(pwsh) $(pwsh) $(pwsh)
 ```
 
