@@ -1,0 +1,27 @@
+```yaml
+    - task: ALOpsAdminCenterAPI@3
+      displayName: 'ALOps Admin Center API'
+      inputs:
+        azure_tenant_id:                      # Azure Active Directory tenant ID (GUID or domain) of the Microsoft 365 or Entra ID tenant. Required for all SaaS cloud interactions. $(azure_tenant_id) $(azure_tenant_id) $(azure_tenant_id)
+        azure_app_client_id:                  # Application (client) ID of the Azure AD app registration used for authentication against the Admin Center API. $(azure_app_client_id) $(azure_app_client_id) $(azure_app_client_id)
+        azure_app_client_secret:              # Client secret of the Azure AD app registration. Store this value in a pipeline secret variable or Azure Key Vault, never in plain text. $(azure_app_client_secret) $(azure_app_client_secret) $(azure_app_client_secret)
+        azure_app_client_certificate:         # Path, base-64 encoded content, or certificate store reference (CERT:\...) of the certificate (.pfx) used instead of a client secret for Azure AD app authentication. $(azure_app_client_certificate) $(azure_app_client_certificate) $(azure_app_client_certificate)
+        azure_app_client_certificate_password: # Password protecting the client certificate. Store this in a pipeline secret variable. $(azure_app_client_certificate_password) $(azure_app_client_certificate_password) $(azure_app_client_certificate_password)
+        username:                             # Business Central user account name. Leave empty when using Service-to-Service (app-only) OAuth authentication. $(username) $(username) $(username)
+        password:                             # Password for the Business Central user account. Leave empty for Service-to-Service authentication. Store this in a pipeline secret variable. $(password) $(password) $(password)
+        checksecondsdelay: 30                 # Number of seconds to wait between polls when checking the status of an async operation. Increase this for slower environments. $(checksecondsdelay) $(checksecondsdelay) $(checksecondsdelay)
+        maxtries: 20                          # Maximum number of status-check attempts before the task times out and fails. Multiply by Check Delay to calculate the total maximum wait time. $(maxtries) $(maxtries) $(maxtries)
+        interaction: environment_list         # Admin Center API operation to execute: environment_list or environment_get reads environment info; environment_copy or environment_rename manages environments; app_install, app_uninstall, or app_update manages extensions; set_application_insightskey or set_security_group applies configuration. $(interaction) $(interaction) $(interaction)
+        wait_for_operation: true              # When enabled, the task polls the Admin Center API until the async operation completes or the maximum number of tries is reached. Disable to fire-and-forget. $(wait_for_operation) $(wait_for_operation) $(wait_for_operation)
+        environment:                          # Name of the source Business Central environment to act on, for example Sandbox or Production. $(environment) $(environment) $(environment)
+        target_environment:                   # Name of the target environment used for copy or rename operations. $(target_environment) $(target_environment) $(target_environment)
+        target_environment_type: Sandbox      # Type of the new environment created during a copy operation. Sandbox environments allow developer access; Production environments are for live business data. $(target_environment_type) $(target_environment_type) $(target_environment_type)
+        application_insightskey:              # Azure Application Insights instrumentation key (GUID) to configure on the Business Central environment for telemetry. Used with the set_application_insightskey interaction. $(application_insightskey) $(application_insightskey) $(application_insightskey)
+        security_group_id:                    # Azure AD security group object ID to assign to the Business Central environment for access control. Used with the set_security_group interaction. $(security_group_id) $(security_group_id) $(security_group_id)
+        app_id:                               # GUID of the Business Central extension to install, uninstall, or update. Find this value in the app.json of the extension or in the AppSource listing. $(app_id) $(app_id) $(app_id)
+        use_update_window: false              # When enabled, the app install or update is scheduled within the Admin Center maintenance window instead of running immediately. $(use_update_window) $(use_update_window) $(use_update_window)
+        accept_isv_eula: false                # Required to install ISV apps that carry an end-user license agreement. Set this to true to accept the EULA programmatically. $(accept_isv_eula) $(accept_isv_eula) $(accept_isv_eula)
+        force_dependencies: false             # Force the installation or update of all dependent extensions together with the target app, even if they are already installed at a lower version. $(force_dependencies) $(force_dependencies) $(force_dependencies)
+        confirm_delete_data: false            # Required when uninstalling an extension that has stored data in Business Central. Set this to true to confirm that stored data will be permanently deleted. $(confirm_delete_data) $(confirm_delete_data) $(confirm_delete_data)
+```
+
