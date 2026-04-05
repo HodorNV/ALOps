@@ -1,0 +1,35 @@
+```yaml
+    - task: ALOpsDockerStart@3
+      displayName: 'ALOps Docker Start'
+      inputs:
+        fixed_tag:                            # Fixed container label. When set, the container is tagged with this value instead of the build ID. Enables container reuse across builds. $(fixed_tag) $(fixed_tag) $(fixed_tag)
+        ignore_no_container_warning: false    # Suppress the warning when no existing container is found for reuse. $(ignore_no_container_warning) $(ignore_no_container_warning) $(ignore_no_container_warning)
+        docker_image:                         # Full Docker image name including tag, for example mcr.microsoft.com/businesscentral:ltsc2022. Leave empty to use the default BC sandbox image. $(docker_image) $(docker_image) $(docker_image)
+        docker_pull: true                     # Pull the Docker image before creating the container. Disable to use a locally cached image. $(docker_pull) $(docker_pull) $(docker_pull)
+        accept_image_eula: true               # Accept the End User License Agreement for the Business Central Docker image. $(accept_image_eula) $(accept_image_eula) $(accept_image_eula)
+        accept_image_outdated: true           # Accept an outdated Docker image without failing the task. $(accept_image_outdated) $(accept_image_outdated) $(accept_image_outdated)
+        container_restart: no                 # Docker restart policy for the container. $(container_restart) $(container_restart) $(container_restart)
+        memory_gb: -1                         # Memory limit in GB for the container. Set to -1 for no limit. $(memory_gb) $(memory_gb) $(memory_gb)
+        docker_parameters:                    # Additional parameters passed to docker create. One parameter per line. $(docker_parameters) $(docker_parameters) $(docker_parameters)
+        enable_symbol_loading: false          # Enable symbol loading in the Business Central server instance. $(enable_symbol_loading) $(enable_symbol_loading) $(enable_symbol_loading)
+        enable_api_services: false            # Enable API services in the Business Central server instance. $(enable_api_services) $(enable_api_services) $(enable_api_services)
+        multitenant: false                    # Configure the Business Central server instance for multitenancy. $(multitenant) $(multitenant) $(multitenant)
+        docker_authentication: None           # Authentication method for the Docker registry. $(docker_authentication) $(docker_authentication) $(docker_authentication)
+        docker_username:                      # Username for Docker registry authentication. $(docker_username) $(docker_username) $(docker_username)
+        docker_password:                      # Password for Docker registry authentication. Store this in a pipeline secret variable. $(docker_password) $(docker_password) $(docker_password)
+        docker_registry:                      # Docker registry URL. When empty, the registry is derived from the image name. $(docker_registry) $(docker_registry) $(docker_registry)
+        sql_server:                           # External SQL Server hostname. Leave empty to use the container's built-in SQL instance. $(sql_server) $(sql_server) $(sql_server)
+        sql_server_instance:                  # SQL Server named instance. $(sql_server_instance) $(sql_server_instance) $(sql_server_instance)
+        sql_database:                         # SQL database name to use for the Business Central service tier. $(sql_database) $(sql_database) $(sql_database)
+        sql_database_user:                    # SQL Server authentication username. $(sql_database_user) $(sql_database_user) $(sql_database_user)
+        sql_database_user_password:           # SQL Server authentication password. Store this in a pipeline secret variable. $(sql_database_user_password) $(sql_database_user_password) $(sql_database_user_password)
+        sql_backup_file:                      # Path to a .bak file to restore into the container's SQL instance. $(sql_backup_file) $(sql_backup_file) $(sql_backup_file)
+        licensefile:                          # Path to a Business Central license file (.flf or .bclicense) to import into the container. $(licensefile) $(licensefile) $(licensefile)
+        encryption_key:                       # Path to an encryption key file to import into the container. $(encryption_key) $(encryption_key) $(encryption_key)
+        taskscheduler: Keep                   # Configure the BC task scheduler. Keep preserves the default, Enable starts it, Disable stops it. $(taskscheduler) $(taskscheduler) $(taskscheduler)
+        keyvault_pfxfile:                     # Path to the PFX certificate file for Azure Key Vault authentication. $(keyvault_pfxfile) $(keyvault_pfxfile) $(keyvault_pfxfile)
+        keyvault_pfxpassword:                 # Password for the PFX certificate. Store this in a pipeline secret variable. $(keyvault_pfxpassword) $(keyvault_pfxpassword) $(keyvault_pfxpassword)
+        keyvault_clientid:                    # Azure AD application (client) ID used for Key Vault authentication. $(keyvault_clientid) $(keyvault_clientid) $(keyvault_clientid)
+        keyvault_publisher_validation: false  # Enable publisher validation for Key Vault extension settings. $(keyvault_publisher_validation) $(keyvault_publisher_validation) $(keyvault_publisher_validation)
+```
+
