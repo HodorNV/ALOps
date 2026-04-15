@@ -3,7 +3,6 @@
       displayName: 'ALOps App Compiler'
       inputs:
         altool_package_version: 17.0.30.49729-beta# Version of the microsoft.dynamics.businesscentral.development.tools NuGet package. Pin to a specific version for reproducible builds. $(altool_package_version) $(altool_package_version) $(altool_package_version)
-        altool_cache_hours: 0                 # Hours the downloaded NuGet package is cached. Set to 0 to always download fresh. $(altool_cache_hours) $(altool_cache_hours) $(altool_cache_hours)
         compilation_mode: Serial              # Serial: compiles one app at a time. Parallel: uses workspace compile for concurrency. $(compilation_mode) $(compilation_mode) $(compilation_mode)
         alsourcepath:                         # Root folder searched recursively for app.json files. $(alsourcepath) $(alsourcepath) $(alsourcepath)
         alcachepath:                          # Folder containing symbol .app files. Defaults to alsourcepath when empty. $(alcachepath) $(alcachepath) $(alcachepath)
