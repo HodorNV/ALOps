@@ -20,7 +20,6 @@
         exclude_xmlports: false               # Exclude XMLPort objects from LicenseCheck. $(exclude_xmlports) $(exclude_xmlports) $(exclude_xmlports)
         exclude_queries: false                # Exclude Query objects from LicenseCheck. $(exclude_queries) $(exclude_queries) $(exclude_queries)
         altool_package_version: 18.0.33.65164-beta# Version of the microsoft.dynamics.businesscentral.development.tools NuGet package to use for altool.exe and CodeAnalysis DLL. $(altool_package_version) $(altool_package_version) $(altool_package_version)
-        altool_cache_hours: 0                 # Hours to cache the downloaded NuGet package. 0 = always use cached copy if present. $(altool_cache_hours) $(altool_cache_hours) $(altool_cache_hours)
         warning_only: false                   # Only post warning, do not fail pipeline. $(warning_only) $(warning_only) $(warning_only)
 ```
 
