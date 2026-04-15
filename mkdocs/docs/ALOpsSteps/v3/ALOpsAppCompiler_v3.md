@@ -27,6 +27,7 @@
         printappmanifest: true                # Print the app.json contents to the log before compilation. $(printappmanifest) $(printappmanifest) $(printappmanifest)
         outputalclogs: false                  # Output detailed ALC compiler logs. $(outputalclogs) $(outputalclogs) $(outputalclogs)
         publishartifact: true                 # Publish the compiled .app as a build artifact. $(publishartifact) $(publishartifact) $(publishartifact)
+        outputpath:                           # Folder where compiled .app files are written. When empty, defaults to the CI platform artifact directory. $(outputpath) $(outputpath) $(outputpath)
         track_source_build_metadata: true     # Inject build and source metadata into app.json. Requires runtime >= 12.0. $(track_source_build_metadata) $(track_source_build_metadata) $(track_source_build_metadata)
         showmycode:                           # Override showMyCode in app.json (true/false/empty=keep). $(showmycode) $(showmycode) $(showmycode)
         internalsvisibleto:                   # Comma-separated list of app IDs to add to internalsVisibleTo. $(internalsvisibleto) $(internalsvisibleto) $(internalsvisibleto)
