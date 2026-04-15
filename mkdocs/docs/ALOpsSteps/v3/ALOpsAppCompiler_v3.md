@@ -15,6 +15,7 @@
         ruleset:                              # Path to a .ruleset.json file for code analysis. $(ruleset) $(ruleset) $(ruleset)
         failonwarnings: false                 # Treat compiler warnings as errors. $(failonwarnings) $(failonwarnings) $(failonwarnings)
         auto_resolve_ms_symbols: true         # Download missing MS symbols from the MSSymbols NuGet feed. $(auto_resolve_ms_symbols) $(auto_resolve_ms_symbols) $(auto_resolve_ms_symbols)
+        force_download_mssymbols: false       # Delete all `Microsoft_*.app` files from the symbol cache before resolving. Use in multi-localisation pipelines where the same cache path is reused across countries. $(force_download_mssymbols) $(force_download_mssymbols) $(force_download_mssymbols)
         bc_localization: W1                   # Business Central country code for MS symbol resolution. $(bc_localization) $(bc_localization) $(bc_localization)
         bc_version:                           # BC version filter in Major.Minor format. Auto-detected from app.json when empty. $(bc_version) $(bc_version) $(bc_version)
         ms_symbols_feed: https://dynamicssmb2.pkgs.visualstudio.com/DynamicsBCPublicFeeds/_packaging/MSSymbols/nuget/v3/index.json# NuGet v3 service index URL for the MSSymbols feed. $(ms_symbols_feed) $(ms_symbols_feed) $(ms_symbols_feed)
