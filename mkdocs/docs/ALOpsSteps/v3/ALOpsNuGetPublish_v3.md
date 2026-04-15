@@ -3,7 +3,6 @@
       displayName: 'ALOps NuGet Publish'
       inputs:
         altool_package_version: 18.0.33.65164-beta# Version of the microsoft.dynamics.businesscentral.development.tools NuGet package. Pin to a specific version for reproducible builds. $(altool_package_version) $(altool_package_version) $(altool_package_version)
-        altool_cache_hours: 0                 # Hours to cache the downloaded NuGet package on the agent. 0 = always download a fresh copy. $(altool_cache_hours) $(altool_cache_hours) $(altool_cache_hours)
         nuget_username:                       # Username for the NuGet source. For Azure DevOps feeds, use any value (e.g. 'az') combined with a PAT as password. $(nuget_username) $(nuget_username) $(nuget_username)
         nuget_password:                       # Password or Personal Access Token (PAT) for the NuGet source. $(nuget_password) $(nuget_password) $(nuget_password)
         nuget_source_apikey:                  # API Key for the NuGet source. When set, used with dotnet nuget push --api-key. $(nuget_source_apikey) $(nuget_source_apikey) $(nuget_source_apikey)
