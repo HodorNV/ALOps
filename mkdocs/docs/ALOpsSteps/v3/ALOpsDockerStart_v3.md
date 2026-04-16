@@ -3,7 +3,7 @@
       displayName: 'ALOps Docker Start'
       inputs:
         fixed_tag:                            # Fixed container label. When set, the container is tagged with this value instead of the build ID. Enables container reuse across builds. $(fixed_tag) $(fixed_tag) $(fixed_tag)
-        ignore_no_container_warning: false    # Suppress the warning when no existing container is found for reuse. $(ignore_no_container_warning) $(ignore_no_container_warning) $(ignore_no_container_warning)
+        ignore_no_container_warning: true     # Suppress the warning when no existing container is found for reuse. $(ignore_no_container_warning) $(ignore_no_container_warning) $(ignore_no_container_warning)
         docker_image:                         # Full Docker image name including tag, for example mcr.microsoft.com/businesscentral:ltsc2022. Leave empty to use the default BC sandbox image. $(docker_image) $(docker_image) $(docker_image)
         docker_pull: true                     # Pull the Docker image before creating the container. Disable to use a locally cached image. $(docker_pull) $(docker_pull) $(docker_pull)
         accept_image_eula: true               # Accept the End User License Agreement for the Business Central Docker image. $(accept_image_eula) $(accept_image_eula) $(accept_image_eula)
