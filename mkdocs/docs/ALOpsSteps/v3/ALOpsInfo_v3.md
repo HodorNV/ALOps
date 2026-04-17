@@ -2,10 +2,10 @@
     - task: ALOpsInfo@3
       displayName: 'ALOps Info'
       inputs:
-        freemem_threshold: 0                  # Minimum required free memory percentage. Set to 0 to disable. When free memory drops below this value, a warning or error is generated based on the threshold action. $(freemem_threshold) $(freemem_threshold) $(freemem_threshold)
-        freemem_threshold_action: Warn        # Action to take when the free memory threshold is not met. Warn = task succeeds with issues. Error = task fails. $(freemem_threshold_action) $(freemem_threshold_action) $(freemem_threshold_action)
-        freedisk_threshold: 0                 # Minimum required free disk space percentage. Set to 0 to disable. When any drive's free space drops below this value, a warning or error is generated based on the threshold action. $(freedisk_threshold) $(freedisk_threshold) $(freedisk_threshold)
-        freedisk_threshold_action: Warn       # Action to take when the free disk threshold is not met. Warn = task succeeds with issues. Error = task fails. $(freedisk_threshold_action) $(freedisk_threshold_action) $(freedisk_threshold_action)
-        docker_containers_action: Error       # Action to take when existing Docker containers are found on the agent. Ignore = no action. Warn = task succeeds with issues. Error = task fails. $(docker_containers_action) $(docker_containers_action) $(docker_containers_action)
+        free_mem_threshold: 0                 # Minimum free memory percentage required. Set to 0 to disable the check. $(free_mem_threshold) $(free_mem_threshold) $(free_mem_threshold)
+        free_mem_threshold_action: Warn       # Action to take when free memory is below the threshold. $(free_mem_threshold_action) $(free_mem_threshold_action) $(free_mem_threshold_action)
+        free_disk_threshold: 0                # Minimum free disk space percentage required per drive. Set to 0 to disable the check. $(free_disk_threshold) $(free_disk_threshold) $(free_disk_threshold)
+        free_disk_threshold_action: Warn      # Action to take when free disk space is below the threshold. $(free_disk_threshold_action) $(free_disk_threshold_action) $(free_disk_threshold_action)
+        docker_containers_action: Error       # Action to take when Docker containers are found on the agent. Set to Ignore to skip the check. $(docker_containers_action) $(docker_containers_action) $(docker_containers_action)
 ```
 
