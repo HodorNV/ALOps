@@ -13,6 +13,7 @@
         nav_artifact_app_filter: *.app        # Glob filter for .app files to publish. $(nav_artifact_app_filter) $(nav_artifact_app_filter) $(nav_artifact_app_filter)
         batch_publish_folder:                 # Folder containing multiple .app files for batch publishing in dependency order. $(batch_publish_folder) $(batch_publish_folder) $(batch_publish_folder)
         block_symbols_only: false             # Block publishing of symbols-only app packages. $(block_symbols_only) $(block_symbols_only) $(block_symbols_only)
+        exclude_microsoft_apps: true          # Skip publishing any app whose manifest Publisher is 'Microsoft' (case-insensitive). Applied after dependency ordering so manifest data is available. Works in Docker and non-Docker modes. $(exclude_microsoft_apps) $(exclude_microsoft_apps) $(exclude_microsoft_apps)
         usedocker: false                      # Run publish inside a Docker container. Apps are copied in, published, and results copied back. $(usedocker) $(usedocker) $(usedocker)
         fixed_tag:                            # Fixed container label. When set, uses this value to locate the Docker container instead of the build ID. $(fixed_tag) $(fixed_tag) $(fixed_tag)
         install_al_test_tool: false           # Install AL test libraries and test runner from the BC server's built-in apps. $(install_al_test_tool) $(install_al_test_tool) $(install_al_test_tool)
