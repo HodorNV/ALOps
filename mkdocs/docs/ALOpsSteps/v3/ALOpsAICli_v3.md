@@ -10,6 +10,5 @@
         base_url:                             # OpenAI-compatible endpoint URL. When non-empty (and foundry_resource empty), switches the step into 'openai_compat' auth mode. Must be an http(s) URL. $(base_url) $(base_url) $(base_url)
         foundry_resource:                     # Azure AI Foundry resource name (plain name only, e.g. 'ALOpsAI' — no URL, no slashes). When non-empty, switches the step into 'foundry' auth mode. Not supported for Copilot in MVP. $(foundry_resource) $(foundry_resource) $(foundry_resource)
         working_directory:                    # Directory to run the CLI in. Leave empty to use the platform's workspace directory. The step restores the previous location on exit (try/finally). $(working_directory) $(working_directory) $(working_directory)
-        install_tool: false                   # When enabled, the step installs the selected AI CLI on the agent if it is missing (Claude: claude.ai/install.{ps1|sh} · Codex: npm i -g @openai/codex · Copilot: winget / gh.io/copilot-install). When disabled (default), the CLI is assumed to be pre-installed and the step fails fast if it is not found. $(install_tool) $(install_tool) $(install_tool)
 ```
 
