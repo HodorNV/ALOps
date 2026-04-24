@@ -10,5 +10,6 @@
         base_url:                             # OpenAI-compatible endpoint URL. When non-empty (and foundry_resource empty), switches the step into 'openai_compat' auth mode. Must be an http(s) URL. $(base_url) $(base_url) $(base_url)
         foundry_resource:                     # Azure AI Foundry resource name (plain name only, e.g. 'ALOpsAI' — no URL, no slashes). When non-empty, switches the step into 'foundry' auth mode. Not supported for Copilot in MVP. $(foundry_resource) $(foundry_resource) $(foundry_resource)
         working_directory:                    # Directory to run the CLI in. Leave empty to use the platform's workspace directory. The step restores the previous location on exit (try/finally). $(working_directory) $(working_directory) $(working_directory)
+        show_raw_output: false                # When enabled, the step prints the full raw CLI stdout inside an "AI Raw Output" log group on success. Defaults to off to keep logs compact — the parsed ai_response is still logged, and the raw transcript is always available via the ai_raw_output_path output. The group is also shown automatically when pipeline debug logging is enabled (System.Debug on Azure DevOps, RUNNER_DEBUG on GitHub Actions). On non-zero exit the raw output is always printed. $(show_raw_output) $(show_raw_output) $(show_raw_output)
 ```
 
