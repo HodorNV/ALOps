@@ -11,7 +11,6 @@
         artifact_folder_name: Nuget           # Name of the Azure DevOps artifact folder where the resolved.json dependency manifest is uploaded after the download. $(artifact_folder_name)
         dependency_publisher_filter:          # Semicolon-separated list of app publisher names whose dependency packages should be resolved and downloaded. Set to NONE to skip all dependency resolution. $(dependency_publisher_filter)
         skip_microsoft_apps: True             # When enabled, NuGet packages published by Microsoft are excluded from the download. Useful when Microsoft apps are already available from a local symbol server. $(skip_microsoft_apps)
-        download_deployable_apps_only: True   # When enabled, only deployable NuGet packages are downloaded. Useful when you want to exclude non-deployable packages from the download. $(download_deployable_apps_only)
         pwsh: False                           # Run the task using PowerShell Core (pwsh) instead of Windows PowerShell. Required on Linux-hosted build agents. $(pwsh)
 ```
 
