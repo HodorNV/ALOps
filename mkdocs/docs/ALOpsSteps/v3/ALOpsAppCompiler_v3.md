@@ -31,5 +31,11 @@
         showmycode:                           # Override showMyCode in app.json (true/false/empty=keep). $(showmycode) $(showmycode) $(showmycode)
         internalsvisibleto:                   # Comma-separated list of app IDs to add to internalsVisibleTo. $(internalsvisibleto) $(internalsvisibleto) $(internalsvisibleto)
         preprocessorsymbols:                  # Comma-separated list of preprocessor symbols for conditional compilation. $(preprocessorsymbols) $(preprocessorsymbols) $(preprocessorsymbols)
+        updateruntime:                        # Override the runtime field in app.json (e.g. "15.0"). Pass LATEST to auto-resolve via altool GetLatestSupportedRuntimeVersion (requires bc_version to be set). Empty = keep. $(updateruntime) $(updateruntime) $(updateruntime)
+        rep_allowdebugging:                   # Override resourceExposurePolicy.allowDebugging in app.json. Values: Enable / Disable / empty=keep. Mutually exclusive with showMyCode (REP wins on runtime >= 8). $(rep_allowdebugging) $(rep_allowdebugging) $(rep_allowdebugging)
+        rep_allowdownloadingsource:           # Override resourceExposurePolicy.allowDownloadingSource in app.json. Values: Enable / Disable / empty=keep. $(rep_allowdownloadingsource) $(rep_allowdownloadingsource) $(rep_allowdownloadingsource)
+        rep_includesourceinsymbol:            # Override resourceExposurePolicy.includeSourceInSymbolFile in app.json. Values: Enable / Disable / empty=keep. $(rep_includesourceinsymbol) $(rep_includesourceinsymbol) $(rep_includesourceinsymbol)
+        applicationinsightskey:               # Application Insights Instrumentation Key (GUID) or full Connection String to write to app.json. Pass NONE to remove. Empty = keep. $(applicationinsightskey) $(applicationinsightskey) $(applicationinsightskey)
+        suppresswarnings:                     # Comma-separated list of warning codes to write to suppressWarnings in app.json (e.g. AL0432,AL0606). Pass NONE or DISABLED to remove. Empty = keep. $(suppresswarnings) $(suppresswarnings) $(suppresswarnings)
 ```
 
