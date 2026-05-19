@@ -173,7 +173,7 @@
             batchverifycompiledapps: false        # Verify all apps from the ALOPS_COMPILE_ARTIFACT_ARRAY variable (set by ALOpsAppCompiler). $(batchverifycompiledapps) $(batchverifycompiledapps) $(batchverifycompiledapps)
     ```
 - ALOps AppSource
-  * Publishes Business Central .app files to Microsoft AppSource. Authenticates via Azure AD, discovers offerings, matches local apps, uploads packages via SAS URI, creates submissions, and optionally auto-promotes through the certification pipeline.
+  * Publishes Business Central .app files to Microsoft AppSource. Authenticates via Azure AD, discovers offerings, matches local apps, uploads packages via SAS URI, creates submissions, and optionally auto-promotes through the certification pipeline. Local apps are matched to offerings by comparing the 'Name' field of app.json against the 'Offer Alias' of each AppSource offering — they must be identical.
   * YAML Template: 
     ```yaml
         - task: ALOpsAppSource@3
@@ -182,7 +182,7 @@
             azure_tenant_id:                      # Azure AD tenant ID for Partner Center authentication. Falls back to environment variable 'alops_tenant_id' if empty. $(azure_tenant_id) $(azure_tenant_id) $(azure_tenant_id)
             azure_app_client_id:                  # Azure AD application (client) ID for Partner Center authentication. Falls back to environment variable 'alops_application_id' if empty. $(azure_app_client_id) $(azure_app_client_id) $(azure_app_client_id)
             azure_app_client_secret:              # Azure AD client secret for Partner Center authentication. Falls back to environment variable 'alops_application_secret' if empty. Automatically masked in logs. $(azure_app_client_secret) $(azure_app_client_secret) $(azure_app_client_secret)
-            offering_name_filter:                 # Semicolon-separated list of offering names to include. Leave empty to process all Business Central offerings. $(offering_name_filter) $(offering_name_filter) $(offering_name_filter)
+            offering_name_filter:                 # Semicolon-separated list of offerings to include, matched against the AppSource 'Offer Alias' (the same value that must equal the local app.json 'Name'). Leave empty to process all Business Central offerings. $(offering_name_filter) $(offering_name_filter) $(offering_name_filter)
             apply_offering_version_filter: false  # When enabled, only uploads offerings where the local app version is higher than the currently published version. $(apply_offering_version_filter) $(apply_offering_version_filter) $(apply_offering_version_filter)
             skip_version_change: false            # When enabled, skips updating the version number in Partner Center. Useful for re-submitting the same version. $(skip_version_change) $(skip_version_change) $(skip_version_change)
             autopromote: false                    # Automatically promote the submission to go live after it reaches 'ReadyToPublish' status. $(autopromote) $(autopromote) $(autopromote)
@@ -238,12 +238,18 @@
             alsourcepath:                         # Root folder searched recursively for app.json files. $(alsourcepath) $(alsourcepath) $(alsourcepath)
             alcachepath:                          # Folder containing symbol .app files. Defaults to alsourcepath when empty. $(alcachepath) $(alcachepath) $(alcachepath)
             maxcpucount:                          # Maximum concurrent compilations in parallel mode. Defaults to logical processor count. $(maxcpucount) $(maxcpucount) $(maxcpucount)
+            alc_continue_build_on_error: false    # Pass --continueBuildOnError to alc. Keeps compiling remaining files when a single file errors. $(alc_continue_build_on_error) $(alc_continue_build_on_error) $(alc_continue_build_on_error)
+            additional_probing_paths:             # Extra symbol probing paths passed to alc. Comma-separated. $(additional_probing_paths) $(additional_probing_paths) $(additional_probing_paths)
+            generate_report_layouts: true         # Generate report layout files during compilation. $(generate_report_layouts) $(generate_report_layouts) $(generate_report_layouts)
             appversiontemplate: 1.0.*.0           # Four-part version template. * = build number, ? = keep original, A = application field. $(appversiontemplate) $(appversiontemplate) $(appversiontemplate)
             updatebuildnumber: true               # Update the CI build number with the compiled app version. $(updatebuildnumber) $(updatebuildnumber) $(updatebuildnumber)
             appfilenametemplate:                  # Template for the output .app filename. Tokens: %APPNAME%, %PUBLISHER%, %VERSION%. $(appfilenametemplate) $(appfilenametemplate) $(appfilenametemplate)
             alcodeanalyzer:                       # Comma-separated list of code analyzer DLL paths. $(alcodeanalyzer) $(alcodeanalyzer) $(alcodeanalyzer)
             ruleset:                              # Path to a .ruleset.json file for code analysis. $(ruleset) $(ruleset) $(ruleset)
             failonwarnings: false                 # Treat compiler warnings as errors. $(failonwarnings) $(failonwarnings) $(failonwarnings)
+            fail_on_any: false                    # Fail the task on any compiler diagnostic (error or warning). Stricter than failonwarnings. $(fail_on_any) $(fail_on_any) $(fail_on_any)
+            ignore_pragma: false                  # Silently skip diagnostics suppressed via `#pragma warning disable` in source. $(ignore_pragma) $(ignore_pragma) $(ignore_pragma)
+            enable_external_rulesets: true        # Allow rulesets to import other rulesets via include/exclude paths. $(enable_external_rulesets) $(enable_external_rulesets) $(enable_external_rulesets)
             auto_resolve_ms_symbols: true         # Download missing MS symbols from the MSSymbols NuGet feed. $(auto_resolve_ms_symbols) $(auto_resolve_ms_symbols) $(auto_resolve_ms_symbols)
             force_download_mssymbols: false       # Delete all `Microsoft_*.app` files from the symbol cache before resolving. Use in multi-localisation pipelines where the same cache path is reused across countries. $(force_download_mssymbols) $(force_download_mssymbols) $(force_download_mssymbols)
             bc_localization: W1                   # Business Central country code for MS symbol resolution. $(bc_localization) $(bc_localization) $(bc_localization)
@@ -256,6 +262,7 @@
             appsource_symbols_pat:                # PAT for authenticated AppSourceSymbols feed access. $(appsource_symbols_pat) $(appsource_symbols_pat) $(appsource_symbols_pat)
             printappmanifest: true                # Print the app.json contents to the log before compilation. $(printappmanifest) $(printappmanifest) $(printappmanifest)
             outputalclogs: false                  # Output detailed ALC compiler logs. $(outputalclogs) $(outputalclogs) $(outputalclogs)
+            alc_error_log: false                  # Emit per-app `<AppName>_ALCErrorLog.txt` next to the compiled .app. $(alc_error_log) $(alc_error_log) $(alc_error_log)
             publishartifact: true                 # Publish the compiled .app as a build artifact. $(publishartifact) $(publishartifact) $(publishartifact)
             outputpath:                           # Folder where compiled .app files are written. When empty, defaults to the CI platform artifact directory. $(outputpath) $(outputpath) $(outputpath)
             track_source_build_metadata: true     # Inject build and source metadata into app.json. Requires runtime >= 12.0. $(track_source_build_metadata) $(track_source_build_metadata) $(track_source_build_metadata)
@@ -268,6 +275,8 @@
             rep_includesourceinsymbol:            # Override resourceExposurePolicy.includeSourceInSymbolFile in app.json. Values: Enable / Disable / empty=keep. $(rep_includesourceinsymbol) $(rep_includesourceinsymbol) $(rep_includesourceinsymbol)
             applicationinsightskey:               # Application Insights Instrumentation Key (GUID) or full Connection String to write to app.json. Pass NONE to remove. Empty = keep. $(applicationinsightskey) $(applicationinsightskey) $(applicationinsightskey)
             suppresswarnings:                     # Comma-separated list of warning codes to write to suppressWarnings in app.json (e.g. AL0432,AL0606). Pass NONE or DISABLED to remove. Empty = keep. $(suppresswarnings) $(suppresswarnings) $(suppresswarnings)
+            allowed_publisher_names:              # Whitelist of allowed app publishers. The task fails for any project whose publisher is not on this list. Empty = no enforcement. $(allowed_publisher_names) $(allowed_publisher_names) $(allowed_publisher_names)
+            allowed_publisher_separator: ,        # Separator used to split `allowed_publisher_names`. $(allowed_publisher_separator) $(allowed_publisher_separator) $(allowed_publisher_separator)
     ```
 - ALOps Docker Create
   * Build a BC Docker image from artifacts. Resolves artifact URLs, downloads app + platform artifacts, generates a Dockerfile, and builds the image. Supports Docker registry authentication, test toolkit inclusion, licensing, and multitenancy.
