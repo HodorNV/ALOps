@@ -1,0 +1,56 @@
+name: 'ALOpsDockerRemove'
+description: 'Stop and remove a Business Central Docker container.'
+author: 'Hodor'
+
+branding:
+  icon: 'package'
+  color: 'blue'
+
+inputs:
+  # --- container ---
+  fixed_tag:
+    description: 'Fixed container label. When set, the container is identified by this value instead of the build ID.'
+    required: false
+    default: ''
+  print_logs:
+    description: 'Print all container logs before removal. Useful for post-mortem diagnostics.'
+    required: false
+    default: 'true'
+  # --- backup ---
+  createsqlbackup:
+    description: 'When to create a SQL database backup from the container. ''On Failure'' requires job_status to be set (see Cleanup Options).'
+    required: false
+    default: 'disabled'
+  sqlcompression:
+    description: 'Use SQL backup compression. Not supported on SQL Server Express editions.'
+    required: false
+    default: 'false'
+  createeventlogbackup:
+    description: 'When to create an Application EventLog backup from the container. ''On Failure'' requires job_status to be set (see Cleanup Options).'
+    required: false
+    default: 'disabled'
+  # --- cleanup ---
+  job_status:
+    description: 'Pipeline job status for ''On Failure'' backup logic. Set to ''Agent.JobStatus'' in Azure DevOps or ''job.status'' in GitHub Actions.'
+    required: false
+    default: 'Succeeded'
+  docker_registry:
+    description: 'Docker registry URL for logout. Leave empty to skip logout. Should match the registry used in ALOps Docker Start.'
+    required: false
+    default: ''
+
+runs:
+  using: 'composite'
+  steps:
+    - name: ALOps Docker Remove
+      id: run
+      shell: pwsh
+      run: ${{ github.action_path }}/entrypoint.ps1
+      env:
+          INPUT_FIXED_TAG: ${{ inputs.fixed_tag }}
+          INPUT_PRINT_LOGS: ${{ inputs.print_logs }}
+          INPUT_CREATESQLBACKUP: ${{ inputs.createsqlbackup }}
+          INPUT_SQLCOMPRESSION: ${{ inputs.sqlcompression }}
+          INPUT_CREATEEVENTLOGBACKUP: ${{ inputs.createeventlogbackup }}
+          INPUT_JOB_STATUS: ${{ inputs.job_status }}
+          INPUT_DOCKER_REGISTRY: ${{ inputs.docker_registry }}

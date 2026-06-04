@@ -1,0 +1,150 @@
+name: 'ALOpsAdminCenterAPI'
+description: 'Interact with the Business Central SaaS Admin Center API for environment and app management.'
+author: 'Hodor'
+
+branding:
+  icon: 'package'
+  color: 'blue'
+
+inputs:
+  # --- authentication ---
+  azure_tenant_id:
+    description: 'Azure Active Directory tenant ID (GUID or domain) of the Microsoft 365 or Entra ID tenant. Required for all SaaS cloud interactions.'
+    required: false
+    default: ''
+  azure_app_client_id:
+    description: 'Application (client) ID of the Azure AD app registration used for authentication against the Admin Center API.'
+    required: false
+    default: ''
+  azure_app_client_secret:
+    description: 'Client secret of the Azure AD app registration. Store this value in a pipeline secret variable or Azure Key Vault, never in plain text.'
+    required: false
+    default: ''
+  azure_app_client_certificate:
+    description: 'Path, base-64 encoded content, or certificate store reference (CERT:\...) of the certificate (.pfx) used instead of a client secret for Azure AD app authentication.'
+    required: false
+    default: ''
+  azure_app_client_certificate_password:
+    description: 'Password protecting the client certificate. Store this in a pipeline secret variable.'
+    required: false
+    default: ''
+  username:
+    description: 'Business Central user account name. Leave empty when using Service-to-Service (app-only) OAuth authentication.'
+    required: false
+    default: ''
+  password:
+    description: 'Password for the Business Central user account. Leave empty for Service-to-Service authentication. Store this in a pipeline secret variable.'
+    required: false
+    default: ''
+  # --- polling ---
+  checksecondsdelay:
+    description: 'Number of seconds to wait between polls when checking the status of an async operation. Increase this for slower environments.'
+    required: false
+    default: '30'
+  maxtries:
+    description: 'Maximum number of status-check attempts before the task times out and fails. Multiply by Check Delay to calculate the total maximum wait time.'
+    required: false
+    default: '20'
+  # --- operation ---
+  interaction:
+    description: 'Admin Center API operation to execute: environment_list or environment_get reads environment info; environment_copy or environment_rename manages environments; app_install, app_uninstall, or app_update manages extensions; set_application_insightskey or set_security_group applies configuration.'
+    required: true
+    default: 'environment_list'
+  wait_for_operation:
+    description: 'When enabled, the task polls the Admin Center API until the async operation completes or the maximum number of tries is reached. Disable to fire-and-forget.'
+    required: false
+    default: 'true'
+  environment:
+    description: 'Name of the source Business Central environment to act on, for example Sandbox or Production.'
+    required: false
+    default: ''
+  target_environment:
+    description: 'Name of the target environment used for copy or rename operations.'
+    required: false
+    default: ''
+  target_environment_type:
+    description: 'Type of the new environment created during a copy operation. Sandbox environments allow developer access; Production environments are for live business data.'
+    required: false
+    default: 'Sandbox'
+  application_insightskey:
+    description: 'Azure Application Insights instrumentation key (GUID) to configure on the Business Central environment for telemetry. Used with the set_application_insightskey interaction.'
+    required: false
+    default: ''
+  security_group_id:
+    description: 'Azure AD security group object ID to assign to the Business Central environment for access control. Used with the set_security_group interaction.'
+    required: false
+    default: ''
+  # --- app_management ---
+  app_id:
+    description: 'GUID of the Business Central extension to install, uninstall, or update. Find this value in the app.json of the extension or in the AppSource listing.'
+    required: false
+    default: ''
+  use_update_window:
+    description: 'When enabled, the app install or update is scheduled within the Admin Center maintenance window instead of running immediately.'
+    required: false
+    default: 'false'
+  accept_isv_eula:
+    description: 'Required to install ISV apps that carry an end-user license agreement. Set this to true to accept the EULA programmatically.'
+    required: false
+    default: 'false'
+  force_dependencies:
+    description: 'Force the installation or update of all dependent extensions together with the target app, even if they are already installed at a lower version.'
+    required: false
+    default: 'false'
+  confirm_delete_data:
+    description: 'Required when uninstalling an extension that has stored data in Business Central. Set this to true to confirm that stored data will be permanently deleted.'
+    required: false
+    default: 'false'
+
+outputs:
+  ALOPS_BCSAASENV_NAME:
+    description: 'Environment name.'
+    value: ${{ steps.run.outputs.ALOPS_BCSAASENV_NAME }}
+  ALOPS_BCSAASENV_TYPE:
+    description: 'Environment type (Sandbox or Production).'
+    value: ${{ steps.run.outputs.ALOPS_BCSAASENV_TYPE }}
+  ALOPS_BCSAASENV_COUNTRY:
+    description: 'Environment country code.'
+    value: ${{ steps.run.outputs.ALOPS_BCSAASENV_COUNTRY }}
+  ALOPS_BCSAASENV_APPLICATION:
+    description: 'Environment application version.'
+    value: ${{ steps.run.outputs.ALOPS_BCSAASENV_APPLICATION }}
+  ALOPS_BCSAASENV_PLATFORM:
+    description: 'Environment platform version.'
+    value: ${{ steps.run.outputs.ALOPS_BCSAASENV_PLATFORM }}
+  ALOPS_BCSAASENV_INSIGHTKEY:
+    description: 'Environment Application Insights instrumentation key.'
+    value: ${{ steps.run.outputs.ALOPS_BCSAASENV_INSIGHTKEY }}
+  ALOPS_BCSAASENV_LOCATION:
+    description: 'Environment location name.'
+    value: ${{ steps.run.outputs.ALOPS_BCSAASENV_LOCATION }}
+
+runs:
+  using: 'composite'
+  steps:
+    - name: ALOps Admin Center API
+      id: run
+      shell: pwsh
+      run: ${{ github.action_path }}/entrypoint.ps1
+      env:
+          INPUT_AZURE_TENANT_ID: ${{ inputs.azure_tenant_id }}
+          INPUT_AZURE_APP_CLIENT_ID: ${{ inputs.azure_app_client_id }}
+          INPUT_AZURE_APP_CLIENT_SECRET: ${{ inputs.azure_app_client_secret }}
+          INPUT_AZURE_APP_CLIENT_CERTIFICATE: ${{ inputs.azure_app_client_certificate }}
+          INPUT_AZURE_APP_CLIENT_CERTIFICATE_PASSWORD: ${{ inputs.azure_app_client_certificate_password }}
+          INPUT_USERNAME: ${{ inputs.username }}
+          INPUT_PASSWORD: ${{ inputs.password }}
+          INPUT_CHECKSECONDSDELAY: ${{ inputs.checksecondsdelay }}
+          INPUT_MAXTRIES: ${{ inputs.maxtries }}
+          INPUT_INTERACTION: ${{ inputs.interaction }}
+          INPUT_WAIT_FOR_OPERATION: ${{ inputs.wait_for_operation }}
+          INPUT_ENVIRONMENT: ${{ inputs.environment }}
+          INPUT_TARGET_ENVIRONMENT: ${{ inputs.target_environment }}
+          INPUT_TARGET_ENVIRONMENT_TYPE: ${{ inputs.target_environment_type }}
+          INPUT_APPLICATION_INSIGHTSKEY: ${{ inputs.application_insightskey }}
+          INPUT_SECURITY_GROUP_ID: ${{ inputs.security_group_id }}
+          INPUT_APP_ID: ${{ inputs.app_id }}
+          INPUT_USE_UPDATE_WINDOW: ${{ inputs.use_update_window }}
+          INPUT_ACCEPT_ISV_EULA: ${{ inputs.accept_isv_eula }}
+          INPUT_FORCE_DEPENDENCIES: ${{ inputs.force_dependencies }}
+          INPUT_CONFIRM_DELETE_DATA: ${{ inputs.confirm_delete_data }}

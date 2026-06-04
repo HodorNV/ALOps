@@ -1,0 +1,59 @@
+name: 'ALOpsPXM'
+description: 'Ships pipeline telemetry (YAML, task timeline, errors, warnings) to Hodor''s PXM backend so the product can be improved based on real-world usage.'
+author: 'Hodor'
+
+branding:
+  icon: 'package'
+  color: 'blue'
+
+inputs:
+  # --- behavior ---
+  pxm_dry_run:
+    description: 'When ''true'', the task prints the payload to the log and does NOT transmit. Use this on first install to validate.'
+    required: false
+    default: 'false'
+  pxm_include_yaml:
+    description: 'Capture the resolved pipeline YAML and include it in the payload (gzipped, base64-encoded). Disable to ship metadata only.'
+    required: false
+    default: 'true'
+  pxm_max_payload_kb:
+    description: 'Hard cap on the YAML portion of the payload (KB before gzip). Larger YAML is truncated.'
+    required: false
+    default: '1024'
+  # --- transport ---
+  pxm_endpoint:
+    description: 'Override the default Hodor PXM endpoint. Leave empty to use the default.'
+    required: false
+    default: ''
+  pxm_auth_token:
+    description: 'Bearer token issued by Hodor for your tenant. Leave empty to send unauthenticated (the backend may refuse).'
+    required: false
+    default: ''
+
+outputs:
+  pxm_event_id:
+    description: 'Opaque identifier for the emitted PXM event.'
+    value: ${{ steps.run.outputs.pxm_event_id }}
+  pxm_payload_size_bytes:
+    description: 'Compressed payload size in bytes (after gzip).'
+    value: ${{ steps.run.outputs.pxm_payload_size_bytes }}
+  pxm_transmitted:
+    description: 'True if the payload was sent; false if dry-run or transport failure.'
+    value: ${{ steps.run.outputs.pxm_transmitted }}
+  pxm_status_code:
+    description: 'HTTP status code returned by the PXM backend (0 if not transmitted).'
+    value: ${{ steps.run.outputs.pxm_status_code }}
+
+runs:
+  using: 'composite'
+  steps:
+    - name: ALOps PXM
+      id: run
+      shell: pwsh
+      run: ${{ github.action_path }}/entrypoint.ps1
+      env:
+          INPUT_PXM_DRY_RUN: ${{ inputs.pxm_dry_run }}
+          INPUT_PXM_INCLUDE_YAML: ${{ inputs.pxm_include_yaml }}
+          INPUT_PXM_MAX_PAYLOAD_KB: ${{ inputs.pxm_max_payload_kb }}
+          INPUT_PXM_ENDPOINT: ${{ inputs.pxm_endpoint }}
+          INPUT_PXM_AUTH_TOKEN: ${{ inputs.pxm_auth_token }}

@@ -1,0 +1,252 @@
+name: 'ALOpsAppCompiler'
+description: 'Compile AL Extension(s) for Business Central using altool.exe from the NuGet package.'
+author: 'Hodor'
+
+branding:
+  icon: 'package'
+  color: 'blue'
+
+inputs:
+  # --- altool ---
+  altool_package_version:
+    description: 'Version of the microsoft.dynamics.businesscentral.development.tools NuGet package. Pin to a specific version for reproducible builds.'
+    required: true
+    default: '17.0.30.49729-beta'
+  # --- compilation ---
+  compilation_mode:
+    description: 'Serial: compiles one app at a time. Parallel: uses workspace compile for concurrency.'
+    required: true
+    default: 'Serial'
+  alsourcepath:
+    description: 'Root folder searched recursively for app.json files.'
+    required: false
+    default: ''
+  alcachepath:
+    description: 'Folder containing symbol .app files. Defaults to alsourcepath when empty.'
+    required: false
+    default: ''
+  maxcpucount:
+    description: 'Maximum concurrent compilations in parallel mode. Defaults to logical processor count.'
+    required: false
+    default: ''
+  alc_continue_build_on_error:
+    description: 'Pass --continueBuildOnError to alc. Keeps compiling remaining files when a single file errors.'
+    required: false
+    default: 'false'
+  additional_probing_paths:
+    description: 'Extra symbol probing paths passed to alc. Comma-separated.'
+    required: false
+    default: ''
+  generate_report_layouts:
+    description: 'Generate report layout files during compilation.'
+    required: false
+    default: 'true'
+  # --- versioning ---
+  appversiontemplate:
+    description: 'Four-part version template. * = build number, ? = keep original, A = application field.'
+    required: false
+    default: '1.0.*.0'
+  updatebuildnumber:
+    description: 'Update the CI build number with the compiled app version.'
+    required: false
+    default: 'true'
+  appfilenametemplate:
+    description: 'Template for the output .app filename. Tokens: %APPNAME%, %PUBLISHER%, %VERSION%.'
+    required: false
+    default: ''
+  # --- analysis ---
+  alcodeanalyzer:
+    description: 'Comma-separated list of code analyzer DLL paths.'
+    required: false
+    default: ''
+  ruleset:
+    description: 'Path to a .ruleset.json file for code analysis.'
+    required: false
+    default: ''
+  failonwarnings:
+    description: 'Treat compiler warnings as errors.'
+    required: false
+    default: 'false'
+  fail_on_any:
+    description: 'Fail the task on any compiler diagnostic (error or warning). Stricter than failonwarnings.'
+    required: false
+    default: 'false'
+  ignore_pragma:
+    description: 'Silently skip diagnostics suppressed via `#pragma warning disable` in source.'
+    required: false
+    default: 'false'
+  enable_external_rulesets:
+    description: 'Allow rulesets to import other rulesets via include/exclude paths.'
+    required: false
+    default: 'true'
+  # --- symbols ---
+  auto_resolve_ms_symbols:
+    description: 'Download missing MS symbols from the MSSymbols NuGet feed.'
+    required: false
+    default: 'true'
+  force_download_mssymbols:
+    description: 'Delete all `Microsoft_*.app` files from the symbol cache before resolving. Use in multi-localisation pipelines where the same cache path is reused across countries.'
+    required: false
+    default: 'false'
+  bc_localization:
+    description: 'Business Central country code for MS symbol resolution.'
+    required: false
+    default: 'W1'
+  bc_version:
+    description: 'BC version filter in Major.Minor format. Auto-detected from app.json when empty.'
+    required: false
+    default: ''
+  ms_symbols_feed:
+    description: 'NuGet v3 service index URL for the MSSymbols feed.'
+    required: false
+    default: 'https://dynamicssmb2.pkgs.visualstudio.com/DynamicsBCPublicFeeds/_packaging/MSSymbols/nuget/v3/index.json'
+  ms_symbols_pat:
+    description: 'PAT for authenticated MSSymbols feed access.'
+    required: false
+    default: ''
+  accept_insider_eula:
+    description: 'Accept the Microsoft BC insider EULA for NextMajor/NextMinor.'
+    required: false
+    default: 'false'
+  auto_resolve_appsource_symbols:
+    description: 'Resolve missing ISV symbol dependencies from the AppSourceSymbols feed.'
+    required: false
+    default: 'true'
+  appsource_symbols_feed:
+    description: 'NuGet v3 service index URL for the AppSourceSymbols feed.'
+    required: false
+    default: 'https://dynamicssmb2.pkgs.visualstudio.com/DynamicsBCPublicFeeds/_packaging/AppSourceSymbols/nuget/v3/index.json'
+  appsource_symbols_pat:
+    description: 'PAT for authenticated AppSourceSymbols feed access.'
+    required: false
+    default: ''
+  # --- diagnostics ---
+  printappmanifest:
+    description: 'Print the app.json contents to the log before compilation.'
+    required: false
+    default: 'true'
+  outputalclogs:
+    description: 'Output detailed ALC compiler logs.'
+    required: false
+    default: 'false'
+  alc_error_log:
+    description: 'Emit per-app `<AppName>_ALCErrorLog.txt` next to the compiled .app.'
+    required: false
+    default: 'false'
+  # --- publishing ---
+  outputpath:
+    description: 'Folder where compiled .app files are written. When empty, defaults to the CI platform artifact directory.'
+    required: false
+    default: ''
+  track_source_build_metadata:
+    description: 'Inject build and source metadata into app.json. Requires runtime >= 12.0.'
+    required: false
+    default: 'true'
+  # --- manifest ---
+  showmycode:
+    description: 'Override showMyCode in app.json (true/false/empty=keep).'
+    required: false
+    default: ''
+  internalsvisibleto:
+    description: 'Comma-separated list of app IDs to add to internalsVisibleTo.'
+    required: false
+    default: ''
+  preprocessorsymbols:
+    description: 'Comma-separated list of preprocessor symbols for conditional compilation.'
+    required: false
+    default: ''
+  updateruntime:
+    description: 'Override the runtime field in app.json (e.g. "15.0"). Pass LATEST to auto-resolve via altool GetLatestSupportedRuntimeVersion (requires bc_version to be set). Empty = keep.'
+    required: false
+    default: ''
+  rep_allowdebugging:
+    description: 'Override resourceExposurePolicy.allowDebugging in app.json. Values: Enable / Disable / empty=keep. Mutually exclusive with showMyCode (REP wins on runtime >= 8).'
+    required: false
+    default: ''
+  rep_allowdownloadingsource:
+    description: 'Override resourceExposurePolicy.allowDownloadingSource in app.json. Values: Enable / Disable / empty=keep.'
+    required: false
+    default: ''
+  rep_includesourceinsymbol:
+    description: 'Override resourceExposurePolicy.includeSourceInSymbolFile in app.json. Values: Enable / Disable / empty=keep.'
+    required: false
+    default: ''
+  applicationinsightskey:
+    description: 'Application Insights Instrumentation Key (GUID) or full Connection String to write to app.json. Pass NONE to remove. Empty = keep.'
+    required: false
+    default: ''
+  suppresswarnings:
+    description: 'Comma-separated list of warning codes to write to suppressWarnings in app.json (e.g. AL0432,AL0606). Pass NONE or DISABLED to remove. Empty = keep.'
+    required: false
+    default: ''
+  allowed_publisher_names:
+    description: 'Whitelist of allowed app publishers. The task fails for any project whose publisher is not on this list. Empty = no enforcement.'
+    required: false
+    default: ''
+  allowed_publisher_separator:
+    description: 'Separator used to split `allowed_publisher_names`.'
+    required: false
+    default: ','
+
+outputs:
+  artifact_path:
+    description: 'Path to the last compiled .app file.'
+    value: ${{ steps.run.outputs.artifact_path }}
+  artifact_paths:
+    description: 'Comma-separated list of all compiled .app file paths.'
+    value: ${{ steps.run.outputs.artifact_paths }}
+  build_version:
+    description: 'The computed app version (when updatebuildnumber is true).'
+    value: ${{ steps.run.outputs.build_version }}
+
+runs:
+  using: 'composite'
+  steps:
+    - name: ALOps App Compiler
+      id: run
+      shell: pwsh
+      run: ${{ github.action_path }}/entrypoint.ps1
+      env:
+          INPUT_ALTOOL_PACKAGE_VERSION: ${{ inputs.altool_package_version }}
+          INPUT_COMPILATION_MODE: ${{ inputs.compilation_mode }}
+          INPUT_ALSOURCEPATH: ${{ inputs.alsourcepath }}
+          INPUT_ALCACHEPATH: ${{ inputs.alcachepath }}
+          INPUT_MAXCPUCOUNT: ${{ inputs.maxcpucount }}
+          INPUT_ALC_CONTINUE_BUILD_ON_ERROR: ${{ inputs.alc_continue_build_on_error }}
+          INPUT_ADDITIONAL_PROBING_PATHS: ${{ inputs.additional_probing_paths }}
+          INPUT_GENERATE_REPORT_LAYOUTS: ${{ inputs.generate_report_layouts }}
+          INPUT_APPVERSIONTEMPLATE: ${{ inputs.appversiontemplate }}
+          INPUT_UPDATEBUILDNUMBER: ${{ inputs.updatebuildnumber }}
+          INPUT_APPFILENAMETEMPLATE: ${{ inputs.appfilenametemplate }}
+          INPUT_ALCODEANALYZER: ${{ inputs.alcodeanalyzer }}
+          INPUT_RULESET: ${{ inputs.ruleset }}
+          INPUT_FAILONWARNINGS: ${{ inputs.failonwarnings }}
+          INPUT_FAIL_ON_ANY: ${{ inputs.fail_on_any }}
+          INPUT_IGNORE_PRAGMA: ${{ inputs.ignore_pragma }}
+          INPUT_ENABLE_EXTERNAL_RULESETS: ${{ inputs.enable_external_rulesets }}
+          INPUT_AUTO_RESOLVE_MS_SYMBOLS: ${{ inputs.auto_resolve_ms_symbols }}
+          INPUT_FORCE_DOWNLOAD_MSSYMBOLS: ${{ inputs.force_download_mssymbols }}
+          INPUT_BC_LOCALIZATION: ${{ inputs.bc_localization }}
+          INPUT_BC_VERSION: ${{ inputs.bc_version }}
+          INPUT_MS_SYMBOLS_FEED: ${{ inputs.ms_symbols_feed }}
+          INPUT_MS_SYMBOLS_PAT: ${{ inputs.ms_symbols_pat }}
+          INPUT_ACCEPT_INSIDER_EULA: ${{ inputs.accept_insider_eula }}
+          INPUT_AUTO_RESOLVE_APPSOURCE_SYMBOLS: ${{ inputs.auto_resolve_appsource_symbols }}
+          INPUT_APPSOURCE_SYMBOLS_FEED: ${{ inputs.appsource_symbols_feed }}
+          INPUT_APPSOURCE_SYMBOLS_PAT: ${{ inputs.appsource_symbols_pat }}
+          INPUT_PRINTAPPMANIFEST: ${{ inputs.printappmanifest }}
+          INPUT_OUTPUTALCLOGS: ${{ inputs.outputalclogs }}
+          INPUT_ALC_ERROR_LOG: ${{ inputs.alc_error_log }}
+          INPUT_OUTPUTPATH: ${{ inputs.outputpath }}
+          INPUT_TRACK_SOURCE_BUILD_METADATA: ${{ inputs.track_source_build_metadata }}
+          INPUT_SHOWMYCODE: ${{ inputs.showmycode }}
+          INPUT_INTERNALSVISIBLETO: ${{ inputs.internalsvisibleto }}
+          INPUT_PREPROCESSORSYMBOLS: ${{ inputs.preprocessorsymbols }}
+          INPUT_UPDATERUNTIME: ${{ inputs.updateruntime }}
+          INPUT_REP_ALLOWDEBUGGING: ${{ inputs.rep_allowdebugging }}
+          INPUT_REP_ALLOWDOWNLOADINGSOURCE: ${{ inputs.rep_allowdownloadingsource }}
+          INPUT_REP_INCLUDESOURCEINSYMBOL: ${{ inputs.rep_includesourceinsymbol }}
+          INPUT_APPLICATIONINSIGHTSKEY: ${{ inputs.applicationinsightskey }}
+          INPUT_SUPPRESSWARNINGS: ${{ inputs.suppresswarnings }}
+          INPUT_ALLOWED_PUBLISHER_NAMES: ${{ inputs.allowed_publisher_names }}
+          INPUT_ALLOWED_PUBLISHER_SEPARATOR: ${{ inputs.allowed_publisher_separator }}

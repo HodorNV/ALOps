@@ -1,0 +1,98 @@
+name: 'ALOpsAICli'
+description: 'Invoke a pre-installed AI coding CLI (Claude Code, OpenAI Codex, or GitHub Copilot CLI) headlessly from a pipeline, with uniform input/output contract.'
+author: 'Hodor'
+
+branding:
+  icon: 'package'
+  color: 'blue'
+
+inputs:
+  # --- selection ---
+  ai_tool:
+    description: 'Which pre-installed AI coding CLI to invoke.'
+    required: true
+    default: 'claude'
+  model:
+    description: 'Pass-through model name (--model / -m). Leave empty to use the CLI''s built-in default.'
+    required: false
+    default: ''
+  # --- prompt ---
+  user_prompt:
+    description: 'The user turn. Delivered to Claude and Codex via stdin, and to Copilot via the -p argument. Must be non-empty. If the value is a single-line existing file path (relative paths resolve against the working directory) the file content is used. If it is a single-line http(s) URL the body is downloaded. Otherwise the value is treated as inline text. Multi-line values are always inline.'
+    required: true
+    default: ''
+  system_prompt:
+    description: 'Optional system/instructions layer. Native on Claude (--system-prompt); polyfilled via a fenced three-section wrapper for Codex and Copilot. If the value is a single-line existing file path (relative paths resolve against the working directory) the file content is used. If it is a single-line http(s) URL the body is downloaded. Otherwise the value is treated as inline text. Multi-line values are always inline.'
+    required: false
+    default: ''
+  # --- auth ---
+  api_key:
+    description: 'The credential. Maps to the tool- and mode-appropriate env var (ANTHROPIC_API_KEY / ANTHROPIC_AUTH_TOKEN / OPENAI_API_KEY / GITHUB_TOKEN / ANTHROPIC_FOUNDRY_KEY).'
+    required: false
+    default: ''
+  base_url:
+    description: 'OpenAI-compatible endpoint URL. When non-empty (and foundry_resource empty), switches the step into ''openai_compat'' auth mode. Must be an http(s) URL.'
+    required: false
+    default: ''
+  foundry_resource:
+    description: 'Azure AI Foundry resource name (plain name only, e.g. ''ALOpsAI'' — no URL, no slashes). When non-empty, switches the step into ''foundry'' auth mode. Not supported for Copilot in MVP.'
+    required: false
+    default: ''
+  # --- runtime ---
+  working_directory:
+    description: 'Directory to run the CLI in. Leave empty to use the platform''s workspace directory. The step restores the previous location on exit (try/finally).'
+    required: false
+    default: ''
+  show_raw_output:
+    description: 'When enabled, the step prints the full raw CLI stdout inside an "AI Raw Output" log group on success. Defaults to off to keep logs compact — the parsed ai_response is still logged, and the raw transcript is always available via the ai_raw_output_path output. The group is also shown automatically when pipeline debug logging is enabled (System.Debug on Azure DevOps, RUNNER_DEBUG on GitHub Actions). On non-zero exit the raw output is always printed.'
+    required: false
+    default: 'false'
+  enable_ai_cli_stream:
+    description: 'When enabled, the step echoes every CLI stdout line live inside an "AI CLI stream" log group, with each event formatted by the per-tool stream formatter. Defaults to off to keep logs compact — the parsed ai_response is always logged, and the full raw transcript can be shown via show_raw_output or retrieved from ai_raw_output_path. The CLI still runs and stdout is still captured when this is off; only the live echo is suppressed.'
+    required: false
+    default: 'false'
+
+outputs:
+  ai_response:
+    description: 'The model''s final answer as plain prose (everything before the <<<ALOPS_AI_META_BEGIN>>> marker, trimmed).'
+    value: ${{ steps.run.outputs.ai_response }}
+  ai_notes:
+    description: 'Value of the meta-block''s ''notes'' field (may be empty).'
+    value: ${{ steps.run.outputs.ai_notes }}
+  ai_tool:
+    description: 'Which CLI ran: ''claude'', ''codex'' or ''copilot''.'
+    value: ${{ steps.run.outputs.ai_tool }}
+  ai_model:
+    description: 'Resolved model string the step passed on the CLI; empty when the CLI''s built-in default was used.'
+    value: ${{ steps.run.outputs.ai_model }}
+  ai_auth_mode:
+    description: '''native'', ''openai_compat'' or ''foundry'' — resolved from inputs.'
+    value: ${{ steps.run.outputs.ai_auth_mode }}
+  ai_exit_code:
+    description: 'Underlying CLI exit code as string.'
+    value: ${{ steps.run.outputs.ai_exit_code }}
+  ai_format:
+    description: '''envelope'' when a valid meta block was found and parsed; ''fallback'' when it was missing or malformed.'
+    value: ${{ steps.run.outputs.ai_format }}
+  ai_raw_output_path:
+    description: 'Path to the temp file containing the raw CLI stdout. Always populated — escape hatch for callers who want the unprocessed form.'
+    value: ${{ steps.run.outputs.ai_raw_output_path }}
+
+runs:
+  using: 'composite'
+  steps:
+    - name: ALOps AI CLI
+      id: run
+      shell: pwsh
+      run: ${{ github.action_path }}/entrypoint.ps1
+      env:
+          INPUT_AI_TOOL: ${{ inputs.ai_tool }}
+          INPUT_MODEL: ${{ inputs.model }}
+          INPUT_USER_PROMPT: ${{ inputs.user_prompt }}
+          INPUT_SYSTEM_PROMPT: ${{ inputs.system_prompt }}
+          INPUT_API_KEY: ${{ inputs.api_key }}
+          INPUT_BASE_URL: ${{ inputs.base_url }}
+          INPUT_FOUNDRY_RESOURCE: ${{ inputs.foundry_resource }}
+          INPUT_WORKING_DIRECTORY: ${{ inputs.working_directory }}
+          INPUT_SHOW_RAW_OUTPUT: ${{ inputs.show_raw_output }}
+          INPUT_ENABLE_AI_CLI_STREAM: ${{ inputs.enable_ai_cli_stream }}

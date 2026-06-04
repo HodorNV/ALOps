@@ -1,0 +1,123 @@
+name: 'ALOpsOpenAPI'
+description: 'Generate OpenAPI descriptions from Business Central API''s.'
+author: 'Hodor'
+
+branding:
+  icon: 'package'
+  color: 'blue'
+
+inputs:
+  api_endpoint:
+    description: 'Base URL of the Business Central API. Use $(azure_tenant_id) as a placeholder — it is replaced at runtime with the azure_tenant_id input value.'
+    required: true
+    default: 'https://api.businesscentral.dynamics.com/v2.0/$(azure_tenant_id)/Sandbox/api'
+  # --- authentication ---
+  authentication:
+    description: 'Authentication method for the API connection. oauth uses Azure AD service-to-service tokens (recommended for SaaS). basic and usernamepassword use user credentials. windows uses Windows integrated authentication (on-premises only).'
+    required: true
+    default: 'oauth'
+  azure_tenant_id:
+    description: 'Azure Active Directory tenant ID (GUID or domain) of the Business Central SaaS tenant.'
+    required: false
+    default: ''
+  azure_app_client_id:
+    description: 'Application (client) ID of the Azure AD app registration used for OAuth authentication.'
+    required: false
+    default: ''
+  azure_app_client_secret:
+    description: 'Client secret of the Azure AD app registration. Store this value in a pipeline secret variable or Azure Key Vault, never in plain text.'
+    required: false
+    default: ''
+  azure_app_client_certificate:
+    description: 'Path, base-64 encoded content, or certificate store reference (CERT:\...) of the certificate (.pfx) used instead of a client secret for Azure AD app authentication.'
+    required: false
+    default: ''
+  azure_app_client_certificate_password:
+    description: 'Password protecting the client certificate. Store this in a pipeline secret variable.'
+    required: false
+    default: ''
+  username:
+    description: 'Business Central user account name. Used for basic or usernamepassword authentication.'
+    required: false
+    default: ''
+  password:
+    description: 'Password for the Business Central user account. Store this in a pipeline secret variable.'
+    required: false
+    default: ''
+  # --- docker ---
+  usedocker:
+    description: 'Run the OpenAPI generation inside a Docker container instead of the host agent.'
+    required: false
+    default: 'false'
+  fixed_tag:
+    description: 'Fixed tag to identify the Docker container. When empty, the build label is used.'
+    required: false
+    default: ''
+  # --- discovery ---
+  discover:
+    description: 'Automatically discover available API routes from the Business Central runtime API.'
+    required: false
+    default: 'true'
+  api_routes:
+    description: 'Manual list of API routes to convert (one per line or pipe-delimited). Used when discover is false.'
+    required: false
+    default: ''
+  api_exclude_routes:
+    description: 'Routes to exclude from automatic discovery (one per line or pipe-delimited).'
+    required: false
+    default: ''
+  inspect_paths:
+    description: 'Print all discovered API paths for each route to the build log.'
+    required: false
+    default: 'false'
+  # --- export ---
+  api_servers:
+    description: 'Custom server URLs to include in the OpenAPI specification (one per line or pipe-delimited). When empty, the original API endpoint is used.'
+    required: false
+    default: ''
+  export_edmx:
+    description: 'Export the raw EDMX metadata alongside the OpenAPI specification.'
+    required: false
+    default: 'false'
+  export_yaml:
+    description: 'Export the OpenAPI specification in YAML format.'
+    required: false
+    default: 'true'
+  export_json:
+    description: 'Export the OpenAPI specification in JSON format.'
+    required: false
+    default: 'false'
+  # --- filtering ---
+  exclude_company_paths:
+    description: 'Exclude company-scoped paths from the OpenAPI specification. When enabled, a company header parameter is added instead.'
+    required: false
+    default: 'false'
+
+runs:
+  using: 'composite'
+  steps:
+    - name: ALOps OpenAPI
+      id: run
+      shell: pwsh
+      run: ${{ github.action_path }}/entrypoint.ps1
+      env:
+          INPUT_API_ENDPOINT: ${{ inputs.api_endpoint }}
+          INPUT_AUTHENTICATION: ${{ inputs.authentication }}
+          INPUT_AZURE_TENANT_ID: ${{ inputs.azure_tenant_id }}
+          INPUT_AZURE_APP_CLIENT_ID: ${{ inputs.azure_app_client_id }}
+          INPUT_AZURE_APP_CLIENT_SECRET: ${{ inputs.azure_app_client_secret }}
+          INPUT_AZURE_APP_CLIENT_CERTIFICATE: ${{ inputs.azure_app_client_certificate }}
+          INPUT_AZURE_APP_CLIENT_CERTIFICATE_PASSWORD: ${{ inputs.azure_app_client_certificate_password }}
+          INPUT_USERNAME: ${{ inputs.username }}
+          INPUT_PASSWORD: ${{ inputs.password }}
+          INPUT_USEDOCKER: ${{ inputs.usedocker }}
+          INPUT_FIXED_TAG: ${{ inputs.fixed_tag }}
+          INPUT_DISCOVER: ${{ inputs.discover }}
+          INPUT_API_ROUTES: ${{ inputs.api_routes }}
+          INPUT_API_EXCLUDE_ROUTES: ${{ inputs.api_exclude_routes }}
+          INPUT_INSPECT_PATHS: ${{ inputs.inspect_paths }}
+          INPUT_API_SERVERS: ${{ inputs.api_servers }}
+          INPUT_EXPORT_EDMX: ${{ inputs.export_edmx }}
+          INPUT_EXPORT_YAML: ${{ inputs.export_yaml }}
+          INPUT_EXPORT_JSON: ${{ inputs.export_json }}
+          INPUT_EXCLUDE_COMPANY_PATHS: ${{ inputs.exclude_company_paths }}

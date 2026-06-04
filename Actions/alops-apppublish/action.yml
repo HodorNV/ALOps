@@ -1,0 +1,121 @@
+name: 'ALOpsAppPublish'
+description: 'Publish and install Business Central .app extensions into a BC server instance. Supports single-app, batch (dependency order), and AL TestTool installation.'
+author: 'Hodor'
+
+branding:
+  icon: 'package'
+  color: 'blue'
+
+inputs:
+  # --- publishing ---
+  nav_serverinstance:
+    description: 'Business Central server instance name (e.g. BC).'
+    required: false
+    default: 'BC'
+  install_published_apps:
+    description: 'Install apps after publishing. Disable to publish without installing.'
+    required: false
+    default: 'true'
+  skip_verification:
+    description: 'Skip code signing verification during publish.'
+    required: false
+    default: 'true'
+  publish_scope:
+    description: 'Publishing scope: Global (all tenants) or Tenant (specific tenant only).'
+    required: false
+    default: 'Global'
+  tenant:
+    description: 'Target tenant ID for publish and install operations.'
+    required: false
+    default: 'default'
+  force_install:
+    description: 'Reinstall app even if already installed.'
+    required: false
+    default: 'false'
+  force_sync:
+    description: 'Force schema synchronization mode.'
+    required: false
+    default: 'false'
+  # --- source ---
+  artifact_path:
+    description: 'Path to the folder containing .app files. Leave empty to scan the workspace directory.'
+    required: false
+    default: ''
+  nav_artifact_app_filter:
+    description: 'Glob filter for .app files to publish.'
+    required: false
+    default: '*.app'
+  batch_publish_folder:
+    description: 'Folder containing multiple .app files for batch publishing in dependency order.'
+    required: false
+    default: ''
+  block_symbols_only:
+    description: 'Block publishing of symbols-only app packages.'
+    required: false
+    default: 'false'
+  exclude_microsoft_apps:
+    description: 'Skip publishing any app whose manifest Publisher is ''Microsoft'' (case-insensitive). Applied after dependency ordering so manifest data is available. Works in Docker and non-Docker modes.'
+    required: false
+    default: 'true'
+  # --- docker ---
+  usedocker:
+    description: 'Run publish inside a Docker container. Apps are copied in, published, and results copied back.'
+    required: false
+    default: 'false'
+  fixed_tag:
+    description: 'Fixed container label. When set, uses this value to locate the Docker container instead of the build ID.'
+    required: false
+    default: ''
+  # --- testtool ---
+  install_al_test_tool:
+    description: 'Install AL test libraries and test runner from the BC server''s built-in apps.'
+    required: false
+    default: 'false'
+  install_al_app_names:
+    description: 'Names of test library apps to install (one per line). These are matched against the built-in apps on the BC server.'
+    required: false
+    default: 'Tests-TestLibraries System Application Test System Application Test Library Any Library Assert Library Variable Storage Test Runner'
+  strict_app_names:
+    description: 'Only install the exact apps listed in Test App Names. When disabled, version-specific test apps may be added automatically.'
+    required: false
+    default: 'false'
+  # --- advanced ---
+  publisher_azure_ad_tenant_id:
+    description: 'Azure AD tenant ID for per-tenant publisher authentication. Required when publishing to a multi-tenant environment with per-tenant isolation.'
+    required: false
+    default: ''
+
+outputs:
+  published_app_path:
+    description: 'Path to the last published .app file.'
+    value: ${{ steps.run.outputs.published_app_path }}
+  published_app_paths:
+    description: 'Comma-separated list of all published .app file paths.'
+    value: ${{ steps.run.outputs.published_app_paths }}
+
+runs:
+  using: 'composite'
+  steps:
+    - name: ALOps App Publish
+      id: run
+      shell: pwsh
+      run: ${{ github.action_path }}/entrypoint.ps1
+      env:
+          INPUT_NAV_SERVERINSTANCE: ${{ inputs.nav_serverinstance }}
+          INPUT_INSTALL_PUBLISHED_APPS: ${{ inputs.install_published_apps }}
+          INPUT_SKIP_VERIFICATION: ${{ inputs.skip_verification }}
+          INPUT_PUBLISH_SCOPE: ${{ inputs.publish_scope }}
+          INPUT_TENANT: ${{ inputs.tenant }}
+          INPUT_FORCE_INSTALL: ${{ inputs.force_install }}
+          INPUT_FORCE_SYNC: ${{ inputs.force_sync }}
+          INPUT_ARTIFACT_PATH: ${{ inputs.artifact_path }}
+          INPUT_NAV_ARTIFACT_APP_FILTER: ${{ inputs.nav_artifact_app_filter }}
+          INPUT_BATCH_PUBLISH_FOLDER: ${{ inputs.batch_publish_folder }}
+          INPUT_BLOCK_SYMBOLS_ONLY: ${{ inputs.block_symbols_only }}
+          INPUT_EXCLUDE_MICROSOFT_APPS: ${{ inputs.exclude_microsoft_apps }}
+          INPUT_USEDOCKER: ${{ inputs.usedocker }}
+          INPUT_FIXED_TAG: ${{ inputs.fixed_tag }}
+          INPUT_INSTALL_AL_TEST_TOOL: ${{ inputs.install_al_test_tool }}
+          INPUT_INSTALL_AL_APP_NAMES: ${{ inputs.install_al_app_names }}
+          INPUT_STRICT_APP_NAMES: ${{ inputs.strict_app_names }}
+          INPUT_PUBLISHER_AZURE_AD_TENANT_ID: ${{ inputs.publisher_azure_ad_tenant_id }}
