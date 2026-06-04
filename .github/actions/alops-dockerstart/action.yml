@@ -1,0 +1,178 @@
+name: 'ALOpsDockerStart'
+description: 'Start a Business Central Docker container for CI/CD pipelines.'
+author: 'Hodor'
+
+branding:
+  icon: 'package'
+  color: 'blue'
+
+inputs:
+  # --- docker ---
+  fixed_tag:
+    description: 'Fixed container label. When set, the container is tagged with this value instead of the build ID. Enables container reuse across builds.'
+    required: false
+    default: ''
+  ignore_no_container_warning:
+    description: 'Suppress the warning when no existing container is found for reuse.'
+    required: false
+    default: 'true'
+  docker_image:
+    description: 'Full Docker image name including tag, for example mcr.microsoft.com/businesscentral:ltsc2022. Leave empty to use the default BC sandbox image.'
+    required: false
+    default: ''
+  docker_pull:
+    description: 'Pull the Docker image before creating the container. Disable to use a locally cached image.'
+    required: false
+    default: 'true'
+  accept_image_eula:
+    description: 'Accept the End User License Agreement for the Business Central Docker image.'
+    required: false
+    default: 'true'
+  accept_image_outdated:
+    description: 'Accept an outdated Docker image without failing the task.'
+    required: false
+    default: 'true'
+  container_restart:
+    description: 'Docker restart policy for the container.'
+    required: false
+    default: 'no'
+  memory_gb:
+    description: 'Memory limit in GB for the container. Set to -1 for no limit.'
+    required: false
+    default: '-1'
+  docker_parameters:
+    description: 'Additional parameters passed to docker create. One parameter per line.'
+    required: false
+    default: ''
+  # --- features ---
+  enable_symbol_loading:
+    description: 'Enable symbol loading in the Business Central server instance.'
+    required: false
+    default: 'false'
+  enable_api_services:
+    description: 'Enable API services in the Business Central server instance.'
+    required: false
+    default: 'false'
+  multitenant:
+    description: 'Configure the Business Central server instance for multitenancy.'
+    required: false
+    default: 'false'
+  # --- authentication ---
+  docker_authentication:
+    description: 'Authentication method for the Docker registry.'
+    required: false
+    default: 'None'
+  docker_username:
+    description: 'Username for Docker registry authentication.'
+    required: false
+    default: ''
+  docker_password:
+    description: 'Password for Docker registry authentication. Store this in a pipeline secret variable.'
+    required: false
+    default: ''
+  docker_registry:
+    description: 'Docker registry URL. When empty, the registry is derived from the image name.'
+    required: false
+    default: ''
+  # --- database ---
+  sql_server:
+    description: 'External SQL Server hostname. Leave empty to use the container''s built-in SQL instance.'
+    required: false
+    default: ''
+  sql_server_instance:
+    description: 'SQL Server named instance.'
+    required: false
+    default: ''
+  sql_database:
+    description: 'SQL database name to use for the Business Central service tier.'
+    required: false
+    default: ''
+  sql_database_user:
+    description: 'SQL Server authentication username.'
+    required: false
+    default: ''
+  sql_database_user_password:
+    description: 'SQL Server authentication password. Store this in a pipeline secret variable.'
+    required: false
+    default: ''
+  sql_backup_file:
+    description: 'Path to a .bak file to restore into the container''s SQL instance.'
+    required: false
+    default: ''
+  # --- licensing ---
+  licensefile:
+    description: 'Path to a Business Central license file (.flf or .bclicense) to import into the container.'
+    required: false
+    default: ''
+  encryption_key:
+    description: 'Path to an encryption key file to import into the container.'
+    required: false
+    default: ''
+  # --- scheduler ---
+  taskscheduler:
+    description: 'Configure the BC task scheduler. Keep preserves the default, Enable starts it, Disable stops it.'
+    required: false
+    default: 'Keep'
+  # --- keyvault ---
+  keyvault_pfxfile:
+    description: 'Path to the PFX certificate file for Azure Key Vault authentication.'
+    required: false
+    default: ''
+  keyvault_pfxpassword:
+    description: 'Password for the PFX certificate. Store this in a pipeline secret variable.'
+    required: false
+    default: ''
+  keyvault_clientid:
+    description: 'Azure AD application (client) ID used for Key Vault authentication.'
+    required: false
+    default: ''
+  keyvault_publisher_validation:
+    description: 'Enable publisher validation for Key Vault extension settings.'
+    required: false
+    default: 'false'
+
+outputs:
+  container_id:
+    description: 'The Docker container ID.'
+    value: ${{ steps.run.outputs.container_id }}
+  container_label:
+    description: 'The label used to tag the container.'
+    value: ${{ steps.run.outputs.container_label }}
+
+runs:
+  using: 'composite'
+  steps:
+    - name: ALOps Docker Start
+      id: run
+      shell: pwsh
+      run: ${{ github.action_path }}/entrypoint.ps1
+      env:
+          INPUT_FIXED_TAG: ${{ inputs.fixed_tag }}
+          INPUT_IGNORE_NO_CONTAINER_WARNING: ${{ inputs.ignore_no_container_warning }}
+          INPUT_DOCKER_IMAGE: ${{ inputs.docker_image }}
+          INPUT_DOCKER_PULL: ${{ inputs.docker_pull }}
+          INPUT_ACCEPT_IMAGE_EULA: ${{ inputs.accept_image_eula }}
+          INPUT_ACCEPT_IMAGE_OUTDATED: ${{ inputs.accept_image_outdated }}
+          INPUT_CONTAINER_RESTART: ${{ inputs.container_restart }}
+          INPUT_MEMORY_GB: ${{ inputs.memory_gb }}
+          INPUT_DOCKER_PARAMETERS: ${{ inputs.docker_parameters }}
+          INPUT_ENABLE_SYMBOL_LOADING: ${{ inputs.enable_symbol_loading }}
+          INPUT_ENABLE_API_SERVICES: ${{ inputs.enable_api_services }}
+          INPUT_MULTITENANT: ${{ inputs.multitenant }}
+          INPUT_DOCKER_AUTHENTICATION: ${{ inputs.docker_authentication }}
+          INPUT_DOCKER_USERNAME: ${{ inputs.docker_username }}
+          INPUT_DOCKER_PASSWORD: ${{ inputs.docker_password }}
+          INPUT_DOCKER_REGISTRY: ${{ inputs.docker_registry }}
+          INPUT_SQL_SERVER: ${{ inputs.sql_server }}
+          INPUT_SQL_SERVER_INSTANCE: ${{ inputs.sql_server_instance }}
+          INPUT_SQL_DATABASE: ${{ inputs.sql_database }}
+          INPUT_SQL_DATABASE_USER: ${{ inputs.sql_database_user }}
+          INPUT_SQL_DATABASE_USER_PASSWORD: ${{ inputs.sql_database_user_password }}
+          INPUT_SQL_BACKUP_FILE: ${{ inputs.sql_backup_file }}
+          INPUT_LICENSEFILE: ${{ inputs.licensefile }}
+          INPUT_ENCRYPTION_KEY: ${{ inputs.encryption_key }}
+          INPUT_TASKSCHEDULER: ${{ inputs.taskscheduler }}
+          INPUT_KEYVAULT_PFXFILE: ${{ inputs.keyvault_pfxfile }}
+          INPUT_KEYVAULT_PFXPASSWORD: ${{ inputs.keyvault_pfxpassword }}
+          INPUT_KEYVAULT_CLIENTID: ${{ inputs.keyvault_clientid }}
+          INPUT_KEYVAULT_PUBLISHER_VALIDATION: ${{ inputs.keyvault_publisher_validation }}

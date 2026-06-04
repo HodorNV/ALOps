@@ -1,0 +1,77 @@
+name: 'ALOpsNuGetDownload'
+description: 'Download BC Apps from NuGet feeds (v2 and v3). Auto-detects feed protocol. No nuget.exe required.'
+author: 'Hodor'
+
+branding:
+  icon: 'package'
+  color: 'blue'
+
+inputs:
+  # --- authentication ---
+  nuget_username:
+    description: 'Username for the NuGet source. For Azure DevOps feeds, use any value (e.g. ''az'') combined with a PAT as password.'
+    required: false
+    default: ''
+  nuget_password:
+    description: 'Password or Personal Access Token (PAT) for the NuGet source.'
+    required: false
+    default: ''
+  nuget_source_apikey:
+    description: 'API Key for the NuGet source. When set, used as Bearer token and X-NuGet-ApiKey header.'
+    required: false
+    default: ''
+  # --- source ---
+  nuget_protocol_version:
+    description: 'NuGet protocol version to use. ''auto'' detects based on feed URL and service index.'
+    required: false
+    default: 'auto'
+  nuget_spec_file:
+    description: 'Path to the nuget.json spec file that defines feeds and package dependencies. Relative paths resolve from the workspace root.'
+    required: true
+    default: 'nuget.json'
+  nuget_select_type_filter:
+    description: 'Wildcard filter for type names defined in the nuget.json spec file. Leave empty to process all types.'
+    required: false
+    default: ''
+  # --- output ---
+  download_folder:
+    description: 'Target folder where .app files will be downloaded. Defaults to a ''nuget'' subfolder in the workspace.'
+    required: false
+    default: ''
+  artifact_folder_name:
+    description: 'Artifact folder name used when uploading the resolved.json as a build artifact.'
+    required: true
+    default: 'Nuget'
+  # --- dependencies ---
+  dependency_publisher_filter:
+    description: 'Semicolon-separated list of publisher names to include when resolving dependencies. Leave empty to allow all publishers. Set to ''NONE'' to skip dependency resolution entirely.'
+    required: false
+    default: ''
+  skip_microsoft_apps:
+    description: 'Skip packages whose ID starts with ''microsoft.'' during dependency resolution.'
+    required: false
+    default: 'true'
+
+outputs:
+  nuget_resolved_json:
+    description: 'Path to the resolved.json file listing all downloaded packages.'
+    value: ${{ steps.run.outputs.nuget_resolved_json }}
+
+runs:
+  using: 'composite'
+  steps:
+    - name: ALOps NuGet Download
+      id: run
+      shell: pwsh
+      run: ${{ github.action_path }}/entrypoint.ps1
+      env:
+          INPUT_NUGET_USERNAME: ${{ inputs.nuget_username }}
+          INPUT_NUGET_PASSWORD: ${{ inputs.nuget_password }}
+          INPUT_NUGET_SOURCE_APIKEY: ${{ inputs.nuget_source_apikey }}
+          INPUT_NUGET_PROTOCOL_VERSION: ${{ inputs.nuget_protocol_version }}
+          INPUT_NUGET_SPEC_FILE: ${{ inputs.nuget_spec_file }}
+          INPUT_NUGET_SELECT_TYPE_FILTER: ${{ inputs.nuget_select_type_filter }}
+          INPUT_DOWNLOAD_FOLDER: ${{ inputs.download_folder }}
+          INPUT_ARTIFACT_FOLDER_NAME: ${{ inputs.artifact_folder_name }}
+          INPUT_DEPENDENCY_PUBLISHER_FILTER: ${{ inputs.dependency_publisher_filter }}
+          INPUT_SKIP_MICROSOFT_APPS: ${{ inputs.skip_microsoft_apps }}

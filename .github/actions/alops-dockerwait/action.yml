@@ -1,0 +1,93 @@
+name: 'ALOpsDockerWait'
+description: 'Wait for a Business Central Docker container to become ready.'
+author: 'Hodor'
+
+branding:
+  icon: 'package'
+  color: 'blue'
+
+inputs:
+  # --- container ---
+  fixed_tag:
+    description: 'Fixed container label. When set, the container is identified by this value instead of the build ID.'
+    required: false
+    default: ''
+  # --- polling ---
+  search_string:
+    description: 'Log line(s) that indicate the container is ready. One pattern per line.'
+    required: true
+    default: 'Ready for connections!'
+  warning_string:
+    description: 'Log line(s) that trigger a warning. One pattern per line.'
+    required: false
+    default: ''
+  error_string:
+    description: 'Log line(s) that trigger an immediate failure. One pattern per line.'
+    required: false
+    default: ''
+  printlogs:
+    description: 'Print container log lines to the build output while polling.'
+    required: false
+    default: 'true'
+  # --- workspace ---
+  setup_working_folder:
+    description: 'Copy the workspace into the container after it becomes ready.'
+    required: false
+    default: 'true'
+  usecompression:
+    description: 'Compress the workspace before copying into the container. Faster for large workspaces.'
+    required: false
+    default: 'true'
+  exclude_git_folder:
+    description: 'Exclude the .git folder when copying the workspace into the container.'
+    required: false
+    default: 'false'
+
+outputs:
+  container_id:
+    description: 'The Docker container ID.'
+    value: ${{ steps.run.outputs.container_id }}
+  container_ipaddress:
+    description: 'The container''s IP address.'
+    value: ${{ steps.run.outputs.container_ipaddress }}
+  container_hostname:
+    description: 'The container''s hostname.'
+    value: ${{ steps.run.outputs.container_hostname }}
+  container_dnsname:
+    description: 'The container''s DNS name.'
+    value: ${{ steps.run.outputs.container_dnsname }}
+  container_webclient:
+    description: 'The Business Central web client URL.'
+    value: ${{ steps.run.outputs.container_webclient }}
+  container_vsix:
+    description: 'The AL Language VSIX download URL.'
+    value: ${{ steps.run.outputs.container_vsix }}
+  container_certificate:
+    description: 'The container''s certificate thumbprint.'
+    value: ${{ steps.run.outputs.container_certificate }}
+  container_adminuser:
+    description: 'The container''s admin username.'
+    value: ${{ steps.run.outputs.container_adminuser }}
+  container_adminpassword:
+    description: 'The container''s admin password.'
+    value: ${{ steps.run.outputs.container_adminpassword }}
+  container_navserverinstance:
+    description: 'The NAV/BC server instance name.'
+    value: ${{ steps.run.outputs.container_navserverinstance }}
+
+runs:
+  using: 'composite'
+  steps:
+    - name: ALOps Docker Wait
+      id: run
+      shell: pwsh
+      run: ${{ github.action_path }}/entrypoint.ps1
+      env:
+          INPUT_FIXED_TAG: ${{ inputs.fixed_tag }}
+          INPUT_SEARCH_STRING: ${{ inputs.search_string }}
+          INPUT_WARNING_STRING: ${{ inputs.warning_string }}
+          INPUT_ERROR_STRING: ${{ inputs.error_string }}
+          INPUT_PRINTLOGS: ${{ inputs.printlogs }}
+          INPUT_SETUP_WORKING_FOLDER: ${{ inputs.setup_working_folder }}
+          INPUT_USECOMPRESSION: ${{ inputs.usecompression }}
+          INPUT_EXCLUDE_GIT_FOLDER: ${{ inputs.exclude_git_folder }}

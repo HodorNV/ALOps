@@ -1,0 +1,64 @@
+name: 'ALOpsAppSymbol'
+description: 'Creates symbol-only packages from compiled .app files using altool CreateSymbolPackage.'
+author: 'Hodor'
+
+branding:
+  icon: 'package'
+  color: 'blue'
+
+inputs:
+  # --- altool ---
+  altool_package_version:
+    description: 'Version of the microsoft.dynamics.businesscentral.development.tools NuGet package. Pin to a specific version for reproducible builds.'
+    required: true
+    default: '18.0.33.65164-beta'
+  # --- source ---
+  app_source_path:
+    description: 'Root folder to scan recursively for .app files. Leave empty to use the workspace directory.'
+    required: false
+    default: ''
+  app_file_filter:
+    description: 'File filter pattern for selecting .app files.'
+    required: false
+    default: '*.app'
+  use_alops_compiler_apps:
+    description: 'When enabled, reads app paths from the ALOPS_COMPILE_ARTIFACT_ARRAY variable set by a preceding ALOpsAppCompiler task instead of scanning the file system.'
+    required: false
+    default: 'false'
+  # --- output ---
+  output_path:
+    description: 'Folder where symbol .app files will be written. Leave empty to use a ''symbol_output'' subfolder in the workspace.'
+    required: false
+    default: ''
+  verify_symbol:
+    description: 'Run altool IsSymbolOnly verification on each generated symbol package.'
+    required: false
+    default: 'true'
+  artifact_name:
+    description: 'Name of the build artifact when publishing symbol packages.'
+    required: false
+    default: 'ALOpsSymbolArtifact'
+
+outputs:
+  symbol_artifact:
+    description: 'Path to the last created symbol .app file.'
+    value: ${{ steps.run.outputs.symbol_artifact }}
+  symbol_artifact_array:
+    description: 'Comma-separated list of all created symbol .app file paths.'
+    value: ${{ steps.run.outputs.symbol_artifact_array }}
+
+runs:
+  using: 'composite'
+  steps:
+    - name: ALOps App Symbol
+      id: run
+      shell: pwsh
+      run: ${{ github.action_path }}/entrypoint.ps1
+      env:
+          INPUT_ALTOOL_PACKAGE_VERSION: ${{ inputs.altool_package_version }}
+          INPUT_APP_SOURCE_PATH: ${{ inputs.app_source_path }}
+          INPUT_APP_FILE_FILTER: ${{ inputs.app_file_filter }}
+          INPUT_USE_ALOPS_COMPILER_APPS: ${{ inputs.use_alops_compiler_apps }}
+          INPUT_OUTPUT_PATH: ${{ inputs.output_path }}
+          INPUT_VERIFY_SYMBOL: ${{ inputs.verify_symbol }}
+          INPUT_ARTIFACT_NAME: ${{ inputs.artifact_name }}

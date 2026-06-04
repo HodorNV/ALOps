@@ -1,0 +1,154 @@
+name: 'ALOpsDockerCreate'
+description: 'Build a Business Central Docker image from BC artifacts.'
+author: 'Hodor'
+
+branding:
+  icon: 'package'
+  color: 'blue'
+
+inputs:
+  # --- artifact ---
+  artifact_specification:
+    description: 'How to resolve BC artifacts. ''Specific'' uses the version/type/country fields directly. ''Hint'' reads them from a JSON hint file.'
+    required: false
+    default: 'Specific'
+  artifact_version:
+    description: 'BC artifact version, for example ''24.0''. Leave empty for latest.'
+    required: false
+    default: ''
+  artifact_type:
+    description: 'Type of BC artifact to download.'
+    required: false
+    default: 'Sandbox'
+  artifact_country:
+    description: 'Country code for the BC artifact (e.g. ''us'', ''w1''). Leave empty for W1.'
+    required: false
+    default: ''
+  version_select:
+    description: 'Version selection strategy when multiple versions match.'
+    required: false
+    default: 'Latest'
+  artifact_hint:
+    description: 'Path to a JSON hint file containing Version, Type, and Country fields. Used when Artifact Specification is ''Hint''.'
+    required: false
+    default: ''
+  alternative_artifact_url:
+    description: 'Direct URL to BC artifacts. Overrides all other artifact resolution fields.'
+    required: false
+    default: ''
+  storage_account:
+    description: 'Azure storage account for artifact downloads. Leave empty for default.'
+    required: false
+    default: ''
+  sas_token:
+    description: 'SAS token for private artifact storage. Store this in a pipeline secret variable.'
+    required: false
+    default: ''
+  # --- image ---
+  image_prefix:
+    description: 'Prefix for the Docker image name (e.g. registry hostname). Can include registry path.'
+    required: false
+    default: ''
+  image_name_template:
+    description: 'Template for generating the image name. Tokens: %IMAGE_PREFIX%, %ARTIFACT_TYPE%, %ARTIFACT_VERSION%, %ARTIFACT_COUNTRY%, %OS_VERSION%, %OS_LTSC%.'
+    required: false
+    default: '%IMAGE_PREFIX%-%ARTIFACT_TYPE%-%ARTIFACT_VERSION%-%ARTIFACT_COUNTRY%-%OS_LTSC%'
+  use_generic_image:
+    description: 'Override the base generic image. Leave empty for auto-detection based on host OS.'
+    required: false
+    default: ''
+  memory:
+    description: 'Docker build memory limit (e.g. ''8G'', ''16G'').'
+    required: false
+    default: '8G'
+  force_create_image:
+    description: 'Force image rebuild even if the image already exists locally or in the registry.'
+    required: false
+    default: 'false'
+  my_scripts:
+    description: 'Scripts to embed in the image''s c:\run\my folder. One path or URL per line. Supports | delimiter for backward compatibility.'
+    required: false
+    default: ''
+  # --- authentication ---
+  docker_registry:
+    description: 'Docker registry URL for push/pull. Leave empty if not using a private registry.'
+    required: false
+    default: ''
+  docker_username:
+    description: 'Username for Docker registry authentication.'
+    required: false
+    default: ''
+  docker_password:
+    description: 'Password for Docker registry authentication. Store this in a pipeline secret variable.'
+    required: false
+    default: ''
+  # --- testtoolkit ---
+  include_test_toolkit:
+    description: 'Include the full BC test toolkit in the image.'
+    required: false
+    default: 'false'
+  include_test_libraries_only:
+    description: 'Include only test libraries (not the full test toolkit).'
+    required: false
+    default: 'false'
+  include_test_framework_only:
+    description: 'Include only the test framework (not test libraries or full toolkit).'
+    required: false
+    default: 'false'
+  include_performance_toolkit:
+    description: 'Include the BC performance toolkit in the image.'
+    required: false
+    default: 'false'
+  # --- licensing ---
+  license_file:
+    description: 'Path or URL to a BC license file (.flf or .bclicense) to embed in the image.'
+    required: false
+    default: ''
+  accept_insider_eula:
+    description: 'Accept the Insider EULA for preview/insider artifact builds.'
+    required: false
+    default: 'false'
+  # --- features ---
+  multitenant:
+    description: 'Build a multitenant BC Docker image.'
+    required: false
+    default: 'false'
+
+outputs:
+  image_name:
+    description: 'The name of the built Docker image.'
+    value: ${{ steps.run.outputs.image_name }}
+
+runs:
+  using: 'composite'
+  steps:
+    - name: ALOps Docker Create
+      id: run
+      shell: pwsh
+      run: ${{ github.action_path }}/entrypoint.ps1
+      env:
+          INPUT_ARTIFACT_SPECIFICATION: ${{ inputs.artifact_specification }}
+          INPUT_ARTIFACT_VERSION: ${{ inputs.artifact_version }}
+          INPUT_ARTIFACT_TYPE: ${{ inputs.artifact_type }}
+          INPUT_ARTIFACT_COUNTRY: ${{ inputs.artifact_country }}
+          INPUT_VERSION_SELECT: ${{ inputs.version_select }}
+          INPUT_ARTIFACT_HINT: ${{ inputs.artifact_hint }}
+          INPUT_ALTERNATIVE_ARTIFACT_URL: ${{ inputs.alternative_artifact_url }}
+          INPUT_STORAGE_ACCOUNT: ${{ inputs.storage_account }}
+          INPUT_SAS_TOKEN: ${{ inputs.sas_token }}
+          INPUT_IMAGE_PREFIX: ${{ inputs.image_prefix }}
+          INPUT_IMAGE_NAME_TEMPLATE: ${{ inputs.image_name_template }}
+          INPUT_USE_GENERIC_IMAGE: ${{ inputs.use_generic_image }}
+          INPUT_MEMORY: ${{ inputs.memory }}
+          INPUT_FORCE_CREATE_IMAGE: ${{ inputs.force_create_image }}
+          INPUT_MY_SCRIPTS: ${{ inputs.my_scripts }}
+          INPUT_DOCKER_REGISTRY: ${{ inputs.docker_registry }}
+          INPUT_DOCKER_USERNAME: ${{ inputs.docker_username }}
+          INPUT_DOCKER_PASSWORD: ${{ inputs.docker_password }}
+          INPUT_INCLUDE_TEST_TOOLKIT: ${{ inputs.include_test_toolkit }}
+          INPUT_INCLUDE_TEST_LIBRARIES_ONLY: ${{ inputs.include_test_libraries_only }}
+          INPUT_INCLUDE_TEST_FRAMEWORK_ONLY: ${{ inputs.include_test_framework_only }}
+          INPUT_INCLUDE_PERFORMANCE_TOOLKIT: ${{ inputs.include_performance_toolkit }}
+          INPUT_LICENSE_FILE: ${{ inputs.license_file }}
+          INPUT_ACCEPT_INSIDER_EULA: ${{ inputs.accept_insider_eula }}
+          INPUT_MULTITENANT: ${{ inputs.multitenant }}

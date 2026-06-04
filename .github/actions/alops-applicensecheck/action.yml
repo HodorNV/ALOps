@@ -1,0 +1,123 @@
+name: 'ALOpsAppLicenseCheck'
+description: 'Check App files against a BC license'
+author: 'Hodor'
+
+branding:
+  icon: 'package'
+  color: 'blue'
+
+inputs:
+  # --- license ---
+  licensefile:
+    description: 'Set the BC License File. Path or Url.'
+    required: true
+    default: ''
+  expiry_text:
+    description: 'String to find in license to match for ExpiryDate.'
+    required: false
+    default: ''
+  expiry_dateformat:
+    description: 'Date Format of the Expiry date, example: dd.MM.yyyy'
+    required: false
+    default: ''
+  expiry_dayswarning:
+    description: 'Amount of days before License-Expiry for triggering a warning'
+    required: false
+    default: ''
+  expiry_checkonly:
+    description: 'When enabled, only the license expiry check is performed and the full license object check is skipped.'
+    required: false
+    default: 'false'
+  # --- artifacts ---
+  artifact_path:
+    description: 'Path for App Artifact.'
+    required: false
+    default: ''
+  artifact_filter:
+    description: 'Filter used for locating App file relative to $(artifact_path).'
+    required: true
+    default: '*.app'
+  artifact_include:
+    description: 'Include-Filter used for locating App file relative to $(artifact_path).'
+    required: false
+    default: ''
+  artifact_exclude:
+    description: 'Exclude-Filter used for locating App file relative to $(artifact_path).'
+    required: false
+    default: ''
+  use_alops_compiler_apps:
+    description: 'When enabled, `artifact_path` and `artifact_filter` are ignored. Instead, the task reads app paths from the `ALOPS_COMPILE_ARTIFACT_ARRAY` environment variable (comma-separated), which is populated by a preceding ALOpsAppCompiler task.'
+    required: false
+    default: 'false'
+  # --- exclusions ---
+  exclude_ranges:
+    description: 'Exclude-Ranges from LicenseCheck (Buffer / Temporary tables). Format: 60000..60099,70000..70100'
+    required: false
+    default: ''
+  exclude_tables:
+    description: 'Exclude Table objects from LicenseCheck.'
+    required: false
+    default: 'false'
+  exclude_codeunits:
+    description: 'Exclude Codeunit objects from LicenseCheck.'
+    required: false
+    default: 'false'
+  exclude_pages:
+    description: 'Exclude Page objects from LicenseCheck.'
+    required: false
+    default: 'false'
+  exclude_reports:
+    description: 'Exclude Report objects from LicenseCheck.'
+    required: false
+    default: 'false'
+  exclude_xmlports:
+    description: 'Exclude XMLPort objects from LicenseCheck.'
+    required: false
+    default: 'false'
+  exclude_queries:
+    description: 'Exclude Query objects from LicenseCheck.'
+    required: false
+    default: 'false'
+  # --- altool ---
+  altool_package_version:
+    description: 'Version of the microsoft.dynamics.businesscentral.development.tools NuGet package to use for altool.exe and CodeAnalysis DLL.'
+    required: true
+    default: '18.0.33.65164-beta'
+  # --- behavior ---
+  warning_only:
+    description: 'Only post warning, do not fail pipeline.'
+    required: false
+    default: 'false'
+
+outputs:
+  checklicense_output:
+    description: 'Summary text of license check results.'
+    value: ${{ steps.run.outputs.checklicense_output }}
+
+runs:
+  using: 'composite'
+  steps:
+    - name: ALOps App License Check
+      id: run
+      shell: pwsh
+      run: ${{ github.action_path }}/entrypoint.ps1
+      env:
+          INPUT_LICENSEFILE: ${{ inputs.licensefile }}
+          INPUT_EXPIRY_TEXT: ${{ inputs.expiry_text }}
+          INPUT_EXPIRY_DATEFORMAT: ${{ inputs.expiry_dateformat }}
+          INPUT_EXPIRY_DAYSWARNING: ${{ inputs.expiry_dayswarning }}
+          INPUT_EXPIRY_CHECKONLY: ${{ inputs.expiry_checkonly }}
+          INPUT_ARTIFACT_PATH: ${{ inputs.artifact_path }}
+          INPUT_ARTIFACT_FILTER: ${{ inputs.artifact_filter }}
+          INPUT_ARTIFACT_INCLUDE: ${{ inputs.artifact_include }}
+          INPUT_ARTIFACT_EXCLUDE: ${{ inputs.artifact_exclude }}
+          INPUT_USE_ALOPS_COMPILER_APPS: ${{ inputs.use_alops_compiler_apps }}
+          INPUT_EXCLUDE_RANGES: ${{ inputs.exclude_ranges }}
+          INPUT_EXCLUDE_TABLES: ${{ inputs.exclude_tables }}
+          INPUT_EXCLUDE_CODEUNITS: ${{ inputs.exclude_codeunits }}
+          INPUT_EXCLUDE_PAGES: ${{ inputs.exclude_pages }}
+          INPUT_EXCLUDE_REPORTS: ${{ inputs.exclude_reports }}
+          INPUT_EXCLUDE_XMLPORTS: ${{ inputs.exclude_xmlports }}
+          INPUT_EXCLUDE_QUERIES: ${{ inputs.exclude_queries }}
+          INPUT_ALTOOL_PACKAGE_VERSION: ${{ inputs.altool_package_version }}
+          INPUT_WARNING_ONLY: ${{ inputs.warning_only }}

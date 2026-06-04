@@ -1,0 +1,74 @@
+name: 'ALOpsAppSource'
+description: 'Publish Business Central extensions to Microsoft AppSource via Partner Center Ingestion API.'
+author: 'Hodor'
+
+branding:
+  icon: 'package'
+  color: 'blue'
+
+inputs:
+  # --- authentication ---
+  azure_tenant_id:
+    description: 'Azure AD tenant ID for Partner Center authentication. Falls back to environment variable ''alops_tenant_id'' if empty.'
+    required: false
+    default: ''
+  azure_app_client_id:
+    description: 'Azure AD application (client) ID for Partner Center authentication. Falls back to environment variable ''alops_application_id'' if empty.'
+    required: false
+    default: ''
+  azure_app_client_secret:
+    description: 'Azure AD client secret for Partner Center authentication. Falls back to environment variable ''alops_application_secret'' if empty. Automatically masked in logs.'
+    required: false
+    default: ''
+  # --- offerings ---
+  offering_name_filter:
+    description: 'Semicolon-separated list of offerings to include, matched against the AppSource ''Offer Alias'' (the same value that must equal the local app.json ''Name''). Leave empty to process all Business Central offerings.'
+    required: false
+    default: ''
+  apply_offering_version_filter:
+    description: 'When enabled, only uploads offerings where the local app version is higher than the currently published version.'
+    required: false
+    default: 'false'
+  skip_version_change:
+    description: 'When enabled, skips updating the version number in Partner Center. Useful for re-submitting the same version.'
+    required: false
+    default: 'false'
+  # --- promotion ---
+  autopromote:
+    description: 'Automatically promote the submission to go live after it reaches ''ReadyToPublish'' status.'
+    required: false
+    default: 'false'
+  autopromote_check_delay:
+    description: 'Seconds to wait between status polling attempts during auto-promotion.'
+    required: false
+    default: '30'
+  autopromote_max_tries:
+    description: 'Maximum number of polling attempts before timing out during auto-promotion.'
+    required: false
+    default: '120'
+
+outputs:
+  submitted_offerings:
+    description: 'Comma-separated list of offering names that were submitted.'
+    value: ${{ steps.run.outputs.submitted_offerings }}
+  submitted_count:
+    description: 'Number of offerings submitted.'
+    value: ${{ steps.run.outputs.submitted_count }}
+
+runs:
+  using: 'composite'
+  steps:
+    - name: ALOps AppSource
+      id: run
+      shell: pwsh
+      run: ${{ github.action_path }}/entrypoint.ps1
+      env:
+          INPUT_AZURE_TENANT_ID: ${{ inputs.azure_tenant_id }}
+          INPUT_AZURE_APP_CLIENT_ID: ${{ inputs.azure_app_client_id }}
+          INPUT_AZURE_APP_CLIENT_SECRET: ${{ inputs.azure_app_client_secret }}
+          INPUT_OFFERING_NAME_FILTER: ${{ inputs.offering_name_filter }}
+          INPUT_APPLY_OFFERING_VERSION_FILTER: ${{ inputs.apply_offering_version_filter }}
+          INPUT_SKIP_VERSION_CHANGE: ${{ inputs.skip_version_change }}
+          INPUT_AUTOPROMOTE: ${{ inputs.autopromote }}
+          INPUT_AUTOPROMOTE_CHECK_DELAY: ${{ inputs.autopromote_check_delay }}
+          INPUT_AUTOPROMOTE_MAX_TRIES: ${{ inputs.autopromote_max_tries }}
