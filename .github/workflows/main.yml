@@ -31,13 +31,13 @@ jobs:
           export_json: true
           exclude_company_paths: true
           
-      - name: ALOps App License Check
-        uses: HodorNV/ALOps/Actions/alops-applicensecheck@master
-        with:
-          licensefile: '.resources/6676359 BC25 DEV NL 20260211.bclicense'
+      # - name: ALOps App License Check
+      #   uses: HodorNV/ALOps/Actions/alops-applicensecheck@master
+      #   with:
+      #     licensefile: '.resources/6676359 BC25 DEV NL 20260211.bclicense'
 
       - name: AdminCenterAPI
-        uses: ./.github/actions/alops-admincenterapi
+        uses: HodorNV/ALOps/Actions/alops-admincenterapi@master
         with:
           azure_tenant_id: '20101739-aeb8-49c3-a6c9-0fc2d55dcd30'
           azure_app_client_id: '249da451-27d1-4ff7-920c-b14f2b397436'
@@ -46,36 +46,36 @@ jobs:
 
       - name: ALOps Compile
         id: alops-compile
-        uses: ./.github/actions/alops-appcompiler
+        uses: HodorNV/ALOps/Actions/alops-appcompiler@master
         with:
           compilation_mode: 'Serial'
           preprocessorsymbols: 'BC270'
 
-      - name: ALOps App Sign
-        uses: ./.github/actions/alops-appsign
-        continue-on-error: true
-        with:       
-          signmethod: 'PFX'
-          pfx_path: '${{ secrets.SIGN_PFX_CERT }}'
-          pfx_password: '${{ secrets.SIGN_PFX_PWD }}'
-          timestamp_uri: 'http://timestamp.digicert.com'
-          batchsigncompiledapps: true
+      # - name: ALOps App Sign
+      #   uses: HodorNV/ALOps/Actions/alops-appsign@master
+      #   continue-on-error: true
+      #   with:       
+      #     signmethod: 'PFX'
+      #     pfx_path: '${{ secrets.SIGN_PFX_CERT }}'
+      #     pfx_password: '${{ secrets.SIGN_PFX_PWD }}'
+      #     timestamp_uri: 'http://timestamp.digicert.com'
+      #     batchsigncompiledapps: true
 
       - name: ALOps App Symbol
-        uses: ./.github/actions/alops-appsymbol
+        uses: HodorNV/ALOps/Actions/alops-appsymbol@master
         with:
           use_alops_compiler_apps: true      
           verify_symbol: true
           artifact_name: 'ALOpsSymbol'
 
       - name: ALOps NuGet Download
-        uses: ./.github/actions/alops-nugetdownload
+        uses: HodorNV/ALOps/Actions/alops-nugetdownload@master
         with:
           nuget_spec_file: '.resources/nuget.json'
           artifact_folder_name: 'Nuget'
 
       - name: ALOps Extension API
-        uses: ./.github/actions/alops-extensionapi
+        uses: HodorNV/ALOps/Actions/alops-extensionapi@master
         with:
           interaction: 'get'
           api_endpoint: 'https://api.businesscentral.dynamics.com/v2.0/20101739-aeb8-49c3-a6c9-0fc2d55dcd30/QA/api'
