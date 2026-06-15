@@ -20,6 +20,10 @@ inputs:
     description: 'Azure AD client secret for Partner Center authentication. Falls back to environment variable ''alops_application_secret'' if empty. Automatically masked in logs.'
     required: false
     default: ''
+  seller_id:
+    description: 'Numeric Partner Center Seller ID (account ID). Sent as the required ''x-ms-publisherId'' header on every Partner Center (api.partner.microsoft.com) API call.'
+    required: true
+    default: ''
   # --- offerings ---
   offering_name_filter:
     description: 'Semicolon-separated list of offerings to include, matched against the AppSource ''Offer Alias'' (the same value that must equal the local app.json ''Name''). Leave empty to process all Business Central offerings.'
@@ -66,6 +70,7 @@ runs:
           INPUT_AZURE_TENANT_ID: ${{ inputs.azure_tenant_id }}
           INPUT_AZURE_APP_CLIENT_ID: ${{ inputs.azure_app_client_id }}
           INPUT_AZURE_APP_CLIENT_SECRET: ${{ inputs.azure_app_client_secret }}
+          INPUT_SELLER_ID: ${{ inputs.seller_id }}
           INPUT_OFFERING_NAME_FILTER: ${{ inputs.offering_name_filter }}
           INPUT_APPLY_OFFERING_VERSION_FILTER: ${{ inputs.apply_offering_version_filter }}
           INPUT_SKIP_VERSION_CHANGE: ${{ inputs.skip_version_change }}

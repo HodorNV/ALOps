@@ -53,6 +53,7 @@ $P = @{}
 
 $P['AzureTenantId'] = Read-GitHubInput -Name 'azure_tenant_id'
 $P['AzureAppClientId'] = Read-GitHubInput -Name 'azure_app_client_id'
+$P['SellerId'] = Read-GitHubInput -Name 'seller_id'
 $P['OfferingNameFilter'] = Read-GitHubInput -Name 'offering_name_filter'
 $P['AutopromoteCheckDelay'] = Read-GitHubInput -Name 'autopromote_check_delay'
 $P['AutopromoteMaxTries'] = Read-GitHubInput -Name 'autopromote_max_tries'
