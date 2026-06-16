@@ -5,6 +5,7 @@
         azure_tenant_id:                      # Azure Active Directory tenant ID (GUID or domain) of the partner center tenant used for AppSource submissions. $(azure_tenant_id)
         azure_app_client_id:                  # Application (client) ID of the Azure AD app registration used for Partner Center API authentication. $(azure_app_client_id)
         azure_app_client_secret:              # Client secret of the Azure AD app registration. Store this value in a pipeline secret variable or Azure Key Vault, never in plain text. $(azure_app_client_secret)
+        seller_id:                            # Numeric Partner Center Seller ID (account ID). Sent as the required 'x-ms-publisherId' header on every Partner Center (api.partner.microsoft.com) API call. $(seller_id)
         apply_offering_version_filter: False  # When enabled, only offerings whose new version is higher than the currently published version are uploaded. Prevents accidental re-submission of the same version. $(apply_offering_version_filter)
         autopromote: False                    # Automatically promote the AppSource submission to the next review stage after publishing, without requiring a manual action in Partner Center. $(autopromote)
         autopromote_checksecondsdelay: 30     # Number of seconds to wait between polls when checking the promotion status of the AppSource submission. $(autopromote_checksecondsdelay)
