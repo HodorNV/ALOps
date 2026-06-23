@@ -21,8 +21,8 @@ inputs:
     required: false
     default: ''
   seller_id:
-    description: 'Numeric Partner Center Seller ID (account ID). Sent as the required ''x-ms-publisherId'' header on every Partner Center (api.partner.microsoft.com) API call.'
-    required: true
+    description: 'Optional numeric Partner Center Seller ID (account ID). When provided, it is sent as the ''x-ms-publisherId'' header on every Partner Center (api.partner.microsoft.com) API call. Leave empty to omit the header.'
+    required: false
     default: ''
   # --- offerings ---
   offering_name_filter:
