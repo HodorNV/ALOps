@@ -93,7 +93,7 @@ inputs:
     required: false
     default: 'W1'
   bc_version:
-    description: 'BC version filter in Major.Minor format. Auto-detected from app.json when empty.'
+    description: 'BC version filter in Major.Minor format (e.g. ''25.0''). Special values ''NextMajor'' and ''NextMinor'' build against the latest Microsoft insider release (requires accepting the insider EULA — set automatically). Auto-detected from app.json when empty.'
     required: false
     default: ''
   ms_symbols_feed:
