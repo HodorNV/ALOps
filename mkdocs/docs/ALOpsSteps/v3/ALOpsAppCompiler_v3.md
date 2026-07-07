@@ -22,7 +22,7 @@
         auto_resolve_ms_symbols: true         # Download missing MS symbols from the MSSymbols NuGet feed. $(auto_resolve_ms_symbols) $(auto_resolve_ms_symbols) $(auto_resolve_ms_symbols)
         force_download_mssymbols: false       # Delete all `Microsoft_*.app` files from the symbol cache before resolving. Use in multi-localisation pipelines where the same cache path is reused across countries. $(force_download_mssymbols) $(force_download_mssymbols) $(force_download_mssymbols)
         bc_localization: W1                   # Business Central country code for MS symbol resolution. $(bc_localization) $(bc_localization) $(bc_localization)
-        bc_version:                           # BC version filter in Major.Minor format (e.g. '25.0'). Special values 'NextMajor' and 'NextMinor' build against the latest Microsoft insider release (requires accepting the insider EULA — set automatically). Auto-detected from app.json when empty. $(bc_version) $(bc_version) $(bc_version)
+        bc_version:                           # BC version filter in Major.Minor format. Auto-detected from app.json when empty. $(bc_version) $(bc_version) $(bc_version)
         ms_symbols_feed: https://dynamicssmb2.pkgs.visualstudio.com/DynamicsBCPublicFeeds/_packaging/MSSymbols/nuget/v3/index.json# NuGet v3 service index URL for the MSSymbols feed. $(ms_symbols_feed) $(ms_symbols_feed) $(ms_symbols_feed)
         ms_symbols_pat:                       # PAT for authenticated MSSymbols feed access. $(ms_symbols_pat) $(ms_symbols_pat) $(ms_symbols_pat)
         accept_insider_eula: false            # Accept the Microsoft BC insider EULA for NextMajor/NextMinor. $(accept_insider_eula) $(accept_insider_eula) $(accept_insider_eula)
