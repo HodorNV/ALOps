@@ -17,6 +17,8 @@
             artifactcountry:                      # The Country for the Artifact. $(artifactcountry) $(artifactcountry)
             versionselect: Latest                 # The version to be selected from the Artifacts. $(versionselect) $(versionselect)
             updateruntime:                        # Updates the Runtime parameter in app.json. $(updateruntime) $(updateruntime)
+            updateplatform:                       # Updates the 'platform' version in app.json before compilation, e.g. '26.0.0.0'. Empty = keep app.json value. $(updateplatform) $(updateplatform)
+            updateapplication:                    # Updates the 'application' version in app.json before compilation, e.g. '26.6.0.0'. Empty = keep app.json value. $(updateapplication) $(updateapplication)
             alternativeartifacturl:               # Overrule the ArtifactUrl which would be determined by [artifacttype/artifactcountry/versionselect]. $(alternativeartifacturl) $(alternativeartifacturl)
             alternativevsixurl:                   # Alternative VSIX download url. Overrules BC Artificat VSIX. 'Latest' can be specified. $(alternativevsixurl) $(alternativevsixurl)
             vsix_cache_hours: 0                   # Number of hours to cache the VSIX file. If the cached file is older, it will be re-downloaded. $(vsix_cache_hours) $(vsix_cache_hours)
