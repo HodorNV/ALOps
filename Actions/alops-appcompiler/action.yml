@@ -159,6 +159,14 @@ inputs:
     description: 'Override the runtime field in app.json (e.g. "15.0"). Pass LATEST to auto-resolve via altool GetLatestSupportedRuntimeVersion (requires bc_version to be set). Empty = keep.'
     required: false
     default: ''
+  updateplatform:
+    description: 'Override the ''platform'' version in app.json before compilation, e.g. "26.0.0.0". Also updates a governing directory.app.props.json when it defines ''platform''. Empty = keep.'
+    required: false
+    default: ''
+  updateapplication:
+    description: 'Override the ''application'' version in app.json before compilation, e.g. "26.6.0.0". Also updates a governing directory.app.props.json when it defines ''application''. Empty = keep.'
+    required: false
+    default: ''
   rep_allowdebugging:
     description: 'Override resourceExposurePolicy.allowDebugging in app.json. Values: Enable / Disable / empty=keep. Mutually exclusive with showMyCode (REP wins on runtime >= 8).'
     required: false
@@ -243,6 +251,8 @@ runs:
           INPUT_INTERNALSVISIBLETO: ${{ inputs.internalsvisibleto }}
           INPUT_PREPROCESSORSYMBOLS: ${{ inputs.preprocessorsymbols }}
           INPUT_UPDATERUNTIME: ${{ inputs.updateruntime }}
+          INPUT_UPDATEPLATFORM: ${{ inputs.updateplatform }}
+          INPUT_UPDATEAPPLICATION: ${{ inputs.updateapplication }}
           INPUT_REP_ALLOWDEBUGGING: ${{ inputs.rep_allowdebugging }}
           INPUT_REP_ALLOWDOWNLOADINGSOURCE: ${{ inputs.rep_allowdownloadingsource }}
           INPUT_REP_INCLUDESOURCEINSYMBOL: ${{ inputs.rep_includesourceinsymbol }}

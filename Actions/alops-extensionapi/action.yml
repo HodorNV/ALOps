@@ -111,8 +111,8 @@ inputs:
   # --- altool ---
   altool_package_version:
     description: 'Version of the ALTool NuGet package to install for app metadata extraction. Required for publish and batch interactions. Leave empty to skip installation (get interaction only).'
-    required: false
-    default: ''
+    required: true
+    default: '18.0.33.65164-beta'
 
 outputs:
   ALOPS_EXTENSIONAPI_RESULT:
