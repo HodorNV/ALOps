@@ -26,6 +26,6 @@
         maxtries: 20                          # Maximum number of deployment status polls before the task times out. Multiply by Check Delay to calculate the total maximum wait time. $(maxtries) $(maxtries) $(maxtries)
         artifact_path:                        # Folder containing the .app files to deploy. For publish mode this is the folder where the single .app file is located. For batch mode this is the root folder scanned recursively for .app files. $(artifact_path) $(artifact_path) $(artifact_path)
         artifact_filter: *.app                # Glob filter applied inside artifact_path to select which .app files to deploy, for example *.app. $(artifact_filter) $(artifact_filter) $(artifact_filter)
-        altool_package_version:               # Version of the ALTool NuGet package to install for app metadata extraction. Required for publish and batch interactions. Leave empty to skip installation (get interaction only). $(altool_package_version) $(altool_package_version) $(altool_package_version)
+        altool_package_version: 18.0.33.65164-beta# Version of the ALTool NuGet package to install for app metadata extraction. Required for publish and batch interactions. Leave empty to skip installation (get interaction only). $(altool_package_version) $(altool_package_version) $(altool_package_version)
 ```
 
