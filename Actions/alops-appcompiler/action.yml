@@ -68,7 +68,7 @@ inputs:
     required: false
     default: 'false'
   fail_on_any:
-    description: 'Fail the task on any compiler diagnostic (error or warning). Stricter than failonwarnings.'
+    description: 'Fail the task on any compiler diagnostic (error, warning, or info-level message). Stricter than failonwarnings. In Parallel mode this also raises the compile log level so info diagnostics are captured.'
     required: false
     default: 'false'
   ignore_pragma:
@@ -134,6 +134,10 @@ inputs:
     required: false
     default: 'false'
   # --- publishing ---
+  publishxlif:
+    description: 'Publish generated XLIF translation files (*.g.xlf) as a build artifact named ''ALOpsXLIF''. Enables the ''TranslationFile'' compiler feature.'
+    required: false
+    default: 'false'
   outputpath:
     description: 'Folder where compiled .app files are written. When empty, defaults to the CI platform artifact directory.'
     required: false
@@ -245,6 +249,7 @@ runs:
           INPUT_PRINTAPPMANIFEST: ${{ inputs.printappmanifest }}
           INPUT_OUTPUTALCLOGS: ${{ inputs.outputalclogs }}
           INPUT_ALC_ERROR_LOG: ${{ inputs.alc_error_log }}
+          INPUT_PUBLISHXLIF: ${{ inputs.publishxlif }}
           INPUT_OUTPUTPATH: ${{ inputs.outputpath }}
           INPUT_TRACK_SOURCE_BUILD_METADATA: ${{ inputs.track_source_build_metadata }}
           INPUT_SHOWMYCODE: ${{ inputs.showmycode }}

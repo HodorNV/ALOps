@@ -82,7 +82,25 @@ Write-ALOpsGroup "Task Parameters" {
 
 try {
     Run-ALOpsInfoV3Step @P
-    Set-ALOpsResult -Result "Succeeded" -Message "ALOps Info completed successfully."
+
+    # Safety net: a step that logged errors but returned without throwing must
+    # not be reported green (issue #996). A step that deliberately tolerates
+    # errors opts out by declaring its own result via Set-ALOpsResult.
+    $taskStatus = Get-ALOpsTaskStatus
+    if ($taskStatus.ErrorCount -gt 0 -and -not $taskStatus.ResultDeclared) {
+        $netMsg = "ALOps Info logged $($taskStatus.ErrorCount) error(s). First: $($taskStatus.FirstError)"
+        Set-ALOpsResult -Result "Failed" -Message $netMsg
+        exit 1
+    }
+
+    # Warnings turn the step orange (issue #1000): logged warnings with no
+    # declared result -> SucceededWithIssues. A step that deliberately
+    # tolerates warnings opts out by declaring its own result.
+    if (-not $taskStatus.ResultDeclared -and $taskStatus.WarningCount -gt 0 -and $env:ALOPS_DISABLE_WARNING_RESULT -ne 'true') {
+        Set-ALOpsResult -Result "SucceededWithIssues" -Message "ALOps Info completed with $($taskStatus.WarningCount) warning(s). First: $($taskStatus.FirstWarning)"
+    } elseif (-not $taskStatus.ResultDeclared) {
+        Set-ALOpsResult -Result "Succeeded" -Message "ALOps Info completed successfully."
+    }
     exit 0
 }
 catch {

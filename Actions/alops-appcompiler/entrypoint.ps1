@@ -94,6 +94,7 @@ $P['AutoResolveAppsourceSymbols'] = Read-GitHubInput -Name 'auto_resolve_appsour
 $P['Printappmanifest'] = Read-GitHubInput -Name 'printappmanifest' -AsBool
 $P['Outputalclogs'] = Read-GitHubInput -Name 'outputalclogs' -AsBool
 $P['AlcErrorLog'] = Read-GitHubInput -Name 'alc_error_log' -AsBool
+$P['Publishxlif'] = Read-GitHubInput -Name 'publishxlif' -AsBool
 $P['TrackSourceBuildMetadata'] = Read-GitHubInput -Name 'track_source_build_metadata' -AsBool
 $P['Publishartifact'] = $true
 
@@ -123,7 +124,25 @@ Write-ALOpsGroup "Task Parameters" {
 
 try {
     Run-ALOpsAppCompilerV3Step @P
-    Set-ALOpsResult -Result "Succeeded" -Message "ALOps App Compiler completed successfully."
+
+    # Safety net: a step that logged errors but returned without throwing must
+    # not be reported green (issue #996). A step that deliberately tolerates
+    # errors opts out by declaring its own result via Set-ALOpsResult.
+    $taskStatus = Get-ALOpsTaskStatus
+    if ($taskStatus.ErrorCount -gt 0 -and -not $taskStatus.ResultDeclared) {
+        $netMsg = "ALOps App Compiler logged $($taskStatus.ErrorCount) error(s). First: $($taskStatus.FirstError)"
+        Set-ALOpsResult -Result "Failed" -Message $netMsg
+        exit 1
+    }
+
+    # Warnings turn the step orange (issue #1000): logged warnings with no
+    # declared result -> SucceededWithIssues. A step that deliberately
+    # tolerates warnings opts out by declaring its own result.
+    if (-not $taskStatus.ResultDeclared -and $taskStatus.WarningCount -gt 0 -and $env:ALOPS_DISABLE_WARNING_RESULT -ne 'true') {
+        Set-ALOpsResult -Result "SucceededWithIssues" -Message "ALOps App Compiler completed with $($taskStatus.WarningCount) warning(s). First: $($taskStatus.FirstWarning)"
+    } elseif (-not $taskStatus.ResultDeclared) {
+        Set-ALOpsResult -Result "Succeeded" -Message "ALOps App Compiler completed successfully."
+    }
     exit 0
 }
 catch {
