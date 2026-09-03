@@ -59,6 +59,8 @@ $P['DockerRegistry'] = Read-GitHubInput -Name 'docker_registry'
 
 $P['PrintLogs'] = Read-GitHubInput -Name 'print_logs' -AsBool
 $P['Sqlcompression'] = Read-GitHubInput -Name 'sqlcompression' -AsBool
+$P['Zipsqlbackup'] = Read-GitHubInput -Name 'zipsqlbackup' -AsBool
+$P['Publishsqlbackup'] = Read-GitHubInput -Name 'publishsqlbackup' -AsBool
 
 
 

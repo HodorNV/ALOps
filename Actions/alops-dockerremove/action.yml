@@ -22,9 +22,17 @@ inputs:
     required: false
     default: 'disabled'
   sqlcompression:
-    description: 'Use SQL backup compression. Not supported on SQL Server Express editions.'
+    description: 'Use SQL backup compression. Not supported on SQL Server Express editions. Only applies when ''SQL Backup'' is not ''Disabled''.'
     required: false
     default: 'false'
+  zipsqlbackup:
+    description: 'Compress the SQL backup into a zip archive, reducing artifact storage size. When disabled the raw .bak file is kept instead. Only applies when ''SQL Backup'' is not ''Disabled''.'
+    required: false
+    default: 'true'
+  publishsqlbackup:
+    description: 'Upload the SQL backup as a build artifact so it can be downloaded or restored later. When disabled the backup is still created and kept in the agent artifact directory — its path is always published as variable ''ALOPS_CONTAINER_SQLBACKUP'' and output ''sqlbackup_path''. Only applies when ''SQL Backup'' is not ''Disabled''.'
+    required: false
+    default: 'true'
   createeventlogbackup:
     description: 'When to create an Application EventLog backup from the container. ''On Failure'' requires job_status to be set (see Cleanup Options).'
     required: false
@@ -39,6 +47,11 @@ inputs:
     required: false
     default: ''
 
+outputs:
+  sqlbackup_path:
+    description: 'Path to the SQL backup created before removal (.zip when ZIP SQL Backup is enabled, otherwise .bak). Empty when no SQL backup was created.'
+    value: ${{ steps.run.outputs.sqlbackup_path }}
+
 runs:
   using: 'composite'
   steps:
@@ -51,6 +64,8 @@ runs:
           INPUT_PRINT_LOGS: ${{ inputs.print_logs }}
           INPUT_CREATESQLBACKUP: ${{ inputs.createsqlbackup }}
           INPUT_SQLCOMPRESSION: ${{ inputs.sqlcompression }}
+          INPUT_ZIPSQLBACKUP: ${{ inputs.zipsqlbackup }}
+          INPUT_PUBLISHSQLBACKUP: ${{ inputs.publishsqlbackup }}
           INPUT_CREATEEVENTLOGBACKUP: ${{ inputs.createeventlogbackup }}
           INPUT_JOB_STATUS: ${{ inputs.job_status }}
           INPUT_DOCKER_REGISTRY: ${{ inputs.docker_registry }}
