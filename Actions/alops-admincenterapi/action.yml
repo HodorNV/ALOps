@@ -47,9 +47,13 @@ inputs:
     default: '20'
   # --- operation ---
   interaction:
-    description: 'Admin Center API operation to execute: environment_list or environment_get reads environment info; environment_copy or environment_rename manages environments; app_install, app_uninstall, or app_update manages extensions; set_application_insightskey or set_security_group applies configuration.'
+    description: 'Admin Center API operation to execute: environment_list or environment_get reads environment info; environment_copy or environment_rename manages environments; environment_update_schedule selects the target version and date for the next environment update; app_install, app_uninstall, or app_update manages extensions; set_application_insightskey, set_security_group or set_update_window applies configuration.'
     required: true
     default: 'environment_list'
+  api_version:
+    description: 'Version of the Business Central Admin Center API used for all interactions, for example ''v2.28''. Leave empty to use the built-in default. The set_update_window interaction requires v2.13 or later. See https://learn.microsoft.com/en-us/dynamics365/business-central/dev-itpro/administration/administration-center-api for the available versions.'
+    required: false
+    default: 'v2.28'
   wait_for_operation:
     description: 'When enabled, the task polls the Admin Center API until the async operation completes or the maximum number of tries is reached. Disable to fire-and-forget.'
     required: false
@@ -74,6 +78,30 @@ inputs:
     description: 'Azure AD security group object ID to assign to the Business Central environment for access control. Used with the set_security_group interaction.'
     required: false
     default: ''
+  update_window_start:
+    description: 'Start of the environment update window in 24-hour ''HH:mm'' notation, for example ''22:00''. Used with the set_update_window interaction.'
+    required: false
+    default: ''
+  update_window_end:
+    description: 'End of the environment update window in 24-hour ''HH:mm'' notation, for example ''06:00''. The window may span midnight and must be at least 6 hours long. Used with the set_update_window interaction.'
+    required: false
+    default: ''
+  update_window_timezone:
+    description: 'Windows time zone id in which the update window times are expressed, for example ''W. Europe Standard Time'', ''Romance Standard Time'' or ''UTC''. Required for the set_update_window interaction. Valid values are returned by the Admin Center API route /applications/settings/timezones.'
+    required: false
+    default: ''
+  update_target_version:
+    description: 'Business Central version to select for the next environment update, for example ''27.1'', as returned by the Admin Center API updates list. Leave empty to select the latest released (GA) version. Used with the environment_update_schedule interaction.'
+    required: false
+    default: ''
+  update_datetime:
+    description: 'Date or date-time (ISO 8601, UTC assumed when no offset is given) on or after which the environment update runs, for example ''2026-09-12'' or ''2026-09-12T22:00:00Z''. A date without time is scheduled at 12:00 UTC. Leave empty to schedule the update as soon as the update window allows. Used with the environment_update_schedule interaction.'
+    required: false
+    default: ''
+  ignore_update_window:
+    description: 'When enabled, the scheduled environment update starts at the selected date-time even when that is outside the update window. Used with the environment_update_schedule interaction.'
+    required: false
+    default: 'false'
   # --- app_management ---
   app_id:
     description: 'GUID of the Business Central extension to install, uninstall, or update. Find this value in the app.json of the extension or in the AppSource listing.'
@@ -118,6 +146,24 @@ outputs:
   ALOPS_BCSAASENV_LOCATION:
     description: 'Environment location name.'
     value: ${{ steps.run.outputs.ALOPS_BCSAASENV_LOCATION }}
+  ALOPS_BCSAASENV_UPDATEWINDOW_START:
+    description: 'Environment update window start time (HH:mm). Set by set_update_window.'
+    value: ${{ steps.run.outputs.ALOPS_BCSAASENV_UPDATEWINDOW_START }}
+  ALOPS_BCSAASENV_UPDATEWINDOW_END:
+    description: 'Environment update window end time (HH:mm). Set by set_update_window.'
+    value: ${{ steps.run.outputs.ALOPS_BCSAASENV_UPDATEWINDOW_END }}
+  ALOPS_BCSAASENV_UPDATEWINDOW_TIMEZONE:
+    description: 'Windows time zone id of the environment update window. Set by set_update_window.'
+    value: ${{ steps.run.outputs.ALOPS_BCSAASENV_UPDATEWINDOW_TIMEZONE }}
+  ALOPS_BCSAASENV_UPDATE_TARGETVERSION:
+    description: 'Target version selected for the next environment update. Set by environment_update_schedule.'
+    value: ${{ steps.run.outputs.ALOPS_BCSAASENV_UPDATE_TARGETVERSION }}
+  ALOPS_BCSAASENV_UPDATE_STATUS:
+    description: 'Status of the selected environment update (e.g. scheduled, running). Set by environment_update_schedule.'
+    value: ${{ steps.run.outputs.ALOPS_BCSAASENV_UPDATE_STATUS }}
+  ALOPS_BCSAASENV_UPDATE_SELECTEDDATETIME:
+    description: 'Date-time (UTC) selected for the environment update. Set by environment_update_schedule.'
+    value: ${{ steps.run.outputs.ALOPS_BCSAASENV_UPDATE_SELECTEDDATETIME }}
 
 runs:
   using: 'composite'
@@ -137,12 +183,19 @@ runs:
           INPUT_CHECKSECONDSDELAY: ${{ inputs.checksecondsdelay }}
           INPUT_MAXTRIES: ${{ inputs.maxtries }}
           INPUT_INTERACTION: ${{ inputs.interaction }}
+          INPUT_API_VERSION: ${{ inputs.api_version }}
           INPUT_WAIT_FOR_OPERATION: ${{ inputs.wait_for_operation }}
           INPUT_ENVIRONMENT: ${{ inputs.environment }}
           INPUT_TARGET_ENVIRONMENT: ${{ inputs.target_environment }}
           INPUT_TARGET_ENVIRONMENT_TYPE: ${{ inputs.target_environment_type }}
           INPUT_APPLICATION_INSIGHTSKEY: ${{ inputs.application_insightskey }}
           INPUT_SECURITY_GROUP_ID: ${{ inputs.security_group_id }}
+          INPUT_UPDATE_WINDOW_START: ${{ inputs.update_window_start }}
+          INPUT_UPDATE_WINDOW_END: ${{ inputs.update_window_end }}
+          INPUT_UPDATE_WINDOW_TIMEZONE: ${{ inputs.update_window_timezone }}
+          INPUT_UPDATE_TARGET_VERSION: ${{ inputs.update_target_version }}
+          INPUT_UPDATE_DATETIME: ${{ inputs.update_datetime }}
+          INPUT_IGNORE_UPDATE_WINDOW: ${{ inputs.ignore_update_window }}
           INPUT_APP_ID: ${{ inputs.app_id }}
           INPUT_USE_UPDATE_WINDOW: ${{ inputs.use_update_window }}
           INPUT_ACCEPT_ISV_EULA: ${{ inputs.accept_isv_eula }}

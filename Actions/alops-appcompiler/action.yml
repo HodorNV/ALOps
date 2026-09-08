@@ -56,7 +56,7 @@ inputs:
     default: ''
   # --- analysis ---
   alcodeanalyzer:
-    description: 'Comma-separated list of code analyzer DLL paths.'
+    description: 'Comma-separated list of code analyzers. Built-in: `CodeCop`, `UICop`, `AppSourceCop`, `PTECop` (alias `PerTenantExtensionCop`). Use `NONE` to disable. A path to a custom analyzer DLL is also accepted, but only in `Serial` compilation mode.'
     required: false
     default: ''
   ruleset:
@@ -68,7 +68,7 @@ inputs:
     required: false
     default: 'false'
   fail_on_any:
-    description: 'Fail the task on any compiler diagnostic (error, warning, or info-level message). Stricter than failonwarnings. In Parallel mode this also raises the compile log level so info diagnostics are captured.'
+    description: 'Fail the task on any compiler diagnostic (error, warning, or info-level message). Stricter than failonwarnings.'
     required: false
     default: 'false'
   ignore_pragma:
@@ -89,7 +89,7 @@ inputs:
     required: false
     default: 'false'
   bc_localization:
-    description: 'Business Central country code for MS symbol resolution.'
+    description: 'Business Central country code for MS symbol resolution (e.g. `W1`, `BE`, `NL`). When the MSSymbols feed has no localized package for the country (for example `IE` has no `Microsoft.Application.ie.symbols`), the W1 package `Microsoft.Application.symbols` is used automatically.'
     required: false
     default: 'W1'
   bc_version:
@@ -126,11 +126,11 @@ inputs:
     required: false
     default: 'true'
   outputalclogs:
-    description: 'Output detailed ALC compiler logs.'
+    description: 'Echo the raw compiler output and non-diagnostic status lines, including pragma-suppressed and ignore-listed diagnostics. Error, warning and info diagnostics are always shown regardless of this setting.'
     required: false
     default: 'false'
   alc_error_log:
-    description: 'Emit per-app `<AppName>_ALCErrorLog.txt` next to the compiled .app.'
+    description: 'Write per-app `<AppName>_ALCErrorLog.txt` (alc /errorlog JSON with error, warning and info issues) next to the compiled .app and publish it as artifact ''ALCErrorLog''. In Parallel mode altool has no errorlog option, so ALOps generates the file from the parsed compiler diagnostics.'
     required: false
     default: 'false'
   # --- publishing ---

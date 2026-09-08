@@ -6,7 +6,8 @@
 # Task: ALOps App License Check
 #
 # This wrapper does exactly three things:
-#   1. Import the module and call Initialize-ALOpsTask
+#   1. Import the module (installing the pinned or newest PSGallery version
+#      only when it is not present yet) and call Initialize-ALOpsTask
 #   2. Read inputs from INPUT_* environment variables
 #   3. Call the step function with those inputs
 #
@@ -25,13 +26,78 @@ param()
 $ErrorActionPreference = 'Stop'
 
 # ── 1. Import Module & Initialize Task ──────────────────────────────────────
+# Module version pin. tools/Update-ALOpsVSIX.ps1 -ModuleVersion stamps the full
+# PSGallery tag (e.g. 0.1.11557-alpha) here for the Azure DevOps extension.
+# Empty = resolve the newest prerelease on PSGallery every run (GitHub Actions,
+# local builds). Setting the alops_module_latest environment variable to any
+# non-empty value (name matched case-insensitively) forces that even when pinned.
+$ALOpsModuleVersion = ''
 
-Install-Module -Name ALOpsV3.Module -AllowPrerelease -Scope CurrentUser -AllowClobber -Force
-Import-Module -Name ALOpsV3.Module -Force -DisableNameChecking
+function Import-ALOpsWrapperModule {
+    param([string] $RequiredVersion, [int] $RetryCount = 3, [int] $RetryDelaySeconds = 15)
+
+    $moduleName = 'ALOpsV3.Module'
+    $latestFlag = [bool](Get-ChildItem -Path Env: | Where-Object {
+        $_.Name -ieq 'alops_module_latest' -and -not [string]::IsNullOrWhiteSpace($_.Value)
+    })
+
+    if ([string]::IsNullOrWhiteSpace($RequiredVersion) -or $latestFlag) {
+        try {
+            $RequiredVersion = [string](Find-Module -Name $moduleName -Repository PSGallery -AllowPrerelease -ErrorAction Stop).Version
+            Write-Host "ALOpsV3.Module mode: latest (PSGallery -> $RequiredVersion)"
+        } catch {
+            Write-Host "PSGallery lookup failed ($($_.Exception.Message)); importing the newest installed $moduleName."
+            Import-Module -Name $moduleName -Force -DisableNameChecking -ErrorAction Stop
+            return
+        }
+    } else {
+        Write-Host "ALOpsV3.Module mode: pinned ($RequiredVersion)"
+    }
+
+    # PSGallery needs the full '1.2.3-tag' string; the on-disk folder and
+    # Get-Module/Import-Module use the numeric part only.
+    $baseVersion = ($RequiredVersion -split '-', 2)[0]
+    $spec = @{ ModuleName = $moduleName; RequiredVersion = $baseVersion }
+
+    if (-not (Get-Module -ListAvailable -FullyQualifiedName $spec)) {
+        # Serialize installs per machine/account: parallel agents under one
+        # profile raced on the same module folder (issue #997).
+        $mutex = $null; $acquired = $false
+        try {
+            $mutex = [System.Threading.Mutex]::new($false, 'Global\ALOpsV3.Module.Install')
+            try { $acquired = $mutex.WaitOne([TimeSpan]::FromMinutes(10)) }
+            catch [System.Threading.AbandonedMutexException] { $acquired = $true }
+            if (-not $acquired) { Write-Host 'Install lock wait timed out; continuing without lock.' }
+        } catch { Write-Host "Install lock unavailable: $($_.Exception.Message)" }
+        try {
+            if (-not (Get-Module -ListAvailable -FullyQualifiedName $spec)) {
+                for ($attempt = 1; $attempt -le $RetryCount; $attempt++) {
+                    try {
+                        Write-Host "Installing $moduleName $RequiredVersion (attempt $attempt of $RetryCount)..."
+                        Install-Module -Name $moduleName -RequiredVersion $RequiredVersion -AllowPrerelease -Scope CurrentUser -AllowClobber -Force -ErrorAction Stop
+                        break
+                    } catch {
+                        if ($attempt -ge $RetryCount) { throw }
+                        Write-Host "Install failed: $($_.Exception.Message). Retrying in $RetryDelaySeconds s..."
+                        Start-Sleep -Seconds $RetryDelaySeconds
+                    }
+                }
+            }
+        } finally {
+            if ($acquired) { $mutex.ReleaseMutex() }
+            if ($mutex) { $mutex.Dispose() }
+        }
+    }
+
+    Import-Module -FullyQualifiedName $spec -Force -DisableNameChecking -ErrorAction Stop
+}
+
+Import-ALOpsWrapperModule -RequiredVersion $ALOpsModuleVersion
 
 Initialize-ALOpsTask -TaskId 'c5941156-348d-4a9d-8c35-a463b8ffab40'
 
-Write-ALOpsInfo "ALOpsV3.Module version: $((Get-Module -Name ALOpsV3.Module).Version)"
+$ALOpsLoadedModule = Get-Module -Name ALOpsV3.Module
+Write-ALOpsInfo "ALOpsV3.Module version: $($ALOpsLoadedModule.Version)-$($ALOpsLoadedModule.PrivateData.PSData.Prerelease) (pin: '$ALOpsModuleVersion')"
 
 # ── Input Reader Helper ──────────────────────────────────────────────────
 
