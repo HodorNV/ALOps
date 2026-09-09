@@ -89,7 +89,7 @@ inputs:
     required: false
     default: 'false'
   bc_localization:
-    description: 'Business Central country code for MS symbol resolution (e.g. `W1`, `BE`, `NL`). When the MSSymbols feed has no localized package for the country (for example `IE` has no `Microsoft.Application.ie.symbols`), the W1 package `Microsoft.Application.symbols` is used automatically.'
+    description: 'Business Central country code for MS symbol resolution (e.g. `W1`, `BE`, `NL`). When the MSSymbols feed has no localized package for the country (for example `IE` has no `Microsoft.Application.ie.symbols`), the W1 package `Microsoft.Application.symbols` is used automatically. Individual Microsoft apps are resolved the same way: the localized package `Microsoft.<App>.<cc>.symbols.<id>` is preferred, and the W1 package `Microsoft.<App>.symbols.<id>` is used only when no localized version matches `bc_version`.'
     required: false
     default: 'W1'
   bc_version:
@@ -192,7 +192,7 @@ inputs:
     required: false
     default: ''
   allowed_publisher_names:
-    description: 'Whitelist of allowed app publishers. The task fails for any project whose publisher is not on this list. Empty = no enforcement.'
+    description: 'Whitelist of allowed app publishers. The task fails for any project whose publisher is not on this list. A publisher supplied by a governing directory.app.props.json (BC 2025w2+) is honoured. Empty = no enforcement.'
     required: false
     default: ''
   allowed_publisher_separator:

@@ -14,15 +14,15 @@ inputs:
     default: '18.0.33.65164-beta'
   # --- authentication ---
   nuget_username:
-    description: 'Username for the NuGet source. For Azure DevOps feeds, use any value (e.g. ''az'') combined with a PAT as password.'
+    description: 'Username for basic authentication against the NuGet source. Azure DevOps Artifacts feeds ignore NuGet API keys and require basic authentication: set any value (e.g. ''AzureDevOps'') here and supply the pipeline''s System.AccessToken or a PAT as NuGet Password. When empty but a password is given, ''AzureDevOps'' is used.'
     required: false
     default: ''
   nuget_password:
-    description: 'Password or Personal Access Token (PAT) for the NuGet source.'
+    description: 'Password or Personal Access Token (PAT) for basic authentication against the NuGet source. For Azure DevOps Artifacts use the pipeline''s System.AccessToken (the build identity needs Contributor rights on the feed) or a PAT with Packaging (Read & write) scope. The value is written to an isolated, per-push NuGet.Config that is deleted after the push; the agent''s user profile is never modified.'
     required: false
     default: ''
   nuget_source_apikey:
-    description: 'API Key for the NuGet source. When set, used with dotnet nuget push --api-key.'
+    description: 'API key for feeds that authenticate pushes with X-NuGet-ApiKey (nuget.org, MyGet, BaGet, ...). Passed to dotnet nuget push --api-key. Azure DevOps Artifacts ignores API keys: supply NuGet Username / NuGet Password instead. Both may be set; the API key is then sent alongside basic authentication.'
     required: false
     default: ''
   # --- source ---
