@@ -22,7 +22,7 @@ inputs:
     required: false
     default: ''
   alcachepath:
-    description: 'Folder containing symbol .app files. Defaults to alsourcepath when empty.'
+    description: 'Folder(s) containing symbol .app files. Comma-separated for several folders (not recursive - list each folder). Do not wrap entries in quotes. Defaults to alsourcepath when empty. Symbols downloaded by auto_resolve_* go to the first folder.'
     required: false
     default: ''
   maxcpucount:
@@ -34,7 +34,7 @@ inputs:
     required: false
     default: 'false'
   additional_probing_paths:
-    description: 'Extra symbol probing paths passed to alc. Comma-separated.'
+    description: 'Extra folders searched (recursively) for .NET assemblies referenced from AL, e.g. the BC Service folder. Comma- or newline-separated. Do not wrap entries in quotes. Applies to Serial and Parallel compilation mode.'
     required: false
     default: ''
   generate_report_layouts:
