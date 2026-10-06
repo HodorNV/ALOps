@@ -27,7 +27,7 @@ $ErrorActionPreference = 'Stop'
 
 # ── 1. Import Module & Initialize Task ──────────────────────────────────────
 # Module version pin. tools/Update-ALOpsVSIX.ps1 -ModuleVersion stamps the full
-# PSGallery tag (e.g. 0.1.11557-alpha) here for the Azure DevOps extension.
+# PSGallery tag (e.g. 0.1.11616-alpha) here for the Azure DevOps extension.
 # Empty = resolve the newest prerelease on PSGallery every run (GitHub Actions,
 # local builds). Setting the alops_module_latest environment variable to any
 # non-empty value (name matched case-insensitively) forces that even when pinned.

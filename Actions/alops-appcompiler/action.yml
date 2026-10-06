@@ -81,7 +81,7 @@ inputs:
     default: 'true'
   # --- symbols ---
   auto_resolve_ms_symbols:
-    description: 'Download missing MS symbols from the MSSymbols NuGet feed.'
+    description: 'Download missing MS symbols from the MSSymbols NuGet feed (BC artifacts for NextMajor/NextMinor).'
     required: false
     default: 'true'
   force_download_mssymbols:
@@ -93,7 +93,7 @@ inputs:
     required: false
     default: 'W1'
   bc_version:
-    description: 'BC version filter in Major.Minor format (e.g. ''25.0''). Special values ''NextMajor'' and ''NextMinor'' build against the latest Microsoft insider release (requires accepting the insider EULA — set automatically). Auto-detected from app.json when empty.'
+    description: 'BC version filter in Major.Minor format (e.g. ''25.0''). Special values ''NextMajor'' and ''NextMinor'' build against the latest Microsoft insider release (requires accepting the insider EULA — set automatically): all Microsoft symbols, test libraries included, are taken from the BC insider artifacts (country artifact first, then platform) and the MSSymbols feed is not used. Auto-detected from app.json when empty.'
     required: false
     default: ''
   ms_symbols_feed:
