@@ -27,9 +27,9 @@
         licensefile:                          # Path to a Business Central license file (.flf or .bclicense) to import into the container. $(licensefile) $(licensefile) $(licensefile)
         encryption_key:                       # Path to an encryption key file to import into the container. $(encryption_key) $(encryption_key) $(encryption_key)
         taskscheduler: Keep                   # Configure the BC task scheduler. Keep preserves the default, Enable starts it, Disable stops it. $(taskscheduler) $(taskscheduler) $(taskscheduler)
-        keyvault_pfxfile:                     # Path to the PFX certificate file for Azure Key Vault authentication. $(keyvault_pfxfile) $(keyvault_pfxfile) $(keyvault_pfxfile)
+        keyvault_pfxfile:                     # PFX certificate, with its private key, of the Azure AD app that reads Key Vault secrets: an absolute path, a path relative to the workspace, or a URL (a SAS token is never logged). It is imported into `LocalMachine\My` of the container and the service tier is configured with its thumbprint. A new container gets it through `C:\Run\my\SetupConfiguration.ps1` at its first start; a reused container is updated in place and its service tier restarts only when a setting changed. $(keyvault_pfxfile) $(keyvault_pfxfile) $(keyvault_pfxfile)
         keyvault_pfxpassword:                 # Password for the PFX certificate. Store this in a pipeline secret variable. $(keyvault_pfxpassword) $(keyvault_pfxpassword) $(keyvault_pfxpassword)
-        keyvault_clientid:                    # Azure AD application (client) ID used for Key Vault authentication. $(keyvault_clientid) $(keyvault_clientid) $(keyvault_clientid)
-        keyvault_publisher_validation: false  # Enable publisher validation for Key Vault extension settings. $(keyvault_publisher_validation) $(keyvault_publisher_validation) $(keyvault_publisher_validation)
+        keyvault_clientid:                    # Application (client) ID of the Azure AD app that reads Key Vault secrets (`AzureKeyVaultClientId`). Required when `keyvault_pfxfile` is set. $(keyvault_clientid) $(keyvault_clientid) $(keyvault_clientid)
+        keyvault_publisher_validation: false  # Sets `AzureKeyVaultAppSecretsPublisherValidationEnabled`. When enabled, an extension can only read the key vault when its publisher is listed in the vault's `AllowedPublishers` secret. $(keyvault_publisher_validation) $(keyvault_publisher_validation) $(keyvault_publisher_validation)
 ```
 
