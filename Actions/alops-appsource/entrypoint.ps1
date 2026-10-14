@@ -127,6 +127,7 @@ $P['AutopromoteMaxTries'] = Read-GitHubInput -Name 'autopromote_max_tries'
 $P['ApplyOfferingVersionFilter'] = Read-GitHubInput -Name 'apply_offering_version_filter' -AsBool
 $P['SkipVersionChange'] = Read-GitHubInput -Name 'skip_version_change' -AsBool
 $P['Autopromote'] = Read-GitHubInput -Name 'autopromote' -AsBool
+$P['AutopromoteWait'] = Read-GitHubInput -Name 'autopromote_wait' -AsBool
 
 $P['AzureAppClientSecret'] = Read-GitHubInput -Name 'azure_app_client_secret'
 if ($P['AzureAppClientSecret']) { Protect-ALOpsSecret $P['AzureAppClientSecret'] }

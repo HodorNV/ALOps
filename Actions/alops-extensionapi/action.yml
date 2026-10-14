@@ -86,6 +86,10 @@ inputs:
     description: 'Schema synchronization mode for the extension deployment. add only adds new schema objects. forcesync allows breaking schema changes. Requires API version 2.0.'
     required: false
     default: 'add'
+  install_published_apps:
+    description: 'When the same app version is already published but not installed, install that published package instead of uploading it again. Also installs an app that the deployment left published but uninstalled. API mode only.'
+    required: false
+    default: 'false'
   # --- polling ---
   showdeploymentstatus:
     description: 'When enabled, the task polls and displays the extension deployment status after publishing until the operation completes or times out.'
@@ -99,13 +103,17 @@ inputs:
     description: 'Maximum number of deployment status polls before the task times out. Multiply by Check Delay to calculate the total maximum wait time.'
     required: false
     default: '20'
+  verify_installed:
+    description: 'After a ''Completed'' deployment, check that the app version is really installed and fail the task when it is not. An app that was already published-only before the run only gets a warning. Requires `showdeploymentstatus`. API mode only.'
+    required: false
+    default: 'true'
   # --- artifacts ---
   artifact_path:
-    description: 'Folder containing the .app files to deploy. For publish mode this is the folder where the single .app file is located. For batch mode this is the root folder scanned recursively for .app files.'
+    description: 'Folder containing the .app files to deploy, scanned recursively and narrowed by `artifact_filter`. In `publish` mode the first matching .app file is deployed. In `batch` mode every matching .app file is deployed in dependency order. Empty uses the workspace folder.'
     required: false
     default: ''
   artifact_filter:
-    description: 'Glob filter applied inside artifact_path to select which .app files to deploy, for example *.app.'
+    description: 'File-name glob that selects the .app files under `artifact_path`, for example `*.app` or `Hodor_*.app`. Applies to both `publish` and `batch` mode; in `batch` mode the dependency order of the selected apps is kept.'
     required: false
     default: '*.app'
   # --- altool ---
@@ -121,6 +129,9 @@ outputs:
   ALOPS_EXTENSIONAPI_STATUS:
     description: 'Deployment status of the last published extension.'
     value: ${{ steps.run.outputs.ALOPS_EXTENSIONAPI_STATUS }}
+  ALOPS_EXTENSIONAPI_SUMMARY:
+    description: 'JSON array with one row per processed app: Name, Publisher, Version, Action, Status, Installed, Message.'
+    value: ${{ steps.run.outputs.ALOPS_EXTENSIONAPI_SUMMARY }}
 
 runs:
   using: 'composite'
@@ -149,9 +160,11 @@ runs:
           INPUT_BLOCKSYMBOLSONLY: ${{ inputs.blocksymbolsonly }}
           INPUT_SCHEDULE: ${{ inputs.schedule }}
           INPUT_SCHEMA_SYNC_MODE: ${{ inputs.schema_sync_mode }}
+          INPUT_INSTALL_PUBLISHED_APPS: ${{ inputs.install_published_apps }}
           INPUT_SHOWDEPLOYMENTSTATUS: ${{ inputs.showdeploymentstatus }}
           INPUT_CHECKSECONDSDELAY: ${{ inputs.checksecondsdelay }}
           INPUT_MAXTRIES: ${{ inputs.maxtries }}
+          INPUT_VERIFY_INSTALLED: ${{ inputs.verify_installed }}
           INPUT_ARTIFACT_PATH: ${{ inputs.artifact_path }}
           INPUT_ARTIFACT_FILTER: ${{ inputs.artifact_filter }}
           INPUT_ALTOOL_PACKAGE_VERSION: ${{ inputs.altool_package_version }}

@@ -39,9 +39,13 @@ inputs:
     default: 'false'
   # --- promotion ---
   autopromote:
-    description: 'Automatically promote the submission to go live after it reaches ''ReadyToPublish'' status.'
+    description: 'Promote the submission to go live after it passes certification. The submission is created with `publishOption.isAutoPromote`, so Partner Center promotes it on its own; while `autopromote_wait` is on, the task also polls and promotes it when it reaches ''ReadyToPublish''.'
     required: false
     default: 'false'
+  autopromote_wait:
+    description: 'Wait until the submission goes live (polling with the delay and tries below). When off, the task ends after submitting and Partner Center promotes the submission on its own. A wait that times out after auto-promote was requested is a warning, not a failure.'
+    required: false
+    default: 'true'
   autopromote_check_delay:
     description: 'Seconds to wait between status polling attempts during auto-promotion.'
     required: false
@@ -75,5 +79,6 @@ runs:
           INPUT_APPLY_OFFERING_VERSION_FILTER: ${{ inputs.apply_offering_version_filter }}
           INPUT_SKIP_VERSION_CHANGE: ${{ inputs.skip_version_change }}
           INPUT_AUTOPROMOTE: ${{ inputs.autopromote }}
+          INPUT_AUTOPROMOTE_WAIT: ${{ inputs.autopromote_wait }}
           INPUT_AUTOPROMOTE_CHECK_DELAY: ${{ inputs.autopromote_check_delay }}
           INPUT_AUTOPROMOTE_MAX_TRIES: ${{ inputs.autopromote_max_tries }}

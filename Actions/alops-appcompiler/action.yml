@@ -18,11 +18,11 @@ inputs:
     required: true
     default: 'Serial'
   alsourcepath:
-    description: 'Root folder searched recursively for app.json files.'
+    description: 'Folder that contains app.json, or a root folder searched recursively for app.json files. Defaults to the working folder. Only locates the AL projects to compile; .NET add-in DLLs, already-present symbol .app files and the default symbol cache are taken from the working folder.'
     required: false
     default: ''
   alcachepath:
-    description: 'Folder(s) containing symbol .app files. Comma-separated for several folders (not recursive - list each folder). Do not wrap entries in quotes. Defaults to alsourcepath when empty. Symbols downloaded by auto_resolve_* go to the first folder.'
+    description: 'Folder(s) containing symbol .app files. Comma-separated for several folders (not recursive - list each folder). Do not wrap entries in quotes. Defaults to the working folder when empty. Symbols downloaded by auto_resolve_* go to the first folder.'
     required: false
     default: ''
   maxcpucount:
@@ -51,7 +51,7 @@ inputs:
     required: false
     default: 'true'
   appfilenametemplate:
-    description: 'Template for the output .app filename. Tokens: %APPNAME%, %PUBLISHER%, %VERSION%.'
+    description: 'Template for the output .app filename. Empty uses `%APP_PUBLISHER%_%APP_NAME%_%APP_VERSION%.app`. Tokens: `%APP_PUBLISHER%`, `%APP_NAME%`, `%APP_VERSION%`, `%BC_VERSION%` (the `bc_version` input) and `%BC_COUNTRY%` (the `bc_localization` input). `%PUBLISHER%`, `%APPNAME%` and `%VERSION%` are accepted as aliases. `%BC_TYPE%` is kept for v2 templates and is always empty. Characters that are invalid in a file name become `_`.'
     required: false
     default: ''
   # --- analysis ---

@@ -139,7 +139,9 @@ $P['AltoolPackageVersion'] = Read-GitHubInput -Name 'altool_package_version'
 
 $P['Replacepackageid'] = Read-GitHubInput -Name 'replacepackageid' -AsBool
 $P['Blocksymbolsonly'] = Read-GitHubInput -Name 'blocksymbolsonly' -AsBool
+$P['InstallPublishedApps'] = Read-GitHubInput -Name 'install_published_apps' -AsBool
 $P['Showdeploymentstatus'] = Read-GitHubInput -Name 'showdeploymentstatus' -AsBool
+$P['VerifyInstalled'] = Read-GitHubInput -Name 'verify_installed' -AsBool
 
 $P['AzureAppClientSecret'] = Read-GitHubInput -Name 'azure_app_client_secret'
 if ($P['AzureAppClientSecret']) { Protect-ALOpsSecret $P['AzureAppClientSecret'] }
