@@ -56,7 +56,7 @@ inputs:
     default: ''
   # --- analysis ---
   alcodeanalyzer:
-    description: 'Comma-separated list of code analyzers. Built-in: `CodeCop`, `UICop`, `AppSourceCop`, `PTECop` (alias `PerTenantExtensionCop`). Use `NONE` to disable. A path to a custom analyzer DLL is also accepted, but only in `Serial` compilation mode.'
+    description: 'Comma-separated list of code analyzers. Built-in: `CodeCop`, `UICop`, `AppSourceCop`, `PTECop` (alias `PerTenantExtensionCop`). Use `NONE` to disable. A path to a custom analyzer DLL is also accepted, but only in `Serial` compilation mode. When empty in `Serial` mode, the analyzers in `al.codeAnalyzers` of each project''s `.vscode/settings.json` are used, unless `al.enableCodeAnalysis` is `false`.'
     required: false
     default: ''
   ruleset:
