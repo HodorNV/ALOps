@@ -99,7 +99,7 @@ inputs:
   ms_symbols_feed:
     description: 'NuGet v3 service index URL for the MSSymbols feed.'
     required: false
-    default: 'https://dynamicssmb2.pkgs.visualstudio.com/DynamicsBCPublicFeeds/_packaging/MSSymbols/nuget/v3/index.json'
+    default: 'https://dynamicssmb2.pkgs.visualstudio.com/DynamicsBCPublicFeeds/_packaging/MSSymbolsV2/nuget/v3/index.json'
   ms_symbols_pat:
     description: 'PAT for authenticated MSSymbols feed access.'
     required: false
