@@ -120,6 +120,7 @@ $P = @{}
 $P['AltoolPackageVersion'] = Read-GitHubInput -Name 'altool_package_version'
 $P['CompilationMode'] = Read-GitHubInput -Name 'compilation_mode'
 $P['Alsourcepath'] = Read-GitHubInput -Name 'alsourcepath'
+$P['WorkspaceFile'] = Read-GitHubInput -Name 'workspace_file'
 $P['Alcachepath'] = Read-GitHubInput -Name 'alcachepath'
 $P['Maxcpucount'] = Read-GitHubInput -Name 'maxcpucount'
 $P['AdditionalProbingPaths'] = Read-GitHubInput -Name 'additional_probing_paths'

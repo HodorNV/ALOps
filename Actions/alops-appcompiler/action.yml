@@ -21,6 +21,10 @@ inputs:
     description: 'Folder that contains app.json, or a root folder searched recursively for app.json files. Defaults to the working folder. Only locates the AL projects to compile; .NET add-in DLLs, already-present symbol .app files and the default symbol cache are taken from the working folder.'
     required: false
     default: ''
+  workspace_file:
+    description: 'Optional VS Code `.code-workspace` file that selects which AL projects are compiled, in Serial and Parallel mode: only projects inside its `folders` entries (relative to the workspace file) are compiled. Projects are still discovered under `alsourcepath`; other settings in the file are ignored. Apps that a selected project depends on but that are left out must be available as symbol `.app` files in `alcachepath` or the working folder. Can be set from a pipeline variable. Empty: every project found is compiled.'
+    required: false
+    default: ''
   alcachepath:
     description: 'Folder(s) containing symbol .app files. Comma-separated for several folders (not recursive - list each folder). Do not wrap entries in quotes. Defaults to the working folder when empty. Symbols downloaded by auto_resolve_* go to the first folder.'
     required: false
@@ -222,6 +226,7 @@ runs:
           INPUT_ALTOOL_PACKAGE_VERSION: ${{ inputs.altool_package_version }}
           INPUT_COMPILATION_MODE: ${{ inputs.compilation_mode }}
           INPUT_ALSOURCEPATH: ${{ inputs.alsourcepath }}
+          INPUT_WORKSPACE_FILE: ${{ inputs.workspace_file }}
           INPUT_ALCACHEPATH: ${{ inputs.alcachepath }}
           INPUT_MAXCPUCOUNT: ${{ inputs.maxcpucount }}
           INPUT_ALC_CONTINUE_BUILD_ON_ERROR: ${{ inputs.alc_continue_build_on_error }}
